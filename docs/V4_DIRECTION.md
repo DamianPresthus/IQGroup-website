@@ -1,10 +1,19 @@
 # v4 direction — "Quiet institutional confidence"
 
-**Status:** round 3, 2026-11-06, for review. Live preview: `…/IQGroup-website/v4/` (marked `noindex`). v2 stays the live site. v3 (all-serif, paper) is parked: the user did not like it.
+**Status:** round 4, 2026-11-06, for review. Live preview: `…/IQGroup-website/v4/` (marked `noindex`). v2 stays the live site. v3 (all-serif, paper) is parked: the user did not like it.
 
 **Source:** the user's brief, which draws on modern wealth management, elite venture capital and high-trust fintech. Reference screenshots are in `reference/v4-research/`. Thrive Capital and Carta could not be captured (blank page / bot check).
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
+
+## Round 4 changes (2026-11-06)
+
+- **The flat map is final** (user: "perfect"). A globe variant was tried and discarded.
+- **Trust bar: client names as text, not logos.** Logo permission is unconfirmed (R2), and having logos in the pitch deck doesn't establish website rights. The label is "Clients include", followed by UBS · BCG · J.P. Morgan · Deutsche Bank · PwC · Johnson & Johnson · GSK · Hindustan Unilever.
+  - **Type:** set in Plus Jakarta Sans 600 at 20px, each name in its brand colour (sampled from the official artwork). PwC (#D04A02) and GSK (#C85A00) are darkened to pass 3:1 for large text on alabaster.
+  - **HUL, not Unilever:** the client is Hindustan Unilever Limited, so the global Unilever mark is no longer used.
+  - **Removed:** the logo files in `source/assets/clients/`.
+  - **Still open:** naming clients publicly can still conflict with engagement confidentiality. Ashmita should confirm the list.
 
 ## Round 3 changes (user review, 2026-11-06)
 
@@ -15,7 +24,7 @@
   - **Refinements:** a staggered (hexagonal) dot grid instead of a square one; IQ's footprint countries (India, UAE, Singapore, Norway) picked out in accent dots; halo rings on every city; Mumbai marked as HQ with a slow pulse; arcs that draw in sequence, then markers and labels fade in. All motion is off under reduced motion.
   - **Smaller screens:** on tablet (861–1100px) the map is re-anchored so labels clear the headline. On phones it sits below the text, cropped to the Gulf–Asia arc, with labels scaled up.
   - **Size:** about 60 KB inline (≈17 KB gzipped).
-- **Trust bar logos are now the real colour wordmarks** (`source/assets/clients/`). The SVGs come from Wikimedia Commons / English Wikipedia (UBS and GSK are non-free there), trimmed to their artwork. GSK's 1.5 MB SVG is rasterised to an 8 KB WebP. Heights are balanced optically per logo. **Trademark use still needs each client's permission (R2).**
+- **Trust bar logos were switched to the real colour wordmarks** (superseded in round 4 by coloured text names). The SVGs come from Wikimedia Commons / English Wikipedia (UBS and GSK are non-free there), trimmed to their artwork. GSK's 1.5 MB SVG is rasterised to an 8 KB WebP. Heights are balanced optically per logo. **Trademark use still needs each client's permission (R2).**
 
 ## Round 2 changes (user review, 2026-11-06)
 
