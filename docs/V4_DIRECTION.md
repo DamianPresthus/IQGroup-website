@@ -6,6 +6,16 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 9: recent hires and pillars (2026-11-06)
+
+- **Recent hires** (`#hires`), placed after Practices. The five anonymised placements from the June 2026 deck, slide 6, laid out as an Index-style ledger: the role set in serif, the organisation description in muted text, hairline rules between rows. Update this list yearly from IQ's own record.
+- **What sets us apart:** a stone band placed before Services, with the deck's slide 3 pillars:
+  - **Partnership:** full boutique attention; cultural, strategic and tactical understanding.
+  - **People:** a network of CEOs and MDs built over decades.
+  - **Performance:** 30+ year record, exceptionally fast turnaround.
+
+  The band background keeps it visually distinct from the plain three-column Services row.
+
 ## Round 8: trims (2026-11-06)
 
 - **Offices:** the Oslo office card and the Delhi/Bangalore/Kolkata/Dubai/Singapore office line are removed. The contact section lists Mumbai only, plus the ERA line. The hero map still shows those cities as search locations, not as offices.
