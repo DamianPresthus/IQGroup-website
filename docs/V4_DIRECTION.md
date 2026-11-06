@@ -6,6 +6,16 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 16: preview switch removed (2026-11-06)
+
+Final choices: **map hero** and **IQ plum palette**. Removed:
+- the preview switch (HTML, CSS, JS);
+- the head script that read `?palette` / `?hero`;
+- the team-portrait hero variant (`.hero-visual`, `.team-cluster`);
+- the `[data-palette="navy"]` token block.
+
+The query parameters no longer do anything.
+
 ## Round 15: Oslo visible on the mobile map (2026-11-06)
 
 At ≤860px the map was 170% wide and shifted -75%, which cropped Oslo off the left edge.

@@ -1,7 +1,5 @@
 /* IQ Group v4: "Quiet institutional confidence" (Mercury / Stripe Press / Carta / Index Ventures direction).
-   Two palettes share every role token:
-   - default  = IQ brand: locked plum family on warm alabaster/stone neutrals
-   - [data-palette="navy"] = the reference proposal: Oxford navy + muted brass
+   Palette: IQ brand plum family on warm alabaster/stone neutrals.
    Contrast (WCAG 2.x) computed 2026-11-06 and noted per text role. */
 
 @font-face { font-family: 'Newsreader'; src: url('../assets/fonts/newsreader.woff2') format('woff2'); font-weight: 300 600; font-style: normal; font-display: swap; }
@@ -14,7 +12,7 @@
   --line: color-mix(in oklch, var(--ink) 12%, transparent);       /* hairline */
   --line-strong: color-mix(in oklch, var(--ink) 22%, transparent);
 
-  /* Brand palette (default): locked IQ hexes */
+  /* Brand palette: locked IQ hexes */
   --ink: #12051A;                /* headings: 18.8:1 on bg */
   --ink-body: #2B0F2A;           /* body: 16.5:1 on bg */
   --ink-muted: #6E4165;          /* secondary: 7.6:1 on bg, 7.0:1 on bg-2 */
@@ -57,18 +55,6 @@
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   --fast: 180ms;
   --slow: 520ms;
-}
-
-[data-palette="navy"] {
-  --ink: #0F172A;                /* 16.9:1 on bg */
-  --ink-body: #334155;           /* 9.8:1 on bg */
-  --ink-muted: #5B6475;          /* 5.2:1 on bg-2 */
-  --accent: #7A5B2C;             /* brass, darkened for text: 5.9:1 on bg, 5.4:1 on bg-2 */
-  --surface-dark: #0F172A;
-  --on-dark: #FAF9F5;            /* 16.9:1 */
-  --on-dark-muted: #B48E55;      /* muted brass: 5.9:1 on navy (decorative on light only: 2.9:1) */
-  --on-dark-line: color-mix(in oklch, #CBD5E1 18%, transparent);
-  --focus: #14532D;              /* deep emerald: 8.6:1 on bg */
 }
 
 @media (prefers-reduced-motion: reduce) {

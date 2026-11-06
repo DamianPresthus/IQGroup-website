@@ -147,13 +147,4 @@
       note.hidden = false;
     });
   }
-
-  // Preview switches (hero visual, palette): keep both choices in the query string.
-  const q = new URLSearchParams(location.search);
-  $$('.palette-switch [data-set]').forEach(a => {
-    const [k, v] = a.dataset.set.split('=');
-    const cur = k === 'hero' ? (q.get('hero') === 'team' ? 'team' : 'map') : (q.get('palette') === 'navy' ? 'navy' : 'plum');
-    if (cur === v) a.setAttribute('aria-current', 'true');
-    const next = new URLSearchParams(q); next.set(k, v); a.href = '?' + next.toString();
-  });
 })();
