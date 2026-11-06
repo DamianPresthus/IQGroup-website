@@ -1,10 +1,17 @@
 # v4 direction — "Quiet institutional confidence"
 
-**Status:** round 4, 2026-11-06, for review. Live preview: `…/IQGroup-website/v4/` (marked `noindex`). v2 stays the live site. v3 (all-serif, paper) is parked: the user did not like it.
+**Status:** round 5, 2026-11-06, for review. Live preview: `…/IQGroup-website/v4/` (marked `noindex`). v2 stays the live site. v3 (all-serif, paper) is parked: the user did not like it.
 
 **Source:** the user's brief, which draws on modern wealth management, elite venture capital and high-trust fintech. Reference screenshots are in `reference/v4-research/`. Thrive Capital and Carta could not be captured (blank page / bot check).
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
+
+## Round 5 changes (2026-11-06)
+
+- **No index numbers** on practices or services. The methodology steps keep theirs, because there the order carries meaning.
+- **Practices bento, made scannable.** Every tile now has the same three parts: the practice name, one line on who IQ hires for, and "Led by" with the partner's round portrait. The mixed pills (some tiles had them, some didn't) and the hover-revealed tags are gone.
+  - **Layout:** two rows instead of three. BFSI (light) and IQ Social (dark) are the two wide tiles, set on a diagonal; Consulting, FMCG/Healthcare, Legal and Media/Hospitality fill the remaining cells. This removes the empty space the double-height BFSI tile left.
+  - **Leads:** taken from the roster's focus areas. Ashmita (all practices) leads BFSI, Consulting and FMCG; Shirin leads Legal; Annu leads Media/Hospitality; Christine leads IQ Social. Ashmita should confirm, especially whether an associate should be named on BFSI.
 
 ## Round 4 changes (2026-11-06)
 

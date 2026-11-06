@@ -104,36 +104,30 @@ a { color: inherit; }
    Colours are the brands' own, darkened where needed to pass 3:1 for large text on --bg (GSK, PwC). */
 .trust-logos li { color: var(--c); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.015em; }
 
-/* ---------- Practice bento (Stripe Enterprise) ---------- */
-.bento { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: minmax(11rem, auto); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r-card); overflow: hidden; }
-.tile { position: relative; background: var(--bg); padding: clamp(1.25rem, 1rem + 0.8vw, 1.75rem); display: flex; flex-direction: column; gap: 0.5rem; grid-column: span 3; transition: background-color var(--slow) var(--ease); }
-.tile:hover, .tile:focus-within { background: var(--bg-2); }
-.tile.lead { grid-column: span 6; grid-row: span 2; background: var(--bg-2); }
+/* ---------- Practice bento (Stripe Enterprise): every tile has the same three parts —
+   name, one line on who we hire for, and the partner who leads it. BFSI carries half the weight. ---------- */
+.bento { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: minmax(10.5rem, auto); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r-card); overflow: hidden; }
+.tile { background: var(--bg); padding: clamp(1.25rem, 1rem + 0.8vw, 1.75rem); display: flex; flex-direction: column; gap: 0.4rem; grid-column: span 3; transition: background-color var(--slow) var(--ease); }
+.tile:hover { background: var(--bg-2); }
+.tile.lead { grid-column: span 6; background: var(--bg-2); }
 .tile.lead:hover { background: color-mix(in oklch, var(--bg-2) 70%, var(--accent-soft)); }
-.tile.wide { grid-column: span 12; grid-row: span 1; min-height: 0; }
 .tile h3 { font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem); line-height: 1.15; letter-spacing: -0.015em; }
-.tile.lead h3 { font-size: clamp(1.75rem, 1.45rem + 1.2vw, 2.5rem); max-width: 16ch; }
-.tile p { font-size: var(--fs-small); color: var(--ink-muted); max-width: 44ch; }
-.tile .index { font-size: var(--fs-tag); font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
-.tile .spacer { flex: 1; }
-.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-.tags li { font-size: var(--fs-tag); font-weight: 500; color: var(--ink-body); border: 1px solid var(--line-strong); border-radius: var(--r-pill); padding: 0.25rem 0.7rem; background: var(--bg); }
-@media (hover: hover) {
-  .tile:not(.lead):not(.wide) .tags { opacity: 0; transform: translateY(6px); transition: opacity var(--slow) var(--ease), transform var(--slow) var(--ease); }
-  .tile:hover .tags, .tile:focus-within .tags { opacity: 1; transform: none; }
-}
-.tile.dark { background: var(--surface-dark); color: var(--on-dark); flex-direction: row; align-items: end; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem 3rem; }
+.tile.lead h3 { font-size: clamp(1.625rem, 1.4rem + 0.9vw, 2.125rem); line-height: 1.08; max-width: 20ch; }
+.tile p { font-size: var(--fs-small); color: var(--ink-muted); max-width: 40ch; }
+.tile.lead > p:not(.lead-by) { font-size: 1rem; max-width: 40ch; }
+.lead-by { margin-top: auto; padding-top: 1rem; display: flex; align-items: center; gap: 0.55rem; font-size: var(--fs-tag) !important; font-weight: 600; color: var(--ink-body) !important; }
+.lead-by .face { width: 1.6rem; height: 1.6rem; }
+.tile.wide { grid-column: span 6; }
+.tile.dark { background: var(--surface-dark); }
 .tile.dark:hover { background: color-mix(in oklch, var(--surface-dark) 88%, var(--accent)); }
-.tile.dark h3 { color: var(--on-dark); }
-.tile.dark p { color: var(--on-dark-muted); }
-.tile.dark .index { color: var(--on-dark-muted); }
-.tile.dark .tags li { background: transparent; color: var(--on-dark); border-color: var(--on-dark-line); }
+.tile.dark h3 { color: var(--on-dark); font-size: clamp(1.625rem, 1.4rem + 0.9vw, 2.125rem); line-height: 1.08; }
+.tile.dark p { color: var(--on-dark-muted); font-size: 1rem; }
+.tile.dark .lead-by { color: var(--on-dark) !important; }
 
 /* ---------- Services: three scannable columns ---------- */
 .svc-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line-strong); }
 .svc-row li { display: grid; gap: 0.5rem; align-content: start; padding: 1.5rem var(--gutter) 0.5rem 0; }
 .svc-row li + li { padding-left: var(--gutter); border-left: 1px solid var(--line); }
-.svc-row .no { font-size: var(--fs-tag); font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
 .svc-row h3 { font-size: var(--fs-h3); line-height: 1.15; letter-spacing: -0.015em; }
 .svc-row p { font-size: var(--fs-small); color: var(--ink-muted); }
 
@@ -231,7 +225,7 @@ a { color: inherit; }
 }
 @media (max-width: 1024px) {
   .tile { grid-column: span 6; }
-  .tile.lead { grid-column: span 12; grid-row: span 1; }
+  .tile.lead, .tile.wide { grid-column: span 12; }
   .trust-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
   .trust-logos { width: 100%; display: grid; grid-template-columns: repeat(4, auto); justify-content: space-between; row-gap: 1.25rem; }
 }
