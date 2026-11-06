@@ -23,14 +23,8 @@
 <meta name="robots" content="noindex">
 <link rel="preload" href="../assets/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/plusjakarta.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="tokens.css?v=202611062219">
-<link rel="stylesheet" href="styles.css?v=202611062219">
-<script>
-  // Palette preview (?palette=navy). Runs before paint to avoid a flash.
-  const q = new URLSearchParams(location.search);
-  if (q.get('palette') === 'navy') document.documentElement.dataset.palette = 'navy';
-  document.documentElement.dataset.hero = q.get('hero') === 'team' ? 'team' : 'map';
-</script>
+<link rel="stylesheet" href="tokens.css?v=202611062223">
+<link rel="stylesheet" href="styles.css?v=202611062223">
 </head>
 <body>
 
@@ -75,9 +69,6 @@
           <a class="btn btn-dark" href="#contact" data-enquiry="search">Begin a search <span class="arrow" aria-hidden="true">→</span></a>
           <a class="link-arrow" href="#candidates" data-enquiry="profile">Share your profile</a>
         </div>
-      </div>
-      <div class="hero-visual">
-        <ul class="team-cluster" aria-label="The IQ Group team"><li style="--i:0"><span class="face"><img src="../assets/team-face/ashmita.jpg" alt="Ashmita Ray Sarkar" width="160" height="160"></span></li><li style="--i:1"><span class="face"><img src="../assets/team-face/annu.jpg" alt="Annu Paul" width="160" height="160"></span></li><li style="--i:2"><span class="face"><img src="../assets/team-face/shirin.jpg" alt="Shirin Gulrajani Talwar" width="160" height="160"></span></li><li style="--i:3"><span class="face"><img src="../assets/team-face/christine.jpg" alt="Christine Gomes" width="160" height="160"></span></li><li style="--i:4"><span class="face"><img src="../assets/team-face/mallika.jpg" alt="Mallika Sen Varma" width="160" height="160"></span></li><li style="--i:5"><span class="face"><img src="../assets/team-face/bijal.jpg" alt="Bijal Joshi" width="160" height="160"></span></li><li style="--i:6"><span class="face"><img src="../assets/team-face/shharran.jpg" alt="Shharran Das" width="160" height="160"></span></li><li style="--i:7"><span class="face"><img src="../assets/team-face/tanushree.jpg" alt="Tanushree Kundu" width="160" height="160"></span></li><li style="--i:8"><span class="face"><img src="../assets/team-face/neha.jpg" alt="Neha Beswal" width="160" height="160"></span></li><li style="--i:9"><span class="face"><img src="../assets/team-face/tilak.jpg" alt="Tilak Mukherji" width="160" height="160"></span></li></ul>
       </div>
     </div>
   </header>
@@ -357,15 +348,6 @@
   </div>
 </dialog>
 
-<div class="palette-switch" aria-label="Preview options">
-  <span>Hero</span>
-  <a href="#" data-set="hero=map">Map</a>
-  <a href="#" data-set="hero=team">Team</a>
-  <span>Palette</span>
-  <a href="#" data-set="palette=plum">IQ plum</a>
-  <a href="#" data-set="palette=navy">Navy &amp; brass</a>
-</div>
-
-<script src="app.js?v=202611062219" defer></script>
+<script src="app.js?v=202611062223" defer></script>
 </body>
 </html>
