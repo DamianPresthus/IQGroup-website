@@ -100,8 +100,9 @@ a { color: inherit; }
 .trust-row { display: flex; align-items: center; gap: clamp(1.5rem, 1rem + 2vw, 3rem); padding-block: clamp(1.25rem, 1rem + 1vw, 1.75rem); }
 .trust-label { flex: none; font-size: var(--fs-tag); font-weight: 600; color: var(--ink-muted); white-space: nowrap; }
 .trust-logos { flex: 1; display: flex; align-items: center; justify-content: space-between; gap: clamp(1.25rem, 0.5rem + 2vw, 2.5rem); white-space: nowrap; line-height: 1; }
-.trust-logos li { display: flex; align-items: center; }
-.trust-logos img { height: var(--h); width: auto; display: block; }
+/* Client names as text in each brand's colour (no logo artwork; permission for logos not confirmed, R2).
+   Colours are the brands' own, darkened where needed to pass 3:1 for large text on --bg (GSK, PwC). */
+.trust-logos li { color: var(--c); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.015em; }
 
 /* ---------- Practice bento (Stripe Enterprise) ---------- */
 .bento { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: minmax(11rem, auto); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r-card); overflow: hidden; }
