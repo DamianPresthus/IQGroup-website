@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#12051A;}
+*{box-sizing:border-box;}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+a{color:#D1A1C7;text-decoration:none;}
+a:hover{color:#FAF8FA;}
+::selection{background:#8F1F78;color:#FAF8FA;}
+</style>
+</helmet>
+
+<div style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#2B0F2A;background:#FAF8FA;overflow-x:hidden;">
+
+<!-- HERO -->
+<section id="top" data-screen-label="01 Hero" style="position:relative;height:100svh;min-height:460px;background:radial-gradient(90% 70% at 80% 40%, #2B0F2A 0%, #1A0826 45%, #12051A 100%);color:#FAF8FA;overflow:hidden;display:flex;flex-direction:column;">
+  <canvas ref="{{ canvasRef }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></canvas>
+  <div style="position:absolute;inset:0;pointer-events:none;opacity:.22;mix-blend-mode:overlay;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22220%22 height=%22220%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%221.05%22 numOctaves=%222%22 stitchTiles=%22stitch%22/%3E%3CfeColorMatrix values=%220 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.4 -0.45%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');"></div>
+
+  <header style="position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px clamp(20px,4vw,56px);">
+    <a href="#top" style="display:flex;align-items:baseline;gap:10px;color:#FAF8FA;">
+      <span style="font-family:'EB Garamond',serif;font-size:28px;font-weight:500;letter-spacing:-0.02em;">IQ</span>
+      <span style="font-size:12px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:#D1A1C7;">Group</span>
+    </a>
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex;gap:2px;padding:4px;border:1px solid rgba(209,161,199,.22);border-radius:999px;background:rgba(18,5,26,.35);backdrop-filter:blur(10px);">
+        <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="5">
+          <button onClick="{{ n.go }}" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:500;padding:8px 16px;border-radius:999px;cursor:pointer;border:1px solid {{ n.bd }};background:{{ n.bg }};color:{{ n.fg }};transition:all .25s ease;">{{ n.label }}</button>
+        </sc-for>
+      </nav>
+    </sc-if>
+    <button onClick="{{ goContact }}" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:500;padding:10px 20px;border-radius:999px;border:none;background:#FAF8FA;color:#12051A;cursor:pointer;" style-hover="background:#F3E7F0;">Begin a search</button>
+  </header>
+
+  <div style="position:relative;z-index:2;flex:1;display:flex;align-items:center;padding:0 clamp(20px,4vw,56px);">
+    <div style="max-width:720px;display:flex;flex-direction:column;gap:clamp(16px,4vh,32px);">
+      <h1 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(40px,min(7.4vw,11vh),108px);line-height:0.98;letter-spacing:-0.02em;text-wrap:balance;">Hires that move your organisation <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:300;letter-spacing:-0.03em;color:#D1A1C7;">forward.</span></h1>
+      <div style="display:flex;gap:20px;align-items:stretch;">
+        <span style="width:2px;flex:none;border-radius:2px;background:linear-gradient(180deg,#1AD1BE 0%,#D1A1C7 22%,#8F1F78 100%);"></span>
+        <p style="margin:0;font-size:clamp(15px,1.3vw,18px);font-weight:300;line-height:1.6;color:#E9D9E5;max-width:480px;text-wrap:pretty;">Partner-led executive search and HR advisory — from specialist roles to the C‑suite, across India, the Middle East and South Asia for 30+ years.</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <button onClick="{{ goMethod }}" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:500;padding:13px 24px;border-radius:999px;border:none;background:#FAF8FA;color:#12051A;cursor:pointer;" style-hover="background:#F3E7F0;">How we search</button>
+        <button onClick="{{ goPeople }}" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:500;padding:13px 24px;border-radius:999px;border:1px solid rgba(209,161,199,.5);background:transparent;color:#FAF8FA;cursor:pointer;" style-hover="border-color:#FAF8FA;">Meet the partners</button>
+      </div>
+    </div>
+  </div>
+
+  <sc-if value="{{ logoBar }}" hint-placeholder-val="{{ true }}">
+    <div style="position:relative;z-index:2;flex:none;background:rgba(18,5,26,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(209,161,199,.14);padding:clamp(14px,2.6vh,22px) clamp(20px,4vw,56px);display:flex;align-items:center;gap:clamp(20px,3vw,48px);overflow-x:auto;scrollbar-width:none;">
+      <span style="flex:none;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#D1A1C7;white-space:nowrap;">Trusted by</span>
+      <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:clamp(24px,3vw,48px);white-space:nowrap;line-height:1;">
+        <span style="font-family:'EB Garamond',serif;font-weight:600;font-size:24px;letter-spacing:0.04em;color:rgba(233,217,229,.72);">UBS</span>
+        <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:22px;letter-spacing:0.02em;color:rgba(233,217,229,.72);">BCG</span>
+        <span style="font-family:'EB Garamond',serif;font-weight:500;font-size:20px;color:rgba(233,217,229,.72);">J.P.Morgan</span>
+        <span style="display:flex;align-items:center;gap:8px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:500;font-size:16px;color:rgba(233,217,229,.72);"><span style="position:relative;width:20px;height:20px;border:2.5px solid rgba(233,217,229,.72);flex:none;"><span style="position:absolute;left:50%;top:-1px;width:2.5px;height:17px;background:rgba(233,217,229,.72);transform:translateX(-50%) rotate(45deg);"></span></span>Deutsche Bank</span>
+        <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:22px;color:rgba(233,217,229,.72);">pwc</span>
+        <span style="font-family:'EB Garamond',serif;font-style:italic;font-weight:500;font-size:19px;color:rgba(233,217,229,.72);">Johnson&amp;Johnson</span>
+        <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:22px;color:rgba(233,217,229,.72);">gsk</span>
+        <span style="font-family:'EB Garamond',serif;font-style:italic;font-weight:600;font-size:21px;color:rgba(233,217,229,.72);">Unilever</span>
+      </div>
+    </div>
+  </sc-if>
+</section>
+
+<!-- STATEMENT -->
+<section data-screen-label="02 Statement" style="background:#1A0826;color:#FAF8FA;padding:clamp(72px,9vw,136px) clamp(20px,4vw,56px);">
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:32px;">
+    <p style="margin:0;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:#D1A1C7;">How we work</p>
+    <p style="margin:0;font-family:'EB Garamond',serif;font-weight:300;font-size:clamp(30px,3.8vw,56px);line-height:1.12;letter-spacing:-0.025em;text-wrap:pretty;">Every mandate is led by a partner — from the first brief to <em style="color:#D1A1C7;">the day your hire walks in.</em></p>
+    <div style="display:flex;gap:16px;align-items:center;color:#D1A1C7;font-size:13px;font-weight:300;">
+      <span style="width:40px;height:1px;background:rgba(209,161,199,.5);"></span>
+      <span>Member, Executive Recruiters Association</span>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section data-screen-label="03 Pillars" style="position:relative;background:#FAF8FA;padding:clamp(90px,11vw,160px) clamp(20px,4vw,56px);">
+  <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(40px,6vw,96px);align-items:start;">
+    <div style="display:flex;flex-direction:column;gap:20px;position:sticky;top:40px;">
+      <p style="margin:0;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:#6E4165;">Why IQ</p>
+      <h2 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(36px,4vw,56px);line-height:1.05;letter-spacing:-0.015em;color:#12051A;">Boutique by design.</h2>
+      <p style="margin:0;font-size:16px;font-weight:300;line-height:1.7;color:#4A2B44;max-width:400px;text-wrap:pretty;">Every mandate is led by a partner — never handed down to a junior researcher.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;">
+      <div style="display:grid;grid-template-columns:56px 1fr;gap:20px;padding:32px 0;border-top:1px solid rgba(110,65,101,.22);">
+        <span style="font-size:12px;color:#6E4165;padding-top:12px;">01</span>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <h3 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(28px,2.8vw,38px);letter-spacing:-0.02em;color:#12051A;">Partnership</h3>
+          <p style="margin:0;font-size:15px;font-weight:300;line-height:1.65;color:#4A2B44;max-width:460px;">Undivided attention. We learn your organisation at the cultural, strategic and tactical level.</p>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:56px 1fr;gap:20px;padding:32px 0;border-top:1px solid rgba(110,65,101,.22);">
+        <span style="font-size:12px;color:#6E4165;padding-top:12px;">02</span>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <h3 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(28px,2.8vw,38px);letter-spacing:-0.02em;color:#12051A;">People</h3>
+          <p style="margin:0;font-size:15px;font-weight:300;line-height:1.65;color:#4A2B44;max-width:460px;">A proprietary network of CEOs, Managing Directors and domain heads, built over three decades.</p>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:56px 1fr;gap:20px;padding:32px 0;border-top:1px solid rgba(110,65,101,.22);border-bottom:1px solid rgba(110,65,101,.22);">
+        <span style="font-size:12px;color:#6E4165;padding-top:12px;">03</span>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <h3 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(28px,2.8vw,38px);letter-spacing:-0.02em;color:#12051A;">Performance</h3>
+          <p style="margin:0;font-size:15px;font-weight:300;line-height:1.65;color:#4A2B44;max-width:460px;">Complex, niche placements — delivered in remarkably fast turnaround times.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD (Practice areas view hidden for now: set showPractices to true in renderVals to restore) -->
+<section id="method" data-screen-label="04 Method" style="background:#FAF8FA;padding:0 clamp(20px,4vw,56px) clamp(90px,11vw,160px);">
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(40px,5vw,64px);">
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <p style="margin:0;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:#6E4165;">Our method</p>
+      <h2 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(40px,4.6vw,64px);line-height:1;letter-spacing:-0.015em;color:#12051A;">Five steps. One partner.</h2>
+    </div>
+    <sc-if value="{{ showPractices }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;">
+        <div style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(18px,3vw,36px);align-items:center;padding:clamp(20px,2.4vw,30px) clamp(8px,1.2vw,16px);border-top:1px solid rgba(110,65,101,.2);transition:background .3s ease;" style-hover="background:linear-gradient(90deg,rgba(243,231,240,0),#F3E7F0 12%,#F3E7F0 88%,rgba(243,231,240,0));">
+          <div style="position:relative;width:clamp(72px,8vw,112px);aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:radial-gradient(110% 90% at 15% 110%, #8F1F78 0%, rgba(143,31,120,0) 62%), radial-gradient(70% 70% at 88% 8%, #D1A1C7 0%, rgba(209,161,199,0) 58%), #12051A;"><div style="position:absolute;inset:0;pointer-events:none;opacity:.6;mix-blend-mode:soft-light;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22140%22%3E%3Cfilter id=%22g%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%222.2%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3CfeColorMatrix type=%22saturate%22 values=%220%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23g)%22/%3E%3C/svg%3E');"></div><span style="position:absolute;left:10px;bottom:8px;font-size:11px;font-weight:500;color:#FAF8FA;">01</span></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px 48px;align-items:center;">
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#6E4165;">BFSI</span>
+              <h3 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(24px,2.6vw,34px);line-height:1.12;letter-spacing:-0.01em;color:#12051A;text-wrap:balance;">Banking, Private Equity &amp; Financial Services</h3>
+            </div>
+            <p style="margin:0;font-size:15px;font-weight:400;line-height:1.6;color:#4A2B44;">UBS · J.P. Morgan · Deutsche Bank · YES BANK · Baring PE</p>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(18px,3vw,36px);align-items:center;padding:clamp(20px,2.4vw,30px) clamp(8px,1.2vw,16px);border-top:1px solid rgba(110,65,101,.2);transition:background .3s ease;" style-hover="background:linear-gradient(90deg,rgba(243,231,240,0),#F3E7F0 12%,#F3E7F0 88%,rgba(243,231,240,0));">
+          <div style="position:relative;width:clamp(72px,8vw,112px);aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:radial-gradient(90% 120% at 100% 50%, #8F1F78 0%, rgba(143,31,120,0) 60%), linear-gradient(120deg, #12051A 0%, #2B0F2A 45%, #D1A1C7 130%);"><div style="position:absolute;inset:0;pointer-events:none;opacity:.6;mix-blend-mode:soft-light;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22140%22%3E%3Cfilter id=%22g%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%222.2%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3CfeColorMatrix type=%22saturate%22 values=%220%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23g)%22/%3E%3C/svg%3E');"></div><span style="position:absolute;left:10px;bottom:8px;font-size:11px;font-weight:500;color:#FAF8FA;">02</span></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px 48px;align-items:center;">
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#6E4165;">Consulting</span>
+              <h3 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(24px,2.6vw,34px);line-height:1.12;letter-spacing:-0.01em;color:#12051A;text-wrap:balance;">Management Consulting, Strategy &amp; Advisory</h3>
+            </div>
+            <p style="margin:0;font-size:15px;font-weight:400;line-height:1.6;color:#4A2B44;">BCG · PwC · Dalberg · Sigma Research</p>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(18px,3vw,36px);align-items:center;padding:clamp(20px,2.4vw,30px) clamp(8px,1.2vw,16px);border-top:1px solid rgba(110,65,101,.2);transition:background .3s ease;" style-hover="background:linear-gradient(90deg,rgba(243,231,240,0),#F3E7F0 12%,#F3E7F0 88%,rgba(243,231,240,0));">
+          <div style="position:relative;width:clamp(72px,8vw,112px);aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:radial-gradient(80% 100% at 50% 120%, #D1A1C7 0%, rgba(209,161,199,0) 55%), radial-gradient(100% 90% at 50% 60%, #8F1F78 0%, rgba(143,31,120,0) 70%), #12051A;"><div style="position:absolute;inset:0;pointer-events:none;opacity:.6;mix-blend-mode:soft-light;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22140%22%3E%3Cfilter id=%22g%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%222.2%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3CfeColorMatrix type=%22saturate%22 values=%220%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23g)%22/%3E%3C/svg%3E');"></div><span style="position:absolute;left:10px;bottom:8px;font-size:11px;font-weight:500;color:#FAF8FA;">03</span></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px 48px;align-items:center;">
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#6E4165;">Industry</span>
+              <h3 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(24px,2.6vw,34px);line-height:1.12;letter-spacing:-0.01em;color:#12051A;text-wrap:balance;">FMCG, Healthcare, Life Sciences &amp; Industrials</h3>
+            </div>
+            <p style="margin:0;font-size:15px;font-weight:400;line-height:1.6;color:#4A2B44;">J&amp;J · GSK · Bayer · HUL · Asian Paints</p>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(18px,3vw,36px);align-items:center;padding:clamp(20px,2.4vw,30px) clamp(8px,1.2vw,16px);border-top:1px solid rgba(110,65,101,.2);transition:background .3s ease;" style-hover="background:linear-gradient(90deg,rgba(243,231,240,0),#F3E7F0 12%,#F3E7F0 88%,rgba(243,231,240,0));">
+          <div style="position:relative;width:clamp(72px,8vw,112px);aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:radial-gradient(90% 90% at 0% 0%, #D1A1C7 0%, rgba(209,161,199,0) 55%), radial-gradient(90% 110% at 100% 100%, #8F1F78 0%, rgba(143,31,120,0) 65%), #2B0F2A;"><div style="position:absolute;inset:0;pointer-events:none;opacity:.6;mix-blend-mode:soft-light;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22140%22%3E%3Cfilter id=%22g%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%222.2%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3CfeColorMatrix type=%22saturate%22 values=%220%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23g)%22/%3E%3C/svg%3E');"></div><span style="position:absolute;left:10px;bottom:8px;font-size:11px;font-weight:500;color:#FAF8FA;">04</span></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px 48px;align-items:center;">
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#6E4165;">IQ Social</span>
+              <h3 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(24px,2.6vw,34px);line-height:1.12;letter-spacing:-0.01em;color:#12051A;text-wrap:balance;">CSR, Philanthropy &amp; International Foundations</h3>
+            </div>
+            <p style="margin:0;font-size:15px;font-weight:400;line-height:1.6;color:#4A2B44;">Oxfam · NASSCOM Foundation · TechnoServe · HelpAge</p>
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;padding:28px clamp(8px,1.2vw,16px) 0;border-top:1px solid rgba(110,65,101,.2);">
+          <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#6E4165;">Beyond search</span>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <span style="font-size:14px;font-weight:500;padding:10px 18px;border-radius:999px;border:1px solid rgba(110,65,101,.3);color:#2B0F2A;">HR Advisory</span>
+            <span style="font-size:14px;font-weight:500;padding:10px 18px;border-radius:999px;border:1px solid rgba(110,65,101,.3);color:#2B0F2A;">Turnkey Project RPO</span>
+            <span style="font-size:14px;font-weight:500;padding:10px 18px;border-radius:999px;border:1px solid rgba(110,65,101,.3);color:#2B0F2A;">Career Transition &amp; Outplacement</span>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+      <div style="background:#F3EFF5;border-radius:32px;padding:clamp(32px,4vw,56px) clamp(24px,3vw,48px);">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:44px 28px;">
+          <div style="position:relative;border-top:1px solid rgba(110,65,101,.3);padding-top:32px;display:flex;flex-direction:column;gap:12px;">
+            <span style="position:absolute;top:-6px;left:0;width:11px;height:11px;border-radius:50%;background:#FAF8FA;border:2px solid #0F766E;"></span>
+            <span style="font-family:'EB Garamond',serif;font-size:56px;font-weight:400;line-height:.9;letter-spacing:-0.03em;color:#8F1F78;">01</span>
+            <span style="font-family:'EB Garamond',serif;font-size:24px;line-height:1.15;color:#12051A;text-wrap:balance;">Understand your business</span>
+            <span style="font-size:14px;font-weight:400;line-height:1.6;color:#4A2B44;text-wrap:pretty;">Strategic priorities, mandate goals and culture.</span>
+          </div>
+          <div style="position:relative;border-top:1px solid rgba(110,65,101,.3);padding-top:32px;display:flex;flex-direction:column;gap:12px;">
+            <span style="position:absolute;top:-6px;left:0;width:11px;height:11px;border-radius:50%;background:#8F1F78;border:2px solid #FAF8FA;"></span>
+            <span style="font-family:'EB Garamond',serif;font-size:56px;font-weight:400;line-height:.9;letter-spacing:-0.03em;color:#8F1F78;">02</span>
+            <span style="font-family:'EB Garamond',serif;font-size:24px;line-height:1.15;color:#12051A;text-wrap:balance;">Shortlist candidates</span>
+            <span style="font-size:14px;font-weight:400;line-height:1.6;color:#4A2B44;text-wrap:pretty;">Proprietary databases, market mapping and direct outreach.</span>
+          </div>
+          <div style="position:relative;border-top:1px solid rgba(110,65,101,.3);padding-top:32px;display:flex;flex-direction:column;gap:12px;">
+            <span style="position:absolute;top:-6px;left:0;width:11px;height:11px;border-radius:50%;background:#8F1F78;border:2px solid #FAF8FA;"></span>
+            <span style="font-family:'EB Garamond',serif;font-size:56px;font-weight:400;line-height:.9;letter-spacing:-0.03em;color:#8F1F78;">03</span>
+            <span style="font-family:'EB Garamond',serif;font-size:24px;line-height:1.15;color:#12051A;text-wrap:balance;">Identify the match</span>
+            <span style="font-size:14px;font-weight:400;line-height:1.6;color:#4A2B44;text-wrap:pretty;">Competency evaluation and 360° reference checks.</span>
+          </div>
+          <div style="position:relative;border-top:1px solid rgba(110,65,101,.3);padding-top:32px;display:flex;flex-direction:column;gap:12px;">
+            <span style="position:absolute;top:-6px;left:0;width:11px;height:11px;border-radius:50%;background:#8F1F78;border:2px solid #FAF8FA;"></span>
+            <span style="font-family:'EB Garamond',serif;font-size:56px;font-weight:400;line-height:.9;letter-spacing:-0.03em;color:#8F1F78;">04</span>
+            <span style="font-family:'EB Garamond',serif;font-size:24px;line-height:1.15;color:#12051A;text-wrap:balance;">Hire &amp; onboard</span>
+            <span style="font-size:14px;font-weight:400;line-height:1.6;color:#4A2B44;text-wrap:pretty;">Offer negotiation, closing facilitation and transition support.</span>
+          </div>
+          <div style="position:relative;border-top:1px solid rgba(110,65,101,.3);padding-top:32px;display:flex;flex-direction:column;gap:12px;">
+            <span style="position:absolute;top:-6px;left:0;width:11px;height:11px;border-radius:50%;background:#8F1F78;border:2px solid #FAF8FA;"></span>
+            <span style="font-family:'EB Garamond',serif;font-size:56px;font-weight:400;line-height:.9;letter-spacing:-0.03em;color:#8F1F78;">05</span>
+            <span style="font-family:'EB Garamond',serif;font-size:24px;line-height:1.15;color:#12051A;text-wrap:balance;">Monitor &amp; iterate</span>
+            <span style="font-size:14px;font-weight:400;line-height:1.6;color:#4A2B44;text-wrap:pretty;">Post-placement check-ins to ensure lasting impact.</span>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+<!-- MANDATES -->
+<section id="mandates" data-screen-label="05 Mandates" style="background:#12051A;color:#FAF8FA;padding:clamp(90px,11vw,160px) clamp(20px,4vw,56px);">
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(40px,5vw,64px);">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;">
+      <div style="display:flex;gap:20px;align-items:stretch;">
+        <span style="width:2px;flex:none;border-radius:2px;background:linear-gradient(180deg,#1AD1BE 0%,#D1A1C7 22%,#8F1F78 100%);"></span>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <p style="margin:0;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:#D1A1C7;">Recent mandates</p>
+          <h2 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(40px,4.6vw,64px);line-height:1;letter-spacing:-0.015em;">Placed at the top.</h2>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:16px;">
+      <article style="position:relative;grid-row:span 2;min-height:400px;border-radius:28px;overflow:hidden;padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;justify-content:space-between;gap:40px;background:radial-gradient(90% 70% at 85% 100%, #8F1F78 0%, rgba(143,31,120,0) 65%), radial-gradient(60% 50% at 10% 0%, rgba(209,161,199,.55) 0%, rgba(209,161,199,0) 60%), #2B0F2A;"><div style="position:absolute;inset:0;pointer-events:none;opacity:.55;mix-blend-mode:overlay;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22%20width=%22180%22%20height=%22180%22%3E%3Cfilter%20id=%22g%22%3E%3CfeTurbulence%20type=%22fractalNoise%22%20baseFrequency=%22.9%22%20numOctaves=%222%22%20seed=%223%22%20stitchTiles=%22stitch%22/%3E%3CfeColorMatrix%20values=%220%200%200%200%201%200%200%200%200%201%200%200%200%200%201%200%200%200%203.2%20-1.75%22/%3E%3C/filter%3E%3Crect%20width=%22100%25%22%20height=%22100%25%22%20filter=%22url(%23g)%22/%3E%3C/svg%3E');"></div><div style="position:absolute;inset:0;pointer-events:none;opacity:.45;mix-blend-mode:normal;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22%20width=%22180%22%20height=%22180%22%3E%3Cfilter%20id=%22g%22%3E%3CfeTurbulence%20type=%22fractalNoise%22%20baseFrequency=%22.9%22%20numOctaves=%222%22%20seed=%229%22%20stitchTiles=%22stitch%22/%3E%3CfeColorMatrix%20values=%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%203.2%20-1.6%22/%3E%3C/filter%3E%3Crect%20width=%22100%25%22%20height=%22100%25%22%20filter=%22url(%23g)%22/%3E%3C/svg%3E');"></div>
+        <span style="position:relative;align-self:flex-start;font-size:11px;font-weight:500;padding:6px 12px;border-radius:999px;border:1px solid rgba(250,248,250,.35);color:#FAF8FA;">Industry</span>
+        <div style="position:relative;display:flex;flex-direction:column;gap:12px;">
+          <span style="font-family:'EB Garamond',serif;font-size:clamp(36px,4vw,56px);line-height:1;letter-spacing:-0.02em;color:#FAF8FA;">Chief Executive Officer</span>
+          <span style="font-size:15px;color:#E9D9E5;">Leading Indian specialty chemicals manufacturer</span>
+        </div>
+      </article>
+      <article style="min-height:190px;border-radius:24px;padding:26px;display:flex;flex-direction:column;justify-content:space-between;gap:28px;background:rgba(43,15,42,.45);border:1px solid rgba(209,161,199,.16);transition:border-color .3s ease;" style-hover="border-color:rgba(209,161,199,.45);">
+        <span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#D1A1C7;">Industry</span>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span style="font-family:'EB Garamond',serif;font-size:clamp(24px,2.2vw,30px);line-height:1.1;letter-spacing:-0.01em;color:#FAF8FA;">Chief Financial Officer</span>
+          <span style="font-size:14px;color:#D1A1C7;">Indian precision engineering company</span>
+        </div>
+      </article>
+      <article style="min-height:190px;border-radius:24px;padding:26px;display:flex;flex-direction:column;justify-content:space-between;gap:28px;background:rgba(43,15,42,.45);border:1px solid rgba(209,161,199,.16);transition:border-color .3s ease;" style-hover="border-color:rgba(209,161,199,.45);">
+        <span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#D1A1C7;">BFSI</span>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span style="font-family:'EB Garamond',serif;font-size:clamp(24px,2.2vw,30px);line-height:1.1;letter-spacing:-0.01em;color:#FAF8FA;">Vice President, Investments</span>
+          <span style="font-size:14px;color:#D1A1C7;">Leading Indian private equity firm</span>
+        </div>
+      </article>
+      <article style="min-height:190px;border-radius:24px;padding:26px;display:flex;flex-direction:column;justify-content:space-between;gap:28px;background:rgba(43,15,42,.45);border:1px solid rgba(209,161,199,.16);transition:border-color .3s ease;" style-hover="border-color:rgba(209,161,199,.45);">
+        <span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#D1A1C7;">BFSI</span>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span style="font-family:'EB Garamond',serif;font-size:clamp(24px,2.2vw,30px);line-height:1.1;letter-spacing:-0.01em;color:#FAF8FA;">Chief Marketing Officer</span>
+          <span style="font-size:14px;color:#D1A1C7;">Leading private sector Indian bank</span>
+        </div>
+      </article>
+      <article style="min-height:190px;border-radius:24px;padding:26px;display:flex;flex-direction:column;justify-content:space-between;gap:28px;background:rgba(43,15,42,.45);border:1px solid rgba(209,161,199,.16);transition:border-color .3s ease;" style-hover="border-color:rgba(209,161,199,.45);">
+        <span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#D1A1C7;">IQ Social</span>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span style="font-family:'EB Garamond',serif;font-size:clamp(24px,2.2vw,30px);line-height:1.1;letter-spacing:-0.01em;color:#FAF8FA;">Head of CSR, India</span>
+          <span style="font-size:14px;color:#D1A1C7;">Large European multinational bank</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section data-screen-label="06 Endorsements" style="background:#F3E7F0;padding:clamp(90px,11vw,160px) clamp(20px,4vw,56px);">
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(40px,5vw,64px);">
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <p style="margin:0;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:#6E4165;">Endorsements</p>
+      <h2 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(40px,4.6vw,64px);line-height:1;letter-spacing:-0.015em;color:#12051A;">In their words.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(40px,5vw,80px);">
+      <figure style="margin:0;display:flex;flex-direction:column;justify-content:space-between;gap:40px;padding-top:28px;border-top:1px solid rgba(110,65,101,.3);">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span style="font-family:'EB Garamond',serif;font-size:88px;line-height:.6;color:#8F1F78;height:40px;">“</span>
+          <blockquote style="margin:0;font-family:'EB Garamond',serif;font-size:clamp(24px,2.4vw,32px);line-height:1.3;color:#12051A;text-wrap:pretty;">Over a decade, IQ helped me build teams of strong professionals at UBS, Yes Bank and IDFC. I have been impressed by their speed, professionalism, responsiveness and cost-effective service.</blockquote>
+        </div>
+        <figcaption style="display:flex;flex-direction:column;gap:2px;"><span style="font-size:15px;font-weight:600;color:#2B0F2A;">Ajay Mahajan</span><span style="font-size:13px;color:#6E4165;">Former Managing Director, UBS</span></figcaption>
+      </figure>
+      <figure style="margin:0;display:flex;flex-direction:column;justify-content:space-between;gap:40px;padding-top:28px;border-top:1px solid rgba(110,65,101,.3);">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span style="font-family:'EB Garamond',serif;font-size:88px;line-height:.6;color:#8F1F78;height:40px;">“</span>
+          <blockquote style="margin:0;font-family:'EB Garamond',serif;font-size:clamp(24px,2.4vw,32px);line-height:1.3;color:#12051A;text-wrap:pretty;">IQ may be a small firm but more than makes up with its talent, connections and never-say-die attitude. It has delivered where its behemoth competitors have not.</blockquote>
+        </div>
+        <figcaption style="display:flex;flex-direction:column;gap:2px;"><span style="font-size:15px;font-weight:600;color:#2B0F2A;">Tilak Mukherji</span><span style="font-size:13px;color:#6E4165;">Advisor to IQ Group · Chairman, Sigma Research &amp; Consulting</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- PEOPLE -->
+<section id="people" data-screen-label="07 Leadership" style="background:#FAF8FA;padding:clamp(90px,11vw,160px) clamp(20px,4vw,56px);">
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(40px,5vw,64px);">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;">
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <p style="margin:0;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:#6E4165;">Our people</p>
+        <h2 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(40px,4.6vw,64px);line-height:1;letter-spacing:-0.015em;color:#12051A;">The partners on your mandate.</h2>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:16px;">
+      <sc-for list="{{ team }}" as="p" hint-placeholder-count="4">
+        <article style="display:flex;flex-direction:column;background:#260B24;border-radius:26px;padding:8px;color:#FAF8FA;">
+          <div style="position:relative;aspect-ratio:5/4;border-radius:20px;overflow:hidden;background:radial-gradient(90% 100% at 100% 0%, #8F1F78 0%, rgba(143,31,120,0) 62%), radial-gradient(60% 70% at 0% 100%, #D1A1C7 0%, rgba(209,161,199,0) 55%), #12051A;display:flex;align-items:flex-end;padding:18px;"><div style="position:absolute;inset:0;pointer-events:none;opacity:.55;mix-blend-mode:overlay;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22%20width=%22180%22%20height=%22180%22%3E%3Cfilter%20id=%22g%22%3E%3CfeTurbulence%20type=%22fractalNoise%22%20baseFrequency=%22.9%22%20numOctaves=%222%22%20seed=%223%22%20stitchTiles=%22stitch%22/%3E%3CfeColorMatrix%20values=%220%200%200%200%201%200%200%200%200%201%200%200%200%200%201%200%200%200%203.2%20-1.75%22/%3E%3C/filter%3E%3Crect%20width=%22100%25%22%20height=%22100%25%22%20filter=%22url(%23g)%22/%3E%3C/svg%3E');"></div><div style="position:absolute;inset:0;pointer-events:none;opacity:.45;mix-blend-mode:normal;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22%20width=%22180%22%20height=%22180%22%3E%3Cfilter%20id=%22g%22%3E%3CfeTurbulence%20type=%22fractalNoise%22%20baseFrequency=%22.9%22%20numOctaves=%222%22%20seed=%229%22%20stitchTiles=%22stitch%22/%3E%3CfeColorMatrix%20values=%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%203.2%20-1.6%22/%3E%3C/filter%3E%3Crect%20width=%22100%25%22%20height=%22100%25%22%20filter=%22url(%23g)%22/%3E%3C/svg%3E');"></div>
+            <span style="position:relative;font-family:'EB Garamond',serif;font-size:64px;line-height:.8;letter-spacing:-0.03em;color:#FAF8FA;">{{ p.initials }}</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;padding:20px 14px 16px;flex:1;">
+            <span style="font-family:'EB Garamond',serif;font-size:24px;line-height:1.1;">{{ p.name }}</span>
+            <span style="font-size:13px;font-weight:500;color:#D1A1C7;">{{ p.role }}</span>
+            <span style="font-size:14px;line-height:1.55;color:#E9D9E5;margin-top:8px;text-wrap:pretty;">{{ p.bio }}</span>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:18px;">
+              <sc-for list="{{ p.tags }}" as="tag" hint-placeholder-count="2">
+                <span style="font-size:11px;font-weight:500;padding:5px 10px;border-radius:999px;border:1px solid rgba(209,161,199,.3);color:#E9D9E5;">{{ tag }}</span>
+              </sc-for>
+            </div>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" data-screen-label="08 Contact" style="position:relative;overflow:hidden;background:radial-gradient(60% 80% at 0% 100%, #8F1F78 0%, rgba(143,31,120,0) 60%), radial-gradient(50% 60% at 70% 0%, #2B0F2A 0%, rgba(43,15,42,0) 70%), #12051A;color:#FAF8FA;padding:clamp(90px,11vw,160px) clamp(20px,4vw,56px) 40px;"><div style="position:absolute;inset:0;pointer-events:none;opacity:.4;mix-blend-mode:soft-light;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22140%22%3E%3Cfilter id=%22g%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%222.2%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3CfeColorMatrix type=%22saturate%22 values=%220%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23g)%22/%3E%3C/svg%3E');"></div>
+  <div style="position:relative;max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(64px,8vw,110px);">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(48px,6vw,96px);align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:28px;">
+        <div style="display:flex;gap:20px;align-items:stretch;">
+          <span style="width:2px;flex:none;border-radius:2px;background:linear-gradient(180deg,#1AD1BE 0%,#D1A1C7 22%,#8F1F78 100%);"></span>
+          <h2 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(48px,6vw,88px);line-height:.98;letter-spacing:-0.02em;">Begin a <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:300;letter-spacing:-0.03em;color:#D1A1C7;">conversation.</span></h2>
+        </div>
+        <p style="margin:0;font-size:16px;line-height:1.6;color:#E9D9E5;max-width:380px;">Every enquiry is answered by a partner, in confidence.</p>
+        <a href="mailto:ashmita@iqgroup.co.in" style="align-self:flex-start;font-size:14px;font-weight:500;padding:13px 24px;border-radius:999px;background:#FAF8FA;color:#12051A;" style-hover="background:#F3E7F0;color:#12051A;">Write to us</a>
+      </div>
+      <div style="border-radius:28px;padding:8px 28px 12px;background:rgba(18,5,26,.5);border:1px solid rgba(209,161,199,.16);backdrop-filter:blur(12px);">
+          <div style="display:grid;grid-template-columns:minmax(0,120px) minmax(0,1fr);gap:20px;padding:22px 0;">
+            <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#D1A1C7;padding-top:4px;">Write</span>
+            <div style="display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.6;color:#E9D9E5;"><a href="mailto:ashmita@iqgroup.co.in" style="color:#FAF8FA;">ashmita@iqgroup.co.in</a></div>
+          </div>
+          <div style="display:grid;grid-template-columns:minmax(0,120px) minmax(0,1fr);gap:20px;padding:22px 0;border-top:1px solid rgba(209,161,199,.16);">
+            <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#D1A1C7;padding-top:4px;">Call</span>
+            <div style="display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.6;color:#E9D9E5;"><a href="tel:+912265885932" style="color:#FAF8FA;">+91 22 6588 5932</a><a href="tel:+919820061329" style="color:#FAF8FA;">+91 98200 61329</a></div>
+          </div>
+          <div style="display:grid;grid-template-columns:minmax(0,120px) minmax(0,1fr);gap:20px;padding:22px 0;border-top:1px solid rgba(209,161,199,.16);">
+            <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#D1A1C7;padding-top:4px;">Visit</span>
+            <div style="display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.6;color:#E9D9E5;"><span>806, Sunshine Towers, Senapati Bapat Marg<br>Dadar (West), Mumbai 400 013</span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:minmax(0,120px) minmax(0,1fr);gap:20px;padding:22px 0;border-top:1px solid rgba(209,161,199,.16);">
+            <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#D1A1C7;padding-top:4px;">Footprint</span>
+            <div style="display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.6;color:#E9D9E5;"><span>Mumbai · New Delhi · Bangalore · Kolkata · Dubai · Singapore</span></div>
+          </div>
+      </div>
+    </div>
+    <footer style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-top:28px;border-top:1px solid rgba(209,161,199,.18);font-size:12px;color:#D1A1C7;">
+      <span style="display:flex;align-items:baseline;gap:8px;"><span style="font-family:'EB Garamond',serif;font-size:20px;font-weight:500;color:#FAF8FA;">IQ</span><span>© 2026 IQ Group · Mumbai</span></span>
+      <span>Member, Executive Recruiters Association</span>
+    </footer>
+  </div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;logoBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;}}">
+class Component extends DCLogic {
+  state = { nav: '', step: 0, quote: 0, wide: true };
+  canvasRef = React.createRef();
+  marqueeRef = React.createRef();
+  offset = 0;
+
+  componentDidMount() {
+    this.onResize = () => {
+      this.setState({ wide: window.innerWidth > 900 });
+      this.sizeCanvas();
+    };
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+    this.t0 = performance.now();
+    const tick = (now) => {
+      const motion = this.props.motion ?? true;
+      if (motion || !this.drawn) { this.draw(motion ? now - this.t0 : 4000); this.drawn = true; }
+      this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
+  }
+  componentWillUnmount() {
+    cancelAnimationFrame(this.raf);
+    window.removeEventListener('resize', this.onResize);
+  }
+  componentDidUpdate(pp) { if (pp.motion !== this.props.motion) this.drawn = false; }
+
+  sizeCanvas() {
+    const c = this.canvasRef.current; if (!c) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const r = c.getBoundingClientRect();
+    c.width = r.width * dpr; c.height = r.height * dpr;
+    this.dpr = dpr; this.drawn = false;
+  }
+
+  draw(t) {
+    const c = this.canvasRef.current; if (!c || !c.width) return;
+    const ctx = c.getContext('2d');
+    const W = c.width, H = c.height, dpr = this.dpr || 1;
+    ctx.clearRect(0, 0, W, H);
+    const narrow = W / dpr < 800;
+    const ribbons = [
+      { y: 0.38, amp: 0.06, freq: 0.8, sp: 0.00004, ph: 0, width: 0.09, tilt: 0.12, lines: 34 },
+      { y: 0.58, amp: 0.05, freq: 1.1, sp: 0.00003, ph: 2.1, width: 0.06, tilt: -0.06, lines: 26 },
+      { y: 0.22, amp: 0.04, freq: 0.6, sp: 0.000025, ph: 4.0, width: 0.04, tilt: 0.18, lines: 18 }
+    ];
+    const steps = 110;
+    const x0 = -0.02;
+    ctx.lineWidth = 0.6 * dpr;
+    ribbons.forEach((r, ri) => {
+      for (let i = 0; i < r.lines; i++) {
+        const u = i / (r.lines - 1);
+        const edge = Math.pow(Math.abs(u - 0.5) * 2, 3);
+        const mix = edge * 0.85 + 0.1;
+        const cr = Math.round(143 + (209 - 143) * mix), cg = Math.round(31 + (161 - 31) * mix), cb = Math.round(120 + (199 - 120) * mix);
+        ctx.strokeStyle = 'rgba(' + cr + ',' + cg + ',' + cb + ',' + (0.035 + 0.2 * edge) + ')';
+        ctx.beginPath();
+        for (let s = 0; s <= steps; s++) {
+          const x = s / steps;
+          const ph = x * r.freq * Math.PI * 2 + t * r.sp * 6 + r.ph;
+          const twist = Math.sin(x * 2.4 + t * r.sp * 4 + r.ph * 1.3);
+          const X = W * (x0 + x * (1.04 - x0));
+          const Y = H * (r.y + r.amp * Math.sin(ph) + (u - 0.5) * r.width * twist + x * r.tilt);
+          if (s === 0) ctx.moveTo(X, Y); else ctx.lineTo(X, Y);
+        }
+        ctx.stroke();
+      }
+      if (ri === 0) {
+        const g = ctx.createLinearGradient(W * x0, 0, W, 0);
+        const p = 0.55 + 0.2 * Math.sin(t * 0.00004);
+        g.addColorStop(Math.max(0, p - 0.12), 'rgba(26,209,190,0)');
+        g.addColorStop(p, 'rgba(26,209,190,0.3)');
+        g.addColorStop(Math.min(1, p + 0.12), 'rgba(209,161,199,0)');
+        ctx.strokeStyle = g; ctx.lineWidth = 0.8 * dpr;
+        ctx.beginPath();
+        for (let s = 0; s <= steps; s++) {
+          const x = s / steps;
+          const ph = x * r.freq * Math.PI * 2 + t * r.sp * 6 + r.ph;
+          const twist = Math.sin(x * 2.4 + t * r.sp * 4 + r.ph * 1.3);
+          const X = W * (x0 + x * (1.04 - x0));
+          const Y = H * (r.y + r.amp * Math.sin(ph) + (-0.5) * r.width * twist + x * r.tilt);
+          if (s === 0) ctx.moveTo(X, Y); else ctx.lineTo(X, Y);
+        }
+        ctx.stroke();
+        ctx.lineWidth = 0.6 * dpr;
+      }
+    });
+    if (!narrow) {
+      const fade = ctx.createLinearGradient(0, 0, W * 0.55, 0);
+      fade.addColorStop(0, 'rgba(18,5,26,0.55)');
+      fade.addColorStop(1, 'rgba(18,5,26,0)');
+      ctx.fillStyle = fade; ctx.fillRect(0, 0, W * 0.55, H);
+    } else {
+      ctx.fillStyle = 'rgba(18,5,26,0.55)'; ctx.fillRect(0, 0, W, H);
+    }
+  }
+
+  scrollTo(id) {
+    const el = document.getElementById(id); if (!el) return;
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY, behavior: 'smooth' });
+  }
+
+  pill(active, dark) {
+    if (dark) return active
+      ? { bg: 'rgba(250,248,250,.08)', bd: 'rgba(209,161,199,.5)', fg: '#FAF8FA' }
+      : { bg: 'transparent', bd: 'transparent', fg: '#D1A1C7' };
+    return active
+      ? { bg: '#F3E7F0', bd: 'rgba(143,31,120,.45)', fg: '#2B0F2A' }
+      : { bg: 'transparent', bd: 'transparent', fg: '#6E4165' };
+  }
+
+  renderVals() {
+    const navDefs = [['Method', 'method'], ['Mandates', 'mandates'], ['People', 'people'], ['Contact', 'contact']];
+    const navItems = navDefs.map(([label, id]) => ({
+      label, ...this.pill(this.state.nav === label, true),
+      go: () => { this.setState({ nav: label }); this.scrollTo(id); }
+    }));
+    const stepDefs = [
+      ['Understand your business', 'Strategic priorities, mandate goals and culture.'],
+      ['Shortlist candidates', 'Proprietary databases, market mapping and direct outreach.'],
+      ['Identify the match', 'Competency evaluation and 360° reference checks.'],
+      ['Hire & onboard', 'Offer negotiation, closing facilitation and transition support.'],
+      ['Monitor & iterate', 'Post-placement check-ins to ensure lasting impact.']
+    ];
+    const steps = stepDefs.map(([title, detail], i) => {
+      const open = this.state.step === i;
+      return { num: '0' + (i + 1), title, detail, open,
+        bg: open ? '#FFFFFF' : 'transparent', bd: open ? 'rgba(143,31,120,.25)' : 'transparent',
+        go: () => this.setState({ step: i }) };
+    });
+    const quotes = [
+      { short: 'Ajay Mahajan', name: 'Ajay Mahajan', title: 'Former Managing Director, UBS', text: 'Over a decade, IQ helped me build teams of strong professionals at UBS, Yes Bank and IDFC. I have been impressed by their speed, professionalism, responsiveness and cost-effective service.' },
+      { short: 'Tilak Mukherji', name: 'Tilak Mukherji', title: 'Advisor to IQ Group · Chairman, Sigma Research & Consulting', text: 'IQ may be a small firm but more than makes up with its talent, connections and never-say-die attitude. IQ takes pride in accepting difficult and complex placements and has delivered where its behemoth competitors have not.' }
+    ];
+    const quoteTabs = quotes.map((q, i) => ({ label: q.short, ...this.pill(this.state.quote === i), go: () => this.setState({ quote: i }) }));
+    const teamDefs = [
+      { name: 'Ashmita Ray Sarkar', role: 'Founder & Managing Director', focus: 'All practices & C‑suite · Mumbai', practice: ['C‑suite', 'All practices'], bio: 'Founded IQ and personally leads its most senior C‑suite mandates.' },
+      { name: 'Annu Paul', role: 'Director', focus: '', practice: ['Hospitality', 'Media', 'Social Impact'], bio: 'Leads hospitality, media and social‑impact searches, and new client partnerships.' },
+      { name: 'Shirin Gulrajani Talwar', role: 'Director', focus: '', practice: ['Legal', 'Social Impact'], bio: 'Leads legal and social‑impact mandates, from General Counsel to foundation heads.' },
+      { name: 'Christine Gomes', role: 'Managing Associate, IQ Social', focus: '', practice: ['CSR', 'NGOs', 'Foundations'], bio: 'Runs IQ Social, placing leaders across CSR, NGOs and international foundations.' }
+    ];
+    const team = teamDefs.map((p, i) => ({ ...p, tags: p.practice, initials: p.name.split(' ').map(w => w[0]).slice(0, 2).join(''), offset: (i % 2 === 1 && this.state.wide) ? '96px' : '0px' }));
+    const logos = [
+      ['UBS', "'EB Garamond',serif", '22px', 500, '0.08em', 'none'],
+      ['BCG', "'Plus Jakarta Sans',sans-serif", '20px', 500, '0.04em', 'none'],
+      ['J.P. Morgan', "'EB Garamond',serif", '20px', 400, '0', 'none'],
+      ['Deutsche Bank', "'Plus Jakarta Sans',sans-serif", '17px', 400, '0', 'none'],
+      ['PwC', "'EB Garamond',serif", '22px', 500, '0', 'none'],
+      ['Johnson & Johnson', "'EB Garamond',serif", '18px', 300, '0', 'none'],
+      ['GSK', "'Plus Jakarta Sans',sans-serif", '20px', 500, '0.06em', 'none'],
+      ['Bayer', "'Plus Jakarta Sans',sans-serif", '18px', 500, '0.12em', 'uppercase'],
+      ['Hindustan Unilever', "'Plus Jakarta Sans',sans-serif", '16px', 300, '0.02em', 'none'],
+      ['Asian Paints', "'EB Garamond',serif", '19px', 400, '0', 'none'],
+      ['Dalberg', "'Plus Jakarta Sans',sans-serif", '16px', 400, '0.18em', 'uppercase'],
+      ['Oxfam', "'Plus Jakarta Sans',sans-serif", '20px', 500, '0', 'none']
+    ].map(([name, ff, fs, fw, ls, tt]) => ({ name, ff, fs, fw, ls, tt }));
+    return {
+      canvasRef: this.canvasRef, marqueeRef: this.marqueeRef,
+      wide: this.state.wide, navItems, logoBar: this.props.logoBar ?? true,
+      logoLoop: logos.concat(logos),
+      goContact: () => this.scrollTo('contact'),
+      goMethod: () => this.scrollTo('method'),
+      goPeople: () => this.scrollTo('people'),
+      showPractices: false,
+      steps, stepNum: '0' + (this.state.step + 1), stepTitle: stepDefs[this.state.step][0],
+      mandates: [
+        { role: 'Chief Executive Officer', org: 'Leading Indian specialty chemicals manufacturer' },
+        { role: 'Chief Financial Officer', org: 'Indian precision engineering company' },
+        { role: 'Vice President, Investments', org: 'Leading Indian private equity firm' },
+        { role: 'Chief Marketing Officer', org: 'Leading private sector Indian bank' },
+        { role: 'Head of CSR, India', org: 'Large European multinational bank' }
+      ],
+      quoteTabs, quote: quotes[this.state.quote],
+      team
+    };
+  }
+}
+</script>
+</body>
+</html>
