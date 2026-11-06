@@ -6,6 +6,18 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 17: practices, equal weight (2026-11-07)
+
+**Feedback.** Banking and IQ Social had larger headings, and IQ Social had a dark fill. Both read as "more important", which made the other four harder to read. The hover effect implied the tiles were links when they weren't.
+
+**Change (option A + C from the brainstorm):**
+- **Equal tiles:** every tile has the same `--fs-h3` heading, the same `--bg` surface and the same parts: name, area tags, lead partner.
+- **Banking** leads by size only: a tall tile spanning two rows on the left, plus "Our historic core practice."
+- **Area tags** replace the one-line descriptions. They stack one per line on desktop and tablet; on phones they run as one comma-separated line to keep the stack short. The tags come from the existing approved copy (no new claims).
+- **IQ Social** becomes a full-width stone band beneath the grid: name + "Our dedicated wing for CSR teams, NGOs and foundations." | clients | lead. The different surface now has a stated reason.
+- **No hover:** tile hover is removed until the tiles link to sector pages (step 3).
+- **Height:** the desktop section is ~190px taller (stacked tags), and the phone section is about the same. Page length is addressed by the planned Home / Practices / About split (step 2).
+
 ## Round 16: preview switch removed (2026-11-06)
 
 Final choices: **map hero** and **IQ plum palette**. Removed:
