@@ -249,7 +249,8 @@ a { color: inherit; }
   .timeline .node { grid-row: span 2; margin: 0; }
   .timeline::after { animation-name: tl-line-y; }
   .hero-visual { max-width: 34rem; }
-  .hero-map { position: relative; left: auto; top: auto; transform: none; width: 170%; margin: -2rem 0 -3rem -75%; }
+  /* Sized so Oslo (west) to Singapore (east) fits the screen width: viewBox x 355–1000 of 1200 */
+  .hero-map { position: relative; left: auto; top: auto; transform: none; width: 177%; margin: -0.5rem 0 -4rem -50%; }
   .map text { font-size: 26px; stroke-width: 7px; }
   .map .hq-label { font-size: 27px; }
   .hero { display: flex; flex-direction: column-reverse; }

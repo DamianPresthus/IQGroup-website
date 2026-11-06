@@ -6,6 +6,13 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 15: Oslo visible on the mobile map (2026-11-06)
+
+At ≤860px the map was 170% wide and shifted -75%, which cropped Oslo off the left edge.
+- **Fix:** it is now sized to the labelled span. Oslo's label (viewBox x≈355) to Singapore's label (x≈1000) is 645 of 1200 units, so the map is 177% wide with a -50% left offset, which fits the span to any phone width.
+- **Margins:** the top margin is now -0.5rem, so Oslo's label clears the CTAs; the bottom margin is -4rem to trim empty ocean.
+- **Checked** at 360, 390 and 430px: all seven cities and labels are in view.
+
 ## Round 14: swipe down to close the sheet (2026-11-06)
 
 On phones (≤560px) the enquiry bottom sheet shows a grab handle and follows the finger downwards.
