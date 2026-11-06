@@ -14,7 +14,12 @@ docs/COMPONENTS.md              ← component inventory + missing states
 docs/USAGE.md                   ← observed rules vs. proposed rules
 docs/DESIGN.md                  ← creative direction & design brief
 docs/PROJECT_BRIEF.md           ← project brief
-reference/                      ← reference images + claude-design-hero.jpg & claude-design-fullpage.png
+docs/V3_PLAN.md                 ← v3 plan: design-system changes, decisions, page structure, phases
+docs/SECTION_REFERENCES_V3.md   ← v3 per-section layout references (hero, note, rows, ledger, people…)
+docs/DESIGN_RESEARCH_V3.md      ← v3 direction research ("down to earth and classy")
+docs/DESIGN_RESEARCH_V3_EFFECTS.md ← v3 modern effects & layout patterns, with browser support
+docs/HERO_RESEARCH_V3.md        ← v3 hero: peer heroes, still image vs. waves, layout variants
+reference/                      ← reference images + claude-design-hero.jpg & claude-design-fullpage.png; v3-research/ = reference sites; hero-research/ = peer consultancy heroes
 prototypes/                     ← earlier standalone HTML prototypes (v1 constellation, v2 sirva duotone, v3 true bento, golden-angle comparison)
 .thumbnail                      ← 16:9 hero preview image from the design tool
 ```
@@ -30,7 +35,7 @@ Each .dc.html is a single file: markup in `<x-dc>`, logic in the `<script type="
 
 ## Fonts & assets
 - EB Garamond (400/500/600, italic 400/500) and Plus Jakarta Sans (300–600): loaded from Google Fonts CDN via `<link>`. **Internet is needed; not self-hosted.**
-- No raster images, SVG files or logo files. Grain textures are inline SVG data-URIs (feTurbulence). Client logos are typeset text. Portraits are replaced by initials.
+- Partner portraits: `source/assets/team/*.jpg` (v2 only), taken from the current live site's avatars (174×263px, low resolution). Otherwise no raster images or logo files. Grain textures are inline SVG data-URIs (feTurbulence). Client logos are typeset text.
 
 ## Dependencies
 Only `support.js` (bundled with React inside it, as provided by the design environment) and Google Fonts. I have not verified support.js works with no network.

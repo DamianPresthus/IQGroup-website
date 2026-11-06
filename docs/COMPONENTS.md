@@ -45,7 +45,10 @@ Eyebrow (12px caps .22em) + H2 (Garamond 400). Variants: with 2px accent bar (ma
 ## Cards
 - **Mandate feature card**: spans 2 grid rows, min-h 400, radius 28, grain gradient, outline tag pill.
 - **Mandate small card** ×4: min-h 190, radius 24, aubergine .45 fill, lilac .16 border; hover border → .45 (.3s).
-- **Partner profile card** ×4: #260B24, radius 26, pad 8; grain-gradient header (5:4) with initials in Garamond 64; name, role, one-sentence bio, practice tag chips. Variants: none. Hover: **MISSING**. Photos: none (initials stand in; there are no portraits).
+- **Partner profile card** ×4: #260B24, radius 26, pad 8; portrait header (4:5) from `source/assets/team/<firstname>.jpg`, greyscale, plum multiply tint, fading into the card at the bottom; name, role, one-sentence bio, practice tag chips. Hover: **MISSING**. Portraits are the 312px images from the current live site (photo area 174×263px), so they look soft at retina sizes; higher-resolution originals are needed.
+- **Associate tile** ×5 (v2, below the partner cards, under an "Associates" label with a top rule): square portrait (radius 14, same greyscale and plum tint), name (Garamond 21), role (13px mulberry), lead areas (13px). Grid auto-fit min 170px; 2 columns on mobile.
+- **Advisor row** ×1: 96px square portrait, "Advisor" label, name, one-line bio (Tilak Mukherji).
+- Associate and advisor portraits are head-and-shoulder square crops. All 10 portraits had their original backdrops replaced with one shared dark studio backdrop (background removed with `rembg` u2net_human_seg, edge colours unmixed from the old backdrop). The source files are the live site's 312px avatars.
 - Mandate roles/clients are anonymised on purpose (no on-page note in v2).
 
 ## Testimonials

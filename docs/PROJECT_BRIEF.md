@@ -25,7 +25,7 @@ IQ Group is a partner-led executive search, leadership advisory and HR firm in M
 | Founder & MD | Ashmita Ray Sarkar. BA (Hons) English, MA Sociology. Previously at TNS Mode (research) and Price Waterhouse Coopers (management consulting). On the organiser team of the Kala Ghoda Arts Festival. | Verified-live |
 | HQ | 806, Sunshine Towers, Senapati Bapat Marg, Dadar (West), Mumbai 400 013 | Verified-live |
 | Phones / email | +91 22 6588 5932 · +91 98200 61329 · ashmita@iqgroup.co.in | Verified-live |
-| Footprint | "Network of offices in Mumbai, Delhi, Bangalore, Kolkata, Dubai and Singapore" | Verified-live (About page) |
+| Footprint | "Network of offices in Mumbai, Delhi, Bangalore, Kolkata, Dubai and Singapore" (live About page). **New 2026-11-06 (stakeholder):** launching in **Oslo, Norway**. | Verified-live + Client-supplied |
 | Affiliation | Member, Executive Recruiters Association (ERA, India) | Verified-live (self-declared). **Not confirmed** in the public ERA directory at eraindia.org, which is JS-paginated and could not be fully searched. |
 | Old tagline | "Managed Professional Recruitment Outsourcing" | Verified-live (footer) |
 
@@ -57,7 +57,7 @@ Audit of `iqgroup.co.in`, 2026-11-06:
 | Foundation / CSR / NGO leaders | A dedicated social-impact practice (IQ Social), mission alignment and real NGO clients |
 | Senior candidates (secondary) | Credibility and a discreet way to share a CV. This audience should not dilute the client-facing story. |
 
-Geography: India first (Mumbai, Delhi NCR, Bangalore, Kolkata), then Dubai/Middle East and Singapore/South-East Asia.
+Geography: India first (Mumbai, Delhi NCR, Bangalore, Kolkata), then Dubai/Middle East and Singapore/South-East Asia. **Oslo, Norway is launching (2026-11-06).** The hero subheadline now names Europe, and Oslo is in the contact footprint. An EU/EEA audience brings GDPR alongside India's DPDP Act (R8).
 
 ---
 
@@ -76,7 +76,7 @@ Geography: India first (Mumbai, Delhi NCR, Bangalore, Kolkata), then Dubai/Middl
 
 ### 5.1 Approved hero copy (2026-11-06)
 - **Headline:** *Hires that move your organisation forward.* ("forward." is the accent word)
-- **Subheadline:** *Partner-led executive search and HR advisory — from specialist roles to the C‑suite, across India, the Middle East and South Asia for 30+ years.*
+- **Subheadline:** *Partner-led executive search and HR advisory — from specialist roles to the C‑suite, across India, the Middle East, South Asia and Europe for 30+ years.* (Europe added 2026-11-06 for the Oslo launch.)
 - **Rationale:** the headline opens with "Hires" so it says straight away what IQ does. "Organisation" covers corporates and IQ Social's NGOs and foundations. The subheadline leads with the partner-led differentiator.
 - **Locked wording:** "for 30+ years" (never "since 19xx" until the founding year is confirmed). "From specialist roles to the C‑suite" (never "entry level"), which matches the mission.
 - **Statement section (approved):** eyebrow *How we work* · *Every mandate is led by a partner — from the first brief to the day your hire walks in.* This replaces the Leathwaite-derived line (R1) and stops repeating "30+ years", which the hero already says.
@@ -211,7 +211,7 @@ Accessibility baseline: WCAG 2.2 AA. Support `prefers-reduced-motion` for all si
 3. Written permission for each client name and logo (§6.2), particularly the global banks and consulting firms.
 4. Testimonials: confirm Ajay Mahajan's preferred title and consent. How should Tilak Mukherji's advisor relationship be handled?
 5. Are RPO and Outplacement active services? Is the Abozzo partnership still current?
-6. Team: feature 4 leaders only, or include associates and advisors? Are any of the listed people no longer with the firm?
+6. ~~Team: feature 4 leaders only, or include associates and advisors?~~ **Answered 2026-11-06:** current team = 4 leaders (Ashmita, Annu, Shirin, Christine), 5 associates (Mallika Sen Varma, Bijal Joshi, Shharran Das, Tanushree Kundu, Neha Beswal) and 1 advisor (Tilak Mukherji). Wasim Shaikh, Dipannita Das, Meenu Dhru, Priya Agrawal and Naina Subberwal Batra, listed on the live site, are not in the current roster. Neha's lead areas (BFSI · ITES) come from the live site; confirm.
 7. Do Delhi, Bangalore, Kolkata, Dubai and Singapore have physical offices, partner associates, or mandate coverage only? This affects the `LocalBusiness` schema and the wording.
 8. Any quantifiable proof that can be published (number of searches, average time-to-shortlist, repeat-client rate)? This would replace the "____ searches" placeholder honestly.
 9. Brand assets: vector logo, any brand guidelines, availability for a portrait shoot.

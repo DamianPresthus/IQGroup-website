@@ -84,7 +84,7 @@ Rather than copying a single template, synthesize the strongest DNA from these t
 
 ### A. Core Narrative & Differentiators
 - **Hero Headline (approved):** *"Hires that move your organisation forward."*
-- **Hero Subheadline (approved):** *"Partner-led executive search and HR advisory — from specialist roles to the C‑suite, across India, the Middle East and South Asia for 30+ years."*
+- **Hero Subheadline (approved):** *"Partner-led executive search and HR advisory — from specialist roles to the C‑suite, across India, the Middle East, South Asia and Europe for 30+ years."*
 - **Statement (approved):** eyebrow *"How we work"* · *"Every mandate is led by a partner — from the first brief to the day your hire walks in."*
 - **3 Core Pillars (Partnership, People, Performance):**
   1. **Partnership:** Undivided boutique attention — learning your organization at the cultural, strategic, and tactical level.
