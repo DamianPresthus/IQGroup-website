@@ -6,6 +6,14 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 10: one column system, separated (2026-11-06)
+
+**Problem.** "What sets us apart" and "Services" sat back to back. Both were three-column rows, but they used different heading sizes and rules, so the pair read as redundant and inconsistent at once.
+
+**Fix.**
+- **Order:** Practices → Services → Recent hires → How a search runs → What sets us apart (stone band) → Testimonials → People → Contact. This reads as *what / evidence / how / why / proof / who*.
+- **One component:** `.pillars` now shares `.svc-row`'s structure (top rule, vertical dividers, `--fs-h3` headings), so both rows read as the same system. Pillars keep sentence-length muted text; Services keep short item lists.
+
 ## Round 9: recent hires and pillars (2026-11-06)
 
 - **Recent hires** (`#hires`), placed after Practices. The five anonymised placements from the June 2026 deck, slide 6, laid out as an Index-style ledger: the role set in serif, the organisation description in muted text, hairline rules between rows. Update this list yearly from IQ's own record.
