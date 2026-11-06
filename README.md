@@ -37,7 +37,7 @@ Only `support.js` (bundled with React inside it, as provided by the design envir
 
 ## Known issues
 Accessibility
-- No focus-visible styles; pill toggles lack aria-pressed/tablist roles; nav and toggles are `<button>`s without labels beyond text.
+- v2 has mint `:focus-visible` outlines; v1 has none. Pill toggles lack aria-pressed/tablist roles; nav and toggles are `<button>`s without labels beyond text.
 - v1 only: team filter dims cards to .25 opacity (fails contrast). v2 has no team filter.
 - 11px uppercase labels in lilac/mulberry; verify contrast against each surface.
 - No prefers-reduced-motion handling; hero canvas has no aria-hidden.

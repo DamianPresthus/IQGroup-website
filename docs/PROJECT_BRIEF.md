@@ -154,6 +154,8 @@ Corrections to `DESIGN.md`:
 - The aqua hue is Royal Plum **−137.5°** (312.3° → 174.8°). Rotating +137.5° gives about 90° (yellow-green).
 - White on Obsidian is 19.8:1, not 18:1.
 
+**Accent decision (2026-11-06):** keep Aqua-Mint (−137.5°). Two alternatives were compared in `prototypes/golden-angle-comparison.html` and rejected: Chartreuse `#75D019` (+137.5°), which clashes with the purple and feels like gaming or crypto, and Champagne Gold `#E5A93B` (44°), which feels traditional, like a law firm. To stop the page reading as monochrome plum, v2 now places mint in more spots, still within the 5% budget: a 6px dot on the statement eyebrow; category labels and hover borders on the small mandate cards; a faint rim glow in the mandate feature card (top-right), the partner headers (bottom-right) and the contact background (bottom-right); hover colour on the contact links; and `:focus-visible` outlines (`#1AD1BE` on dark sections, `#0F766E` on light ones). The glows always sit on the opposite side from the saturated plum glow.
+
 Accessibility baseline: WCAG 2.2 AA. Support `prefers-reduced-motion` for all silk and grain animation. Use real `<button>`/tab semantics with arrow-key support for the segmented controls. Logo marquees must pause on hover or focus and be hidden from screen readers in favour of a readable client list.
 
 ---
