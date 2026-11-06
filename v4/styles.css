@@ -328,3 +328,4 @@ a { color: inherit; }
 .enquiry-switch[hidden] { display: none; }
 .enquiry-fine a { white-space: nowrap; }
 .enquiry-close { margin-left: auto; }
+.field label .opt { font-weight: 500; color: var(--ink-muted); font-size: var(--fs-tag); margin-left: 0.35rem; }
