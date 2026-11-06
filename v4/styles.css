@@ -183,15 +183,15 @@ a { color: inherit; }
 .paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gutter); }
 .path { border-radius: calc(var(--r-card) + 4px); padding: clamp(2rem, 1.4rem + 2.4vw, 3.5rem); display: flex; flex-direction: column; gap: 1.25rem; min-height: 26rem; border: 1px solid var(--line); }
 .path.org { background: var(--surface-dark); color: var(--on-dark); border-color: transparent; }
-.path.exec { background: var(--bg-2); }
+.path.candidate { background: var(--bg-2); }
 .path .who { font-size: var(--fs-small); font-weight: 600; }
 .path.org .who { color: var(--on-dark-muted); }
-.path.exec .who { color: var(--accent); }
+.path.candidate .who { color: var(--accent); }
 .path h3 { font-size: clamp(2rem, 1.6rem + 1.7vw, 3rem); line-height: 1.05; letter-spacing: -0.02em; max-width: 14ch; }
 .path.org h3 { color: var(--on-dark); }
 .path > p { max-width: 38ch; font-size: var(--fs-lead); }
 .path.org > p { color: color-mix(in oklch, var(--on-dark) 78%, var(--surface-dark)); }
-.path.exec > p { color: var(--ink-muted); }
+.path.candidate > p { color: var(--ink-muted); }
 .path .spacer { flex: 1; }
 .path .meta { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; font-size: var(--fs-small); }
 .path.org .meta a { color: var(--on-dark); }
