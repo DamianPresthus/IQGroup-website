@@ -59,6 +59,48 @@
     dlg.addEventListener('close', () => { document.body.style.overflow = ''; lastTrigger?.focus({ preventScroll: true }); });
     dlg.addEventListener('click', e => { if (e.target === dlg) close(); });            // backdrop
     $$('[data-close]', dlg).forEach(b => b.addEventListener('click', close));
+
+    // Bottom sheet (phones): drag down to dismiss. Starts from the header at any time, or from the
+    // body when it is scrolled to the top; a long or fast enough pull closes, anything else snaps back.
+    const sheetMode = matchMedia('(max-width: 560px)');
+    const inner = $('.enquiry-inner', dlg);
+    let drag = null;
+    const settle = (to, then) => {
+      dlg.style.transition = 'transform 0.26s cubic-bezier(0.2, 0.7, 0.2, 1)';
+      dlg.style.transform = to;
+      let done = false;
+      const finish = () => { if (done) return; done = true; then?.(); dlg.style.transition = ''; dlg.style.transform = ''; };   // close first so the sheet never flashes back up
+      dlg.addEventListener('transitionend', finish, { once: true });
+      setTimeout(finish, 320);                                                    // reduced motion / no transition
+    };
+    dlg.addEventListener('touchstart', e => {
+      if (!sheetMode.matches || e.touches.length !== 1 || e.target.closest('textarea')) return;
+      const fromHead = !!e.target.closest('.enquiry-head');
+      if (!fromHead && inner.scrollTop > 0) return;
+      drag = { y0: e.touches[0].clientY, t0: performance.now(), dy: 0, active: false };
+    }, { passive: true });
+    dlg.addEventListener('touchmove', e => {
+      if (!drag) return;
+      const dy = e.touches[0].clientY - drag.y0;
+      if (!drag.active) {
+        if (dy < 6) { if (dy < -6) drag = null; return; }                         // upward: let the body scroll
+        drag.active = true;
+        dlg.style.transition = 'none';
+      }
+      e.preventDefault();
+      drag.dy = Math.max(0, dy);
+      dlg.style.transform = `translateY(${drag.dy}px)`;
+    }, { passive: false });
+    const endDrag = () => {
+      if (!drag) return;
+      const { dy, t0, active } = drag; drag = null;
+      if (!active) return;
+      const fast = dy / (performance.now() - t0) > 0.5;
+      if (dy > Math.min(140, dlg.offsetHeight * 0.25) || (fast && dy > 40)) settle('translateY(100%)', close);
+      else settle('translateY(0)');
+    };
+    dlg.addEventListener('touchend', endDrag);
+    dlg.addEventListener('touchcancel', endDrag);
     tabs.forEach(t => t.addEventListener('click', () => { const f = setMode(t.dataset.mode); f.querySelector('input').focus(); }));
     $$('[data-enquiry]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); open(el.dataset.enquiry, el); }));
 
