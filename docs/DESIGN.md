@@ -1,129 +1,218 @@
-# IQ Group — Creative Direction & Design Brief (`DESIGN.md`)
+# IQ Group — Design Direction (`DESIGN.md`)
 
-> **Purpose of this document:** This is a **Creative Direction & Strategic Design Brief** for designing the new **IQ Group (`iqgroup.co.in`)** website in Claude Design. It establishes the brand truths, Apple design philosophy guardrails, mathematical color harmony, and visual inspiration references while leaving **full creative freedom** for layout composition, spatial choreography, and component craft.
-
----
-
-## 1. Brand Identity & Strategic Positioning
-
-- **Company:** **IQ Group** (`https://www.iqgroup.co.in/`)
-- **What They Do:** A Mumbai-headquartered **boutique Executive Search, Leadership Advisory, and HR Transformation firm** with **30+ years of heritage** (established 1994; proud member of the Executive Recruiters Association — ERA).
-- **Geographic Footprint:** Headquartered in Mumbai (Sunshine Towers, Dadar West) with active search execution across **Mumbai, New Delhi, Bangalore, Kolkata, Dubai (Middle East), and Singapore (South Asia)**.
-- **Core Value Proposition:**
-  - *Mission:* *"To provide deeply personalized service from a dedicated, high-caliber team — helping you make impactful hires from specialist roles to the C-suite."*
-  - Unlike rigid global search behemoths where mandates are handed off to junior researchers, IQ Group provides **partner-led, high-velocity, deeply researched search** for complex and mission-critical roles.
-- **Target Audience:** Board Members, Promoters, CEOs, CHROs, Managing Directors, Private Equity Operating Partners, and International Foundation Heads.
+> **Status:** v3 direction, approved 2026-11-06 (decisions D1–D7 in [`V3_PLAN.md`](V3_PLAN.md)). This file is the **source of truth for design intent**. Tokens live in [`../tokens-v3.css`](../tokens-v3.css).
+> **Supersedes** the v1/v2 direction (Leathwaite hero, silk waves, grain gradients, Adaption-style pills). The v2 record is kept in `tokens.css`, [`COMPONENTS.md`](COMPONENTS.md) and [`USAGE.md`](USAGE.md).
+> **Evidence behind this file:** [`DESIGN_RESEARCH_V3.md`](DESIGN_RESEARCH_V3.md) · [`DESIGN_RESEARCH_V3_EFFECTS.md`](DESIGN_RESEARCH_V3_EFFECTS.md) · [`HERO_RESEARCH_V3.md`](HERO_RESEARCH_V3.md) · [`SECTION_REFERENCES_V3.md`](SECTION_REFERENCES_V3.md) · [`PROJECT_BRIEF.md`](PROJECT_BRIEF.md).
 
 ---
 
-## 2. Design Philosophy (The Apple + Editorial Filter)
+## 1. Brand facts
 
-Every design decision should pass through five core principles:
+- **Company:** IQ Group (`iqgroup.co.in`). A partner-led boutique for **executive search, HR advisory and leadership hiring**, with **30+ years** of practice.
+  - **Founding year: not printed** until 1992 vs 1994 is confirmed (PROJECT_BRIEF Q1).
+  - **ERA membership:** shown only once confirmed (Q2).
+- **Where:** headquartered in Mumbai (806, Sunshine Towers, Dadar West). Search across Mumbai, New Delhi, Bangalore, Kolkata, Dubai and Singapore. **Launching in Oslo, Norway.** Regions in copy: *India, the Middle East, South Asia and Europe*.
+- **Mission:** *"To provide deeply personalized service from a dedicated, high-caliber team — helping you make impactful hires from specialist roles to the C-suite."*
+- **Difference:** every mandate is led by a partner, never handed down to junior researchers.
+- **Audience:** board members, promoters, CEOs, CHROs, MDs, PE operating partners, and foundation and CSR leaders, in India, the Gulf, South-East Asia and Europe.
 
-1. **Simplicity Through Reduction ("Less is More"):**
-   - Avoid info-dumping or walls of text. Every section should communicate **one unmistakable idea** in a single glance.
-   - Strip away decorative SaaS clutter (no fake dashboards, no status-pill spam, no redundant search bars where a one-tap filter suffices).
-2. **Deference (Materiality Serves the Content):**
-   - Visual effects—such as flowing silk waves or grainy stochastic gradients—must create atmospheric depth and luxury **without competing with typography or legibility**.
-3. **Clarity & Progressive Disclosure:**
-   - Show clean, scannable headlines and primary groupings first; let users reveal deeper layers (such as the 5-Step Search Methodology or sector-specific client rosters) through tactile interactive switches or expandable rows.
-4. **Depth & Spatial Rhythm:**
-   - Alternate deliberately between **deep, immersive dark stages** (for authority and gravitas) and **warm, breathable light editorial surfaces** (for reading practice areas and leadership bios).
-5. **Anti-Generic / Anti-AI-Slop Mandate:**
-   - No generic 3-equal-column SaaS feature boxes with Lucide icons, no neon cyberpunk glows, no stock handshakes, and no arbitrary UI gimmicks (like event tickets or fake metric widgets) that don't belong to an elite executive search firm.
+## 2. Design stance
 
----
+**Yardstick** (stakeholder, 2026-11-06): v2 was *"too sleek compared to a trustworthy, timeless institution."* Every decision is checked against that sentence.
 
-## 3. Color Direction — The 60–30–5–5 Golden Ratio Royal Plum System
+**Keywords:** down to earth · classy · trustworthy · timeless · institution.
 
-Built mathematically from IQ Group's heritage **Royal Plum (`#8F1F78`, Hue `312.3°`)** using the **Golden Angle (`-137.5°` counter-clockwise / `+222.5°` clockwise → `174.8°`)** and a **`-60%` saturation support step**.
+**Principles**
+1. **Paper, not screen.** Warm alabaster is the ground for most of the page. Dark is a *moment* (one section plus the footer), not an alternating rhythm.
+2. **One continuous grid.** Every section sits on the same 12-column grid, with a left margin column for labels. The page reads as one document, not as slides.
+3. **Rules, not cards.** Hairline rules and ruled lists. Corners 0–4px. No floating card containers.
+4. **Rhythm by density.** Alternate dense (ledger), airy (one line) and reading (prose) sections on the same ground. Not every section needs a heading.
+5. **Typography carries the voice.** Serif throughout, at calm sizes. Hierarchy comes from size, italic and colour, not from weight jumps or uppercase eyebrows.
+6. **Real artefacts, never decoration.** Real portraits, real names, the real address, facts and dates. No stock photography, no abstract graphics.
+7. **Quiet motion.** Things arrive once and stay still. No loops.
+8. **Plum is ink, mint is focus.** No gradients, no glows, no decorative grain.
 
-### Color Palette Roles (Creative Freedom in Application, Strict Harmony in Ratio)
+Credibility basis: the [Stanford Web Credibility guidelines](https://credibility.stanford.edu/guidelines.html) (show a real organisation and real people, make contact easy, avoid "dazzling" technology) and the summary that a credible site looks appealing "but not too 'slick'".
 
-| Proportion | Role | Hex Codes | Creative Direction & Guardrails |
-| :--- | :--- | :--- | :--- |
-| **60% Foundation** | **Dark & Light Architectural Surfaces** | **Dark Anchor:** `#12051A` *(Plum Obsidian, `19.8:1` vs white)* / `#1A0826` *(`18.0:1`)*<br>**Light Surfaces:** `#FAF8FA` *(Warm Alabaster)* & `#F3E7F0` *(Soft Lilac Wash)* | Never use cold `#000000` black or sterile `#FFFFFF` everywhere. Alternate between deep Plum Obsidian stages (`19.8:1` contrast) and warm Alabaster/Lilac editorial sections. |
-| **30% Brand Core** | **IQ Royal Plum & Deep Aubergine** | **Primary:** `#8F1F78` *(IQ Royal Plum)*<br>**Deep Surface:** `#2B0F2A` *(Aubergine)* | **Contrast Rule:** On light `#FAF8FA` surfaces, `#8F1F78` has `6.8:1` contrast and works for eyebrows/links/buttons. On dark `#12051A` (`2.4:1` contrast), `#8F1F78` must only be used for **surfaces, button fills (with white text), gradients, and waves** — never for small text on dark. |
-| **5% Support** | **Desaturated Plum (`-60%` Sat)** | **On Dark:** `#D1A1C7` *(Dusty Rose-Lilac, `9.8:1` on `#12051A`)*<br>**On Light:** `#6E4165` *(Muted Mulberry, `6.7:1` on `#FAF8FA`)* | Used for section eyebrows, metadata, secondary captions, and subtle hairline dividers. |
-| **5% Surgical Accent** | **Golden Angle Aqua-Mint (`174.8°`)** | **On Dark Only:** `#1AD1BE` *(`10.6:1` on `#12051A`)*<br>**On Light Only:** `#0F766E` *(`5.2:1` on `#FAF8FA`)* | **Must be used with extreme subtlety.** A whisper-quiet rim light in a grainy gradient, the top tip of a vertical `.highlight` bar, or a tiny focus indicator. **Never** use as a large background fill and **never** place `#1AD1BE` directly on saturated `#8F1F78`. |
+## 3. Colour
 
----
+The hex values are **unchanged** from the locked 60–30–5–5 palette (Royal Plum `#8F1F78` at hue 312.3°; the accent is Royal Plum −137.5° → 174.8°). v3 changes **how colours are used**.
 
-## 4. Typography Direction
+| Role | Token | Hex | Use | Contrast |
+| :--- | :--- | :--- | :--- | :--- |
+| Paper | `--paper` | `#FAF8FA` | Page ground (most of the page) | — |
+| Paper 2 | `--paper-2` | `#F3E7F0` | Quiet bands, table zebra. Rare. | — |
+| Ink | `--ink` | `#12051A` | Headings, names | 18.7:1 on paper |
+| Body ink | `--ink-body` | `#2B0F2A` | Running text | 16.5:1 on paper |
+| Muted ink | `--ink-muted` | `#6E4165` | Labels, roles, metadata | 7.6:1 on paper · 6.7:1 on paper 2 |
+| Accent ink | `--ink-accent` | `#8F1F78` | Links, active nav, numerals, CTA border, accent rules | 7.5:1 on paper · 6.6:1 on paper 2 |
+| Focus | `--focus` | `#0F766E` | Focus ring **only** | 5.2:1 on paper · 4.6:1 on paper 2 |
+| Dark ground | `--dark-ground` | `#1A0826` | The one dark section (founder's note) and the footer | — |
+| Dark ink | `--dark-ink` | `#FAF8FA` | Text on dark | 18.0:1 |
+| Dark muted | `--dark-ink-muted` | `#D1A1C7` | Labels and accents on dark | 8.7:1 |
+| Dark focus | `--dark-focus` | `#1AD1BE` | Focus ring on dark | 9.9:1 |
 
-- **Editorial Serif (Headings & Monumental Statements):** **`Literata`** (or similar warm, high-trust editorial serif)
-  - Used at confident, large scale with tight tracking and generous whitespace.
-  - Headlines should be short, declarative, and human (2 to 7 words).
-- **Geometric Humanist Sans (Body, UI Chrome & Navigation):** **`Poppins`** (or clean geometric sans)
-  - Used at light/regular weights (`300`/`400`) for body copy and medium (`500`) for pill buttons and segmented controls.
+**Proportion (v3 reading of 60–30–5–5):** about 60% paper; about 30% ink and aubergine (text, rules, the dark moment); 5% muted plum (labels, metadata); 5% accent (plum links, numerals and rules, plus the mint focus ring).
 
----
+**Rules**
+- Royal Plum on dark is **2.5:1**. Never use it as text on dark; on dark, accents switch to lilac.
+- Mint appears **only** as the focus ring. *This reverses v2's extra mint glints and labels.*
+- **No gradients of any kind.** No radial glows, no gradient text, no gradient bars. The v2 "highlight" gradient bar becomes a solid 1–2px plum rule.
+- No pure `#000` or `#FFF` surfaces.
 
-## 5. Curated Visual References & What to Synthesize from Each
+## 4. Typography
 
-Rather than copying a single template, synthesize the strongest DNA from these three references:
+| Role | Family | Notes |
+| :--- | :--- | :--- |
+| Display (hero, section headings, names, numerals) | **EB Garamond** 400–500, italic 400 | Tight tracking (−0.02em), line-height 1.04–1.12 |
+| Text (body, UI, labels, buttons) | **Source Serif 4** 300–600, `opsz` 8–60 | `font-optical-sizing: auto`. One family for UI too; no sans. |
 
-### Reference A: [Leathwaite Executive Search (`https://www.leathwaite.com/`)](https://www.leathwaite.com/)
-- **What to take:**
-  - **The Hero Stage:** Full-height dark stage with **slow, flowing deep-plum/obsidian silk waves**, a concise left-aligned `Literata` headline with a thin vertical gradient bar (`.highlight`) on its left, pill CTAs, and a **subtle sliding monochrome client logo bar docked at the bottom of the hero**.
-  - **The Monumental Statement Pause:** Following the hero with a spacious dark section containing a single, bold `Literata` sentence that anchors the firm's 30-year authority.
-  - **The Staggered Consultant Grid:** Asymmetric 2-column layout with a sticky left filter/intro column and a staggered masonry right column for the leadership team.
+**Scale** (fluid, 390 → 1440px; tokens `--fs-*`): display 44–68px · H2 32–46px (optional) · H3 24–30px · lead 20–23px · body 17–18px · small 15px · label 16px italic · micro 13px (legal only).
 
-### Reference B: Adaption Labs (`adaptionlabs.ai`)
-- **What to take:**
-  - **Navigation & Segmented Pill Controls:** Crisp **double-ring segmented pill navigation and view switches** (an outer pill track with a `1px` border housing inner pill buttons where the active tab carries its own crisp inner border).
-  - **Nested Container Card Architecture:** Airy outer container cards (`#F3EFF5`) that frame clean, tactile visual headers on top and crisp white nested sub-cards (`#FFFFFF`) underneath—keeping complex practice areas effortless to scan.
+**Details**
+- **Section label** = a 40px hairline plus an *italic word* in muted ink (e.g. "— *Method*"). This replaces the v2 uppercase tracked eyebrows.
+- **Figures:** tabular (`tnum`) in ledgers, counts and phone numbers.
+- **Measure:** prose ≤ 62ch. `text-wrap: balance` on headings, `pretty` on paragraphs.
+- **Bold key phrases** (2–3 per block at most) carry emphasis in hero and note prose, following the Tiger Global pattern. No italics for emphasis inside headings; the italic is reserved for labels and quotes.
+- **Accent word in the hero headline:** stays ("forward."), now in **italic EB Garamond in accent ink**, not light sans.
 
-### Reference C: Y Combinator / Paper-Style Stochastic Grain Gradients
-- **What to take:**
-  - **Tactile Risograph / Stochastic Grain Materiality:** Instead of flat CSS gradients or stock photos, use **crisp, fine-grained stochastic/risograph gradients** (blending Deep Obsidian `#12051A`, Royal Plum `#8F1F78`, Soft Lilac `#D1A1C7`, and a subtle 5% glint of Aqua-Mint `#1AD1BE`) as refined visual surfaces, card headers, or ambient light fields.
+**Font delivery (to resolve in Phase 2):** the Google Fonts CDN builds of both families **lack `smcp` (small caps) and `onum` (old-style figures)**. Checked 2026-11-06: the Google subsets expose only `liga`, `tnum`, `pnum`, `frac` and similar. Small caps and old-style figures therefore require **self-hosting the full upstream builds** (Source Serif 4 from Adobe, EB Garamond from its open-source repo, both under the SIL Open Font License). Self-hosting also removes the Google Fonts CDN request, which matters for EU/EEA visitors (GDPR) after the Oslo launch. **Until self-hosted:** no faked small caps (never `font-variant-caps` on a font without `smcp`), and labels use the italic-word style.
 
----
+## 5. Layout system
 
-## 6. Verified IQ Group Content & Copy Bank (Use Only Real Data)
+- **Container:** max 1240px, side padding 20–56px.
+- **Grid:** 12 columns, gutter 16–28px.
+  - **Margin columns 1–3** hold section labels, dates and short notes.
+  - **Content columns 4–10** hold headings, prose, lists and ledgers.
+  - **Columns 11–12** are air (or a wide table running across 4–12).
+- **Mobile (< 720px):** one column. The label sits above its content.
 
-### A. Core Narrative & Differentiators
-- **Hero Headline (approved):** *"Hires that move your organisation forward."*
-- **Hero Subheadline (approved):** *"Partner-led executive search and HR advisory — from specialist roles to the C‑suite, across India, the Middle East, South Asia and Europe for 30+ years."*
-- **Statement (approved):** eyebrow *"How we work"* · *"Every mandate is led by a partner — from the first brief to the day your hire walks in."*
-- **3 Core Pillars (Partnership, People, Performance):**
-  1. **Partnership:** Undivided boutique attention — learning your organization at the cultural, strategic, and tactical level.
-  2. **People:** Deep industry experience and a proprietary network of CEOs, Managing Directors, and domain heads built over three decades.
-  3. **Performance:** A 30+ year track record of delivering complex, niche placements within remarkably fast turnaround times.
+**Section anatomy:** a strong rule at the top, the label in the margin, content in the content columns. Optional H2. No background change between most sections.
 
-### B. Practice Areas & Capabilities
-1. **Banking, Private Equity & Financial Services (BFSI):**
-   - *Clients:* UBS, J.P. Morgan, Deutsche Bank, Baring Private Equity Partners India, YES BANK, SBI Ventures, India Ratings & Research (Fitch Group).
-2. **Management Consulting, Strategy & Advisory:**
-   - *Clients:* Boston Consulting Group (BCG), PwC, Dalberg, Sigma Research & Consulting, Chain IQ.
-3. **FMCG, Healthcare, Life Sciences & Industrials:**
-   - *Clients:* Johnson & Johnson, GSK, Bayer, Hindustan Unilever (HUL), Asian Paints, Rossari Biotech, MTAR Technologies, Welspun, Tata Housing.
-4. **IQ Social (Dedicated CSR, Philanthropy & International Foundations Wing):**
-   - *Clients:* Oxfam India, NASSCOM Foundation, HelpAge India, TechnoServe, Kotak Education Foundation, Ambuja Cement Foundation, Concern India Foundation, Educo, CanKids.
-5. **HR Advisory, Turnkey Project RPO & Career Transition / Outplacement.**
+**Rhythm:** section gap 72–128px by default, 40–64px between related sections. Follow a dense section with an airy one.
 
-### C. 5-Step End-to-End Search Methodology (Ideal for Progressive Disclosure)
-1. **Understand your business** (strategic priorities, mandate goals, culture)
-2. **Shortlist candidates** (proprietary databases, market mapping, direct outreach)
-3. **Identify the match** (competency evaluation & 360° reference checks)
-4. **Hire & onboard** (offer negotiation, closing facilitation, transition support)
-5. **Monitor & iterate** (post-placement check-ins to ensure lasting impact)
+**Hero:**
+- **Typographic masthead** at about 75vh: text nav, a hairline, the headline, a lead paragraph with bold key phrases, the dateline row (*Mumbai · Oslo · 30+ years*) and one ledger-row CTA.
+- **The image half is reserved.** It becomes a split layout with a photograph when real office photos arrive.
+- **No photo before then.** The current portraits are too small: 174×263px source against the roughly 1440px needed (D3).
 
-### D. Recent Completed C-Suite Mandates & Verified Client Endorsements
-- **Recent Hires:**
-  - *Chief Executive Officer (CEO)* — Leading Indian specialty chemicals manufacturer
-  - *Chief Financial Officer (CFO)* — Indian precision engineering company
-  - *Vice President, Investments* — Leading Indian private equity firm
-  - *Chief Marketing Officer (CMO)* — Leading private sector Indian bank
-  - *Head of CSR, India* — Large European multinational bank
-- **Verified Client Quotes:**
-  - *"Over a decade, IQ helped me build teams of strong professionals at UBS, Yes Bank, and IDFC. I have been impressed by their speed, professionalism, responsiveness, and cost-effective service."* — **Ajay Mahajan, former Managing Director, UBS**
-  - *"IQ may be a small firm but more than makes up with its talent, connections, and never-say-die attitude. IQ takes pride in accepting difficult and complex placements and has delivered where its behemoth competitors have not."* — **Tilak Mukherji, Chairman, Sigma Research & Consulting**
+**Page order** (V3_PLAN §4): hero → note (the dark moment) → Why IQ → Method → Mandates → Endorsements → People → Clients (hidden until permission) → Offices & contact → colophon footer.
 
-### E. Leadership Team & Contact Details
-- **Ashmita Ray Sarkar** — Founder & Managing Director *(All Practices & C-Suite · Mumbai)*
-- **Annu Paul** — Director *(Hospitality, Media, Social Impact & Business Development · Mumbai)*
-- **Shirin Gulrajani Talwar** — Director *(Legal & Social Impact · Mumbai)*
-- **Christine Gomes** — Managing Associate, IQ Social *(CSR, NGOs & Foundations · Mumbai)*
-- **Headquarters:** 806, Sunshine Towers, Senapati Bapat Marg, Dadar (West), Mumbai – 400 013, India
-- **Direct Contact:** `ashmita@iqgroup.co.in` · `+91 22 6588 5932` · `+91 98200 61329`
+## 6. Component vocabulary
+
+The detailed inventory is written as components get built (it will replace the v2 `COMPONENTS.md`). The vocabulary:
+
+| Component | Definition | Reference |
+| :--- | :--- | :--- |
+| **Text nav** | Wordmark plus 4 text links. The active link is underlined in accent ink. Below 900px, a "Menu" text button opens a full-screen sheet (v2 behaviour, restyled). | Cravath, Slaughter and May |
+| **Section label** | 40px hairline + italic word, in the margin column | Stripe Press |
+| **Ruled row** | Hairline above; title (H3) plus one sentence; optional margin number | Pentagram, Are.na |
+| **Ledger row** | A 1px rule; columns such as Role · Sector · Region (· Year); tabular figures; hover fills with a 5% plum tint | Basecamp index, Stripe Press |
+| **Ledger CTA** | A ledger row used as a button: label on the left, a ↗ in a divided right cell, 1px accent border, square corners | Stripe Press |
+| **Epigraph quote** | Italic serif quote, a 28px rule, the name, then the role in muted ink. No box, no giant quote mark. | Stripe Press |
+| **Portrait** | Greyscale + plum multiply (28%), on a shared dark studio backdrop. Partners at 4:5, associates and advisor at 1:1. Radius 2px. Name and role below in ink, on paper. No dark card shell. | Pentagram |
+| **Letterhead block** | Office name, address, phones, email, set like stationery | Hoare's |
+| **Colophon** | Wordmark, link index, ERA line (if confirmed), privacy, "Last reviewed {month year}" | Tiger Global |
+
+**Retired from v2:** pill nav, pill buttons, segmented toggles, rounded cards (24–32px), gradient card headers, grain overlays, the logo marquee, the canvas wave hero (it stays in v2 only), mint labels and mint glows.
+
+## 7. Imagery
+
+- **Allowed:** real, owned photographs of IQ people and IQ places.
+- **Not allowed:** stock, city landmarks, abstract graphics or AI imagery. Reasons: they are generic, and a single city narrows an international firm (see HERO_RESEARCH §2b).
+- **Portraits:**
+  - All portraits share one treatment, `--portrait-filter` + `--portrait-tint`, so photos from different shoots read as one set.
+  - Backgrounds are replaced with a single dark studio backdrop (current process: `rembg`, with edge colours unmixed from the old backdrop).
+  - **Minimum source size:** 1200px on the long edge (current files are 312px, so higher-resolution originals are requested).
+- **Hero / office photo (future):** at least 2400px wide, a real IQ office or people at work. Toned to the palette, calm, with a quiet area on the text side.
+
+## 8. Motion
+
+- **Allowed:**
+  - section rules draw in from left to right once, on entry;
+  - headings rise 10px once;
+  - hover and focus at 160ms.
+- **Technique:** CSS scroll-driven animations (`animation-timeline: view()`, Baseline 2026) inside `@supports`. Content is visible without them.
+- **Off under `prefers-reduced-motion`:** the tokens set durations to 0.
+- **Not allowed:** loops, parallax, scroll-jacking, marquees, cursor effects, WebGL or canvas backgrounds.
+
+## 9. References
+
+**Take from:**
+- **C. Hoare & Co.:** flat panel, real premises, quiet heritage line.
+- **Cravath / Slaughter and May:** plain ground, text nav, a dated record of activity.
+- **Tiger Global:** a statement paragraph as the hero, plain colophon.
+- **Pentagram:** split heading and prose, a uniform partner portrait row.
+- **Stripe Press:** italic labels, ledger rows, epigraph quotes.
+- **Are.na and Basecamp:** ordered lists, the em-dash index, a founder letter.
+
+**Don't become:**
+- **Leathwaite / Russell Reynolds:** dark cinematic hero, the category default.
+- **Korn Ferry / Boyden:** generic stock.
+- **Heidrick:** abstract tech graphics.
+- **Sequoia:** pill toggles and oversized spaced-out capitals.
+
+## 10. Do / Don't
+
+**Do**
+- Set most of the page on paper, and use the dark ground once.
+- Put labels in the margin column, and use rules between rows.
+- Show real names, faces, dates and the real address.
+- Use one CTA per view, written as a ledger row or a text link with ↗.
+- Keep every claim specific ("30+ years", a named sector), never a superlative.
+
+**Don't**
+- Alternate dark and light every section.
+- Use uppercase tracked eyebrows, pills, toggles, rounded cards or gradients.
+- Print a founding year, an ERA badge, client logos or a signed founder quote until each one is confirmed.
+- Add motion that loops or that hides content when unsupported.
+
+## 11. Copy bank (approved v2 copy; slots marked)
+
+**Hero**
+- **Headline:** *Hires that move your organisation forward.* ("forward." is the accent word)
+- **Lead:** *Partner-led executive search and HR advisory — from specialist roles to the C‑suite, across India, the Middle East, South Asia and Europe for 30+ years.*
+
+**Note under the hero**
+- **For now:** label *How we work* with *"Every mandate is led by a partner — from the first brief to the day your hire walks in."* No byline.
+- **[slot]** Ashmita's own note. Her signature and portrait go in only with her text.
+
+**Why IQ**
+- **Partnership:** undivided attention; we learn your organisation at the cultural, strategic and tactical level.
+- **People:** a proprietary network of CEOs, managing directors and domain heads, built over three decades.
+- **Performance:** complex, niche placements in remarkably fast turnaround times.
+
+**Method:** 1. Understand your business · 2. Shortlist candidates · 3. Identify the match · 4. Hire & onboard · 5. Monitor & iterate.
+
+**Mandates (anonymised):**
+- Chief Executive Officer — specialty chemicals manufacturer, India
+- Chief Financial Officer — precision engineering company, India
+- Vice President, Investments — private equity firm, India
+- Chief Marketing Officer — private-sector bank, India
+- Head of CSR, India — European multinational bank
+
+**[slot]** years per mandate.
+
+**Endorsements**
+- *"Over a decade, IQ helped me build teams of strong professionals at UBS, Yes Bank and IDFC. I have been impressed by their speed, professionalism, responsiveness and cost-effective service."* — Ajay Mahajan, former Managing Director, UBS
+- *"IQ may be a small firm but more than makes up with its talent, connections and never-say-die attitude…"* — Tilak Mukherji, **Advisor to IQ Group** · Chairman, Sigma Research & Consulting
+
+**People**
+- **Partners:**
+  - Ashmita Ray Sarkar — Founder & Managing Director (all practices, C‑suite)
+  - Annu Paul — Director (hospitality, media, social impact, business development)
+  - Shirin Gulrajani Talwar — Director (legal, social impact)
+  - Christine Gomes — Managing Associate, IQ Social (CSR, NGOs, foundations)
+- **Associates:**
+  - Mallika Sen Varma — Senior Associate (BFSI, hospitality & media)
+  - Bijal Joshi — Senior Associate (BFSI, social impact & NGO)
+  - Shharran Das — Associate (media, BFSI)
+  - Tanushree Kundu — Associate (BFSI, hospitality, FMCG, ITES)
+  - Neha Beswal — Associate (BFSI, ITES; confirm)
+- **Advisor:** Tilak Mukherji — Chairman, Sigma Research & Consulting.
+
+**Clients [slot]:** shown only after name/logo permission (PROJECT_BRIEF R2). Candidate list in PROJECT_BRIEF §6.2.
+
+**Contact**
+- **Mumbai:** 806, Sunshine Towers, Senapati Bapat Marg, Dadar (West), Mumbai 400 013 · +91 22 6588 5932 · +91 98200 61329 · ashmita@iqgroup.co.in
+- **Oslo [slot]:** address and contact to come.

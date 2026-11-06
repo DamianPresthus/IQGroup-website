@@ -1,0 +1,129 @@
+/* IQ Group — v3 design tokens ("down to earth and classy")
+   STATUS: approved direction (docs/V3_PLAN.md, D1–D7, 2026-11-06). The v3 build imports this file.
+   Source of truth for intent: docs/DESIGN.md. The v2 record is tokens.css (frozen, not imported by v3).
+   Rules:
+   - Every colour hex comes from the locked 60–30–5–5 palette. v3 changes ROLES, not values.
+   - No gradients, glows or decorative grain tokens exist here on purpose.
+   - Contrast ratios (WCAG 2.x) were computed 2026-11-06 and are noted next to each text role. */
+
+:root {
+  /* ============ 1. PALETTE (locked hex values) ============ */
+  --iq-obsidian: #12051A;      /* Plum Obsidian */
+  --iq-obsidian-2: #1A0826;    /* Plum Obsidian, lifted */
+  --iq-alabaster: #FAF8FA;     /* Warm Alabaster */
+  --iq-lilac-wash: #F3E7F0;    /* Soft Lilac Wash */
+  --iq-plum: #8F1F78;          /* IQ Royal Plum */
+  --iq-aubergine: #2B0F2A;     /* Deep Aubergine */
+  --iq-lilac: #D1A1C7;         /* Dusty Lilac (support, on dark) */
+  --iq-mulberry: #6E4165;      /* Muted Mulberry (support, on light) */
+  --iq-mint: #1AD1BE;          /* Aqua-Mint (accent, on dark) */
+  --iq-mint-deep: #0F766E;     /* Tropical Mint (accent, on light) */
+
+  /* ============ 2. ROLES — paper (default ground for most of the page) ============ */
+  --paper: var(--iq-alabaster);             /* page ground */
+  --paper-2: var(--iq-lilac-wash);          /* secondary ground: quiet bands, table zebra only */
+  --ink: var(--iq-obsidian);                /* headings, names: 18.7:1 on paper, 16.5:1 on paper-2 */
+  --ink-body: var(--iq-aubergine);          /* body text: 16.5:1 on paper, 14.5:1 on paper-2 */
+  --ink-muted: var(--iq-mulberry);          /* metadata, labels, roles: 7.6:1 on paper, 6.7:1 on paper-2 */
+  --ink-accent: var(--iq-plum);             /* links, active nav, rule accents, numerals: 7.5:1 on paper, 6.6:1 on paper-2 */
+  --rule: color-mix(in oklch, var(--iq-obsidian) 14%, transparent);        /* hairline (decorative) */
+  --rule-strong: color-mix(in oklch, var(--iq-obsidian) 70%, transparent); /* section-top rule */
+  --rule-accent: var(--iq-plum);                                           /* ledger CTA border, active marker */
+  --tint-hover: color-mix(in oklch, var(--iq-plum) 5%, transparent);       /* row hover fill */
+  --focus: var(--iq-mint-deep);             /* focus ring only: 5.2:1 on paper, 4.6:1 on paper-2 */
+
+  /* ============ 3. ROLES — dark moment (founder's note + footer only) ============
+     Apply with [data-theme="dark"] on the section. Max one dark section in the page body. */
+  --dark-ground: var(--iq-obsidian-2);
+  --dark-ink: var(--iq-alabaster);          /* 18.0:1 on obsidian-2 */
+  --dark-ink-muted: var(--iq-lilac);        /* 8.7:1 on obsidian-2 */
+  --dark-rule: color-mix(in oklch, var(--iq-lilac) 22%, transparent);
+  --dark-focus: var(--iq-mint);             /* 9.9:1 on obsidian-2 */
+  /* Royal Plum on obsidian is 2.5:1: never text on dark, rules only. */
+
+  /* ============ 4. TYPOGRAPHY ============
+     Display: EB Garamond (wght 400–800). Text: Source Serif 4 (wght 200–900, opsz 8–60).
+     NOTE: the Google Fonts CDN builds lack `smcp` and `onum` (checked 2026-11-06). Real small caps and old-style
+     figures need the full upstream builds, self-hosted (also avoids the Google Fonts CDN for GDPR, see DESIGN.md §4). */
+  --font-display: 'EB Garamond', 'Iowan Old Style', Georgia, serif;
+  --font-text: 'Source Serif 4', 'Iowan Old Style', Georgia, serif;
+
+  /* Fluid scale (min @ 390px → max @ 1440px) */
+  --fs-display: clamp(2.75rem, 2.193rem + 2.286vw, 4.25rem);    /* 44 → 68px  hero headline */
+  --fs-h2: clamp(2rem, 1.675rem + 1.333vw, 2.875rem);           /* 32 → 46px  section heading (optional) */
+  --fs-h3: clamp(1.5rem, 1.361rem + 0.571vw, 1.875rem);         /* 24 → 30px  row titles, names */
+  --fs-lead: clamp(1.25rem, 1.18rem + 0.286vw, 1.4375rem);      /* 20 → 23px  hero paragraph, pull quote */
+  --fs-body: clamp(1.0625rem, 1.039rem + 0.095vw, 1.125rem);    /* 17 → 18px */
+  --fs-small: 0.9375rem;                                     /* 15px  metadata, ledger secondary */
+  --fs-label: 1rem;                                          /* 16px  italic section label */
+  --fs-micro: 0.8125rem;                                     /* 13px  legal/colophon only */
+
+  --lh-display: 1.04;
+  --lh-heading: 1.12;
+  --lh-body: 1.55;
+  --tracking-display: -0.02em;
+  --tracking-heading: -0.012em;
+  --tracking-caps: 0.06em;           /* for real small caps (self-hosted fonts only) */
+  --measure: 62ch;                   /* prose */
+  --measure-wide: 72ch;
+
+  /* ============ 5. LAYOUT ============
+     One 12-column grid for every section: cols 1–3 = margin (labels, dates, notes), 4–10 = content, 11–12 = air.
+     Below 720px: single column, label sits above content. */
+  --page-max: 77.5rem;               /* 1240px */
+  --page-pad: clamp(1.25rem, 0.414rem + 3.429vw, 3.5rem);       /* 20 → 56px */
+  --cols: 12;
+  --gutter: clamp(1rem, 0.721rem + 1.143vw, 1.75rem);           /* 16 → 28px */
+  --col-margin: 1 / span 3;
+  --col-content: 4 / span 7;
+  --col-wide: 4 / span 9;
+  --col-full: 1 / -1;
+
+  /* Spacing scale */
+  --s-1: 0.25rem; --s-2: 0.5rem; --s-3: 0.75rem; --s-4: 1rem; --s-5: 1.5rem;
+  --s-6: 2rem; --s-7: 3rem; --s-8: 4rem; --s-9: 6rem; --s-10: 8rem;
+
+  /* Section rhythm: by density, not by background colour */
+  --section-gap: clamp(4.5rem, 3.2rem + 5.333vw, 8rem);         /* 72 → 128px default */
+  --section-gap-tight: clamp(2.5rem, 1.943rem + 2.286vw, 4rem); /* 40 → 64px between related sections */
+  --row-pad: clamp(1.25rem, 1.064rem + 0.762vw, 1.75rem);       /* 20 → 28px ruled row vertical padding */
+
+  /* ============ 6. SHAPE ============ */
+  --radius-0: 0;
+  --radius-1: 2px;                   /* portraits */
+  --radius-2: 4px;                   /* buttons and inputs, if any */
+  --hairline: 1px;
+  --label-rule: 2.5rem;              /* 40px hairline before an italic section label */
+  --quote-rule: 1.75rem;             /* 28px rule under an endorsement */
+
+  /* ============ 7. IMAGERY ============ */
+  --portrait-ratio-lead: 4 / 5;      /* partners */
+  --portrait-ratio-tile: 1 / 1;      /* associates, advisor */
+  --portrait-filter: grayscale(1) contrast(1.06) brightness(0.96);
+  --portrait-tint: color-mix(in oklch, var(--iq-plum) 28%, transparent);   /* multiply layer */
+
+  /* ============ 8. MOTION ============ */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 160ms;                 /* hover, focus */
+  --dur-reveal: 480ms;               /* rule draw-in, heading rise (once, on entry) */
+  --reveal-distance: 10px;
+
+  /* ============ 9. FOCUS ============ */
+  --focus-ring: 2px solid var(--focus);
+  --focus-offset: 3px;
+}
+
+[data-theme="dark"] {
+  --paper: var(--dark-ground);
+  --ink: var(--dark-ink);
+  --ink-body: var(--dark-ink);
+  --ink-muted: var(--dark-ink-muted);
+  --ink-accent: var(--dark-ink-muted);   /* plum is illegible on dark (2.5:1); accents become lilac */
+  --rule: var(--dark-rule);
+  --rule-strong: color-mix(in oklch, var(--iq-lilac) 55%, transparent);
+  --focus: var(--dark-focus);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-reveal: 0ms; --reveal-distance: 0px; }
+}
