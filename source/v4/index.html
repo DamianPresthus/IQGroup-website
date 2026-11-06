@@ -8,8 +8,8 @@
 <meta name="robots" content="noindex">
 <link rel="preload" href="../assets/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/plusjakarta.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="tokens.css?v=202611061957">
-<link rel="stylesheet" href="styles.css?v=202611061957">
+<link rel="stylesheet" href="tokens.css?v=202611062042">
+<link rel="stylesheet" href="styles.css?v=202611062042">
 <script>
   // Palette preview (?palette=navy). Runs before paint to avoid a flash.
   const q = new URLSearchParams(location.search);
@@ -30,7 +30,7 @@
       <a href="#people">About</a>
       <a href="#contact">Contact</a>
     </div>
-    <a class="btn btn-dark" href="#contact">Begin a search <span class="arrow" aria-hidden="true">→</span></a>
+    <a class="btn btn-dark" href="#contact" data-enquiry="search">Begin a search <span class="arrow" aria-hidden="true">→</span></a>
     <button class="nav-menu" type="button" aria-expanded="false" aria-controls="sheet">Menu</button>
   </nav>
 </div>
@@ -40,7 +40,7 @@
   <a href="#method">Methodology</a>
   <a href="#people">About</a>
   <a href="#contact">Contact</a>
-  <a class="btn btn-dark" href="#contact">Begin a search →</a>
+  <a class="btn btn-dark" href="#contact" data-enquiry="search">Begin a search →</a>
 </div>
 
 <main id="main">
@@ -57,8 +57,8 @@
         <h1>Hires that move your organisation forward.</h1>
         <p class="lead">Partner-led executive search and HR advisory — from specialist roles to the C‑suite, across India, the Middle East, South Asia and Europe for 30+ years.</p>
         <div class="hero-ctas">
-          <a class="btn btn-dark" href="#contact">Begin a search <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="link-arrow" href="#executives">For executives</a>
+          <a class="btn btn-dark" href="#contact" data-enquiry="search">Begin a search <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="link-arrow" href="#executives" data-enquiry="exec">For executives</a>
         </div>
       </div>
       <div class="hero-visual">
@@ -223,7 +223,7 @@
           <p>Board members, founders and HR heads: tell us about the role. A partner leads the conversation from the first call.</p>
           <span class="spacer"></span>
           <div class="actions">
-            <a class="btn btn-light" href="mailto:ashmita@iqgroup.co.in?subject=New%20search%20enquiry">Begin a search <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn-light" href="mailto:ashmita@iqgroup.co.in?subject=Search%20enquiry" data-enquiry="search">Begin a search <span class="arrow" aria-hidden="true">→</span></a>
           </div>
           <p class="meta"><a href="tel:+912265885932">+91 22 6588 5932</a><a href="tel:+919820061329">+91 98200 61329</a></p>
         </article>
@@ -233,7 +233,7 @@
           <p>Senior leaders can share a profile in confidence. We will be in touch when a mandate fits.</p>
           <span class="spacer"></span>
           <div class="actions">
-            <a class="btn btn-dark" href="mailto:ashmita@iqgroup.co.in?subject=Confidential%20profile">Share your profile <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn-dark" href="mailto:ashmita@iqgroup.co.in?subject=Confidential%20profile" data-enquiry="exec">Share your profile <span class="arrow" aria-hidden="true">→</span></a>
           </div>
         </article>
       </div>
@@ -254,12 +254,68 @@
         <p style="max-width:30ch">Partner-led executive search and HR advisory for 30+ years.</p>
       </div>
       <div><h4>Firm</h4><ul><li><a href="#practices">Practices</a></li><li><a href="#method">Methodology</a></li><li><a href="#people">About</a></li></ul></div>
-      <div><h4>Contact</h4><ul><li><a href="#contact">Begin a search</a></li><li><a href="#executives">For executives</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="#contact" data-enquiry="search">Begin a search</a></li><li><a href="#executives" data-enquiry="exec">For executives</a></li></ul></div>
       <div><h4>Mumbai</h4><p>806, Sunshine Towers, Senapati Bapat Marg, Dadar (West), Mumbai 400 013</p></div>
     </div>
     <div class="legal"><span>© IQ Group</span><span>Last reviewed November 2026</span></div>
   </div>
 </footer>
+
+<!-- Enquiry sheet: one dialog, two short forms. Opens from any [data-enquiry] trigger; without JS those links fall back to #contact / mailto. -->
+<dialog class="enquiry" id="enquiry" aria-labelledby="enquiry-title">
+  <div class="enquiry-inner">
+    <header class="enquiry-head">
+      <div class="enquiry-switch" role="tablist" aria-label="I am">
+        <button type="button" role="tab" data-mode="search" aria-selected="true">Hiring</button>
+        <button type="button" role="tab" data-mode="exec" aria-selected="false">An executive</button>
+      </div>
+      <button type="button" class="enquiry-close" aria-label="Close" data-close>×</button>
+    </header>
+
+    <form class="enquiry-form" data-mode="search" novalidate>
+      <h2 id="enquiry-title">Begin a search</h2>
+      <p class="enquiry-intro">Three details are enough to start. A partner replies personally.</p>
+      <div class="field"><label for="s-name">Your name</label><input id="s-name" name="name" autocomplete="name" required enterkeyhint="next"><span class="err">Please add your name.</span></div>
+      <div class="field"><label for="s-email">Work email</label><input id="s-email" name="email" type="email" autocomplete="email" inputmode="email" required enterkeyhint="next"><span class="err">Please add a valid email.</span></div>
+      <div class="field"><label for="s-role">Role you’re hiring for</label><input id="s-role" name="role" placeholder="e.g. Chief Financial Officer" required enterkeyhint="next"><span class="err">Which role should we search for?</span></div>
+      <details class="more">
+        <summary>Add organisation, phone or a note <span class="opt">optional</span></summary>
+        <div class="field"><label for="s-org">Organisation</label><input id="s-org" name="org" autocomplete="organization"></div>
+        <div class="field"><label for="s-tel">Phone</label><input id="s-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel"></div>
+        <div class="field"><label for="s-note">Anything else</label><textarea id="s-note" name="note" rows="3" placeholder="Location, timing, context…"></textarea></div>
+      </details>
+      <button class="btn btn-dark btn-block" type="submit">Send enquiry <span class="arrow" aria-hidden="true">→</span></button>
+      <p class="enquiry-fine">Used only to reply to you. Prefer to talk? <a href="tel:+912265885932">+91 22 6588 5932</a></p>
+    </form>
+
+    <form class="enquiry-form" data-mode="exec" novalidate hidden>
+      <h2>Join our leadership network</h2>
+      <p class="enquiry-intro">Share a profile in confidence. We contact you when a mandate fits.</p>
+      <div class="field"><label for="e-name">Your name</label><input id="e-name" name="name" autocomplete="name" required enterkeyhint="next"><span class="err">Please add your name.</span></div>
+      <div class="field"><label for="e-email">Email</label><input id="e-email" name="email" type="email" autocomplete="email" inputmode="email" required enterkeyhint="next"><span class="err">Please add a valid email.</span></div>
+      <div class="field"><label for="e-role">Current role</label><input id="e-role" name="role" placeholder="e.g. CFO, listed NBFC" autocomplete="organization-title" required enterkeyhint="next"><span class="err">What is your current role?</span></div>
+      <details class="more">
+        <summary>Add LinkedIn or a note <span class="opt">optional</span></summary>
+        <div class="field"><label for="e-url">LinkedIn profile</label><input id="e-url" name="url" type="url" inputmode="url" placeholder="linkedin.com/in/…"></div>
+        <div class="field"><label for="e-note">Roles or sectors you’d consider</label><textarea id="e-note" name="note" rows="3"></textarea></div>
+      </details>
+      <button class="btn btn-dark btn-block" type="submit">Share profile <span class="arrow" aria-hidden="true">→</span></button>
+      <p class="enquiry-fine">Kept confidential. You can attach your CV to the email that opens.</p>
+    </form>
+
+    <div class="enquiry-done" hidden aria-live="polite">
+      <span class="done-mark" aria-hidden="true">✓</span>
+      <h2 tabindex="-1">Almost there</h2>
+      <p>Your email app has opened with everything filled in. <strong>Press Send</strong> to reach us.</p>
+      <div class="done-actions">
+        <button type="button" class="btn btn-line" data-copy>Copy message</button>
+        <a class="link-arrow" data-direct href="mailto:ashmita@iqgroup.co.in">Email didn’t open?</a>
+      </div>
+      <p class="enquiry-fine" data-copied hidden>Copied. Paste it into an email to ashmita@iqgroup.co.in.</p>
+      <button type="button" class="btn btn-dark btn-block" data-close>Done</button>
+    </div>
+  </div>
+</dialog>
 
 <div class="palette-switch" aria-label="Preview options">
   <span>Hero</span>
@@ -270,6 +326,6 @@
   <a href="#" data-set="palette=navy">Navy &amp; brass</a>
 </div>
 
-<script src="app.js?v=202611061957" defer></script>
+<script src="app.js?v=202611062042" defer></script>
 </body>
 </html>

@@ -1,10 +1,34 @@
 # v4 direction — "Quiet institutional confidence"
 
-**Status:** round 5, 2026-11-06, for review. Live preview: `…/IQGroup-website/v4/` (marked `noindex`). v2 stays the live site. v3 (all-serif, paper) is parked: the user did not like it.
+**Status:** round 6, 2026-11-06, for review. Live preview: `…/IQGroup-website/v4/` (marked `noindex`). v2 stays the live site. v3 (all-serif, paper) is parked: the user did not like it.
 
 **Source:** the user's brief, which draws on modern wealth management, elite venture capital and high-trust fintech. Reference screenshots are in `reference/v4-research/`. Thrive Capital and Carta could not be captured (blank page / bot check).
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
+
+## Round 6: enquiry sheets (2026-11-06)
+
+**Problem.** "Begin a search" and "For executives" both scrolled to the contact section, where two more buttons opened a bare `mailto:`. That meant three steps before anything was written, and the visitor's intent was lost along the way.
+
+**UX plan: the minimum path is click → 3 fields → Send.**
+- **Entry:** every CTA opens one sheet, already in the right mode. This covers the nav button, the hero CTAs, the contact cards and the footer links (`data-enquiry="search"` / `"exec"`).
+- **Fields:** three required fields per mode, with `autocomplete` set so browsers can fill them in one tap. Everything optional sits behind one collapsed "Add … optional" row.
+  - **Hiring:** name, work email, role to fill. Optional: organisation, phone, note.
+  - **Executive:** name, email, current role. Optional: LinkedIn, roles or sectors they'd consider.
+- **Recovery:** a "Hiring / An executive" switch at the top fixes a wrong click without closing the sheet.
+- **Validation:** inline, after blur or on submit. Focus moves to the first missing field, and each field shows a one-line plain-language message.
+- **Sending (for now):** submit composes an email to `ashmita@iqgroup.co.in` and opens the visitor's mail app. The subject depends on the path:
+  - **Hiring:** `Search enquiry: {role} — {organisation}`
+  - **Executive:** `Confidential profile: {name}, {current role}`
+  - **Body:** the fields, one per line.
+- **After sending:** a confirmation state says "Press Send". It offers "Copy message" (clipboard fallback), "Email didn't open?" (the same `mailto:` link) and Done. Done returns focus to the button that opened the sheet.
+- **Escape hatches:** the sheet shows the phone number ("Prefer to talk?"), and the contact section keeps its phone numbers and address.
+- **Mechanics:** native `<dialog>` (focus trap, Esc, inert page). Right-hand drawer on desktop, bottom sheet on phones (≤560px). Slide-in via `@starting-style`, off under reduced motion. Without JS, the links fall back to `#contact` and plain `mailto:`.
+
+**Limits and next step.**
+- **Mail app required:** `mailto:` needs a mail app and the visitor still has to press Send. A CV can't be attached automatically; the sheet tells executives to attach it in the email.
+- **True one-click sending needs a form endpoint.** Options: Formspree, Web3Forms, Netlify Forms, or IQ's own mail server. Swapping it in only changes the submit handler; the fields and states stay.
+- **Copy to confirm:** "A partner replies personally" and "Used only to reply to you" are promises Ashmita should confirm. Under GDPR (Oslo) the second one needs a privacy notice once a backend stores data.
 
 ## Round 5 changes (2026-11-06)
 
