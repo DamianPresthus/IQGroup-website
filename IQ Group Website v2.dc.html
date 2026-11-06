@@ -35,9 +35,10 @@ a:hover{color:#FAF8FA;}
   #method > div > div:last-child > div > div > span:nth-child(3){font-size:21px!important;}
   #mandates article:first-child{min-height:300px!important;}
   #mandates article:not(:first-child){min-height:0!important;gap:18px!important;padding:22px!important;}
-  #people > div > div:last-child{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 20px;margin:0 -20px;padding:0 20px 4px;scrollbar-width:none;}
-  #people > div > div:last-child::-webkit-scrollbar{display:none;}
-  #people > div > div:last-child > article{flex:0 0 min(80%,320px);scroll-snap-align:start;}
+  #people [data-grid="leaders"]{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 20px;margin:0 -20px;padding:0 20px 4px;scrollbar-width:none;}
+  #people [data-grid="leaders"]::-webkit-scrollbar{display:none;}
+  #people [data-grid="leaders"] > article{flex:0 0 min(80%,320px);scroll-snap-align:start;}
+  #people [data-grid="associates"]{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:24px 14px!important;}
   #contact [style*="120px"]{grid-template-columns:88px minmax(0,1fr)!important;gap:12px!important;padding:18px 0!important;}
   #contact [style*="120px"] a{display:inline-block;padding:10px 0;margin:-10px 0;}
 }
@@ -96,7 +97,7 @@ a:hover{color:#FAF8FA;}
       <h1 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(40px,min(7.4vw,11vh),108px);line-height:0.98;letter-spacing:-0.02em;text-wrap:balance;">Hires that move your organisation <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:300;letter-spacing:-0.03em;color:#D1A1C7;">forward.</span></h1>
       <div style="display:flex;gap:20px;align-items:stretch;">
         <span style="width:2px;flex:none;border-radius:2px;background:linear-gradient(180deg,#1AD1BE 0%,#D1A1C7 22%,#8F1F78 100%);"></span>
-        <p style="margin:0;font-size:clamp(15px,1.3vw,18px);font-weight:300;line-height:1.6;color:#E9D9E5;max-width:480px;text-wrap:pretty;">Partner-led executive search and HR advisory — from specialist roles to the C‑suite, across India, the Middle East and South Asia for 30+ years.</p>
+        <p style="margin:0;font-size:clamp(15px,1.3vw,18px);font-weight:300;line-height:1.6;color:#E9D9E5;max-width:480px;text-wrap:pretty;">Partner-led executive search and HR advisory — from specialist roles to the C‑suite, across India, the Middle East, South Asia and Europe for 30+ years.</p>
       </div>
       <div style="display:flex;gap:12px;flex-wrap:wrap;">
         <button onClick="{{ goMethod }}" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:500;padding:13px 24px;border-radius:999px;border:none;background:#FAF8FA;color:#12051A;cursor:pointer;" style-hover="background:#F3E7F0;">How we search</button>
@@ -351,11 +352,13 @@ a:hover{color:#FAF8FA;}
         <h2 style="margin:0;font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(40px,4.6vw,64px);line-height:1;letter-spacing:-0.015em;color:#12051A;">The partners on your mandate.</h2>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:16px;">
+    <div data-grid="leaders" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:16px;">
       <sc-for list="{{ team }}" as="p" hint-placeholder-count="4">
         <article style="display:flex;flex-direction:column;background:#260B24;border-radius:26px;padding:8px;color:#FAF8FA;">
-          <div style="position:relative;aspect-ratio:5/4;border-radius:20px;overflow:hidden;background:radial-gradient(45% 40% at 100% 100%, rgba(26,209,190,.2) 0%, rgba(26,209,190,0) 70%), radial-gradient(90% 100% at 100% 0%, #8F1F78 0%, rgba(143,31,120,0) 62%), radial-gradient(60% 70% at 0% 100%, #D1A1C7 0%, rgba(209,161,199,0) 55%), #12051A;display:flex;align-items:flex-end;padding:18px;"><div style="position:absolute;inset:0;pointer-events:none;opacity:.55;mix-blend-mode:overlay;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22%20width=%22180%22%20height=%22180%22%3E%3Cfilter%20id=%22g%22%3E%3CfeTurbulence%20type=%22fractalNoise%22%20baseFrequency=%22.9%22%20numOctaves=%222%22%20seed=%223%22%20stitchTiles=%22stitch%22/%3E%3CfeColorMatrix%20values=%220%200%200%200%201%200%200%200%200%201%200%200%200%200%201%200%200%200%203.2%20-1.75%22/%3E%3C/filter%3E%3Crect%20width=%22100%25%22%20height=%22100%25%22%20filter=%22url(%23g)%22/%3E%3C/svg%3E');"></div><div style="position:absolute;inset:0;pointer-events:none;opacity:.45;mix-blend-mode:normal;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22%20width=%22180%22%20height=%22180%22%3E%3Cfilter%20id=%22g%22%3E%3CfeTurbulence%20type=%22fractalNoise%22%20baseFrequency=%22.9%22%20numOctaves=%222%22%20seed=%229%22%20stitchTiles=%22stitch%22/%3E%3CfeColorMatrix%20values=%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%203.2%20-1.6%22/%3E%3C/filter%3E%3Crect%20width=%22100%25%22%20height=%22100%25%22%20filter=%22url(%23g)%22/%3E%3C/svg%3E');"></div>
-            <span style="position:relative;font-family:'EB Garamond',serif;font-size:64px;line-height:.8;letter-spacing:-0.03em;color:#FAF8FA;">{{ p.initials }}</span>
+          <div style="position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:#12051A;">
+            <img src="{{ p.photo }}" alt="Portrait of {{ p.name }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%;filter:grayscale(1) contrast(1.06) brightness(.96);">
+            <div style="position:absolute;inset:0;pointer-events:none;background:rgba(143,31,120,.28);mix-blend-mode:multiply;"></div>
+            <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg, rgba(38,11,36,0) 62%, #260B24 100%);"></div>
           </div>
           <div style="display:flex;flex-direction:column;gap:6px;padding:20px 14px 16px;flex:1;">
             <span style="font-family:'EB Garamond',serif;font-size:24px;line-height:1.1;">{{ p.name }}</span>
@@ -369,6 +372,33 @@ a:hover{color:#FAF8FA;}
           </div>
         </article>
       </sc-for>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px;padding-top:28px;border-top:1px solid rgba(110,65,101,.22);">
+      <p style="margin:0;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:#6E4165;">Associates</p>
+      <div data-grid="associates" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:32px 20px;">
+        <sc-for list="{{ associates }}" as="a" hint-placeholder-count="5">
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <div style="position:relative;aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:#12051A;margin-bottom:12px;">
+              <img src="{{ a.photo }}" alt="Portrait of {{ a.name }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.06) brightness(.96);">
+              <div style="position:absolute;inset:0;pointer-events:none;background:rgba(143,31,120,.28);mix-blend-mode:multiply;"></div>
+            </div>
+            <span style="font-family:'EB Garamond',serif;font-size:21px;line-height:1.15;color:#12051A;">{{ a.name }}</span>
+            <span style="font-size:13px;font-weight:500;color:#6E4165;">{{ a.role }}</span>
+            <span style="font-size:13px;line-height:1.5;color:#4A2B44;">{{ a.areas }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:96px minmax(0,1fr);gap:20px;align-items:center;padding-top:28px;border-top:1px solid rgba(110,65,101,.22);">
+      <div style="position:relative;aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:#12051A;">
+        <img src="./assets/team/tilak.jpg" alt="Portrait of Tilak Mukherji" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.06) brightness(.96);">
+        <div style="position:absolute;inset:0;pointer-events:none;background:rgba(143,31,120,.28);mix-blend-mode:multiply;"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <span style="font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:#6E4165;">Advisor</span>
+        <span style="font-family:'EB Garamond',serif;font-size:21px;line-height:1.15;color:#12051A;">Tilak Mukherji</span>
+        <span style="font-size:13px;line-height:1.5;color:#4A2B44;max-width:520px;">Chairman, Sigma Research &amp; Consulting. More than 30 years in social and marketing research across South Asia, the Middle East and South‑East Asia.</span>
+      </div>
     </div>
   </div>
 </section>
@@ -400,7 +430,7 @@ a:hover{color:#FAF8FA;}
           </div>
           <div style="display:grid;grid-template-columns:minmax(0,120px) minmax(0,1fr);gap:20px;padding:22px 0;border-top:1px solid rgba(209,161,199,.16);">
             <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#D1A1C7;padding-top:4px;">Footprint</span>
-            <div style="display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.6;color:#E9D9E5;"><span>Mumbai · New Delhi · Bangalore · Kolkata · Dubai · Singapore</span></div>
+            <div style="display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.6;color:#E9D9E5;"><span>Mumbai · New Delhi · Bangalore · Kolkata · Dubai · Singapore · Oslo</span></div>
           </div>
       </div>
     </div>
@@ -568,7 +598,14 @@ class Component extends DCLogic {
       { name: 'Shirin Gulrajani Talwar', role: 'Director', focus: '', practice: ['Legal', 'Social Impact'], bio: 'Leads legal and social‑impact mandates, from General Counsel to foundation heads.' },
       { name: 'Christine Gomes', role: 'Managing Associate, IQ Social', focus: '', practice: ['CSR', 'NGOs', 'Foundations'], bio: 'Runs IQ Social, placing leaders across CSR, NGOs and international foundations.' }
     ];
-    const team = teamDefs.map((p, i) => ({ ...p, tags: p.practice, initials: p.name.split(' ').map(w => w[0]).slice(0, 2).join(''), offset: (i % 2 === 1 && this.state.wide) ? '96px' : '0px' }));
+    const team = teamDefs.map((p, i) => ({ ...p, tags: p.practice, photo: './assets/team/' + p.name.split(' ')[0].toLowerCase() + '.jpg', offset: (i % 2 === 1 && this.state.wide) ? '96px' : '0px' }));
+    const associates = [
+      ['Mallika Sen Varma', 'Senior Associate', 'BFSI · Hospitality & Media'],
+      ['Bijal Joshi', 'Senior Associate', 'BFSI · Social Impact & NGO'],
+      ['Shharran Das', 'Associate', 'Media · BFSI'],
+      ['Tanushree Kundu', 'Associate', 'BFSI · Hospitality · FMCG · ITES'],
+      ['Neha Beswal', 'Associate', 'BFSI · ITES']
+    ].map(([name, role, areas]) => ({ name, role, areas, photo: './assets/team/' + name.split(' ')[0].toLowerCase() + '.jpg' }));
     const logos = [
       ['UBS', "'EB Garamond',serif", '22px', 500, '0.08em', 'none'],
       ['BCG', "'Plus Jakarta Sans',sans-serif", '20px', 500, '0.04em', 'none'],
@@ -603,7 +640,7 @@ class Component extends DCLogic {
         { role: 'Head of CSR, India', org: 'Large European multinational bank' }
       ],
       quoteTabs, quote: quotes[this.state.quote],
-      team
+      team, associates
     };
   }
 }
