@@ -12,9 +12,9 @@
 
 **UX plan: the minimum path is click → 3 fields → Send.**
 - **Entry:** every CTA opens one sheet, already in the right mode. This covers the nav button, the hero CTAs, the contact cards and the footer links (`data-enquiry="search"` / `"exec"`).
-- **Fields:** three required fields per mode, with `autocomplete` set so browsers can fill them in one tap. Everything optional sits behind one collapsed "Add … optional" row.
-  - **Hiring:** name, work email, role to fill. Optional: organisation, phone, note.
-  - **Executive:** name, email, current role. Optional: LinkedIn, roles or sectors they'd consider.
+- **Fields:** three required fields per mode, with `autocomplete` set so browsers can fill them in one tap. Below them is a visible **Message (optional)** box. The remaining optional details sit behind one collapsed "Add … optional" row.
+  - **Hiring:** name, work email, role to fill. Visible optional: message. Collapsed: organisation, phone.
+  - **Executive:** name, email, current role. Visible optional: message (placeholder "Roles or sectors you'd consider"). Collapsed: LinkedIn.
 - **Recovery:** a "Hiring / An executive" switch at the top fixes a wrong click without closing the sheet.
 - **Validation:** inline, after blur or on submit. Focus moves to the first missing field, and each field shows a one-line plain-language message.
 - **Sending (for now):** submit composes an email to `ashmita@iqgroup.co.in` and opens the visitor's mail app. The subject depends on the path:

@@ -84,7 +84,7 @@
           lines = [`Name: ${v.name}`, `Email: ${v.email}`, v.org && `Organisation: ${v.org}`, `Role to fill: ${v.role}`, v.tel && `Phone: ${v.tel}`, v.note && `\n${v.note}`];
         } else {
           subject = `Confidential profile: ${v.name}, ${v.role}`;
-          lines = [`Name: ${v.name}`, `Email: ${v.email}`, `Current role: ${v.role}`, v.url && `LinkedIn: ${v.url}`, v.note && `\nRoles or sectors I'd consider: ${v.note}`];
+          lines = [`Name: ${v.name}`, `Email: ${v.email}`, `Current role: ${v.role}`, v.url && `LinkedIn: ${v.url}`, v.note && `\n${v.note}`];
         }
         const body = lines.filter(Boolean).join('\n');
         lastMessage = `To: ${TO}\nSubject: ${subject}\n\n${body}`;

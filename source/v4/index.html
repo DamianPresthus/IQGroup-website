@@ -8,8 +8,8 @@
 <meta name="robots" content="noindex">
 <link rel="preload" href="../assets/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/plusjakarta.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="tokens.css?v=202611062042">
-<link rel="stylesheet" href="styles.css?v=202611062042">
+<link rel="stylesheet" href="tokens.css?v=202611062046">
+<link rel="stylesheet" href="styles.css?v=202611062046">
 <script>
   // Palette preview (?palette=navy). Runs before paint to avoid a flash.
   const q = new URLSearchParams(location.search);
@@ -278,11 +278,11 @@
       <div class="field"><label for="s-name">Your name</label><input id="s-name" name="name" autocomplete="name" required enterkeyhint="next"><span class="err">Please add your name.</span></div>
       <div class="field"><label for="s-email">Work email</label><input id="s-email" name="email" type="email" autocomplete="email" inputmode="email" required enterkeyhint="next"><span class="err">Please add a valid email.</span></div>
       <div class="field"><label for="s-role">Role you’re hiring for</label><input id="s-role" name="role" placeholder="e.g. Chief Financial Officer" required enterkeyhint="next"><span class="err">Which role should we search for?</span></div>
+      <div class="field"><label for="s-note">Message <span class="opt">optional</span></label><textarea id="s-note" name="note" rows="3" placeholder="Location, timing, anything we should know"></textarea></div>
       <details class="more">
-        <summary>Add organisation, phone or a note <span class="opt">optional</span></summary>
+        <summary>Add organisation or phone <span class="opt">optional</span></summary>
         <div class="field"><label for="s-org">Organisation</label><input id="s-org" name="org" autocomplete="organization"></div>
         <div class="field"><label for="s-tel">Phone</label><input id="s-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel"></div>
-        <div class="field"><label for="s-note">Anything else</label><textarea id="s-note" name="note" rows="3" placeholder="Location, timing, context…"></textarea></div>
       </details>
       <button class="btn btn-dark btn-block" type="submit">Send enquiry <span class="arrow" aria-hidden="true">→</span></button>
       <p class="enquiry-fine">Used only to reply to you. Prefer to talk? <a href="tel:+912265885932">+91 22 6588 5932</a></p>
@@ -294,10 +294,10 @@
       <div class="field"><label for="e-name">Your name</label><input id="e-name" name="name" autocomplete="name" required enterkeyhint="next"><span class="err">Please add your name.</span></div>
       <div class="field"><label for="e-email">Email</label><input id="e-email" name="email" type="email" autocomplete="email" inputmode="email" required enterkeyhint="next"><span class="err">Please add a valid email.</span></div>
       <div class="field"><label for="e-role">Current role</label><input id="e-role" name="role" placeholder="e.g. CFO, listed NBFC" autocomplete="organization-title" required enterkeyhint="next"><span class="err">What is your current role?</span></div>
+      <div class="field"><label for="e-note">Message <span class="opt">optional</span></label><textarea id="e-note" name="note" rows="3" placeholder="Roles or sectors you’d consider"></textarea></div>
       <details class="more">
-        <summary>Add LinkedIn or a note <span class="opt">optional</span></summary>
+        <summary>Add LinkedIn profile <span class="opt">optional</span></summary>
         <div class="field"><label for="e-url">LinkedIn profile</label><input id="e-url" name="url" type="url" inputmode="url" placeholder="linkedin.com/in/…"></div>
-        <div class="field"><label for="e-note">Roles or sectors you’d consider</label><textarea id="e-note" name="note" rows="3"></textarea></div>
       </details>
       <button class="btn btn-dark btn-block" type="submit">Share profile <span class="arrow" aria-hidden="true">→</span></button>
       <p class="enquiry-fine">Kept confidential. You can attach your CV to the email that opens.</p>
@@ -326,6 +326,6 @@
   <a href="#" data-set="palette=navy">Navy &amp; brass</a>
 </div>
 
-<script src="app.js?v=202611062042" defer></script>
+<script src="app.js?v=202611062046" defer></script>
 </body>
 </html>
