@@ -1,10 +1,21 @@
 # v4 direction — "Quiet institutional confidence"
 
-**Status:** round 2, 2026-11-06, for review. Live preview: `…/IQGroup-website/v4/` (marked `noindex`). v2 stays the live site. v3 (all-serif, paper) is parked: the user did not like it.
+**Status:** round 3, 2026-11-06, for review. Live preview: `…/IQGroup-website/v4/` (marked `noindex`). v2 stays the live site. v3 (all-serif, paper) is parked: the user did not like it.
 
 **Source:** the user's brief, which draws on modern wealth management, elite venture capital and high-trust fintech. Reference screenshots are in `reference/v4-research/`. Thrive Capital and Carta could not be captured (blank page / bot check).
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
+
+## Round 3 changes (user review, 2026-11-06)
+
+- **Map is the hero** (the Team option stays in the preview switch).
+  - **Coverage:** now spans the Atlantic to the South China Sea and down to southern Africa, so all of Africa and western Europe are in frame. It is a background layer of the hero, anchored to the page centre, and runs behind the headline column.
+  - **Fades:** the dots fade out westwards (fully transparent under the headline), at the far right and at the top and bottom, via SVG masks on the dot layer only. Arcs, markers and labels stay crisp, so Oslo remains legible.
+  - **Visibility:** dots are larger and darker (ink 34% at 3.3px, previously 22% at 2.6px).
+  - **Refinements:** a staggered (hexagonal) dot grid instead of a square one; IQ's footprint countries (India, UAE, Singapore, Norway) picked out in accent dots; halo rings on every city; Mumbai marked as HQ with a slow pulse; arcs that draw in sequence, then markers and labels fade in. All motion is off under reduced motion.
+  - **Smaller screens:** on tablet (861–1100px) the map is re-anchored so labels clear the headline. On phones it sits below the text, cropped to the Gulf–Asia arc, with labels scaled up.
+  - **Size:** about 60 KB inline (≈17 KB gzipped).
+- **Trust bar logos are now the real colour wordmarks** (`source/assets/clients/`). The SVGs come from Wikimedia Commons / English Wikipedia (UBS and GSK are non-free there), trimmed to their artwork. GSK's 1.5 MB SVG is rasterised to an 8 KB WebP. Heights are balanced optically per logo. **Trademark use still needs each client's permission (R2).**
 
 ## Round 2 changes (user review, 2026-11-06)
 

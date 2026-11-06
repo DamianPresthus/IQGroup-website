@@ -11,6 +11,7 @@ source/
   index.html                    ← redirects to v2
   v4/                           ← v4 "quiet institutional confidence" direction (plain HTML + CSS + JS; see docs/V4_DIRECTION.md)
     index.html · tokens.css · styles.css · app.js   ← ?palette=navy previews navy + brass; ?hero=team previews the team hero
+  assets/clients/               ← client logos for the v4 trust bar (Wikimedia/Wikipedia files; permission per client still open, R2)
   assets/team-face/             ← 160px face crops from the uncut live-site avatars (v4 inline portraits)
   v3/                           ← v3 (plain HTML + CSS; parked after round-2 review)
     tokens-v3.css               ← v3 design tokens (palette roles, serif type scale, 12-col grid, rules, motion)
