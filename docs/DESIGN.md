@@ -23,14 +23,14 @@
 **Keywords:** down to earth · classy · trustworthy · timeless · institution.
 
 **Principles**
-1. **Paper, not screen.** Warm alabaster is the ground for most of the page. Dark is a *moment* (one section plus the footer), not an alternating rhythm.
-2. **One continuous grid.** Every section sits on the same 12-column grid, with a left margin column for labels. The page reads as one document, not as slides.
+1. **Paper, not screen.** A warm alabaster ground with a faint paper texture (fibres and mottling) covers most of the page. Dark is a *moment* (one section plus the footer), not an alternating rhythm.
+2. **One continuous grid, set like a document.** Every section uses the same 12-column grid: the section heading in columns 1–4, the content in columns 5–12 (Pentagram split). No eyebrow labels. The page reads as one document, not as slides.
 3. **Rules, not cards.** Hairline rules and ruled lists. Corners 0–4px. No floating card containers.
 4. **Rhythm by density.** Alternate dense (ledger), airy (one line) and reading (prose) sections on the same ground. Not every section needs a heading.
-5. **Typography carries the voice.** Serif throughout, at calm sizes. Hierarchy comes from size, italic and colour, not from weight jumps or uppercase eyebrows.
-6. **Real artefacts, never decoration.** Real portraits, real names, the real address, facts and dates. No stock photography, no abstract graphics.
+5. **Typography carries the voice.** Serif throughout, at calm sizes, **all roman: no italics anywhere**. Hierarchy comes from size, weight 600 run-in heads and colour, not from italics, accent words or uppercase eyebrows.
+6. **Real artefacts, never decoration.** Real names, the real address, facts, the real footprint. No stock photography, no abstract graphics, no low-resolution photos stretched to fit.
 7. **Quiet motion.** Things arrive once and stay still. No loops.
-8. **Plum is ink, mint is focus.** No gradients, no glows, no decorative grain.
+8. **Plum is ink, mint is focus.** No gradients, no glows, no grain overlays. The paper texture is the ground itself, not an effect laid over content.
 
 Credibility basis: the [Stanford Web Credibility guidelines](https://credibility.stanford.edu/guidelines.html) (show a real organisation and real people, make contact easy, avoid "dazzling" technology) and the summary that a credible site looks appealing "but not too 'slick'".
 
@@ -67,36 +67,37 @@ The hex values are **unchanged** from the locked 60–30–5–5 palette (Royal 
 | Display (hero, section headings, names, numerals) | **EB Garamond** 400–500, italic 400 | Tight tracking (−0.02em), line-height 1.04–1.12 |
 | Text (body, UI, labels, buttons) | **Source Serif 4** 300–600, `opsz` 8–60 | `font-optical-sizing: auto`. One family for UI too; no sans. |
 
-**Scale** (fluid, 390 → 1440px; tokens `--fs-*`): display 44–68px · H2 32–46px (optional) · H3 24–30px · lead 20–23px · body 17–18px · small 15px · label 16px italic · micro 13px (legal only).
+**Scale** (fluid, 390 → 1440px; tokens `--fs-*`): display 44–68px · H2 32–46px (note statement) · section heading 28–36px · H3 24–30px · lead 20–23px · body 17–18px · small 15px · micro 13px (legal only).
 
 **Details**
-- **Section label** = a 40px hairline plus an *italic word* in muted ink (e.g. "— *Method*"). This replaces the v2 uppercase tracked eyebrows.
+- **Section heading** = a plain roman EB Garamond noun phrase ("Why IQ", "How a search runs", "Recent mandates", "People", "Offices") in columns 1–4, with an optional one-line note under it in muted ink. **Rejected (2026-11-06):** the hairline + italic-word label. It read as AI slop and slide-like.
 - **Figures:** tabular (`tnum`) in ledgers, counts and phone numbers.
 - **Measure:** prose ≤ 62ch. `text-wrap: balance` on headings, `pretty` on paragraphs.
-- **Bold key phrases** (2–3 per block at most) carry emphasis in hero and note prose, following the Tiger Global pattern. No italics for emphasis inside headings; the italic is reserved for labels and quotes.
-- **Accent word in the hero headline:** stays ("forward."), now in **italic EB Garamond in accent ink**, not light sans.
+- **Bold key phrases** (2–3 per block at most) carry emphasis in hero and note prose, following the Tiger Global pattern. Run-in heads ("**Partnership.** Undivided attention…") replace stacked title + sentence rows.
+- **No accent word in the hero headline.** It is set in ink, all roman. Italic and colour accents were rejected as AI slop (2026-11-06).
 
-**Font delivery: self-hosted** (`source/assets/fonts/`, `source/v3/fonts.css`). The Google Fonts CDN builds of both families **lack `smcp` (small caps) and `onum` (old-style figures)**; checked 2026-11-06, they expose only `liga`, `tnum`, `pnum`, `frac` and similar. v3 therefore ships the full upstream builds (from `google/fonts`, SIL Open Font License), subset to Latin + Latin‑1 with `smcp`, `c2sc`, `onum`, `lnum`, `tnum`, `pnum` and `frac` kept, and weights limited to what is used: about 266 KB in total. Self-hosting also removes the Google Fonts CDN request, which matters for EU/EEA visitors (GDPR) after the Oslo launch.
-- **Italics** use EB Garamond Italic (labels, quotes, the accent word). Source Serif 4 Italic is not shipped: it has no small caps and would add about 130 KB.
-- **Small caps** (`.caps`, quote names, the dateline) are real `smcp`. Never set `font-variant-caps` on a font that lacks it.
+**Font delivery: self-hosted** (`source/assets/fonts/`, `source/v3/fonts.css`). The Google Fonts CDN builds of both families **lack `smcp` (small caps) and `onum` (old-style figures)**; checked 2026-11-06, they expose only `liga`, `tnum`, `pnum`, `frac` and similar. v3 therefore ships the full upstream builds (from `google/fonts`, SIL Open Font License), subset to Latin + Latin‑1 with `smcp`, `c2sc`, `onum`, `lnum`, `tnum`, `pnum` and `frac` kept, and weights limited to what is used. Self-hosting also removes the Google Fonts CDN request, which matters for EU/EEA visitors (GDPR) after the Oslo launch.
+- **No italic faces are shipped.** v3 sets no italics, so EB Garamond Italic was removed (−57 KB, total now about 209 KB).
+- **Small caps** (`.caps`, quote names, map labels) are real `smcp`. Never set `font-variant-caps` on a font that lacks it.
 
 ## 5. Layout system
 
 - **Container:** max 1240px, side padding 20–56px.
 - **Grid:** 12 columns, gutter 16–28px.
-  - **Margin columns 1–3** hold section labels, dates and short notes.
-  - **Content columns 4–10** hold headings, prose, lists and ledgers.
-  - **Columns 11–12** are air (or a wide table running across 4–12).
-- **Mobile (< 720px):** one column. The label sits above its content.
+  - **Columns 1–4** hold the section heading and an optional one-line note.
+  - **Columns 5–12** hold prose, lists and ledgers. Method's five-step route runs across all 12 columns.
+- **Mobile (< 720px):** one column. The heading sits above its content.
 
-**Section anatomy:** a strong rule at the top, the label in the margin, content in the content columns. Optional H2. No background change between most sections.
+**Section anatomy:** a hairline at the top (drawn in once), the heading on the left, the content on the right. No background change between most sections.
 
 **Rhythm:** section gap 72–128px by default, 40–64px between related sections. Follow a dense section with an airy one.
 
 **Hero:**
-- **Typographic masthead** at about 75vh: text nav, a hairline, the headline, a lead paragraph with bold key phrases, the dateline row (*Mumbai · Oslo · 30+ years*) and one ledger-row CTA.
-- **The image half is reserved.** It becomes a split layout with a photograph when real office photos arrive.
-- **No photo before then.** The current portraits are too small: 174×263px source against the roughly 1440px needed (D3).
+- **Masthead** at about 68vh: text nav, the headline, a lead paragraph with bold key phrases, and one ledger-row CTA in columns 1–6. The visual sits in columns 7–12. There is no dateline row: "Mumbai · Oslo" was removed on 2026-11-06.
+- **Hero visual (choice pending between two specimen options):**
+  - **A · Engraved footprint map** (recommended). Europe to South-East Asia, land hatched in muted plum, coastlines in accent ink, a 15° graticule, and real offices and search cities in small caps, with Mumbai marked as headquarters. 23 KB inline SVG, generated by `tools/v3-map/` (d3-geo + Natural Earth 110m).
+  - **B · Blind-embossed seal.** "IQ" in a ring reading "IQ Group · Executive Search · HR Advisory", in paper colour with light and shadow edges, like letterpress stationery.
+- **Later:** a real office photograph replaces or joins the visual once photos exist (D3). Never the current portraits, which are 174×263px against the roughly 1440px needed.
 
 **Page order** (V3_PLAN §4): hero → note (the dark moment) → Why IQ → Method → Mandates → Endorsements → People → Clients (hidden until permission) → Offices & contact → colophon footer.
 
@@ -107,25 +108,26 @@ The detailed inventory is written as components get built (it will replace the v
 | Component | Definition | Reference |
 | :--- | :--- | :--- |
 | **Text nav** | Wordmark plus 4 text links. The active link is underlined in accent ink. Below 900px, a "Menu" text button opens a full-screen sheet (v2 behaviour, restyled). | Cravath, Slaughter and May |
-| **Section label** | 40px hairline + italic word, in the margin column | Stripe Press |
-| **Ruled row** | Hairline above; title (H3) plus one sentence; optional margin number | Pentagram, Are.na |
+| **Section heading** | Roman EB Garamond 28–36px in columns 1–4, with an optional muted one-line note | Pentagram |
+| **Run-in prose** | Lead-size paragraphs at ≤36em, each starting with a 600-weight run-in head | Printed annual reports |
+| **Route** | The five Method steps across the full width: big plum numeral, a 1px ink line with a 7px square marker, title, one line of muted text. Vertical with a left rule on mobile. | Process diagrams in print |
 | **Ledger row** | A 1px rule; columns such as Role · Sector · Region (· Year); tabular figures; hover fills with a 5% plum tint | Basecamp index, Stripe Press |
 | **Ledger CTA** | A ledger row used as a button: label on the left, a ↗ in a divided right cell, 1px accent border, square corners | Stripe Press |
-| **Epigraph quote** | Italic serif quote, a 28px rule, the name, then the role in muted ink. No box, no giant quote mark. | Stripe Press |
-| **Portrait** | Greyscale + plum multiply (28%), on a shared dark studio backdrop. Partners at 4:5, associates and advisor at 1:1. Radius 2px. Name and role below in ink, on paper. No dark card shell. | Pentagram |
+| **Endorsement** | Roman serif quote with a hanging opening quote mark, a 28px rule, the name in small caps, then the role in muted ink. No box, no giant quote mark. | Stripe Press |
+| **Roster** | Ruled rows of name (EB Garamond) · role · practice focus, grouped as Partners / Associates / Advisor. **No portraits** until a proper photoshoot. | Cravath, Slaughter and May |
 | **Letterhead block** | Office name, address, phones, email, set like stationery | Hoare's |
 | **Colophon** | Wordmark, link index, ERA line (if confirmed), privacy, "Last reviewed {month year}" | Tiger Global |
 
-**Retired from v2:** pill nav, pill buttons, segmented toggles, rounded cards (24–32px), gradient card headers, grain overlays, the logo marquee, the canvas wave hero (it stays in v2 only), mint labels and mint glows.
+**Retired from v2 and from v3 round 1:** pill nav, pill buttons, segmented toggles, rounded cards (24–32px), gradient card headers, grain overlays, the logo marquee, the canvas wave hero (it stays in v2 only), mint labels and mint glows. From v3 round 1: italic labels, the italic accent word, the dateline row, stacked ruled rows, and cut-out portraits.
 
 ## 7. Imagery
 
-- **Allowed:** real, owned photographs of IQ people and IQ places.
+- **Allowed:** real, owned photographs of IQ people and IQ places; the paper texture (`source/assets/paper.jpg`, 9 KB tile, ±2.3 levels, generated by `tools/paper.py`); the engraved footprint map.
 - **Not allowed:** stock, city landmarks, abstract graphics or AI imagery. Reasons: they are generic, and a single city narrows an international firm (see HERO_RESEARCH §2b).
-- **Portraits:**
-  - All portraits share one treatment, `--portrait-filter` + `--portrait-tint`, so photos from different shoots read as one set.
-  - Backgrounds are replaced with a single dark studio backdrop (current process: `rembg`, with edge colours unmixed from the old backdrop).
-  - **Minimum source size:** 1200px on the long edge (current files are 312px, so higher-resolution originals are requested).
+- **Portraits: withheld in v3 until a photoshoot.**
+  - The sources are 312px web avatars, and faces are only about 35–80px wide, from mixed shoots (studio white, studio dark, a passport photo).
+  - Rejected on 2026-11-06: background cut-outs on a dark backdrop ("looks bad"), and a stipple / hedcut conversion (tested; faces dissolve at this source size).
+  - **Photoshoot brief:** one backdrop and one lighting setup for all ten people, head and shoulders, at least 2400px on the long edge, plus office and at-work frames for the hero.
 - **Hero / office photo (future):** at least 2400px wide, a real IQ office or people at work. Toned to the palette, calm, with a quiet area on the text side.
 
 ## 8. Motion
@@ -158,14 +160,15 @@ The detailed inventory is written as components get built (it will replace the v
 
 **Do**
 - Set most of the page on paper, and use the dark ground once.
-- Put labels in the margin column, and use rules between rows.
-- Show real names, faces, dates and the real address.
+- Put the section heading on the left and the content on the right, with rules between rows.
+- Show real names, dates, places and the real address.
 - Use one CTA per view, written as a ledger row or a text link with ↗.
 - Keep every claim specific ("30+ years", a named sector), never a superlative.
 
 **Don't**
 - Alternate dark and light every section.
-- Use uppercase tracked eyebrows, pills, toggles, rounded cards or gradients.
+- Use italics, accent words, uppercase tracked eyebrows, hairline-plus-word labels, pills, toggles, rounded cards or gradients.
+- Stretch or cut out low-resolution photos.
 - Print a founding year, an ERA badge, client logos or a signed founder quote until each one is confirmed.
 - Add motion that loops or that hides content when unsupported.
 
