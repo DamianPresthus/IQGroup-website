@@ -16,9 +16,9 @@ MISSING: focus-visible, active/pressed, disabled. Native button outlines are the
 
 ## Navigation (header)
 - Logo: "IQ" Garamond 28/500 + "GROUP" 12px caps, lilac. Link to #top.
-- Pill nav: double-ring (outer track 1px lilac .22 border + blur 10; inner active pill 1px lilac .5 border, bg alabaster .08). Items: Practices, Method, Mandates, People, Contact. 13px/500, pad 8×16.
+- Pill nav: double-ring (outer track 1px lilac .22 border + blur 10; inner active pill 1px lilac .5 border, bg alabaster .08). Items: v2 Method, Mandates, People, Contact (v1 also Practices). 13px/500, pad 8×16.
 - States: active (set on click only), inactive. Inactive hover: **MISSING**. Active state is not driven by scroll position.
-- Responsive: hidden entirely at ≤900px (JS). **No mobile menu exists**; only the "Begin a search" button remains.
+- Responsive: hidden at ≤900px (JS `wide` state). v2 shows a "Menu" pill instead (two-line icon, the lower line mint) that opens a full-screen sheet: large Garamond nav items, a "Begin a search" CTA and the email address. v1 has no mobile menu.
 - Not sticky: header scrolls away with hero.
 
 ## Pill toggles (light) — v1 only

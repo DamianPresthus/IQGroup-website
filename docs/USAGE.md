@@ -36,8 +36,8 @@ Two parts. **A** is evident in the code. **B** are recommendations needing appro
 
 ## B. Recommendations — need approval
 1. Consolidate the near-duplicate colours (#260B24 / #2B0F2A; #F3EFF5 / #F3E7F0) or document why both exist.
-2. Add a visible `:focus-visible` style for all buttons and links.
-3. Add a mobile navigation (the nav disappears ≤900px).
+2. ~~Add a visible `:focus-visible` style~~ Done in v2 (mint outline; dark mint on light sections).
+3. ~~Add a mobile navigation~~ Done in v2 (Menu button and full-screen sheet at ≤900px).
 4. Honour `prefers-reduced-motion` for the hero canvas.
 5. (v1 only) Make the team filter hide/reorder cards, or rename it; dimmed cards at .25 opacity fail contrast. v2 removed the filter.
 6. Decide the method dot styling (first dot differs from the rest).

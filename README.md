@@ -43,8 +43,8 @@ Accessibility
 - No prefers-reduced-motion handling; hero canvas has no aria-hidden.
 - Quote marks and decorative numerals are plain text (not hidden from screen readers).
 Responsive
-- Nav is hidden ≤900px with no replacement menu.
-- Client bar scrolls horizontally on narrow screens (scrollbar hidden).
+- v2: at ≤900px the desktop nav and "Begin a search" are replaced by a "Menu" button that opens a full-screen sheet (nav, CTA, email). Esc or Close shuts it, and the page scroll is locked while it's open. v1 still has no mobile menu.
+- v2 mobile overrides (≤720px) live in one `@media` block in the `<helmet>` style: tighter section padding, compact method rows, shorter mandate cards, a swipeable partner carousel, a fade hint on the client bar, larger tap targets on contact links. The Pillars sticky column turns static at ≤900px.
 - Hero uses 100svh with min-height 460px; short viewports tighten spacing via clamp(vh).
 Code
 - Leftover dead code in the logic class (v1 + v2): `marqueeRef`, `offset`, `logoLoop`/`logos`, `steps` accordion state, `mandates`, `quotes`/`quoteTabs`/`stepNum`/`stepTitle`, `focus`, team stagger `offset` (v1 also `filterTags`). Not rendered; left untouched.
