@@ -6,6 +6,30 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 17 research: how peers present sectors (2026-11-07)
+
+Screenshots are in `reference/v4-research/sectors/`, taken at 1440px on 2026-11-07. Bain and Odgers blocked headless capture, and ABC Consultants has no sector overview page.
+
+| Site | Pattern |
+|---|---|
+| Spencer Stuart | One card per sector: heading + sub-sectors as inline links. Equal weight. "Education & Social Impact" is a peer card. |
+| Egon Zehnder | Quick-link row at the top, then per sector a short paragraph, an illustration and its sub-sectors in two columns. Equal weight. |
+| Heidrick & Struggles | Plain two-column link list. |
+| Stanton Chase | Single-column link list beside an intro paragraph. |
+| McKinsey | Three-column grid of name + one-line description. |
+| Russell Reynolds | Photo cards with a paragraph each. |
+| Korn Ferry | Three image cards labelled "Featured industries", then an "All industries" list. |
+| BCG | Photo tile grid. |
+
+**What the peers have in common:**
+- **No one sizes a sector up without saying why.** Korn Ferry is the only one with featured sectors, and it labels them explicitly.
+- **The common pattern is sector + sub-sectors.** Round 17's area tags match it.
+- **Social impact is treated as an ordinary peer sector** (Spencer Stuart).
+- **Every overview links to sector pages.**
+- **Photo-led cards** (BCG, RRA, Korn Ferry) depend on stock imagery, which v4 excludes.
+- **No one uses a mind map or diagram.**
+- **Partner names:** no peer puts them on the overview. IQ's "Led by" line is a boutique differentiator worth keeping.
+
 ## Round 17: practices, equal weight (2026-11-07)
 
 **Feedback.** Banking and IQ Social had larger headings, and IQ Social had a dark fill. Both read as "more important", which made the other four harder to read. The hover effect implied the tiles were links when they weren't.
