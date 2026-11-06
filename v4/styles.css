@@ -340,12 +340,15 @@ a { color: inherit; }
 /* ---------- What sets us apart: stone band, three pillars ---------- */
 .section.band { background: var(--bg-2); padding-block: var(--section); }
 .band + .section { padding-top: var(--section); }
-.pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gutter); }
-.pillars div { display: grid; gap: 0.75rem; align-content: start; padding-top: 1.25rem; border-top: 1px solid var(--line-strong); }
-.pillars h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.6rem, 1.3rem + 1vw, 2.25rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); }
-.pillars p { color: var(--ink-body); max-width: 34ch; }
+/* Same column component as .svc-row so the two read as one system */
+.pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line-strong); }
+.pillars div { display: grid; gap: 0.5rem; align-content: start; padding: 1.5rem var(--gutter) 0.5rem 0; }
+.pillars div + div { padding-left: var(--gutter); border-left: 1px solid var(--line); }
+.pillars h3 { font-size: var(--fs-h3); line-height: 1.15; letter-spacing: -0.015em; }
+.pillars p { color: var(--ink-muted); max-width: 36ch; }
 
 @media (max-width: 760px) {
   .hires li { grid-template-columns: 1fr; gap: 0.25rem; }
-  .pillars { grid-template-columns: 1fr; gap: 2rem; }
+  .pillars { grid-template-columns: 1fr; }
+  .pillars div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
 }
