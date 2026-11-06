@@ -6,6 +6,15 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 8: trims (2026-11-06)
+
+- **Offices:** the Oslo office card and the Delhi/Bangalore/Kolkata/Dubai/Singapore office line are removed. The contact section lists Mumbai only, plus the ERA line. The hero map still shows those cities as search locations, not as offices.
+- **No em dashes anywhere on the page:**
+  - **Hero subline:** a line break after "HR advisory" replaces the dash.
+  - **Title:** now uses "·".
+  - **Roster caption and search email subject:** now use a comma.
+- **Removed:** the People subline "From the first brief to the day your hire walks in." and the Methodology intro line.
+
 ## Round 7: content carried over from the live site (2026-11-06)
 
 User decision: everything on the current iqgroup.co.in is publishable. Stale figures ("20 years", the 2013–2017 market statistics) and the volume-agency material (job boards, the 11-task list, "no job too small") stay out.

@@ -1,4 +1,4 @@
-// IQ Group v4 — small progressive enhancements. Everything works without JS except the roster caption.
+// IQ Group v4: small progressive enhancements. Everything works without JS except the roster caption.
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -28,7 +28,7 @@
   // Roster: show role and practice for the hovered or focused name.
   const detail = $('.roster-detail'), idle = detail?.textContent;
   $$('.names li').forEach(li => {
-    const show = () => { detail.innerHTML = `<b>${li.childNodes[1].textContent.trim()}</b> — ${li.dataset.role}`; };
+    const show = () => { detail.innerHTML = `<b>${li.childNodes[1].textContent.trim()}</b>, ${li.dataset.role}`; };
     li.addEventListener('mouseenter', show); li.addEventListener('focus', show);
     li.addEventListener('mouseleave', () => { detail.textContent = idle; });
   });
@@ -80,7 +80,7 @@
         const v = Object.fromEntries([...new FormData(form)].map(([k, x]) => [k, String(x).trim()]));
         let subject, lines;
         if (form.dataset.mode === 'search') {
-          subject = `Search enquiry: ${v.role}${v.org ? ' — ' + v.org : ''}`;
+          subject = `Search enquiry: ${v.role}${v.org ? ', ' + v.org : ''}`;
           lines = [`Name: ${v.name}`, `Email: ${v.email}`, v.org && `Organisation: ${v.org}`, `Role to fill: ${v.role}`, v.tel && `Phone: ${v.tel}`, v.note && `\n${v.note}`];
         } else {
           subject = `Confidential profile: ${v.name}, ${v.role}`;
