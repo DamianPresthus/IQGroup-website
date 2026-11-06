@@ -6,6 +6,16 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 13: mobile optimisation (2026-11-06)
+
+Measured at 360 and 390px with a CDP script: no horizontal overflow, no text under 13px, and every tap target now 44px or larger.
+- **Nav:** "Begin a search" stays in the pill on phones, next to Menu (before, it was hidden behind Menu). Menu and the wordmark are 44px tall. Below 380px the wordmark shows only "IQ".
+- **Tap targets:** text links get a 44px hit area through an invisible pseudo-element, with no visual change. This covers the hero "Share your profile" link, the phone numbers, the office email, footer links and sheet links.
+- **Roster:** touch has no hover, so on phones each name lists vertically with its role and practice underneath. The hover caption is hidden.
+- **Footer:** Firm and Contact sit side by side; the brand and address span both columns.
+- **Rhythm:** section padding is 4rem at ≤560px (was 5rem), and the hero top padding is 7rem.
+- **Hero subline:** at ≤560px the forced break after "HR advisory" is dropped. At 360–390px that phrase can't fit on one line, so the break left a one-word orphan line. A trailing space keeps the words apart.
+
 ## Round 12: consistency pass (2026-11-06)
 
 **Type scale.** Every serif heading now uses a token, with no one-off clamps left:
