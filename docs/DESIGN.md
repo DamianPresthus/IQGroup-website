@@ -1,6 +1,6 @@
 # IQ Group — Design Direction (`DESIGN.md`)
 
-> **Status:** v3 direction, approved 2026-11-06 (decisions D1–D7 in [`V3_PLAN.md`](V3_PLAN.md)). This file is the **source of truth for design intent**. Tokens live in [`../tokens-v3.css`](../tokens-v3.css).
+> **Status:** v3 direction, approved 2026-11-06 (decisions D1–D7 in [`V3_PLAN.md`](V3_PLAN.md)). This file is the **source of truth for design intent**. Tokens live in [`../source/v3/tokens-v3.css`](../source/v3/tokens-v3.css); the base and component CSS is in [`../source/v3/base.css`](../source/v3/base.css); the specimen is [`../source/v3/specimen.html`](../source/v3/specimen.html).
 > **Supersedes** the v1/v2 direction (Leathwaite hero, silk waves, grain gradients, Adaption-style pills). The v2 record is kept in `tokens.css`, [`COMPONENTS.md`](COMPONENTS.md) and [`USAGE.md`](USAGE.md).
 > **Evidence behind this file:** [`DESIGN_RESEARCH_V3.md`](DESIGN_RESEARCH_V3.md) · [`DESIGN_RESEARCH_V3_EFFECTS.md`](DESIGN_RESEARCH_V3_EFFECTS.md) · [`HERO_RESEARCH_V3.md`](HERO_RESEARCH_V3.md) · [`SECTION_REFERENCES_V3.md`](SECTION_REFERENCES_V3.md) · [`PROJECT_BRIEF.md`](PROJECT_BRIEF.md).
 
@@ -76,7 +76,9 @@ The hex values are **unchanged** from the locked 60–30–5–5 palette (Royal 
 - **Bold key phrases** (2–3 per block at most) carry emphasis in hero and note prose, following the Tiger Global pattern. No italics for emphasis inside headings; the italic is reserved for labels and quotes.
 - **Accent word in the hero headline:** stays ("forward."), now in **italic EB Garamond in accent ink**, not light sans.
 
-**Font delivery (to resolve in Phase 2):** the Google Fonts CDN builds of both families **lack `smcp` (small caps) and `onum` (old-style figures)**. Checked 2026-11-06: the Google subsets expose only `liga`, `tnum`, `pnum`, `frac` and similar. Small caps and old-style figures therefore require **self-hosting the full upstream builds** (Source Serif 4 from Adobe, EB Garamond from its open-source repo, both under the SIL Open Font License). Self-hosting also removes the Google Fonts CDN request, which matters for EU/EEA visitors (GDPR) after the Oslo launch. **Until self-hosted:** no faked small caps (never `font-variant-caps` on a font without `smcp`), and labels use the italic-word style.
+**Font delivery: self-hosted** (`source/assets/fonts/`, `source/v3/fonts.css`). The Google Fonts CDN builds of both families **lack `smcp` (small caps) and `onum` (old-style figures)**; checked 2026-11-06, they expose only `liga`, `tnum`, `pnum`, `frac` and similar. v3 therefore ships the full upstream builds (from `google/fonts`, SIL Open Font License), subset to Latin + Latin‑1 with `smcp`, `c2sc`, `onum`, `lnum`, `tnum`, `pnum` and `frac` kept, and weights limited to what is used: about 266 KB in total. Self-hosting also removes the Google Fonts CDN request, which matters for EU/EEA visitors (GDPR) after the Oslo launch.
+- **Italics** use EB Garamond Italic (labels, quotes, the accent word). Source Serif 4 Italic is not shipped: it has no small caps and would add about 130 KB.
+- **Small caps** (`.caps`, quote names, the dateline) are real `smcp`. Never set `font-variant-caps` on a font that lacks it.
 
 ## 5. Layout system
 

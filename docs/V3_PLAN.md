@@ -22,7 +22,7 @@
 | *(missing)* | — | New sections: **Layout system** (grid, margin column, rhythm), **Imagery** (portrait treatment, photo rules), **Motion**, **Do / Don't**. |
 
 The other design-system files:
-- **`tokens.css`** describes v2 as built (gradients, grain, 28px radii, pill shapes). Keep it frozen as the **v2 record**, and add a new **`tokens-v3.css`** that the v3 build actually imports.
+- **`tokens.css`** describes v2 as built (gradients, grain, 28px radii, pill shapes). Keep it frozen as the **v2 record**, and add a new **`source/v3/tokens-v3.css`** that the v3 build actually imports.
 - **`docs/COMPONENTS.md` and `docs/USAGE.md`** are inventories of v2. Keep them as the v2 record, and write v3 versions once components are built. Don't pre-write them.
 
 ## 2. Decisions (all approved 2026-11-06)
@@ -67,7 +67,7 @@ Content stays as approved in v2 unless marked **[slot]** (awaiting LinkedIn draf
 
 ## 5. Build approach
 
-**Recommendation: build v3 as plain HTML + CSS** (`source/v3/index.html`, `source/v3/styles.css`, `tokens-v3.css`), not as another `.dc.html` file.
+**Recommendation: build v3 as plain HTML + CSS** (`source/v3/index.html`, `source/v3/base.css`, `source/v3/tokens-v3.css`, `source/v3/fonts.css`), not as another `.dc.html` file. Everything lives under `source/` so GitHub Pages serves it.
 
 - The `.dc.html` runtime (`support.js`, about 69 KB including React) serialises inline styles. That forced the v2 mobile work to target structural selectors like `#method > div > div:last-child`, which is fragile.
 - v3 needs real classes, a shared grid, tokens and `@supports` blocks. All of that is plain CSS.
@@ -84,8 +84,8 @@ Content stays as approved in v2 unless marked **[slot]** (awaiting LinkedIn draf
 | Phase | Work | Output | Depends on |
 | :-- | :--- | :--- | :--- |
 | **0. Decide** | D1–D7 | Answers recorded in this file | You, plus Ahaan for D7 |
-| **1. Design system** ✅ 2026-11-06 | Rewrote DESIGN.md (v3) and created `tokens-v3.css` (paper/ink/plum roles, type scale, grid, rule weights, radii 0–4, motion tokens). Finding: the Google Fonts builds lack small caps and old-style figures, so self-hosting is to be decided in Phase 2. | DESIGN.md v3, tokens | Phase 0 |
-| **2. Type and grid specimen** | One page showing the grid, type scale, labels, ledger row, rule draw-in and a portrait. This is where the type pairing (D2) and the overall feel get judged *before* full pages. | `prototypes/v3-specimen.html` | Phase 1 |
+| **1. Design system** ✅ 2026-11-06 | Rewrote DESIGN.md (v3) and created `tokens-v3.css` (paper/ink/plum roles, type scale, grid, rule weights, radii 0–4, motion tokens). | DESIGN.md v3, tokens | Phase 0 |
+| **2. Type and grid specimen** ✅ built 2026-11-06, awaiting sign-off | One page showing the grid (press G), the type scale, labels, the ledger, rule draw-in, portraits, the dark note and the footer, all with real copy. Fonts are self-hosted, because the Google builds lack small caps and old-style figures. This is where the type pairing (D2) and the overall feel get judged *before* full pages. | `source/v3/specimen.html` (+ `base.css`, `fonts.css`) | Phase 1 |
 | **3. Page build** | Sections 1–7, 9 and 10 from §4 (section 2 uses the approved statement for now). Section 8 (Clients) stays out until permission is cleared. | `source/v3/` | Phase 2 sign-off |
 | **4. Effects** | Effects E1 (draw-in), E3 (type precision), E7 (ledger CTAs); E2 rail if D4 says yes | Same files | Phase 3 |
 | **5. QA** | 390/768/1440 widths, keyboard and focus, reduced motion, contrast (paper/ink/plum pairs), LCP/CLS on a mid-range Android profile | Checklist in PR | Phase 4 |

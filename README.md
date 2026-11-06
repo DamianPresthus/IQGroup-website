@@ -9,8 +9,13 @@ source/
   IQ Group Website.dc.html      ← v1 (kept for comparison; same hero, earlier lower sections; now also on the new fonts)
   support.js                    ← runtime required by both .dc.html files (exported as-is, do not edit)
   index.html                    ← redirects to v2
+  v3/                           ← v3 (plain HTML + CSS, in progress)
+    tokens-v3.css               ← v3 design tokens (palette roles, serif type scale, 12-col grid, rules, motion)
+    fonts.css                   ← @font-face for the self-hosted fonts
+    base.css                    ← v3 base + component styles (DESIGN.md §6 vocabulary)
+    specimen.html               ← Phase 2 type & grid specimen with real copy (press G for the grid overlay)
+  assets/fonts/                 ← self-hosted EB Garamond + Source Serif 4 (subset woff2, SIL OFL licences included)
 tokens.css                      ← v2 record: tokens extracted from v2 (frozen; the site does not import it)
-tokens-v3.css                   ← v3 design tokens (palette roles, serif type scale, 12-col grid, rules, motion); imported by the v3 build
 docs/COMPONENTS.md              ← component inventory + missing states
 docs/USAGE.md                   ← observed rules vs. proposed rules
 docs/DESIGN.md                  ← v3 design direction: source of truth for intent (colour roles, type, layout, components, imagery, motion, copy bank)
@@ -35,7 +40,8 @@ Open http://localhost:8000 (v2). In VS Code, the "Live Server" extension also wo
 Each .dc.html is a single file: markup in `<x-dc>`, logic in the `<script type="text/x-dc">` block at the bottom (class `Component`), props in its `data-props` attribute (v2: `motion`, `logoBar`; v1 also has `defaultView`).
 
 ## Fonts & assets
-- EB Garamond (400/500/600, italic 400/500) and Plus Jakarta Sans (300–600): loaded from Google Fonts CDN via `<link>`. **Internet is needed; not self-hosted.**
+- v1/v2: EB Garamond (400/500/600, italic 400/500) and Plus Jakarta Sans (300–600), loaded from the Google Fonts CDN via `<link>`. **Internet is needed; not self-hosted.**
+- v3: EB Garamond (400–600, roman + italic) and Source Serif 4 (300–600, `opsz` 8–60), **self-hosted** in `source/assets/fonts/`. Full upstream builds from `google/fonts`, subset to Latin + Latin‑1 (including Norwegian æøå) with small caps, old-style/tabular figures and fractions kept: about 266 KB total. The Google Fonts CDN builds strip small caps and old-style figures.
 - Partner portraits: `source/assets/team/*.jpg` (v2 only), taken from the current live site's avatars (174×263px, low resolution). Otherwise no raster images or logo files. Grain textures are inline SVG data-URIs (feTurbulence). Client logos are typeset text.
 
 ## Dependencies

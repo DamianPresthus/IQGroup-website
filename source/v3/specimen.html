@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IQ Group — v3 specimen</title>
+<meta name="robots" content="noindex">
+<link rel="preload" href="../assets/fonts/ss4-roman.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/ebg-roman.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="tokens-v3.css">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="base.css">
+<style>
+  /* Specimen-only chrome: not part of the v3 system */
+  .spec-bar { border-bottom: var(--hairline) solid var(--rule); font-size: var(--fs-small); color: var(--ink-muted); padding-block: var(--s-3); }
+  .spec-bar .page { display: flex; justify-content: space-between; gap: var(--s-4); flex-wrap: wrap; }
+  .spec-bar button { font: inherit; color: var(--ink-accent); background: none; border: var(--hairline) solid var(--rule-accent); padding: 0.15rem 0.75rem; cursor: pointer; border-radius: var(--radius-0); }
+  .spec-grid { position: fixed; inset: 0; pointer-events: none; z-index: 50; display: none; }
+  .show-grid .spec-grid { display: block; }
+  .spec-grid .page, .spec-grid .grid { height: 100%; }
+  .spec-grid .grid > i { grid-column: auto; background: color-mix(in oklch, var(--iq-plum) 7%, transparent); }
+  .spec-grid .grid > i:nth-child(-n+3) { background: color-mix(in oklch, var(--iq-mint-deep) 9%, transparent); }
+  .spec-scale { display: grid; gap: var(--s-5); }
+  .spec-scale > div { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: var(--gutter); align-items: baseline; border-top: var(--hairline) solid var(--rule); padding-top: var(--s-4); }
+  .spec-scale code, .spec-swatch code { font-family: var(--font-text); font-size: var(--fs-small); color: var(--ink-muted); font-variant-numeric: tabular-nums lining-nums; }
+  .spec-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); gap: var(--s-5) var(--gutter); }
+  .spec-swatch { display: grid; gap: var(--s-1); }
+  .spec-swatch i { height: 4.5rem; border: var(--hairline) solid var(--rule); margin-bottom: var(--s-2); }
+  @media (max-width: 720px) { .spec-scale > div { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="spec-bar">
+  <div class="page">
+    <span><b>v3 specimen</b> — the grid, type, and every component with real copy, for sign-off before full pages. Not the final page.</span>
+    <button type="button" id="grid-toggle" aria-pressed="false">Show grid (G)</button>
+  </div>
+</div>
+<div class="spec-grid" aria-hidden="true"><div class="page"><div class="grid"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+
+<header class="site-header">
+  <div class="page">
+    <a class="wordmark" href="#top"><b>IQ</b><span>Group</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#method" class="is-active">Method</a>
+      <a href="#mandates">Mandates</a>
+      <a href="#people">People</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 1. Masthead hero: typographic; right half reserved for a future office photograph -->
+  <section class="masthead" aria-labelledby="hero-title">
+    <div class="page">
+      <div class="grid">
+        <div class="hero-copy">
+          <h1 class="display" id="hero-title">Hires that move your organisation <em>forward.</em></h1>
+          <p class="lead"><strong>Partner-led executive search</strong> and HR advisory — from specialist roles to the C‑suite, across <strong>India, the Middle East, South Asia and Europe</strong> for 30+ years.</p>
+          <p><a class="cta" href="mailto:ashmita@iqgroup.co.in?subject=New%20search"><span>Begin a search</span><span aria-hidden="true">↗</span></a></p>
+        </div>
+        <div class="rule"></div>
+        <p class="dateline caps"><span>Executive search &amp; HR advisory</span><span>Mumbai · Oslo</span><span>30+ years</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Note under the hero: the one dark moment. Interim text = approved statement, no byline -->
+  <section class="section note" data-theme="dark" aria-labelledby="note-label">
+    <div class="page">
+      <div class="grid">
+        <p class="label m" id="note-label">How we work</p>
+        <p class="statement c rise">Every mandate is led by a partner — from the first brief to <em>the day your hire walks in.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Why IQ: ruled rows -->
+  <section class="section" aria-labelledby="why-title">
+    <div class="page">
+      <div class="grid">
+        <p class="label m">Why IQ</p>
+        <div class="c">
+          <h2 class="h2 rise" id="why-title" style="margin-bottom: var(--s-7)">A boutique, by design.</h2>
+          <ul class="rows">
+            <li><h3 class="h3">Partnership</h3><p>Undivided attention. We learn your organisation at the cultural, strategic and tactical level before we approach anyone.</p></li>
+            <li><h3 class="h3">People</h3><p>A proprietary network of CEOs, managing directors and domain heads, built over three decades.</p></li>
+            <li><h3 class="h3">Performance</h3><p>Complex, niche placements, delivered in remarkably fast turnaround times.</p></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Method: numbers hang in the margin column -->
+  <section class="section" id="method" aria-labelledby="method-title">
+    <div class="page">
+      <div class="grid">
+        <p class="label m">Method</p>
+        <h2 class="h2 c rise" id="method-title">Five steps, one partner throughout.</h2>
+        <ol class="steps">
+          <li><div><h3 class="h3">Understand your business</h3><p class="muted">Strategic priorities, the goals of the mandate, and your culture.</p></div></li>
+          <li><div><h3 class="h3">Shortlist candidates</h3><p class="muted">Proprietary databases, market mapping and direct outreach.</p></div></li>
+          <li><div><h3 class="h3">Identify the match</h3><p class="muted">Competency evaluation and 360° reference checks.</p></div></li>
+          <li><div><h3 class="h3">Hire &amp; onboard</h3><p class="muted">Offer negotiation, closing and transition support.</p></div></li>
+          <li><div><h3 class="h3">Monitor &amp; iterate</h3><p class="muted">Post-placement check-ins, so the hire lasts.</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Mandates: ledger -->
+  <section class="section" id="mandates" aria-labelledby="mandates-title">
+    <div class="page">
+      <div class="grid">
+        <p class="label m">Recent mandates</p>
+        <div class="w">
+          <h2 class="h2 rise" id="mandates-title" style="margin-bottom: var(--s-6)">From specialist roles to the C‑suite.</h2>
+          <table class="ledger">
+            <caption class="sr-only">Recently completed mandates</caption>
+            <thead><tr><th scope="col">Role</th><th scope="col">Organisation</th><th scope="col">Region</th></tr></thead>
+            <tbody>
+              <tr><td>Chief Executive Officer</td><td>Specialty chemicals manufacturer</td><td>India</td></tr>
+              <tr><td>Chief Financial Officer</td><td>Precision engineering company</td><td>India</td></tr>
+              <tr><td>Vice President, Investments</td><td>Private equity firm</td><td>India</td></tr>
+              <tr><td>Chief Marketing Officer</td><td>Private-sector bank</td><td>India</td></tr>
+              <tr><td>Head of CSR, India</td><td>European multinational bank</td><td>India</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Endorsements: epigraphs -->
+  <section class="section" aria-labelledby="endorse-label">
+    <div class="page">
+      <div class="grid">
+        <p class="label m" id="endorse-label">In their words</p>
+        <div class="quotes w">
+          <figure class="quote rise">
+            <blockquote><p>“Over a decade, IQ helped me build teams of strong professionals at UBS, Yes Bank and IDFC. I have been impressed by their speed, professionalism, responsiveness and cost-effective service.”</p></blockquote>
+            <figcaption><b>Ajay Mahajan</b><span class="muted small">Former Managing Director, UBS</span></figcaption>
+          </figure>
+          <figure class="quote rise">
+            <blockquote><p>“IQ may be a small firm but more than makes up with its talent, connections and never-say-die attitude. IQ takes pride in accepting difficult and complex placements and has delivered where its behemoth competitors have not.”</p></blockquote>
+            <figcaption><b>Tilak Mukherji</b><span class="muted small">Advisor to IQ Group · Chairman, Sigma Research &amp; Consulting</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. People -->
+  <section class="section" id="people" aria-labelledby="people-title">
+    <div class="page">
+      <div class="grid">
+        <p class="label m">People</p>
+        <h2 class="h2 c rise" id="people-title">The partners who run your search.</h2>
+        <div class="people partners f">
+          <div class="person"><figure class="portrait"><img src="../assets/team/ashmita.jpg" alt="Ashmita Ray Sarkar" width="174" height="263" loading="lazy"></figure><span class="name">Ashmita Ray Sarkar</span><span class="role">Founder &amp; Managing Director · Mumbai</span></div>
+          <div class="person"><figure class="portrait"><img src="../assets/team/annu.jpg" alt="Annu Paul" width="174" height="263" loading="lazy"></figure><span class="name">Annu Paul</span><span class="role">Director · Mumbai</span></div>
+          <div class="person"><figure class="portrait"><img src="../assets/team/shirin.jpg" alt="Shirin Gulrajani Talwar" width="174" height="263" loading="lazy"></figure><span class="name">Shirin Gulrajani Talwar</span><span class="role">Director · Mumbai</span></div>
+          <div class="person"><figure class="portrait"><img src="../assets/team/christine.jpg" alt="Christine Gomes" width="174" height="263" loading="lazy"></figure><span class="name">Christine Gomes</span><span class="role">Managing Associate, IQ Social · Mumbai</span></div>
+        </div>
+        <p class="label f" style="margin-top: var(--s-6)">Associates</p>
+        <div class="people associates f">
+          <div class="person"><figure class="portrait square"><img src="../assets/team/mallika.jpg" alt="Mallika Sen Varma" width="360" height="360" loading="lazy"></figure><span class="name">Mallika Sen Varma</span><span class="role">Senior Associate</span><span class="focus">BFSI · Hospitality &amp; Media</span></div>
+          <div class="person"><figure class="portrait square"><img src="../assets/team/bijal.jpg" alt="Bijal Joshi" width="360" height="360" loading="lazy"></figure><span class="name">Bijal Joshi</span><span class="role">Senior Associate</span><span class="focus">BFSI · Social Impact &amp; NGO</span></div>
+          <div class="person"><figure class="portrait square"><img src="../assets/team/shharran.jpg" alt="Shharran Das" width="360" height="360" loading="lazy"></figure><span class="name">Shharran Das</span><span class="role">Associate</span><span class="focus">Media · BFSI</span></div>
+          <div class="person"><figure class="portrait square"><img src="../assets/team/tanushree.jpg" alt="Tanushree Kundu" width="360" height="360" loading="lazy"></figure><span class="name">Tanushree Kundu</span><span class="role">Associate</span><span class="focus">BFSI · Hospitality · FMCG · ITES</span></div>
+          <div class="person"><figure class="portrait square"><img src="../assets/team/neha.jpg" alt="Neha Beswal" width="360" height="360" loading="lazy"></figure><span class="name">Neha Beswal</span><span class="role">Associate</span><span class="focus">BFSI · ITES</span></div>
+        </div>
+        <p class="label f" style="margin-top: var(--s-6)">Advisor</p>
+        <div class="advisor c">
+          <figure class="portrait square"><img src="../assets/team/tilak.jpg" alt="Tilak Mukherji" width="360" height="360" loading="lazy"></figure>
+          <div class="person"><span class="name">Tilak Mukherji</span><span class="role">Chairman, Sigma Research &amp; Consulting</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Offices & contact: letterhead -->
+  <section class="section" id="contact" aria-labelledby="contact-title">
+    <div class="page">
+      <div class="grid">
+        <p class="label m">Offices</p>
+        <div class="c" style="display: grid; gap: var(--s-7)">
+          <h2 class="h2 rise" id="contact-title">Tell us about the role.</h2>
+          <div class="letterhead">
+            <address class="office">
+              <span class="city">Mumbai</span>
+              <span>806, Sunshine Towers<br>Senapati Bapat Marg, Dadar (West)<br>Mumbai 400 013, India</span>
+              <span class="tnum"><a href="tel:+912265885932">+91 22 6588 5932</a><br><a href="tel:+919820061329">+91 98200 61329</a></span>
+              <a href="mailto:ashmita@iqgroup.co.in">ashmita@iqgroup.co.in</a>
+            </address>
+            <address class="office">
+              <span class="city">Oslo</span>
+              <span class="muted">Address to follow.</span>
+            </address>
+          </div>
+          <p><a class="cta" href="mailto:ashmita@iqgroup.co.in?subject=New%20search"><span>Write to us</span><span aria-hidden="true">↗</span></a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- System sheet (specimen only) -->
+  <section class="section" aria-labelledby="sys-title" style="background: var(--paper-2)">
+    <div class="page">
+      <div class="grid">
+        <p class="label m">Specimen</p>
+        <h2 class="h2 c" id="sys-title">Type scale</h2>
+        <div class="spec-scale w">
+          <div><code>Display 44–68</code><span class="display">Hires that move your organisation <em>forward.</em></span></div>
+          <div><code>H2 32–46</code><span class="h2">Five steps, one partner throughout.</span></div>
+          <div><code>H3 24–30</code><span class="h3">Understand your business</span></div>
+          <div><code>Lead 20–23</code><span class="lead">Partner-led executive search and HR advisory.</span></div>
+          <div><code>Body 17–18</code><span class="measure">Unlike rigid global search firms, where mandates are handed to junior researchers, every IQ mandate is led by a partner, from the first brief to the day your hire walks in.</span></div>
+          <div><code>Small 15</code><span class="small muted">Senior Associate · BFSI · Hospitality &amp; Media</span></div>
+          <div><code>Label 16 italic</code><span class="label">Method</span></div>
+          <div><code>Small caps</code><span class="caps">Mumbai · Oslo · 30+ years · Executive search</span></div>
+          <div><code>Figures</code><span>Old-style in prose: 30+ years · Mumbai 400 013 · November 2026 · Tabular in ledgers: <span class="tnum">+91 22 6588 5932</span></span></div>
+        </div>
+        <h2 class="h2 c" style="margin-top: var(--s-8)">Colour roles</h2>
+        <div class="spec-swatches w">
+          <div class="spec-swatch"><i style="background:#FAF8FA"></i><b>Paper</b><code>#FAF8FA · ground</code></div>
+          <div class="spec-swatch"><i style="background:#F3E7F0"></i><b>Paper 2</b><code>#F3E7F0 · quiet bands</code></div>
+          <div class="spec-swatch"><i style="background:#12051A"></i><b>Ink</b><code>#12051A · 18.7:1</code></div>
+          <div class="spec-swatch"><i style="background:#2B0F2A"></i><b>Body ink</b><code>#2B0F2A · 16.5:1</code></div>
+          <div class="spec-swatch"><i style="background:#6E4165"></i><b>Muted ink</b><code>#6E4165 · 7.6:1</code></div>
+          <div class="spec-swatch"><i style="background:#8F1F78"></i><b>Accent ink</b><code>#8F1F78 · 7.5:1</code></div>
+          <div class="spec-swatch"><i style="background:#1A0826"></i><b>Dark ground</b><code>#1A0826 · note, footer</code></div>
+          <div class="spec-swatch"><i style="background:#D1A1C7"></i><b>Dark muted</b><code>#D1A1C7 · 8.7:1 on dark</code></div>
+          <div class="spec-swatch"><i style="background:#0F766E"></i><b>Focus</b><code>#0F766E · focus ring only</code></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- 10. Colophon footer -->
+<footer class="colophon" data-theme="dark">
+  <div class="page">
+    <div class="grid">
+      <a class="wordmark m" href="#top"><b>IQ</b><span>Group</span></a>
+      <div class="c" style="display: grid; gap: var(--s-4)">
+        <nav aria-label="Footer"><a href="#method">Method</a><a href="#mandates">Mandates</a><a href="#people">People</a><a href="#contact">Contact</a></nav>
+        <p>Executive search and HR advisory · Mumbai · Oslo</p>
+        <p class="legal">© IQ Group. Last reviewed November 2026.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const btn = document.getElementById('grid-toggle');
+  const toggle = () => { const on = document.body.classList.toggle('show-grid'); btn.setAttribute('aria-pressed', on); btn.textContent = (on ? 'Hide' : 'Show') + ' grid (G)'; };
+  btn.addEventListener('click', toggle);
+  addEventListener('keydown', e => { if (e.key.toLowerCase() === 'g' && !e.metaKey && !e.ctrlKey && !/input|textarea/i.test(e.target.tagName)) toggle(); });
+</script>
+</body>
+</html>

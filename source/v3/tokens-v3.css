@@ -42,9 +42,8 @@
   /* Royal Plum on obsidian is 2.5:1: never text on dark, rules only. */
 
   /* ============ 4. TYPOGRAPHY ============
-     Display: EB Garamond (wght 400–800). Text: Source Serif 4 (wght 200–900, opsz 8–60).
-     NOTE: the Google Fonts CDN builds lack `smcp` and `onum` (checked 2026-11-06). Real small caps and old-style
-     figures need the full upstream builds, self-hosted (also avoids the Google Fonts CDN for GDPR, see DESIGN.md §4). */
+     Display: EB Garamond (roman + italic, wght 400–600). Text: Source Serif 4 (roman, wght 300–600, opsz 8–60).
+     Self-hosted full builds (fonts.css): the Google Fonts CDN builds lack `smcp` and `onum` (checked 2026-11-06). */
   --font-display: 'EB Garamond', 'Iowan Old Style', Georgia, serif;
   --font-text: 'Source Serif 4', 'Iowan Old Style', Georgia, serif;
 
