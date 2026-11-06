@@ -323,6 +323,9 @@ a { color: inherit; }
 @media (max-width: 560px) {
   .enquiry { width: 100vw; height: auto; max-height: 92dvh; margin: auto 0 0; border-radius: var(--r-card) var(--r-card) 0 0; box-shadow: 0 -20px 60px -20px color-mix(in oklch, var(--ink) 30%, transparent); }
   .enquiry-head { border-radius: var(--r-card) var(--r-card) 0 0; }
+  /* Grab handle: the sheet can be dragged down to close (app.js) */
+  .enquiry-head { padding-top: 1.75rem; touch-action: none; }
+  .enquiry-head::before { content: ""; position: absolute; top: 0.6rem; left: 50%; width: 2.5rem; height: 4px; margin-left: -1.25rem; border-radius: var(--r-pill); background: var(--line-strong); }
   @media (prefers-reduced-motion: no-preference) {
     .enquiry { transform: translateY(100%); }
     .enquiry[open] { transform: none; }

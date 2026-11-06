@@ -6,6 +6,20 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 14: swipe down to close the sheet (2026-11-06)
+
+On phones (≤560px) the enquiry bottom sheet shows a grab handle and follows the finger downwards.
+- **Where a drag can start:** the header at any time, or the form body when it is scrolled to the top. Upward drags and drags inside the message textarea scroll or select as normal.
+- **Release:** a pull of more than 25% of the sheet height (max 140px), or a flick faster than 0.5px/ms over 40px, closes the sheet. It animates off-screen, then the native `dialog.close()` returns focus to the trigger. Anything shorter snaps back.
+- **Reduced motion:** falls back to a 320ms timeout because no transition runs.
+- **Desktop:** the drawer is unchanged.
+- **Verified with CDP touch emulation at 390px:**
+  - a short slow drag snaps back;
+  - a long drag and a fast flick both close;
+  - a drag on the body while it is scrolled does nothing;
+  - focus returns to the trigger;
+  - the sheet reopens cleanly with no leftover inline styles.
+
 ## Round 13: mobile optimisation (2026-11-06)
 
 Measured at 360 and 390px with a CDP script: no horizontal overflow, no text under 13px, and every tap target now 44px or larger.
