@@ -23,8 +23,8 @@
 <meta name="robots" content="noindex">
 <link rel="preload" href="../assets/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/plusjakarta.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="tokens.css?v=202611062155">
-<link rel="stylesheet" href="styles.css?v=202611062155">
+<link rel="stylesheet" href="tokens.css?v=202611062202">
+<link rel="stylesheet" href="styles.css?v=202611062202">
 <script>
   // Palette preview (?palette=navy). Runs before paint to avoid a flash.
   const q = new URLSearchParams(location.search);
@@ -50,12 +50,12 @@
   </nav>
 </div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Menu">
-  <button class="nav-menu sheet-close" type="button" style="display:inline-flex">Close</button>
+  <button class="nav-menu sheet-close" type="button">Close</button>
   <a href="#practices">Practices</a>
   <a href="#method">Methodology</a>
   <a href="#people">About</a>
   <a href="#contact">Contact</a>
-  <a class="btn btn-dark" href="#contact" data-enquiry="search">Begin a search →</a>
+  <a class="btn btn-dark" href="#contact" data-enquiry="search">Begin a search <span class="arrow" aria-hidden="true">→</span></a>
 </div>
 
 <main id="main">
@@ -167,7 +167,7 @@
   </section>
 
   <!-- Method: all five steps visible; the line fills as the section scrolls into view -->
-  <section class="section" id="method" aria-labelledby="method-title" style="padding-top:0">
+  <section class="section" id="method" aria-labelledby="method-title">
     <div class="page">
       <div class="section-head"><h2 id="method-title">How a search runs</h2></div>
       <ol class="timeline">
@@ -213,7 +213,7 @@
   </section>
 
   <!-- 5. Leadership: founder spotlight + inline-portrait roster -->
-  <section class="section" id="people" aria-labelledby="people-title" style="padding-top:0">
+  <section class="section" id="people" aria-labelledby="people-title">
     <div class="page">
       <div class="section-head">
         <h2 id="people-title">Every mandate is led by a partner.</h2>
@@ -253,7 +253,7 @@
   </section>
 
   <!-- 6. Dual-pathway contact -->
-  <section class="section" id="contact" aria-labelledby="contact-title" style="padding-top:0">
+  <section class="section" id="contact" aria-labelledby="contact-title">
     <div class="page">
       <h2 class="sr-only" id="contact-title">Contact</h2>
       <div class="paths">
@@ -289,9 +289,9 @@
 <footer class="footer">
   <div class="page">
     <div class="footer-grid">
-      <div style="display:grid; gap:1rem; align-content:start">
+      <div class="footer-brand">
         <a class="wordmark" href="#top"><b>IQ</b><span>Group</span></a>
-        <p style="max-width:30ch">In quest of talent: partner-led executive search and HR advisory for 30+ years.</p>
+        <p>In quest of talent: partner-led executive search and HR advisory for 30+ years.</p>
       </div>
       <div><h4>Firm</h4><ul><li><a href="#practices">Practices</a></li><li><a href="#method">Methodology</a></li><li><a href="#people">About</a></li></ul></div>
       <div><h4>Contact</h4><ul><li><a href="#contact" data-enquiry="search">Begin a search</a></li><li><a href="#candidates" data-enquiry="profile">Share your profile</a></li></ul></div>
@@ -339,7 +339,7 @@
         <summary>Add LinkedIn profile <span class="opt">optional</span></summary>
         <div class="field"><label for="e-url">LinkedIn profile</label><input id="e-url" name="url" type="url" inputmode="url" placeholder="linkedin.com/in/…"></div>
       </details>
-      <button class="btn btn-dark btn-block" type="submit">Share profile <span class="arrow" aria-hidden="true">→</span></button>
+      <button class="btn btn-dark btn-block" type="submit">Share your profile <span class="arrow" aria-hidden="true">→</span></button>
       <p class="enquiry-fine">Kept confidential. You can attach your CV to the email that opens.</p>
     </form>
 
@@ -366,6 +366,6 @@
   <a href="#" data-set="palette=navy">Navy &amp; brass</a>
 </div>
 
-<script src="app.js?v=202611062155" defer></script>
+<script src="app.js?v=202611062202" defer></script>
 </body>
 </html>

@@ -6,6 +6,49 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 12: consistency pass (2026-11-06)
+
+**Type scale.** Every serif heading now uses a token, with no one-off clamps left:
+
+| Token | Size | Used for |
+|---|---|---|
+| `--fs-hero` | 44→78px | H1 |
+| `--fs-h2` | 32→50px | Section titles, contact card headlines, roster names, mobile menu links |
+| `--fs-h3-lg` | 26→34px | Wide practice tiles (BFSI, IQ Social), spotlight name, sheet title |
+| `--fs-h3` | 22→28px | Services, Recent hires, What sets us apart |
+| `--fs-h4` | 20→24px | Practice tiles, method steps (now serif, like every other list heading), office name |
+| `--fs-lead` | 17→20px | Hero subline, section side line, card copy, bio |
+
+- **Removed:** the unused `--fs-stat`.
+- **Line height and tracking follow size:** large serif uses 1.08 / -0.02em, small serif 1.15 / -0.015em, lead text 1.55.
+
+**Weights.**
+- **Serif:** 400 everywhere (the wordmark keeps 500).
+- **Sans:** 600 for labels and buttons, 500 for nav links and "optional" hints, 400 for body. The done-mark dropped from 700 to 600.
+
+**Labels.** One shared rule (`--fs-small`, 600, `--ink-muted`) covers four places: the trust label, roster groups, contact-card labels and footer headings. Before, these mixed 13 and 14px. Role lines (spotlight title, quote captions, roster caption) are 400 muted.
+
+**Colour.**
+- **Accent:** links, active states, method nodes and the map only. The candidate card label and the spotlight title no longer use it.
+- **Muted text on dark:** always `--on-dark-muted` (the organisations card no longer uses a one-off mix).
+- **Errors:** form errors use the new `--error` token.
+- **Focus:** form fields use the global `--focus` ring instead of an accent glow.
+
+**Elements.**
+- **Radii:** cards and the bottom sheet use `--r-card` (the contact cards were 20px, the sheet 20px). Inputs use the new `--r-field`.
+- **Card padding:** contact cards match quotes and the spotlight.
+- **Wide tiles:** BFSI and IQ Social share one rule.
+- **Removed:** the `!important` on lead-by.
+- **Hover timing:** tile hover uses `--fast` like every other hover.
+- **Buttons:**
+  - Every primary button has the animated arrow; the menu-sheet CTA was a plain "→".
+  - The submit button reads "Share your profile", matching the CTA.
+  - `.btn-block` uses the standard button size.
+- **Breakpoints:** Services, What sets us apart and Recent hires all collapse at 860px (two were at 760px). The collapse rules sit after the component rules; before, pillars and hires failed to stack on phones because of cascade order.
+- **Code cleanup:**
+  - Inline styles moved to CSS: section padding, footer brand, sheet close button.
+  - Dead mobile selectors (`.services`, `.svc ul`) removed.
+
 ## Round 11: candidate path renamed (2026-11-06)
 
 "For executives" contradicted the positioning: IQ fills roles "from specialist roles to the C‑suite", and the deck says "entry level to C‑suite". The user chose **"Share your profile"**.
