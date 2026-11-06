@@ -6,6 +6,14 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 11: candidate path renamed (2026-11-06)
+
+"For executives" contradicted the positioning: IQ fills roles "from specialist roles to the C‑suite", and the deck says "entry level to C‑suite". The user chose **"Share your profile"**.
+- **Hero secondary CTA and footer link:** "Share your profile".
+- **Contact card:** "For candidates" / "Join our network." / "Share your profile in confidence, from specialist roles to the C‑suite. We will be in touch when a mandate fits."
+- **Sheet:** the tab reads "Open to roles" and the title "Join our network".
+- **Internals renamed:** `data-enquiry`/`data-mode` `exec` → `profile`, `#executives` → `#candidates`, `.path.exec` → `.path.candidate`. The email subject stays "Confidential profile: {name}, {role}".
+
 ## Round 10: one column system, separated (2026-11-06)
 
 **Problem.** "What sets us apart" and "Services" sat back to back. Both were three-column rows, but they used different heading sizes and rules, so the pair read as redundant and inconsistent at once.
