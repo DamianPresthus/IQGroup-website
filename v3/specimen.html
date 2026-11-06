@@ -13,28 +13,28 @@
 <style>
   /* Specimen-only chrome: not part of the v3 system */
   .spec-bar { border-bottom: var(--hairline) solid var(--rule); font-size: var(--fs-small); color: var(--ink-muted); padding-block: var(--s-3); }
-  .spec-bar .page { display: flex; justify-content: space-between; gap: var(--s-4); flex-wrap: wrap; }
-  .spec-bar button { font: inherit; color: var(--ink-accent); background: none; border: var(--hairline) solid var(--rule-accent); padding: 0.15rem 0.75rem; cursor: pointer; border-radius: var(--radius-0); }
+  .spec-bar .page { display: flex; justify-content: space-between; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
+  .spec-bar nav { display: flex; gap: var(--s-3); flex-wrap: wrap; align-items: center; }
+  .spec-bar a, .spec-bar button { font: inherit; color: var(--ink-accent); background: none; border: var(--hairline) solid var(--rule-accent); padding: 0.15rem 0.75rem; cursor: pointer; border-radius: var(--radius-0); text-decoration: none; }
+  .spec-bar a[aria-current="true"] { background: var(--iq-plum); color: var(--iq-alabaster); }
   .spec-grid { position: fixed; inset: 0; pointer-events: none; z-index: 50; display: none; }
   .show-grid .spec-grid { display: block; }
   .spec-grid .page, .spec-grid .grid { height: 100%; }
   .spec-grid .grid > i { grid-column: auto; background: color-mix(in oklch, var(--iq-plum) 7%, transparent); }
-  .spec-grid .grid > i:nth-child(-n+3) { background: color-mix(in oklch, var(--iq-mint-deep) 9%, transparent); }
-  .spec-scale { display: grid; gap: var(--s-5); }
-  .spec-scale > div { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: var(--gutter); align-items: baseline; border-top: var(--hairline) solid var(--rule); padding-top: var(--s-4); }
-  .spec-scale code, .spec-swatch code { font-family: var(--font-text); font-size: var(--fs-small); color: var(--ink-muted); font-variant-numeric: tabular-nums lining-nums; }
-  .spec-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); gap: var(--s-5) var(--gutter); }
-  .spec-swatch { display: grid; gap: var(--s-1); }
-  .spec-swatch i { height: 4.5rem; border: var(--hairline) solid var(--rule); margin-bottom: var(--s-2); }
-  @media (max-width: 720px) { .spec-scale > div { grid-template-columns: 1fr; } }
+  .spec-grid .grid > i:nth-child(-n+4) { background: color-mix(in oklch, var(--iq-mint-deep) 9%, transparent); }
+  [data-hero="map"] .hero-seal, [data-hero="seal"] .hero-map { display: none; }
 </style>
 </head>
-<body>
+<body data-hero="map">
 
 <div class="spec-bar">
   <div class="page">
-    <span><b>v3 specimen</b> — the grid, type, and every component with real copy, for sign-off before full pages. Not the final page.</span>
-    <button type="button" id="grid-toggle" aria-pressed="false">Show grid (G)</button>
+    <span><b>v3 specimen, round 2</b> — no italics, no eyebrow labels, paper ground, split sections, real copy, for sign-off before full pages.</span>
+    <nav aria-label="Specimen options">Hero visual:
+      <a href="?hero=map" data-hero-opt="map">A · Engraved map</a>
+      <a href="?hero=seal" data-hero-opt="seal">B · Embossed seal</a>
+      <button type="button" id="grid-toggle" aria-pressed="false">Show grid (G)</button>
+    </nav>
   </div>
 </div>
 <div class="spec-grid" aria-hidden="true"><div class="page"><div class="grid"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
@@ -43,7 +43,7 @@
   <div class="page">
     <a class="wordmark" href="#top"><b>IQ</b><span>Group</span></a>
     <nav class="nav" aria-label="Primary">
-      <a href="#method" class="is-active">Method</a>
+      <a href="#method">Method</a>
       <a href="#mandates">Mandates</a>
       <a href="#people">People</a>
       <a href="#contact">Contact</a>
@@ -53,60 +53,75 @@
 
 <main id="top">
 
-  <!-- 1. Masthead hero: typographic; right half reserved for a future office photograph -->
+  <!-- 1. Masthead hero -->
   <section class="masthead" aria-labelledby="hero-title">
     <div class="page">
       <div class="grid">
         <div class="hero-copy">
-          <h1 class="display" id="hero-title">Hires that move your organisation <em>forward.</em></h1>
+          <h1 class="display" id="hero-title">Hires that move your organisation forward.</h1>
           <p class="lead"><strong>Partner-led executive search</strong> and HR advisory — from specialist roles to the C‑suite, across <strong>India, the Middle East, South Asia and Europe</strong> for 30+ years.</p>
           <p><a class="cta" href="mailto:ashmita@iqgroup.co.in?subject=New%20search"><span>Begin a search</span><span aria-hidden="true">↗</span></a></p>
         </div>
-        <div class="rule"></div>
-        <p class="dateline caps"><span>Executive search &amp; HR advisory</span><span>Mumbai · Oslo</span><span>30+ years</span></p>
+        <div class="hero-visual">
+          <figure class="hero-map" style="margin:0">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 540" class="map" role="img" aria-label="Map: Mumbai headquarters; search across New Delhi, Bangalore, Kolkata, Dubai, Singapore and Oslo">
+<defs><pattern id="hatch" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="3" class="hatch"/></pattern></defs>
+<path d="M0,51.7L55.7,0.7L56.5,0M0,133.4L2.2,130.7L86.8,30.5L112.6,0M0,244.5L50.4,166.4L121.5,56.1L157.7,0M0,411.1L46.3,314L102.7,195.6L159.1,77.1L195.9,0M52.8,540L76.7,467.1L117.5,342.5L158.3,217.8L199.1,93.1L229.6,0M157.8,540L167.3,490.5L191.8,361.6L216.3,232.7L240.8,103.9L260.6,0M257.8,540L260.1,502L267.9,371.1L275.8,240.2L283.6,109.2L290.2,0M356.2,540L353.6,501.6L344.6,370.8L335.7,239.9L326.7,109L319.2,0M456.4,540L446.3,489.3L420.7,360.6L395,232L369.4,103.3L348.8,0M561.9,540L536.7,465.1L494.8,340.8L452.9,216.5L411.1,92.2L380,0M640,464.1L623.2,429.7L565.8,311.7L508.4,193.8L450.9,75.9L414,0M640,285.3L632.5,273.8L560.4,164.2L488.4,54.6L452.5,0M640,165.1L608.3,128.1L522.8,28.7L498.2,0M640,76.3L555.3,0M640,5.9L631.4,0M0,532.2L0.2,532.3L16.5,538.6L20.3,540M587.1,540L597.4,536.2L613.7,529.7L629.8,522.9L640,518.3M0,437.1L4,438.9L18.3,445.2L32.7,451.1L47.3,456.8L61.9,462.1L76.7,467.1L91.6,471.8L106.5,476.2L121.6,480.2L136.7,484L152,487.4L167.3,490.5L182.6,493.2L198,495.6L213.5,497.7L229,499.5L244.5,500.9L260.1,502L275.7,502.8L291.2,503.2L306.8,503.3L322.4,503.1L338,502.5L353.6,501.6L369.1,500.4L384.7,498.8L400.1,496.9L415.6,494.7L431,492.1L446.3,489.3L461.6,486L476.8,482.5L491.9,478.6L506.9,474.5L521.8,470L536.7,465.1L551.4,460L566,454.6L580.5,448.8L594.9,442.7L609.1,436.3L623.2,429.7L637.2,422.7L640,421.2M0,339.5L2.9,341.1L15.1,347.4L27.5,353.4L39.9,359.2L52.5,364.7L65.2,369.9L78,374.9L90.9,379.6L103.9,384L117,388.1L130.2,392L143.4,395.6L156.8,398.8L170.2,401.8L183.6,404.6L197.1,407L210.7,409.1L224.3,411L237.9,412.5L251.6,413.8L265.3,414.7L279,415.4L292.7,415.8L306.5,415.9L320.2,415.7L333.9,415.2L347.6,414.4L361.3,413.3L375,411.9L388.6,410.2L402.2,408.3L415.7,406L429.2,403.5L442.7,400.7L456,397.6L469.3,394.2L482.6,390.5L495.7,386.5L508.8,382.3L521.7,377.8L534.6,373L547.3,367.9L560,362.5L572.5,356.9L584.9,351.1L597.2,344.9L609.3,338.5L621.4,331.8L633.2,324.9L640,320.8M0,237.9L3,239.9L13,246.2L23.2,252.3L33.5,258.2L43.9,263.8L54.4,269.3L65.1,274.5L75.8,279.5L86.7,284.2L97.7,288.8L108.7,293L119.9,297.1L131.1,300.9L142.4,304.5L153.8,307.8L165.3,310.9L176.8,313.7L188.3,316.3L200,318.6L211.6,320.7L223.4,322.6L235.1,324.2L246.9,325.5L258.7,326.6L270.5,327.4L282.4,328L294.2,328.4L306.1,328.4L318,328.3L329.8,327.8L341.6,327.1L353.5,326.2L365.3,325L377,323.6L388.8,321.9L400.5,319.9L412.1,317.7L423.7,315.3L435.3,312.6L446.8,309.7L458.2,306.5L469.6,303.1L480.8,299.4L492,295.5L503.2,291.4L514.2,287L525.1,282.4L535.9,277.5L546.6,272.4L557.2,267.1L567.7,261.6L578.1,255.8L588.4,249.9L598.5,243.7L608.4,237.3L618.3,230.6L628,223.8L637.5,216.8L640,214.9M0,128.8L2.2,130.7L9.9,137.1L17.8,143.3L25.7,149.3L33.8,155.2L42,160.9L50.4,166.4L58.8,171.7L67.4,176.8L76.1,181.8L84.8,186.6L93.7,191.2L102.7,195.6L111.8,199.8L120.9,203.8L130.1,207.6L139.5,211.2L148.8,214.6L158.3,217.8L167.8,220.8L177.4,223.6L187.1,226.2L196.8,228.6L206.5,230.8L216.3,232.7L226.2,234.5L236,236.1L245.9,237.4L255.8,238.5L265.8,239.5L275.8,240.2L285.7,240.6L295.7,240.9L305.7,241L315.7,240.8L325.7,240.5L335.7,239.9L345.6,239.1L355.6,238.1L365.5,236.9L375.4,235.5L385.2,233.8L395,232L404.8,229.9L414.6,227.7L424.2,225.2L433.9,222.5L443.4,219.6L452.9,216.5L462.4,213.2L471.7,209.8L481,206.1L490.2,202.2L499.3,198.1L508.4,193.8L517.3,189.3L526.1,184.7L534.9,179.8L543.5,174.8L552,169.6L560.4,164.2L568.7,158.6L576.9,152.9L584.9,146.9L592.8,140.8L600.6,134.6L608.3,128.1L615.8,121.6L623.1,114.8L630.4,107.9L637.4,100.8L640,98.2M0,1.8L2.6,5.3L7.6,11.7L12.8,18L18.1,24.1L23.5,30.2L29.1,36.1L34.7,41.9L40.5,47.6L46.4,53.2L52.5,58.6L58.6,63.9L64.9,69.1L71.3,74.1L77.7,79L84.3,83.8L91,88.4L97.8,92.9L104.6,97.2L111.6,101.4L118.7,105.4L125.8,109.3L133,113L140.3,116.6L147.7,120L155.1,123.3L162.6,126.4L170.2,129.3L177.8,132.1L185.5,134.7L193.3,137.1L201.1,139.4L208.9,141.5L216.8,143.5L224.7,145.2L232.7,146.8L240.7,148.3L248.7,149.5L256.7,150.6L264.8,151.6L272.9,152.3L281,152.9L289.1,153.3L297.2,153.5L305.3,153.5L313.5,153.4L321.6,153.1L329.7,152.7L337.8,152L345.9,151.2L353.9,150.2L362,149.1L370,147.7L378,146.2L385.9,144.6L393.8,142.7L401.7,140.7L409.5,138.5L417.3,136.2L425,133.7L432.7,131L440.3,128.2L447.8,125.2L455.3,122L462.7,118.7L470.1,115.2L477.3,111.6L484.5,107.8L491.6,103.8L498.6,99.7L505.6,95.5L512.4,91.1L519.1,86.6L525.8,81.9L532.3,77.1L538.7,72.1L545.1,67L551.3,61.8L557.4,56.5L563.4,51L569.3,45.4L575,39.6L580.6,33.8L586.1,27.8L591.5,21.7L596.7,15.5L601.8,9.2L606.8,2.7L608.8,0M118.5,0L119.9,1.1L124.8,5L129.7,8.7L134.8,12.4L140,16L145.2,19.4L150.5,22.7L155.8,26L161.2,29.1L166.7,32L172.3,34.9L177.9,37.7L183.6,40.3L189.3,42.8L195.1,45.2L200.9,47.4L206.8,49.6L212.7,51.6L218.7,53.5L224.7,55.2L230.7,56.9L236.8,58.3L242.9,59.7L249,60.9L255.2,62.1L261.4,63L267.5,63.9L273.8,64.6L280,65.1L286.2,65.6L292.5,65.9L298.7,66.1L305,66.1L311.2,66L317.5,65.8L323.7,65.4L329.9,64.9L336.2,64.3L342.4,63.5L348.6,62.7L354.7,61.6L360.9,60.5L367,59.2L373.1,57.8L379.1,56.2L385.2,54.5L391.2,52.7L397.1,50.8L403,48.7L408.9,46.6L414.7,44.2L420.4,41.8L426.1,39.3L431.8,36.6L437.4,33.8L442.9,30.9L448.4,27.8L453.8,24.7L459.1,21.4L464.4,18L469.6,14.6L474.7,11L479.7,7.2L484.7,3.4L488.9,0" class="grat"/>
+<path d="M640,459.5L636.5,461.3L629.4,459.3L619.9,458.5L615.9,456.4L609.6,454.1L604.9,451.4L597.2,445.9L590.2,443.6L586.6,439.7L582.7,436.4L576.2,435.1L571.4,431.7L565.9,430.4L557.7,426.7L556.2,424.1L559.8,422.9L568.8,420.5L575.9,423.8L581.8,425.6L585.8,426.5L593.6,429.9L599.3,427.5L605.7,428.9L611,431.9L616.4,432.3L616.2,437.6L620.3,437.9L622.4,437.1L625.1,440.3L628.5,442.2L633,440.6L637.4,442.6L639.2,449.8L640,451.6L640,459.5ZM475.2,445.7L470.5,448.2L466.7,444.4L463.7,436.5L464,426.7L468.7,428.8L472.3,432.2L476.5,437.3L477.2,443.4ZM600.7,318.8L598,323.4L593.3,323.9L590.8,319.5L591.9,316L596.2,311.8L598.9,310.5L601,311.9L600.2,315.2ZM636.5,269.1L637.4,274.3L632.4,271.6L629.5,268.4L628.8,261.9L629.7,256.1L632.6,256.2L633.8,259.6ZM226.3,289.6L222.9,291.6L223.1,292.7L223.1,293.2L218.2,294.8L216.1,293.7L215.5,291.2L217.6,291.4L218,291.4L218.8,290.1L222,290.7ZM178.7,280L180.7,282.5L184.1,283L187.3,284.1L186.9,285.1L189.5,284.9L188.5,286.5L182.1,285.5L182.4,284.6L177.3,282.2ZM148.2,256L145.3,259.9L145.3,261.8L143.5,264.4L141,261.2L139.1,259.9L134.3,255.1L135.9,252.5L140.5,254.7L144.9,255.5ZM128.6,230.7L129.5,235.5L126.2,242.5L124.5,241.4L122.2,242.6L121.2,240.6L123.6,234L123.9,230.5L126,231.6ZM640,185.9L636.4,189L640,189.2L640,197.7L640,197.7L636.8,198.1L632.9,196.1L635.2,192L634.8,187.7L636.4,182.5L636.5,177.3L640,172.9L640,185.9ZM640,132.5L639.2,130.1L640,128.9L640,132.5ZM131.9,226.1L129,229.8L127.7,228L128.2,224L129.8,222.3L133,221.2ZM640,119.5L637.2,120.1L640,126.3L636.7,129.5L632.3,125.7L630.7,121L633.6,117.8L628.9,111.2L626.6,107.1L634.2,108.1L637.8,107.3L637.8,107.3L640,106.5L640,119.5ZM610,81L620,85.6L614.6,88.2L618.9,95.8L625.8,97.4L628.6,100.4L624,100L625.3,105L621.3,102L617.7,97.6L613,93.4L610.6,89.6L605.3,83.9L599.7,81.3L594.4,75.3L594.9,71.1L592,70.2L592.6,68.5L596,70.6L600.8,73.7L604.8,77.8ZM98.9,146.1L91.6,145.9L87.6,142.6L93.2,138.8L94.5,132.7L101,131.2L104.6,130.1L107.3,131.3L108.9,136.3L105.3,138.9L103.8,142.8ZM170,156.4L166.4,160.2L164.1,155.9L164.5,153.4L169.9,153.3ZM127.9,119.4L121.9,123.4L125.3,124.2L128.6,125.9L125.7,129.8L120.6,133L123.6,135L123.3,143.2L125.1,145.1L124.2,152L124.1,154.5L127.6,157.4L125.6,160.6L123.2,161.4L123.3,164.7L119,166.1L114.5,163.9L108.2,162.5L107.1,160.7L103.7,162L100.9,159.9L97.6,160.6L96.4,158.6L104,155.8L107.5,156.2L102.9,152.6L103.1,150.1L107.3,150.3L107,146.6L109.4,143.5L113.8,146.4L115.8,143.7L115.4,139.3L112.1,136.4L112.1,134.6L114.4,132.9L114.1,130.9L111.2,132.5L113.7,127.5L113.6,124L117.5,119.3L122,116.3L124.2,118ZM119.4,62L116.8,64.8L117.5,70L111.8,71.7L102.3,70.1L99.5,69.5L96.7,66.5L90.8,60L94.8,59.7L91.2,53.5L96.1,55.8L97,54.3L92.9,49.5L96.7,47.7L100.8,49.6L102.2,55.5L107.7,55.5L109.8,59L115.5,59ZM291.6,262.5L293.7,266.7L295.6,267L296.9,268.6L293.4,269L292.6,273.5L291.8,275.5L290.2,276.9L290.2,279.8L291.5,284.1L295.6,285.4L298.6,288.3L304.9,289.4L311.7,287.8L312.2,286.4L311.3,282.3L311.8,276.2L308.4,274.3L309.5,270.3L306.7,269.9L307.6,265L311.6,266.4L315.2,264.5L312.1,261L310.8,257.7L307.5,259.2L307.1,263.5L305.8,259.7L305.6,258.3L306.6,255.9L305.8,253.9L301,251.9L299.2,246.6L297,245.1L296.9,243.2L300.8,243.8L301,239.6L304.4,238.6L307.9,239.5L308.5,233.8L307.8,230.2L303.9,230.5L300.6,229L296,231.6L292.3,232.7L290.5,236.1L286.6,236.9L282.4,242.8L285.8,248.5L285.3,252.4L289.5,259.4ZM617.8,0L619,3.5L621,4.8L624.3,2.5L630.9,7.8L629.2,10.5L632.3,14.6L635.1,14.9L633.9,21.6L638.5,26.6L636.3,31.7L640,35.8L640,43.2L640,43.2L637.3,42.3L629.7,38.1L618.5,31.5L613.2,25.1L612.3,20.7L610.3,18.8L612.5,13.9L610.3,4.8L609.4,0L617.8,0ZM604.5,0L604.5,0.5L602.8,0L604.5,0ZM596.4,0L593.7,5.9L596.2,18.3L600.7,18.5L597.1,25.2L594.2,29.4L591.2,26.5L587.1,29.6L586.5,34.6L578.9,41.2L572.5,50.1L572.4,65.8L571.6,84.8L576.3,81.7L580,83.3L583.5,82L583.2,78.3L586.3,75.9L594.4,77.1L597.9,80.6L599.9,86.7L604.4,92L609.6,100L611,110.1L612.8,114L613.3,122.6L613.7,131.3L614,135.6L612,141.7L610.1,143.4L606.3,142.9L604.7,149.7L605.4,151.6L603.9,152.3L603.8,154.9L604,157.3L606.7,160.5L605.8,162.8L605.8,164.1L605.6,166.4L604,168.9L603.4,171.3L604.8,173.4L604.8,174.2L606.8,173.9L610.2,174.5L617.4,177.6L620.6,179.9L624.8,185.2L625.4,188.8L622.8,192.1L621.4,196.3L618.5,199.1L616.2,196.8L614.2,192.8L609.1,189.1L611.1,186.4L605.7,184.1L603.4,184.5L603.6,185.7L602.8,186.8L602.1,186L600.8,186.3L599.3,186.2L598.8,183.4L599.2,182.3L598.3,181.6L597.3,178.4L596.6,177.8L594.2,178.8L591.6,178.7L587.7,183.5L586.7,187.5L583.7,191.4L584.1,187.9L582.1,186.5L582.7,181.4L579.1,180.1L577.2,183.9L575.5,189.9L575.3,194.5L571.9,197L571.5,200.4L575.6,202.6L579.1,201.5L580.6,203.6L584.4,203.1L586.2,196.9L590.7,196.7L593.1,195.2L595.5,197.3L591.2,202.2L591.2,205.9L589.2,210.8L589.5,215.4L595.3,215.5L600,219.3L605.3,222.1L610.4,224.1L612.8,227.7L611.2,230.7L613.9,232.6L617.2,232.5L619.3,236.9L620.9,241.4L618.9,243.3L619.5,250.6L620.4,259.1L620.2,267.5L617.3,275.7L613.8,283.6L609.2,287.2L607.9,291L605.4,290.3L604.3,294.2L599.5,300.3L595.2,303.8L596.6,310L594.2,311.7L591,308.6L591,306.1L584,307.7L582.3,309.6L578.4,317.2L577,324.1L577.7,328.2L584.1,331.9L592,336.4L598,337.4L603.2,340L610.4,348.3L614.6,357.7L612.2,363.3L608.1,369.7L606.1,376.1L602.1,384.2L598.6,381.8L598.3,377.5L593,376.4L588.3,377.6L585,375.9L579.8,371.6L574.1,371.3L569.8,373.3L568.7,368.8L564.2,370.8L566.3,376.9L566.9,385.9L567.2,391.4L569.3,395.1L572.8,393.8L577.1,397.7L580.1,401.9L584.4,403.6L588,402.8L592,404.3L593.5,404.2L598.1,405.9L602.1,408.4L604,411.8L604.6,414.5L606,416.1L607.8,419L610.5,419.5L614.9,423.1L615.6,425L611.8,427.2L604.7,425.7L596.2,424.5L594.4,422.1L589.6,420L586.9,415.9L583.6,413.9L582.5,409.7L580.3,408L577.3,406.8L575.2,404.6L571,402.8L567.4,401.3L567.8,404.9L565.5,402.3L564.7,398.7L564.1,392.9L561.9,389.1L561.8,384.3L558.7,381.9L556.7,375.8L553.4,373.9L549.1,368.2L545.4,361.7L541.4,358.2L539.2,362.2L535,368.3L531.9,369L528.3,368.9L527.5,361.5L524.5,356.8L518.2,351.9L518.1,349.7L515,350.1L509.9,346.9L507.4,344.5L506.2,341.8L504.3,339.5L501.1,337L496.6,338.3L497.8,340.5L497.4,344.1L494.9,343.6L494.5,344.9L493,344.7L490.9,344.9L490.9,347.1L487.5,348.1L481.8,351.2L483.4,355.3L481.7,359.4L475.6,365.3L471.8,373.5L468.9,378.2L464.7,383.2L465.4,385.8L463.1,387.9L458.9,391.1L456.5,392L456,396.8L458.9,403.8L460.3,408.5L459.3,414.4L461.7,424L458.8,425L457.3,429.9L459.5,431.4L454.7,434.2L453.7,438.5L451.7,440.7L445.2,436.5L440.9,429.1L437.6,423.8L435.1,421.5L431,416.6L428.3,409.7L426.6,406.3L420.2,399.4L416,388.6L413.1,381.6L411.9,374.6L409.9,369.4L403.1,374.2L399.3,374.1L391.6,368.1L393.7,365.6L391.9,363.6L385.3,359.6L381.4,358.6L379.4,354.6L375,350.7L366,352.9L358,353.8L351.1,355.2L341.6,354.1L336.1,353.1L330.5,352.7L328.1,345.6L325.7,344.7L321.9,345.8L317.1,348.8L311,347L306.1,342.5L301.4,340.9L298.2,335.3L294.8,327.5L292.2,328.4L289.3,326.4L287.4,328.6L284.6,328.2L285.5,330.9L285.1,332.2L286.5,336.6L288.2,341.7L290.6,343.1L291.4,345.1L294.7,347.7L294.9,350.1L294.4,352L295,354L296.4,355.6L297,357.5L297.8,359L297.5,354.7L298.8,351.7L300.2,351.1L301.7,352.9L301.8,356.3L300.7,359.7L301.6,362L302.5,361.7L302.7,363.3L306.6,362.4L310.8,362.5L313.8,362.6L317.2,358.6L320.8,354.8L323.8,351.1L325.2,349L325.8,349.5L325.5,351.9L324.8,353L325.7,357.6L328.1,361.5L331,363.5L334.7,364.1L337.8,365L340.3,368.2L341.8,370L343.6,370.6L343.7,371.9L342.1,375.5L341.4,377.2L339.3,379.2L337.6,383.3L335.2,383.1L334.2,384.6L333.5,387.6L334.3,391.4L333.9,392.1L331.4,392.2L328.2,394.6L327.8,397.4L326.6,398.7L323.3,398.8L321.2,400.3L321.3,402.6L318.8,404.3L315.8,403.8L312.2,405.9L309.7,406.2L305.8,407.8L304.8,410.4L304.6,412.4L299.2,414.8L290.4,417.4L285.3,421.4L282.9,421.7L281.2,421.3L277.9,423.6L274.3,424.5L269.6,424.6L268.2,424.9L266.9,426.3L265.4,426.7L264.5,428.1L261.7,427.8L259.8,428.5L256,427.9L254.8,424.4L255.2,421.2L254.4,419.5L253.7,415.1L252.3,412.6L253.4,412.4L253,409.7L253.8,408.6L253.8,406.1L253.3,403.5L251.8,401.6L251.5,399.3L249,397L246.6,391.8L245.5,387L242.3,382.6L240.1,381.4L237.3,375.5L237.1,371.5L237.7,368L235.5,361.3L233.5,358.8L230.9,357.2L229.7,353.7L230.1,352.4L229.1,349.3L227.9,347.8L226.5,343.2L224.2,338.2L222.3,333.8L219.9,333.5L221.2,330.5L221.7,328.5L222.6,326.3L222.6,325.4L220.9,327.5L219.2,331.7L217.5,334.5L216.2,335.4L214.9,333.3L213.1,330.3L211.1,321.5L210.6,322L211.5,328.4L213.5,334.6L215.7,344.2L217,347.6L218.2,351.1L221.7,358.1L220.6,359L220.2,362.8L225.4,368.7L226.1,370L227,375.9L225.8,376.8L225.8,382.9L226.8,390L228.6,391.7L231.3,394.2L233.6,401.2L234.5,406.7L237.2,409.9L244.1,416.1L246.9,419.7L249.6,423.3L251.2,425.4L253.8,427.4L255,429.3L254.6,431.7L251.3,432.8L253.6,434.6L255.3,435.8L256.3,438.3L258.7,440.9L261.5,441.1L267,439.9L273.2,439.6L278.3,438L281.1,437.7L283.2,436.7L286.4,436.6L288.2,436.5L290.9,435.7L293.9,435.2L296.6,433.2L298.7,433.2L298.8,434.8L298.3,438.2L298.3,441.3L297,443.4L295.4,449.7L292.5,456.1L288.7,463.5L283.4,471.9L278.1,478.3L270.6,485.9L264.2,490.3L254.7,495.5L248.6,499.5L241.2,506L239.5,509L238,510.2L233.3,512.1L231.5,514.4L229.1,514.6L227.8,518.6L225.5,520.7L223.9,524.4L221.1,526.1L217.3,532.9L217.3,536.2L221.2,538.8L221.3,540L32.6,540L32.6,540L35.8,536.6L38.1,534.9L43.1,532.6L46,530.8L48.1,527L48.8,523.7L47.5,521.1L47,517.2L46.6,513.3L47.3,512.3L50,510.8L50,504.8L50,500.7L48.1,496.1L49,495.3L48.8,493.2L48.6,488.5L45.7,480.9L41.6,473.1L39.3,467.1L37.9,460.1L38.8,458.4L40.8,457.2L43.7,453.7L46.4,450.2L45.6,448.9L49.9,443.6L52.4,439.6L51.5,435.1L49.3,433.2L49.1,430.3L48,429L48.6,427.5L42.1,427.2L40.1,426L37.4,426.4L33,424.4L31.4,419.8L31.3,415.2L28.9,410L24.8,408.3L20,406.1L15.3,404.7L10.4,403.9L0.5,402.9L0,403L0,258.1L0,258.1L3.2,256.3L6.5,255.6L10.7,257.4L16,256L18.9,255.8L24.8,253.7L27.4,246.8L31.4,243.4L33.5,241L38.1,239.1L43.3,239L47.5,238.5L53,234.7L56,232.2L58.8,233.8L60.1,237.2L64,238.8L67.6,242.1L69.3,243L74.6,242.1L79.3,243.3L82.9,242.3L87.5,242.5L94.7,244.6L101.6,247.1L103.3,248.7L108,248.2L112.4,250L113.6,251.9L116.5,252.7L121.8,252.2L124.4,253.9L123.2,256.6L127.5,255.9L127.4,257.1L124.3,259L123.4,261.5L124.3,263.4L122,267.9L118.2,269.6L117.9,272.9L120.1,273.8L120.2,276.8L121.6,278.3L126,282L128,282.1L131.3,284.3L136.3,288.7L136.8,294.3L140.4,296.7L146,300.9L150.1,305.1L152.7,304.3L155.6,302.3L155.7,297.7L157.9,295.4L161.9,293.6L165.1,293.7L170.9,296.4L171.7,299.4L173.4,299.8L174.6,301.1L178.9,302.8L179.6,305L185.7,306.3L189.8,308.7L193.9,311.4L195.9,312.7L199.8,311.6L202,310.3L206.1,310.6L209.3,311.9L210,314.9L211.4,313.3L214.9,315.2L218.5,316.1L221,315L222.6,313.4L222.3,313L224,310.5L225.5,306.2L226.4,304.9L226.5,304.8L228.8,300.4L231.6,296.6L231.7,296.4L231.9,291.9L233.3,289.7L232.1,286.9L234,284.9L231.3,285.1L227.8,283.2L224.3,286.1L217.6,285.6L214.6,281.9L209.9,280.9L208.5,283.1L205.3,283.2L201.8,279.3L197,278.5L195.7,272.3L193.3,268.4L196.3,264.4L194.3,261.1L200.1,256.7L206.5,257.8L209.1,253.8L216.8,256L222.4,253.2L227.4,252.3L234.2,253.2L240.8,258.3L246.5,261.3L251.5,260.9L255,261.8L260.2,259.2L261.1,256.8L260.4,252.8L258.2,250.4L256,249.5L254.7,247.6L250.1,242.1L245.8,239.4L242.8,235.6L245.8,235L249.7,230.6L247.8,228L253.8,226.3L253.8,225L250.2,225.6L247.1,225.7L244.3,227.2L240.6,227L236.9,228.7L236.6,232.3L238.4,234L242.4,234.2L241.4,236.1L236.9,236.6L231,239.1L229,237.5L230.3,235L226.3,232.6L227.2,231.6L231.2,230.3L230.3,228.8L224.5,226.3L224.6,224.2L220.9,224.2L218.9,227.1L215.1,230.8L214.9,232.3L212.7,233.1L211.7,232.3L209.2,239L206.6,241L204.3,244.7L204.9,248.3L204.9,250.6L208.1,253.1L207.1,254.4L202.2,253.7L200,255.1L195.9,257.4L195.2,254.5L195.5,253.3L193.1,252.6L191.1,251.5L185.8,251.8L187.8,255.7L185.5,256.1L183.2,255.5L181.8,252.1L180.7,253.1L180.8,256.7L182.2,259.9L180.3,260.7L182,263.9L183.6,266.1L182.9,269.3L179.4,266.8L179.9,270L177,269.9L177.4,275.3L174.5,274.7L171.7,271.3L171.3,266.4L171.6,262.4L170.6,259.4L169.4,255.6L169.6,253.9L169,253.4L169.3,252.1L167.5,249.6L167.9,246.8L169.4,243.1L170.4,241.5L170,240.4L169.3,239.7L168.7,237.6L167.3,236L164.2,232.8L162.6,230.1L159.5,227.3L157.6,222.2L158.5,222L157.5,219.1L158.1,217.3L155.9,215.6L154,217.6L153.5,215.3L154.2,213.5L154.4,213.4L155.4,213.2L152.7,211.4L148.9,212.3L148.2,215.1L147.2,216.5L147.4,219.7L150.1,223.7L150.5,228.9L153.4,234.8L156.4,235.8L157,237.3L155.6,238.1L158.5,241.2L160.9,243.8L163.5,247.8L163.6,248.9L162.3,250.7L160.8,247.4L157.6,245.4L154.7,248.5L157,251.5L155.7,254.3L153.8,254L150.1,258.1L148.3,258L148.8,256.3L150.6,253.6L151.9,252.7L151.3,249L151,245.8L149.6,244.5L149.2,241.8L146.9,239.9L145.9,237.1L143.1,235.7L140.9,232.2L138.6,227.3L137.2,223.2L138,217.4L136.4,216L134,213L132,213.1L128.8,214.8L127.1,214.5L122.4,216.2L115.6,211.6L109.4,211L107.5,214L106.4,217.2L101.2,219.1L95.8,218L94.6,219.6L90.9,221.4L87.3,225L87.4,228.7L84.1,230L81.6,233L78.1,232.6L73.3,235.2L68.3,232.8L64.6,230.7L61.2,231.3L58.6,232.4L57,231L56.4,228.5L56.9,224.9L53.8,222.1L51.5,222.6L49.9,220.7L47.6,220.2L50.5,216.5L51.9,213.2L50.5,211.8L50.7,209.4L52.9,206.2L55.4,205.3L56.9,203.4L59.4,200.8L60.5,198.6L60.8,196.3L61.7,194.5L63.9,191.1L63.7,188L70.8,187.2L74.6,190.6L79.5,193.1L82.8,196L86,197.3L91.8,200.5L95.2,198.3L101,188.2L100.1,180.9L98.8,177L94.6,172.3L96.3,168.3L101.2,169.5L106.3,173.7L108.1,167.2L110.2,171.1L120.1,170.7L123.1,166.8L126.5,167.1L129.7,167.2L132.1,166.5L138.4,159.9L143.9,159.6L146.5,160.9L147.6,160L150.5,160.8L150.7,162.2L154,160.4L154,158.1L155.1,155L154.9,151.4L157,145.8L158.1,144.6L159.7,143.3L162.6,144.1L164.3,143L167.4,142.4L166.2,145.2L164.6,146.6L164.4,148.3L165.9,149.7L164.3,151.5L163.6,150.6L159.8,153.6L159.7,156.6L158.9,158.7L161.8,161.2L161,163.2L164.8,163.4L167.2,162.5L170.2,166L171.2,168.3L174.1,167.4L180.1,166.6L184.9,166L188,167.9L187.9,169.4L191.1,170.4L192.6,168.1L197.7,167.6L198.3,162.7L199.6,158.5L202.1,155.3L205.7,154.2L207.2,159.1L209.9,159.7L211.6,155.5L212.8,152.2L211.4,152.6L209.9,150.1L210.4,146.8L214.8,146.2L219,146.3L222.3,148L225.6,148.6L229.9,146.1L227.1,142.8L221.3,142L215.3,142.8L209.8,142.7L208.8,139.2L206.3,136.5L208.5,131.1L208.3,125.7L210.7,122.8L214.3,119.9L222.5,115.5L224.8,114.7L225,112.3L221.6,108.6L216.3,109L212.5,112.2L212,115.7L206.1,119L199,122.1L194.4,129.3L195.4,133.9L197.4,137.9L192.7,143.3L189,143.6L184.8,152.6L181.3,157.2L177.5,155.4L174.2,159.1L170.3,158.1L171.1,152.5L170.6,145.3L171,136.7L170.2,132.6L161.7,136.6L157.1,136.2L153.9,131.7L155.3,125.5L159.6,112.7L163.7,110.4L173.1,108.9L180.9,105.4L188.8,99.6L199,91.2L204.9,88.5L214.3,83.7L220.8,82.9L225.1,84.3L230.3,80.6L235,81.9L240,81.8L247.5,87.6L243.8,88.5L246.1,92.7L249.2,91.2L253.2,95.4L260.5,97.8L270.4,105.6L272.3,108.6L272.1,112.5L268.6,115.2L263.6,116.2L251.3,110.1L249,110.5L253.1,115.4L252.2,124.1L255.9,126.4L258,128.2L258.8,125.4L257.2,122.6L259.5,120.8L266.3,125.2L269,124.1L267.4,119.6L274.8,114.6L277.4,115.1L280,117.4L282,113.5L279.8,109.8L281.5,106.5L279.6,102.7L287.4,105.1L288.9,108.4L285.2,108.9L285.1,112.2L287.2,114.3L291.8,113.2L292.6,109.5L298.7,106.9L308.5,101.9L310.7,102.1L307.9,105.7L311.5,106.3L313.5,104.2L318.7,103.9L322.8,101.2L326.2,104.5L329.1,100.4L326,97.3L327.3,95.3L335.6,96.3L339.6,97.7L350.5,103.1L352,99.8L348.7,97.1L348.5,95.9L345.1,95.8L345.6,92.9L343.6,88.6L343.3,86.8L347.5,80.9L348.4,75.4L350.2,74L357.2,74.4L358.3,77.4L356.7,82.5L358.6,84.1L360.2,87.9L361,95.9L364.7,98.9L364.2,102.9L360,112.1L363.5,112.3L364.3,110.1L367.1,108L367.4,105L369.3,101.8L367,98.9L367.5,94.9L364.4,95L363.2,91.9L364.2,85.8L359.9,81.7L363.9,77L362.5,73L363.7,72.7L365.7,75.6L365.8,81.3L368.8,81.7L366.8,77.9L370.6,74.7L375.9,73.2L381.4,75.2L378,71.1L376.2,65.1L380.3,62.9L386.3,61.5L391.4,59.2L388.5,56.8L390.2,52.3L392.8,51.3L396.5,47.1L402.4,44.2L402.6,42.4L408.4,39.6L410.8,40.1L414.7,35.1L418.8,33.4L418.4,30.9L419.4,27.7L423.5,23.1L428,23L425.7,25.7L431,24.1L432.9,26.4L434.2,24.1L440.4,20.8L446.6,20.6L449.4,21.5L450.4,24.5L448.9,27.3L444.7,33.4L443.8,35.8L447,35L451,34.5L452.5,32.4L455.5,34.9L455.7,33.1L458.8,30.2L466.3,26.6L468.3,28.6L477.8,23.3L475.3,19.5L480.4,17.2L483.7,14.7L488.8,14.7L492.1,16.9L492.3,19.8L497.8,21.3L502.6,20.6L500.7,14.2L505.7,13.5L508.2,9.3L513.2,7.2L513.6,4.7L517.4,2.3L512.9,0L596.4,0ZM318.7,90.7L317.2,91.3L308.3,90.8L307.5,88.2L302.7,86.7L302.3,83.5L305,82.3L304.9,79.1L310,74L307.6,73.4L313.6,68.1L312.8,65.5L318.2,62.2L326.1,57.9L334,56.1L337.9,53.5L342.4,52.1L344.4,54.2L343.1,56.2L334.8,60.1L327.5,63.6L320.1,69.7L316.6,75.6L312.7,81.3L313.4,86.1ZM240,42L234.3,43L230.6,40.7L232.5,39.6L231.6,37.5L236.6,37.6L237,39.9ZM423.5,19.2L412.4,26.7L413.2,18L414.7,16.6L416.4,16.3L423.1,16.7ZM228.3,27.7L234.3,34L228.1,34.6L225.7,38.4L223.4,38.8L220.9,43.1L218,42.5L214.2,37.5L216.9,36.2L214.1,33.5L211.5,27.3L211.4,22.4L217.9,22.5L218.4,24.8L221.5,25.8L222.9,24.2L226.1,25ZM245,27.9L248.8,30.8L244.9,33.2L238.3,32.3L232,29.6L232.1,28L229,27L227.4,23.7L234.5,24.1L237.2,26.3L239.9,25.1ZM301.8,33.8L298.8,34.5L296.8,34.9L296.4,35.8L293.8,36.7L291.4,35.2L292.8,33.5L287.8,33L292.2,32.2L295.6,32.3L296,33.8L297.3,32.5L299.4,31.6L302.7,32.9ZM411.3,21.1L406.9,23.8L400.3,24.6L396,23.8L392.9,20.5L389.7,20.4L393.7,14.7L397.7,11.8L402.7,12.9L409.7,16.1ZM144.5,0L144.3,0.3L144.5,5.1L141.3,3.1L137,2.3L138.8,7.4L136.5,11.8L134,10.7L133.7,16.7L128.9,13.7L129.9,17.4L128,18.6L124.6,17.2L121.7,15L121.9,20.1L120.4,22.2L117.7,17.2L115.7,17.6L117.6,20.9L118.3,25.9L116.3,30.3L111.8,28.3L111.5,25.2L110.9,20.5L109.2,24.2L104.8,24.7L110.4,29.3L113.2,31.8L104.2,31.4L95.4,30.3L87.7,26.5L85.3,24.5L81.6,24.2L74.5,26.1L67.1,24.8L65.5,23.6L61.6,21.9L57.7,19.9L53.3,20.6L50.3,23.4L46.5,25L39.7,24.6L37.2,28.7L32.8,30.9L27.5,33.7L24.1,30.6L24.5,23.8L20.2,19L20.6,14.6L23.6,9.3L25.8,0.5L26.1,0L144.5,0Z" class="land"/>
+<circle cx="172.3" cy="130.7" r="3.4" class="m"/><text x="183.3" y="136.2" text-anchor="start">Oslo</text><circle cx="320.0" cy="356.2" r="3.4" class="m"/><text x="309.0" y="361.7" text-anchor="end">Dubai</text><circle cx="413.6" cy="382.3" r="5" class="m hq"/><circle cx="413.6" cy="382.3" r="10.5" class="ring"/><text x="402.6" y="387.8" text-anchor="end">Mumbai</text><circle cx="424.1" cy="323.5" r="3.4" class="m"/><text x="435.1" y="329.0" text-anchor="start">New Delhi</text><circle cx="486.7" cy="343.1" r="3.4" class="m"/><text x="497.7" y="348.6" text-anchor="start">Kolkata</text><circle cx="445.7" cy="412.1" r="3.4" class="m"/><text x="434.7" y="417.6" text-anchor="end">Bangalore</text><circle cx="613.2" cy="425.7" r="3.4" class="m"/><text x="602.2" y="431.2" text-anchor="end">Singapore</text>
+</svg>
+          </figure>
+          <div class="hero-seal seal">
+            <svg viewBox="0 0 400 400" role="img" aria-label="IQ Group seal">
+              <defs><path id="ring" d="M200,200 m-148,0 a148,148 0 1,1 296,0 a148,148 0 1,1 -296,0"/></defs>
+              <circle cx="200" cy="200" r="186" stroke-width="2.5"/>
+              <circle cx="200" cy="200" r="178" stroke-width="1"/>
+              <circle cx="200" cy="200" r="120" stroke-width="1"/>
+              <text font-size="26" style="font-variant-caps: all-small-caps"><textPath href="#ring" textLength="912" lengthAdjust="spacing">IQ Group · Executive Search · HR Advisory · </textPath></text>
+              <text x="200" y="236" text-anchor="middle" font-size="118" font-weight="500" letter-spacing="-4">IQ</text>
+            </svg>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- 2. Note under the hero: the one dark moment. Interim text = approved statement, no byline -->
-  <section class="section note" data-theme="dark" aria-labelledby="note-label">
+  <section class="section note" data-theme="dark" aria-labelledby="note-title">
     <div class="page">
       <div class="grid">
-        <p class="label m" id="note-label">How we work</p>
-        <p class="statement c rise">Every mandate is led by a partner — from the first brief to <em>the day your hire walks in.</em></p>
+        <h2 class="h-section head" id="note-title">How we work</h2>
+        <p class="statement rise">Every mandate is led by a partner — from the first brief to the day your hire walks in.</p>
       </div>
     </div>
   </section>
 
-  <!-- 3. Why IQ: ruled rows -->
+  <!-- 3. Why IQ: two-column prose with run-in heads -->
   <section class="section" aria-labelledby="why-title">
     <div class="page">
       <div class="grid">
-        <p class="label m">Why IQ</p>
-        <div class="c">
-          <h2 class="h2 rise" id="why-title" style="margin-bottom: var(--s-7)">A boutique, by design.</h2>
-          <ul class="rows">
-            <li><h3 class="h3">Partnership</h3><p>Undivided attention. We learn your organisation at the cultural, strategic and tactical level before we approach anyone.</p></li>
-            <li><h3 class="h3">People</h3><p>A proprietary network of CEOs, managing directors and domain heads, built over three decades.</p></li>
-            <li><h3 class="h3">Performance</h3><p>Complex, niche placements, delivered in remarkably fast turnaround times.</p></li>
-          </ul>
+        <h2 class="h-section head" id="why-title">Why IQ</h2>
+        <div class="prose">
+          <p><strong>Partnership.</strong> Undivided attention. We learn your organisation at the cultural, strategic and tactical level before we approach anyone.</p>
+          <p><strong>People.</strong> A proprietary network of CEOs, managing directors and domain heads, built over three decades.</p>
+          <p><strong>Performance.</strong> Complex, niche placements, delivered in remarkably fast turnaround times.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 4. Method: numbers hang in the margin column -->
+  <!-- 4. Method: route across the grid -->
   <section class="section" id="method" aria-labelledby="method-title">
     <div class="page">
       <div class="grid">
-        <p class="label m">Method</p>
-        <h2 class="h2 c rise" id="method-title">Five steps, one partner throughout.</h2>
-        <ol class="steps">
-          <li><div><h3 class="h3">Understand your business</h3><p class="muted">Strategic priorities, the goals of the mandate, and your culture.</p></div></li>
-          <li><div><h3 class="h3">Shortlist candidates</h3><p class="muted">Proprietary databases, market mapping and direct outreach.</p></div></li>
-          <li><div><h3 class="h3">Identify the match</h3><p class="muted">Competency evaluation and 360° reference checks.</p></div></li>
-          <li><div><h3 class="h3">Hire &amp; onboard</h3><p class="muted">Offer negotiation, closing and transition support.</p></div></li>
-          <li><div><h3 class="h3">Monitor &amp; iterate</h3><p class="muted">Post-placement check-ins, so the hire lasts.</p></div></li>
+        <div class="head"><h2 class="h-section" id="method-title">How a search runs</h2></div>
+        <p class="lead w">Five steps, the same partner throughout.</p>
+        <ol class="route">
+          <li><h3>Understand your business</h3><p>Strategic priorities, the goals of the mandate, and your culture.</p></li>
+          <li><h3>Shortlist candidates</h3><p>Proprietary databases, market mapping and direct outreach.</p></li>
+          <li><h3>Identify the match</h3><p>Competency evaluation and 360° reference checks.</p></li>
+          <li><h3>Hire &amp; onboard</h3><p>Offer negotiation, closing and transition support.</p></li>
+          <li><h3>Monitor &amp; iterate</h3><p>Post-placement check-ins, so the hire lasts.</p></li>
         </ol>
       </div>
     </div>
@@ -116,30 +131,27 @@
   <section class="section" id="mandates" aria-labelledby="mandates-title">
     <div class="page">
       <div class="grid">
-        <p class="label m">Recent mandates</p>
-        <div class="w">
-          <h2 class="h2 rise" id="mandates-title" style="margin-bottom: var(--s-6)">From specialist roles to the C‑suite.</h2>
-          <table class="ledger">
-            <caption class="sr-only">Recently completed mandates</caption>
-            <thead><tr><th scope="col">Role</th><th scope="col">Organisation</th><th scope="col">Region</th></tr></thead>
-            <tbody>
-              <tr><td>Chief Executive Officer</td><td>Specialty chemicals manufacturer</td><td>India</td></tr>
-              <tr><td>Chief Financial Officer</td><td>Precision engineering company</td><td>India</td></tr>
-              <tr><td>Vice President, Investments</td><td>Private equity firm</td><td>India</td></tr>
-              <tr><td>Chief Marketing Officer</td><td>Private-sector bank</td><td>India</td></tr>
-              <tr><td>Head of CSR, India</td><td>European multinational bank</td><td>India</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <div class="head"><h2 class="h-section" id="mandates-title">Recent mandates</h2><p>From specialist roles to the C‑suite.</p></div>
+        <table class="ledger w">
+          <caption class="sr-only">Recently completed mandates</caption>
+          <thead><tr><th scope="col">Role</th><th scope="col">Organisation</th><th scope="col">Region</th></tr></thead>
+          <tbody>
+            <tr><td>Chief Executive Officer</td><td>Specialty chemicals manufacturer</td><td>India</td></tr>
+            <tr><td>Chief Financial Officer</td><td>Precision engineering company</td><td>India</td></tr>
+            <tr><td>Vice President, Investments</td><td>Private equity firm</td><td>India</td></tr>
+            <tr><td>Chief Marketing Officer</td><td>Private-sector bank</td><td>India</td></tr>
+            <tr><td>Head of CSR, India</td><td>European multinational bank</td><td>India</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
 
-  <!-- 6. Endorsements: epigraphs -->
-  <section class="section" aria-labelledby="endorse-label">
+  <!-- 6. Endorsements -->
+  <section class="section" aria-labelledby="endorse-title">
     <div class="page">
       <div class="grid">
-        <p class="label m" id="endorse-label">In their words</p>
+        <h2 class="h-section head" id="endorse-title">In our clients’ words</h2>
         <div class="quotes w">
           <figure class="quote rise">
             <blockquote><p>“Over a decade, IQ helped me build teams of strong professionals at UBS, Yes Bank and IDFC. I have been impressed by their speed, professionalism, responsiveness and cost-effective service.”</p></blockquote>
@@ -154,42 +166,42 @@
     </div>
   </section>
 
-  <!-- 7. People -->
+  <!-- 7. People: typeset roster -->
   <section class="section" id="people" aria-labelledby="people-title">
     <div class="page">
       <div class="grid">
-        <p class="label m">People</p>
-        <h2 class="h2 c rise" id="people-title">The partners who run your search.</h2>
-        <div class="people partners f">
-          <div class="person"><figure class="portrait"><img src="../assets/team/ashmita.jpg" alt="Ashmita Ray Sarkar" width="174" height="263" loading="lazy"></figure><span class="name">Ashmita Ray Sarkar</span><span class="role">Founder &amp; Managing Director · Mumbai</span></div>
-          <div class="person"><figure class="portrait"><img src="../assets/team/annu.jpg" alt="Annu Paul" width="174" height="263" loading="lazy"></figure><span class="name">Annu Paul</span><span class="role">Director · Mumbai</span></div>
-          <div class="person"><figure class="portrait"><img src="../assets/team/shirin.jpg" alt="Shirin Gulrajani Talwar" width="174" height="263" loading="lazy"></figure><span class="name">Shirin Gulrajani Talwar</span><span class="role">Director · Mumbai</span></div>
-          <div class="person"><figure class="portrait"><img src="../assets/team/christine.jpg" alt="Christine Gomes" width="174" height="263" loading="lazy"></figure><span class="name">Christine Gomes</span><span class="role">Managing Associate, IQ Social · Mumbai</span></div>
-        </div>
-        <p class="label f" style="margin-top: var(--s-6)">Associates</p>
-        <div class="people associates f">
-          <div class="person"><figure class="portrait square"><img src="../assets/team/mallika.jpg" alt="Mallika Sen Varma" width="360" height="360" loading="lazy"></figure><span class="name">Mallika Sen Varma</span><span class="role">Senior Associate</span><span class="focus">BFSI · Hospitality &amp; Media</span></div>
-          <div class="person"><figure class="portrait square"><img src="../assets/team/bijal.jpg" alt="Bijal Joshi" width="360" height="360" loading="lazy"></figure><span class="name">Bijal Joshi</span><span class="role">Senior Associate</span><span class="focus">BFSI · Social Impact &amp; NGO</span></div>
-          <div class="person"><figure class="portrait square"><img src="../assets/team/shharran.jpg" alt="Shharran Das" width="360" height="360" loading="lazy"></figure><span class="name">Shharran Das</span><span class="role">Associate</span><span class="focus">Media · BFSI</span></div>
-          <div class="person"><figure class="portrait square"><img src="../assets/team/tanushree.jpg" alt="Tanushree Kundu" width="360" height="360" loading="lazy"></figure><span class="name">Tanushree Kundu</span><span class="role">Associate</span><span class="focus">BFSI · Hospitality · FMCG · ITES</span></div>
-          <div class="person"><figure class="portrait square"><img src="../assets/team/neha.jpg" alt="Neha Beswal" width="360" height="360" loading="lazy"></figure><span class="name">Neha Beswal</span><span class="role">Associate</span><span class="focus">BFSI · ITES</span></div>
-        </div>
-        <p class="label f" style="margin-top: var(--s-6)">Advisor</p>
-        <div class="advisor c">
-          <figure class="portrait square"><img src="../assets/team/tilak.jpg" alt="Tilak Mukherji" width="360" height="360" loading="lazy"></figure>
-          <div class="person"><span class="name">Tilak Mukherji</span><span class="role">Chairman, Sigma Research &amp; Consulting</span></div>
+        <div class="head"><h2 class="h-section" id="people-title">People</h2><p>Every search is led by one of our partners.</p></div>
+        <div class="w">
+          <p class="roster-title">Partners</p>
+          <ul class="roster">
+            <li><span class="name">Ashmita Ray Sarkar</span><span class="role">Founder &amp; Managing Director</span><span class="focus">All practices · C‑suite</span></li>
+            <li><span class="name">Annu Paul</span><span class="role">Director</span><span class="focus">Hospitality · Media · Social impact · Business development</span></li>
+            <li><span class="name">Shirin Gulrajani Talwar</span><span class="role">Director</span><span class="focus">Legal · Social impact</span></li>
+            <li><span class="name">Christine Gomes</span><span class="role">Managing Associate, IQ Social</span><span class="focus">CSR · NGOs · Foundations</span></li>
+          </ul>
+          <p class="roster-title">Associates</p>
+          <ul class="roster compact">
+            <li><span class="name">Mallika Sen Varma</span><span class="role">Senior Associate</span><span class="focus">BFSI · Hospitality &amp; media</span></li>
+            <li><span class="name">Bijal Joshi</span><span class="role">Senior Associate</span><span class="focus">BFSI · Social impact &amp; NGO</span></li>
+            <li><span class="name">Shharran Das</span><span class="role">Associate</span><span class="focus">Media · BFSI</span></li>
+            <li><span class="name">Tanushree Kundu</span><span class="role">Associate</span><span class="focus">BFSI · Hospitality · FMCG · ITES</span></li>
+            <li><span class="name">Neha Beswal</span><span class="role">Associate</span><span class="focus">BFSI · ITES</span></li>
+          </ul>
+          <p class="roster-title">Advisor</p>
+          <ul class="roster compact">
+            <li><span class="name">Tilak Mukherji</span><span class="role">Advisor</span><span class="focus">Chairman, Sigma Research &amp; Consulting</span></li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 9. Offices & contact: letterhead -->
+  <!-- 9. Offices & contact -->
   <section class="section" id="contact" aria-labelledby="contact-title">
     <div class="page">
       <div class="grid">
-        <p class="label m">Offices</p>
-        <div class="c" style="display: grid; gap: var(--s-7)">
-          <h2 class="h2 rise" id="contact-title">Tell us about the role.</h2>
+        <div class="head"><h2 class="h-section" id="contact-title">Offices</h2><p>Tell us about the role.</p></div>
+        <div class="w" style="display: grid; gap: var(--s-7)">
           <div class="letterhead">
             <address class="office">
               <span class="city">Mumbai</span>
@@ -208,49 +220,15 @@
     </div>
   </section>
 
-  <!-- System sheet (specimen only) -->
-  <section class="section" aria-labelledby="sys-title" style="background: var(--paper-2)">
-    <div class="page">
-      <div class="grid">
-        <p class="label m">Specimen</p>
-        <h2 class="h2 c" id="sys-title">Type scale</h2>
-        <div class="spec-scale w">
-          <div><code>Display 44–68</code><span class="display">Hires that move your organisation <em>forward.</em></span></div>
-          <div><code>H2 32–46</code><span class="h2">Five steps, one partner throughout.</span></div>
-          <div><code>H3 24–30</code><span class="h3">Understand your business</span></div>
-          <div><code>Lead 20–23</code><span class="lead">Partner-led executive search and HR advisory.</span></div>
-          <div><code>Body 17–18</code><span class="measure">Unlike rigid global search firms, where mandates are handed to junior researchers, every IQ mandate is led by a partner, from the first brief to the day your hire walks in.</span></div>
-          <div><code>Small 15</code><span class="small muted">Senior Associate · BFSI · Hospitality &amp; Media</span></div>
-          <div><code>Label 16 italic</code><span class="label">Method</span></div>
-          <div><code>Small caps</code><span class="caps">Mumbai · Oslo · 30+ years · Executive search</span></div>
-          <div><code>Figures</code><span>Old-style in prose: 30+ years · Mumbai 400 013 · November 2026 · Tabular in ledgers: <span class="tnum">+91 22 6588 5932</span></span></div>
-        </div>
-        <h2 class="h2 c" style="margin-top: var(--s-8)">Colour roles</h2>
-        <div class="spec-swatches w">
-          <div class="spec-swatch"><i style="background:#FAF8FA"></i><b>Paper</b><code>#FAF8FA · ground</code></div>
-          <div class="spec-swatch"><i style="background:#F3E7F0"></i><b>Paper 2</b><code>#F3E7F0 · quiet bands</code></div>
-          <div class="spec-swatch"><i style="background:#12051A"></i><b>Ink</b><code>#12051A · 18.7:1</code></div>
-          <div class="spec-swatch"><i style="background:#2B0F2A"></i><b>Body ink</b><code>#2B0F2A · 16.5:1</code></div>
-          <div class="spec-swatch"><i style="background:#6E4165"></i><b>Muted ink</b><code>#6E4165 · 7.6:1</code></div>
-          <div class="spec-swatch"><i style="background:#8F1F78"></i><b>Accent ink</b><code>#8F1F78 · 7.5:1</code></div>
-          <div class="spec-swatch"><i style="background:#1A0826"></i><b>Dark ground</b><code>#1A0826 · note, footer</code></div>
-          <div class="spec-swatch"><i style="background:#D1A1C7"></i><b>Dark muted</b><code>#D1A1C7 · 8.7:1 on dark</code></div>
-          <div class="spec-swatch"><i style="background:#0F766E"></i><b>Focus</b><code>#0F766E · focus ring only</code></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
 </main>
 
-<!-- 10. Colophon footer -->
 <footer class="colophon" data-theme="dark">
   <div class="page">
     <div class="grid">
-      <a class="wordmark m" href="#top"><b>IQ</b><span>Group</span></a>
-      <div class="c" style="display: grid; gap: var(--s-4)">
+      <a class="wordmark" href="#top"><b>IQ</b><span>Group</span></a>
+      <div class="w" style="display: grid; gap: var(--s-4)">
         <nav aria-label="Footer"><a href="#method">Method</a><a href="#mandates">Mandates</a><a href="#people">People</a><a href="#contact">Contact</a></nav>
-        <p>Executive search and HR advisory · Mumbai · Oslo</p>
+        <p>Partner-led executive search and HR advisory for 30+ years.</p>
         <p class="legal">© IQ Group. Last reviewed November 2026.</p>
       </div>
     </div>
@@ -258,6 +236,9 @@
 </footer>
 
 <script>
+  const hero = new URLSearchParams(location.search).get('hero') === 'seal' ? 'seal' : 'map';
+  document.body.dataset.hero = hero;
+  document.querySelector(`[data-hero-opt="${hero}"]`).setAttribute('aria-current', 'true');
   const btn = document.getElementById('grid-toggle');
   const toggle = () => { const on = document.body.classList.toggle('show-grid'); btn.setAttribute('aria-pressed', on); btn.textContent = (on ? 'Hide' : 'Show') + ' grid (G)'; };
   btn.addEventListener('click', toggle);

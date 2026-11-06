@@ -1,7 +1,7 @@
 /* Self-hosted fonts (SIL OFL 1.1, licences in ../assets/fonts/).
    Full upstream builds from google/fonts, subset to Latin + Latin-1 (+ Norwegian æøå) with smcp, c2sc, onum, lnum, tnum, pnum, frac kept.
    Weight axes limited: Source Serif 4 300–600 (opsz 8–60 kept); EB Garamond 400–600.
-   Italic text uses EB Garamond Italic (Source Serif 4 Italic is not shipped; it has no small caps and adds ~130 KB). */
+   No italic faces: v3 sets no italics (DESIGN.md §4). */
 
 @font-face {
   font-family: 'Source Serif 4';
@@ -16,13 +16,5 @@
   src: url('../assets/fonts/ebg-roman.woff2') format('woff2');
   font-weight: 400 600;
   font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'EB Garamond';
-  src: url('../assets/fonts/ebg-italic.woff2') format('woff2');
-  font-weight: 400 600;
-  font-style: italic;
   font-display: swap;
 }
