@@ -1,0 +1,1994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IQ Group | Executive Search & Leadership Advisory</title>
+  <!-- Typography: Literata (Editorial Serif) + Poppins (Humanist Geometric Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,500;1,7..72,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       IQ GROUP — APPLE DESIGN PHILOSOPHY + LEATHWAITE EDITORIAL + ADAPTION UI
+       1. Simplicity through reduction (only elements serving executive intent)
+       2. Deference (restrained 60-30-5-5 grain shaders that never overpower copy)
+       3. Clarity & Progressive Disclosure (functional interactive switches)
+       4. Depth (translucent materials, contact + ambient shadows, spring physics)
+       ========================================================================== */
+    :root {
+      /* Locked 60–30–5–5 Golden Ratio Palette */
+      --iq-obsidian: #12051A;       /* Dark Anchor (18.4:1 contrast vs white) */
+      --iq-obsidian-elevated: #1B0926;
+      --iq-plum: #8F1F78;           /* Primary Brand Royal Plum (312.3°) */
+      --iq-plum-deep: #260B24;      /* Deep Aubergine Card Surface */
+      --iq-support-dark: #D1A1C7;   /* -60% Saturation Support on Dark */
+      --iq-support-light: #6E4165;  /* -60% Saturation Support on Light */
+      --iq-mint-dark: #1AD1BE;      /* 5% Surgical Golden Angle Accent (174.8°) on Dark */
+      --iq-mint-light: #0F766E;     /* 5% Surgical Golden Angle Accent on Light */
+      --iq-alabaster: #FAF8FA;      /* Light Section Background */
+      --iq-card-shell: #F3EFF5;     /* Adaption Outer Container Surface */
+      --iq-white: #FFFFFF;
+      --iq-text-dark: #160F1C;
+      --iq-text-muted: #62566B;
+      --iq-border-light: rgba(22, 15, 28, 0.08);
+      --iq-border-subcard: rgba(22, 15, 28, 0.07);
+
+      /* Typography */
+      --font-serif: 'Literata', Georgia, serif;
+      --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      /* Apple-grade Spring Curve */
+      --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+      --row-max-width: 84rem; /* 1344px */
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--iq-text-dark);
+      background-color: var(--iq-obsidian);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: all 0.28s var(--ease-out-expo);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* ==========================================================================
+       TYPOGRAPHY HIERARCHY (APPLE CLARITY & EDITORIAL PROPORTION)
+       ========================================================================== */
+    .h0, .h1, .h2, .h3, .h5, h1, h2, h3, h4, h5 {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      color: inherit;
+      text-rendering: optimizeLegibility;
+    }
+
+    .h0 {
+      font-size: clamp(3rem, 5.2vw, 4.5rem);
+      line-height: 1.07;
+      letter-spacing: -0.024em;
+    }
+
+    .h1 {
+      font-size: clamp(2.15rem, 3.5vw, 3.1rem);
+      line-height: 1.14;
+      letter-spacing: -0.018em;
+    }
+
+    .h2 {
+      font-size: clamp(1.9rem, 2.9vw, 2.55rem);
+      line-height: 1.16;
+      letter-spacing: -0.015em;
+    }
+
+    .h5 {
+      font-size: clamp(1.125rem, 1.3vw, 1.28rem);
+      line-height: 1.4;
+    }
+
+    .label {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--iq-support-dark);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .label-light {
+      color: var(--iq-plum);
+    }
+
+    /* Leathwaite Signature .highlight Left Bar */
+    .highlight {
+      padding-left: 1.65rem;
+      position: relative;
+    }
+
+    .highlight::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.12em;
+      bottom: 0.12em;
+      width: 2px;
+      background: linear-gradient(180deg, var(--iq-mint-dark) 0%, var(--iq-plum) 52%, var(--iq-support-dark) 100%);
+    }
+
+    .highlight-light::before {
+      background: linear-gradient(180deg, var(--iq-plum) 0%, var(--iq-mint-light) 100%);
+    }
+
+    .row {
+      width: 100%;
+      max-width: var(--row-max-width);
+      margin: 0 auto;
+      position: relative;
+      z-index: 3;
+    }
+
+    .body-push {
+      padding-left: clamp(1.5rem, 4.5vw, 4rem);
+      padding-right: clamp(1.5rem, 4.5vw, 4rem);
+    }
+
+    /* ==========================================================================
+       HEADER — APPLE TRANSLUCENCY + ADAPTION DOUBLE-RING SEGMENTED PILL NAV
+       ========================================================================== */
+    header.site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 0;
+      transition: padding 0.35s var(--ease-out-expo), background-color 0.35s var(--ease-out-expo), border-color 0.35s var(--ease-out-expo);
+      border-bottom: 1px solid transparent;
+    }
+
+    header.site-header.is-scrolled {
+      padding: 0.8rem 0;
+      background: rgba(18, 5, 26, 0.78);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .site-logo {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--iq-white);
+      letter-spacing: -0.02em;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.55rem;
+    }
+
+    .site-logo small {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--iq-support-dark);
+    }
+
+    /* Adaption Double-Ring Segmented Pill Switch */
+    .segmented-pill-nav {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .segmented-pill-nav a {
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 0.45rem 1.15rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: all 0.25s var(--ease-out-expo);
+    }
+
+    .segmented-pill-nav a:hover {
+      color: var(--iq-white);
+    }
+
+    .segmented-pill-nav a.is-active {
+      color: var(--iq-white);
+      font-weight: 500;
+      background: rgba(143, 31, 120, 0.36);
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Light-mode Segmented Pill Switch (Section 3 & Section 4) */
+    .segmented-pill-light {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 3px;
+      border-radius: 999px;
+      background: #EDE8F0;
+      border: 1px solid rgba(22, 15, 28, 0.12);
+    }
+
+    .segmented-pill-light button {
+      font-family: var(--font-sans);
+      font-size: 0.825rem;
+      font-weight: 400;
+      color: var(--iq-text-muted);
+      padding: 0.48rem 1.2rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.25s var(--ease-out-expo);
+    }
+
+    .segmented-pill-light button:hover {
+      color: var(--iq-text-dark);
+    }
+
+    .segmented-pill-light button.is-active {
+      color: var(--iq-text-dark);
+      font-weight: 500;
+      background: var(--iq-white);
+      border-color: var(--iq-text-dark);
+      box-shadow: 0 2px 8px rgba(22, 15, 28, 0.06);
+    }
+
+    /* Pill Buttons */
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.84rem;
+      font-weight: 500;
+      padding: 0.78rem 1.55rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.28s var(--ease-out-expo);
+      white-space: nowrap;
+    }
+
+    .btn-pill-white {
+      background: var(--iq-white);
+      color: var(--iq-text-dark);
+      border: 1px solid var(--iq-white);
+    }
+
+    .btn-pill-white:hover {
+      background: transparent;
+      color: var(--iq-white);
+      border-color: var(--iq-white);
+    }
+
+    .btn-pill-outline-dark {
+      background: rgba(18, 5, 26, 0.3);
+      color: var(--iq-white);
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-pill-outline-dark:hover {
+      background: var(--iq-white);
+      color: var(--iq-text-dark);
+      border-color: var(--iq-white);
+    }
+
+    /* ==========================================================================
+       SECTION 1: HERO — FLOWING ROYAL PLUM SILK WAVES + SUBTLE GRAIN DEPTH
+       ========================================================================== */
+    section.hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-top: 7rem;
+      background-color: var(--iq-obsidian);
+      color: var(--iq-white);
+      overflow: hidden;
+    }
+
+    .hero-shader-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    #heroGrainShaderCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .hero-depth-grid {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(to right, rgba(209, 161, 199, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(209, 161, 199, 0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse at 68% 48%, black 10%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at 68% 48%, black 10%, transparent 70%);
+    }
+
+    .hero-grain-veil {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      filter: url(#subtle-film-grain);
+      opacity: 0.16;
+      mix-blend-mode: overlay;
+    }
+
+    .hero-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      position: relative;
+      z-index: 3;
+      padding: 4rem 0;
+    }
+
+    .hero-content {
+      max-width: 43rem;
+    }
+
+    .hero-title {
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-lead {
+      font-size: clamp(1.08rem, 1.35vw, 1.22rem);
+      font-weight: 300;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.86);
+      margin-bottom: 2.5rem;
+      max-width: 33rem;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    /* Docked Client Trust Ticker */
+    .hero-trust-dock {
+      position: relative;
+      z-index: 3;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1.2rem 0;
+      background: rgba(18, 5, 26, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .hero-trust-inner {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .hero-trust-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--iq-support-dark);
+      white-space: nowrap;
+    }
+
+    .ticker-viewport {
+      overflow: hidden;
+      flex: 1;
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+
+    .ticker-track {
+      display: flex;
+      align-items: center;
+      gap: 4.25rem;
+      width: max-content;
+      animation: heroTicker 42s linear infinite;
+    }
+
+    .ticker-track:hover {
+      animation-play-state: paused;
+    }
+
+    .ticker-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 28px;
+      color: rgba(255, 255, 255, 0.72);
+      transition: color 0.25s var(--ease-out-expo), transform 0.25s var(--ease-out-expo);
+      flex-shrink: 0;
+      user-select: none;
+    }
+
+    .ticker-logo:hover {
+      color: rgba(255, 255, 255, 1);
+      transform: translateY(-1px);
+    }
+
+    .ticker-logo svg {
+      height: 100%;
+      width: auto;
+      display: block;
+      fill: currentColor;
+    }
+
+    @keyframes heroTicker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ==========================================================================
+       SECTION 2: LEATHWAITE MONUMENTAL STATEMENT BLOCK (section.text.bg-black)
+       ========================================================================== */
+    section.text.bg-black {
+      position: relative;
+      background-color: var(--iq-obsidian);
+      color: var(--iq-white);
+      padding: clamp(6.5rem, 10vw, 9.5rem) 0;
+    }
+
+    .statement-block {
+      max-width: 54rem;
+    }
+
+    .statement-copy {
+      font-family: var(--font-serif);
+      font-size: clamp(1.75rem, 2.8vw, 2.5rem);
+      line-height: 1.38;
+      letter-spacing: -0.01em;
+      color: var(--iq-white);
+    }
+
+    .statement-copy span {
+      color: var(--iq-support-dark);
+    }
+
+    .statement-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      margin-top: 4.5rem;
+      padding-top: 2.75rem;
+      border-top: 1px solid rgba(209, 161, 199, 0.14);
+      max-width: 54rem;
+    }
+
+    .metric-number {
+      font-family: var(--font-serif);
+      font-size: clamp(1.95rem, 2.8vw, 2.6rem);
+      color: var(--iq-white);
+      line-height: 1.1;
+      margin-bottom: 0.35rem;
+      display: block;
+    }
+
+    .metric-label {
+      font-size: 0.84rem;
+      color: var(--iq-support-dark);
+    }
+
+    /* ==========================================================================
+       SECTION 3: CAPABILITIES & METHODOLOGY (APPLE PROGRESSIVE DISCLOSURE
+       + ADAPTION NESTED CONTAINER CARDS + CALIBRATED GRAIN-SHADER BANDS)
+       ========================================================================== */
+    section.adaption-capabilities {
+      background-color: var(--iq-alabaster);
+      color: var(--iq-text-dark);
+      padding: clamp(6.5rem, 10vw, 9.5rem) 0;
+      position: relative;
+    }
+
+    .adaption-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 3.75rem;
+    }
+
+    .adaption-header .segmented-pill-light {
+      margin-bottom: 1.5rem;
+    }
+
+    .adaption-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.1rem, 3.3vw, 2.85rem);
+      font-weight: 400;
+      letter-spacing: -0.018em;
+      line-height: 1.15;
+      color: var(--iq-text-dark);
+    }
+
+    /* 3-Column Outer Container Cards */
+    .adaption-columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      align-items: stretch;
+      transition: opacity 0.28s var(--ease-out-expo), transform 0.28s var(--ease-out-expo);
+    }
+
+    .adaption-columns.is-hidden {
+      display: none;
+    }
+
+    .adaption-col-card {
+      background-color: var(--iq-card-shell);
+      border: 1px solid var(--iq-border-light);
+      border-radius: 22px;
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.28s var(--ease-out-expo), box-shadow 0.28s var(--ease-out-expo);
+    }
+
+    .adaption-col-card:hover {
+      border-color: rgba(143, 31, 120, 0.25);
+      box-shadow: 0 20px 44px rgba(22, 15, 28, 0.05);
+    }
+
+    /* Restrained, Tactile Grain-Shader Horizon Header (Apple Deference) */
+    .adaption-visual-stage {
+      height: 132px;
+      width: 100%;
+      position: relative;
+      margin-bottom: 1.35rem;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .adaption-visual-stage canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .stage-index-pill {
+      position: absolute;
+      top: 0.9rem;
+      left: 1rem;
+      z-index: 2;
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9);
+      background: rgba(18, 5, 26, 0.42);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 0.28rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .adaption-col-title {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: var(--iq-text-dark);
+      margin-bottom: 0.45rem;
+    }
+
+    .adaption-col-desc {
+      font-size: 0.875rem;
+      line-height: 1.58;
+      color: var(--iq-text-muted);
+      margin-bottom: 1.35rem;
+    }
+
+    /* Nested White Sub-Cards */
+    .adaption-subcards {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: auto;
+    }
+
+    .adaption-subcard {
+      background-color: var(--iq-white);
+      border: 1px solid var(--iq-border-subcard);
+      border-radius: 14px;
+      padding: 1.15rem 1.25rem;
+      transition: transform 0.28s var(--ease-out-expo), border-color 0.28s var(--ease-out-expo), box-shadow 0.28s var(--ease-out-expo);
+      display: block;
+    }
+
+    .adaption-subcard:hover {
+      transform: translateY(-2px);
+      border-color: rgba(143, 31, 120, 0.35);
+      box-shadow: 0 10px 24px rgba(22, 15, 28, 0.05);
+    }
+
+    .subcard-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.35rem;
+    }
+
+    .subcard-title {
+      font-family: var(--font-sans);
+      font-size: 0.925rem;
+      font-weight: 500;
+      color: var(--iq-text-dark);
+    }
+
+    .subcard-arrow {
+      font-size: 0.9rem;
+      color: var(--iq-plum);
+      transition: transform 0.25s var(--ease-out-expo);
+    }
+
+    .adaption-subcard:hover .subcard-arrow {
+      transform: translateX(4px);
+    }
+
+    .subcard-desc {
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      color: var(--iq-text-muted);
+    }
+
+    /* 5-Step Methodology View (Progressive Disclosure View B) */
+    .methodology-grid {
+      display: none;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.15rem;
+    }
+
+    .methodology-grid.is-active {
+      display: grid;
+    }
+
+    .method-step-card {
+      background-color: var(--iq-white);
+      border: 1px solid var(--iq-border-light);
+      border-radius: 18px;
+      padding: 1.65rem 1.35rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 220px;
+      box-shadow: 0 8px 24px rgba(22, 15, 28, 0.03);
+    }
+
+    .method-num {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--iq-plum);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .method-title {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      color: var(--iq-text-dark);
+      margin-bottom: 0.55rem;
+      line-height: 1.28;
+    }
+
+    .method-desc {
+      font-size: 0.825rem;
+      line-height: 1.55;
+      color: var(--iq-text-muted);
+    }
+
+    /* ==========================================================================
+       SECTION 4: "OUR PEOPLE" — APPLE REDUCTION (ONE-TAP PILL FILTER,
+       EDITORIAL ARCHITECTURAL CARDS, NO FAKE SEARCH BOX OR COLOR-SWATCH SLOP)
+       ========================================================================== */
+    section.team {
+      background-color: #FFFFFF;
+      color: var(--iq-text-dark);
+      padding: clamp(6.5rem, 10vw, 9.5rem) 0;
+      border-top: 1px solid var(--iq-border-light);
+    }
+
+    .team-layout {
+      display: grid;
+      grid-template-columns: 4.5fr 7.5fr;
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: start;
+    }
+
+    .team-content {
+      max-width: 24rem;
+      position: sticky;
+      top: 7.5rem;
+    }
+
+    .team-content .h1 {
+      margin-bottom: 1.15rem;
+    }
+
+    .team-content p {
+      font-size: 0.96rem;
+      line-height: 1.65;
+      color: var(--iq-text-muted);
+      margin-bottom: 1.75rem;
+    }
+
+    /* Staggered 2-Col Masonry Grid */
+    .team-masonry-columns {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.35rem;
+      align-items: start;
+    }
+
+    .team-masonry-col:nth-child(2) {
+      margin-top: 3rem;
+    }
+
+    .team-post {
+      margin-bottom: 1.35rem;
+      border-radius: 18px;
+      overflow: hidden;
+      background-color: var(--iq-obsidian-elevated);
+      border: 1px solid rgba(22, 15, 28, 0.1);
+      transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s var(--ease-out-expo);
+    }
+
+    .team-post:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 44px rgba(18, 5, 26, 0.14);
+    }
+
+    .team-post.is-hidden {
+      display: none;
+    }
+
+    /* Subtle Grain-Shader Accent Band + Clean Executive Bio Surface */
+    .consultant-band {
+      height: 76px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .consultant-band canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .consultant-body {
+      padding: 1.65rem 1.65rem 1.75rem 1.65rem;
+      color: var(--iq-white);
+    }
+
+    .consultant-practice-tag {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--iq-support-dark);
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .team-post .post-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--iq-white);
+      margin-bottom: 0.25rem;
+    }
+
+    .team-post .job-title {
+      font-size: 0.84rem;
+      color: rgba(255, 255, 255, 0.72);
+      margin-bottom: 1.15rem;
+    }
+
+    .consultant-focus {
+      font-size: 0.825rem;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.64);
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* ==========================================================================
+       SECTION 5: DARK TRACK RECORD & VERIFIED CLIENT VOICES
+       ========================================================================== */
+    section.posts.bg-black {
+      position: relative;
+      background-color: var(--iq-obsidian);
+      color: var(--iq-white);
+      padding: clamp(6.5rem, 10vw, 9.5rem) 0;
+      overflow: hidden;
+    }
+
+    .posts-header {
+      max-width: 38rem;
+      margin-bottom: 4rem;
+    }
+
+    .posts-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+      align-items: stretch;
+    }
+
+    .post-list-post {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.32s var(--ease-out-expo), border-color 0.32s var(--ease-out-expo);
+    }
+
+    .post-list-post:hover {
+      transform: translateY(-4px);
+      border-color: rgba(209, 161, 199, 0.35);
+    }
+
+    .mandate-shader-bar {
+      height: 110px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mandate-shader-bar canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .mandate-card-body {
+      padding: 1.65rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .mandate-sector {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--iq-support-dark);
+      margin-bottom: 0.65rem;
+      display: block;
+    }
+
+    .mandate-role {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      color: var(--iq-white);
+      line-height: 1.25;
+      margin-bottom: 0.65rem;
+    }
+
+    .mandate-context {
+      font-size: 0.85rem;
+      line-height: 1.58;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: auto;
+    }
+
+    /* Two Concise Client Endorsements */
+    .editorial-quote-bar {
+      margin-top: 5.5rem;
+      padding-top: 3.75rem;
+      border-top: 1px solid rgba(209, 161, 199, 0.14);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+    }
+
+    .quote-item blockquote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.15rem, 1.45vw, 1.38rem);
+      line-height: 1.52;
+      color: var(--iq-white);
+      margin-bottom: 1rem;
+    }
+
+    .quote-item cite {
+      font-family: var(--font-sans);
+      font-style: normal;
+      font-size: 0.825rem;
+      color: var(--iq-support-dark);
+      display: block;
+    }
+
+    /* ==========================================================================
+       SECTION 6: CALIBRATED GRAIN-GRADIENT CONNECT BANNER & FOOTER
+       ========================================================================== */
+    section.banner {
+      position: relative;
+      background-color: var(--iq-obsidian);
+      color: var(--iq-white);
+      padding: clamp(5rem, 8vw, 7rem) 0;
+      overflow: hidden;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    #bannerShaderCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 1;
+    }
+
+    .banner-veil {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(90deg, rgba(18, 5, 26, 0.82) 0%, rgba(18, 5, 26, 0.45) 60%, rgba(18, 5, 26, 0.2) 100%);
+      pointer-events: none;
+    }
+
+    .banner-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      position: relative;
+      z-index: 3;
+    }
+
+    .banner-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    footer.footer-container {
+      background-color: #0B0210;
+      color: var(--iq-white);
+      padding: 4.5rem 0 3rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-columns {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.4fr;
+      gap: 2.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .footer-col-title {
+      font-size: 0.84rem;
+      font-weight: 600;
+      margin-bottom: 1.1rem;
+    }
+
+    .footer-menu li {
+      margin-bottom: 0.55rem;
+    }
+
+    .footer-menu li a {
+      font-size: 0.825rem;
+      color: rgba(254, 254, 254, 0.64);
+    }
+
+    .footer-menu li a:hover {
+      color: var(--iq-support-dark);
+    }
+
+    .footer-address {
+      font-size: 0.825rem;
+      line-height: 1.65;
+      color: rgba(254, 254, 254, 0.64);
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.78rem;
+      color: rgba(254, 254, 254, 0.46);
+    }
+
+    @media (max-width: 1024px) {
+      .segmented-pill-nav { display: none; }
+      .adaption-columns,
+      .methodology-grid,
+      .team-layout,
+      .posts-list,
+      .editorial-quote-bar {
+        grid-template-columns: 1fr;
+      }
+      .team-content {
+        position: static;
+        max-width: 100%;
+      }
+      .footer-columns {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .statement-metrics,
+      .team-masonry-columns,
+      .footer-columns {
+        grid-template-columns: 1fr;
+      }
+      .team-masonry-col:nth-child(2) {
+        margin-top: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ticker-track { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Subtle Tactile Film Grain Filter -->
+  <svg style="position:absolute;width:0;height:0;pointer-events:none;" aria-hidden="true">
+    <defs>
+      <filter id="subtle-film-grain" x="0%" y="0%" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" result="noise" />
+        <feColorMatrix type="saturate" values="0" in="noise" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- ========================================================================
+       HEADER — APPLE TRANSLUCENT CHROME + SEGMENTED PILL NAVIGATION
+       ======================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="row body-push">
+      <div class="nav-bar-inner">
+        <a href="#top" class="site-logo">
+          <span>IQ Group</span>
+          <small>Est. 1994</small>
+        </a>
+
+        <nav class="segmented-pill-nav" aria-label="Primary Navigation">
+          <a href="#top" class="is-active">Overview</a>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#our-people">People</a>
+          <a href="#track-record">Track Record</a>
+        </nav>
+
+        <a href="#connect" class="btn-pill btn-pill-white">Contact us</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         SECTION 1: HERO — FLOWING ROYAL PLUM SILK WAVES + SUBTLE GRAIN DEPTH
+         ====================================================================== -->
+    <section class="hero" id="top">
+      <div class="hero-shader-wrap">
+        <canvas id="heroGrainShaderCanvas"></canvas>
+        <div class="hero-depth-grid"></div>
+        <div class="hero-grain-veil"></div>
+      </div>
+
+      <div class="hero-stage">
+        <div class="row body-push">
+          <div class="hero-content">
+            <span class="label">Executive Search &amp; Leadership Advisory</span>
+            <h1 class="hero-title h0 highlight">
+              Discovering exceptional leadership.
+            </h1>
+            <p class="hero-lead">
+              Shaping the future of enterprise leadership across India, the Middle East, and South Asia.
+            </p>
+            <div class="hero-cta-row">
+              <a href="#capabilities" class="btn-pill btn-pill-white">Explore capabilities</a>
+              <a href="#our-people" class="btn-pill btn-pill-outline-dark">Meet our partners</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Docked Client Trust Ticker (Monochrome Optically-Normalized SVG Logos) -->
+      <div class="hero-trust-dock" aria-label="Client Institutions">
+        <div class="row body-push">
+          <div class="hero-trust-inner">
+            <span class="hero-trust-label">Trusted By</span>
+            <div class="ticker-viewport">
+              <div class="ticker-track" id="heroLogoTrack">
+                <!-- 1. UBS (Crossed Keys Emblem + Serif Wordmark) -->
+                <span class="ticker-logo" title="UBS">
+                  <svg viewBox="0 0 112 32" aria-label="UBS">
+                    <g stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round">
+                      <line x1="16" y1="5" x2="16" y2="27"/>
+                      <circle cx="16" cy="7.5" r="3.2"/>
+                      <path d="M16 23h4M16 26h3.5"/>
+                      <line x1="7" y1="9" x2="25" y2="24"/>
+                      <circle cx="8.5" cy="10" r="3"/>
+                      <line x1="25" y1="9" x2="7" y2="24"/>
+                      <circle cx="23.5" cy="10" r="3"/>
+                    </g>
+                    <text x="36" y="23.5" font-family="Literata, Georgia, serif" font-size="22" font-weight="500" letter-spacing="1.5">UBS</text>
+                  </svg>
+                </span>
+
+                <!-- 2. Boston Consulting Group (BCG Lockup) -->
+                <span class="ticker-logo" title="Boston Consulting Group">
+                  <svg viewBox="0 0 158 32" aria-label="Boston Consulting Group">
+                    <text x="0" y="23.5" font-family="Poppins, sans-serif" font-size="22" font-weight="700" letter-spacing="0.5">BCG</text>
+                    <line x1="58" y1="6" x2="58" y2="26" stroke="currentColor" stroke-width="1" stroke-opacity="0.45"/>
+                    <text x="66" y="14.5" font-family="Poppins, sans-serif" font-size="7.2" font-weight="500" letter-spacing="1.1">BOSTON</text>
+                    <text x="66" y="23.5" font-family="Poppins, sans-serif" font-size="7.2" font-weight="500" letter-spacing="1.1">CONSULTING GROUP</text>
+                  </svg>
+                </span>
+
+                <!-- 3. J.P. Morgan -->
+                <span class="ticker-logo" title="J.P. Morgan">
+                  <svg viewBox="0 0 146 32" aria-label="J.P. Morgan">
+                    <text x="0" y="22.5" font-family="Literata, Georgia, serif" font-size="20.5" font-weight="500" letter-spacing="0.6">J.P.Morgan</text>
+                  </svg>
+                </span>
+
+                <!-- 4. Deutsche Bank (Iconic Square + Slash Lockup) -->
+                <span class="ticker-logo" title="Deutsche Bank">
+                  <svg viewBox="0 0 186 32" aria-label="Deutsche Bank">
+                    <rect x="2" y="5" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4"/>
+                    <line x1="8" y1="23" x2="18" y2="9" stroke="currentColor" stroke-width="2.6"/>
+                    <text x="33" y="22" font-family="Poppins, sans-serif" font-size="16.5" font-weight="500" letter-spacing="-0.2">Deutsche Bank</text>
+                  </svg>
+                </span>
+
+                <!-- 5. PwC (Stepped Geometric Mark + Lowercase Wordmark) -->
+                <span class="ticker-logo" title="PwC">
+                  <svg viewBox="0 0 92 32" aria-label="PwC">
+                    <text x="0" y="24.5" font-family="Literata, Georgia, serif" font-size="21" font-weight="600" letter-spacing="-0.5">pwc</text>
+                    <rect x="46" y="6" width="11" height="4" opacity="0.9"/>
+                    <rect x="46" y="11" width="18" height="4" opacity="0.7"/>
+                    <rect x="53" y="3" width="8" height="3" opacity="0.55"/>
+                  </svg>
+                </span>
+
+                <!-- 6. Johnson & Johnson -->
+                <span class="ticker-logo" title="Johnson & Johnson">
+                  <svg viewBox="0 0 192 32" aria-label="Johnson & Johnson">
+                    <text x="0" y="22" font-family="Literata, Georgia, serif" font-size="18.5" font-weight="500" letter-spacing="-0.2">Johnson &amp; Johnson</text>
+                  </svg>
+                </span>
+
+                <!-- 7. GSK -->
+                <span class="ticker-logo" title="GSK">
+                  <svg viewBox="0 0 76 32" aria-label="GSK">
+                    <text x="0" y="23.5" font-family="Poppins, sans-serif" font-size="22.5" font-weight="700" letter-spacing="1.2">GSK</text>
+                    <path d="M58 8 L66 16 L58 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+
+                <!-- 8. Bayer (Circle Cross Emblem + Wordmark) -->
+                <span class="ticker-logo" title="Bayer">
+                  <svg viewBox="0 0 116 32" aria-label="Bayer">
+                    <circle cx="14" cy="16" r="11" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                    <line x1="5" y1="16" x2="23" y2="16" stroke="currentColor" stroke-width="1.4"/>
+                    <line x1="14" y1="7" x2="14" y2="25" stroke="currentColor" stroke-width="1.4"/>
+                    <text x="33" y="22.5" font-family="Poppins, sans-serif" font-size="18.5" font-weight="600" letter-spacing="1.8">BAYER</text>
+                  </svg>
+                </span>
+
+                <!-- 9. Hindustan Unilever -->
+                <span class="ticker-logo" title="Hindustan Unilever">
+                  <svg viewBox="0 0 188 32" aria-label="Hindustan Unilever">
+                    <path d="M5 7v10c0 4.5 3.2 7.5 7.5 7.5s7.5-3 7.5-7.5V7h-3.2v10c0 2.6-1.7 4.4-4.3 4.4S8.2 19.6 8.2 17V7H5z"/>
+                    <text x="28" y="21.5" font-family="Poppins, sans-serif" font-size="15.5" font-weight="500" letter-spacing="-0.1">Hindustan Unilever</text>
+                  </svg>
+                </span>
+
+                <!-- 10. Asian Paints -->
+                <span class="ticker-logo" title="Asian Paints">
+                  <svg viewBox="0 0 144 32" aria-label="Asian Paints">
+                    <text x="0" y="22" font-family="Poppins, sans-serif" font-size="18" font-weight="600" font-style="italic" letter-spacing="-0.4">asianpaints</text>
+                  </svg>
+                </span>
+
+                <!-- 11. Dalberg -->
+                <span class="ticker-logo" title="Dalberg">
+                  <svg viewBox="0 0 112 32" aria-label="Dalberg">
+                    <text x="0" y="22.5" font-family="Poppins, sans-serif" font-size="19" font-weight="600" letter-spacing="-0.3">Dalberg</text>
+                    <circle cx="88" cy="11" r="2.6"/>
+                  </svg>
+                </span>
+
+                <!-- 12. Oxfam India -->
+                <span class="ticker-logo" title="Oxfam India">
+                  <svg viewBox="0 0 118 32" aria-label="Oxfam">
+                    <circle cx="13" cy="16" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <path d="M13 8v8m-5 4l5-4 5 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <text x="30" y="22.5" font-family="Poppins, sans-serif" font-size="18" font-weight="700" letter-spacing="1.5">OXFAM</text>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 2: MONUMENTAL STATEMENT BLOCK (section.text.bg-black)
+         ====================================================================== -->
+    <section class="text bg-black" id="about">
+      <div class="row body-push">
+        <div class="statement-block highlight">
+          <p class="statement-copy">
+            We know the C-suite and corporate function landscape better than anyone — <span>because it’s been at the core of what we do for more than 30 years.</span>
+          </p>
+        </div>
+
+        <div class="statement-metrics">
+          <div>
+            <span class="metric-number">30+ Years</span>
+            <span class="metric-label">Boutique executive search heritage</span>
+          </div>
+          <div>
+            <span class="metric-number">6 Hubs</span>
+            <span class="metric-label">Mumbai, Delhi, Bangalore, Kolkata, Dubai &amp; Singapore</span>
+          </div>
+          <div>
+            <span class="metric-number">C-Suite</span>
+            <span class="metric-label">Deeply partnered mandates from specialist to Board</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 3: CAPABILITIES & METHODOLOGY (PROGRESSIVE DISCLOSURE)
+         ====================================================================== -->
+    <section class="adaption-capabilities" id="capabilities">
+      <div class="row body-push">
+        <div class="adaption-header">
+          <div class="segmented-pill-light" id="capModeSwitch" role="tablist" aria-label="Capabilities or Search Process">
+            <button type="button" class="is-active" role="tab" aria-selected="true" data-view="practices">Capabilities &amp; Practices</button>
+            <button type="button" role="tab" aria-selected="false" data-view="methodology">5-Step Search Process</button>
+          </div>
+          <h2 class="adaption-title" id="capSectionHeading">
+            Built for mission-critical leadership.
+          </h2>
+        </div>
+
+        <!-- VIEW A: 3 Capabilities & Practice Columns -->
+        <div class="adaption-columns" id="viewPractices">
+          <!-- Column 1: Executive Search -->
+          <div class="adaption-col-card">
+            <div class="adaption-visual-stage">
+              <canvas class="grain-stage-canvas" data-seed="1.2"></canvas>
+              <span class="stage-index-pill">01 · Retained Search</span>
+            </div>
+
+            <h3 class="adaption-col-title">Executive Search</h3>
+            <p class="adaption-col-desc">
+              Bespoke C-suite, Board, and specialist leadership appointments with rigorous 360° reference vetting.
+            </p>
+
+            <div class="adaption-subcards">
+              <a href="#connect" class="adaption-subcard">
+                <div class="subcard-top-row">
+                  <h4 class="subcard-title">Board &amp; CXO Appointments</h4>
+                  <span class="subcard-arrow">→</span>
+                </div>
+                <p class="subcard-desc">
+                  CEOs, CFOs, CMOs, and Country Heads for Indian and multinational enterprises.
+                </p>
+              </a>
+
+              <a href="#connect" class="adaption-subcard">
+                <div class="subcard-top-row">
+                  <h4 class="subcard-title">Functional &amp; Domain Heads</h4>
+                  <span class="subcard-arrow">→</span>
+                </div>
+                <p class="subcard-desc">
+                  Investment Principals, General Counsel, and R&amp;D Directors across niche verticals.
+                </p>
+              </a>
+            </div>
+          </div>
+
+          <!-- Column 2: Sector Practices -->
+          <div class="adaption-col-card">
+            <div class="adaption-visual-stage">
+              <canvas class="grain-stage-canvas" data-seed="2.7"></canvas>
+              <span class="stage-index-pill">02 · Industry Depth</span>
+            </div>
+
+            <h3 class="adaption-col-title">Sector Practices</h3>
+            <p class="adaption-col-desc">
+              Proprietary executive networks cultivated over three decades across high-barrier industries.
+            </p>
+
+            <div class="adaption-subcards">
+              <a href="#connect" class="adaption-subcard">
+                <div class="subcard-top-row">
+                  <h4 class="subcard-title">Banking, PE &amp; Consulting</h4>
+                  <span class="subcard-arrow">→</span>
+                </div>
+                <p class="subcard-desc">
+                  Trusted by UBS, J.P. Morgan, Deutsche Bank, BCG, PwC, and Dalberg.
+                </p>
+              </a>
+
+              <a href="#connect" class="adaption-subcard">
+                <div class="subcard-top-row">
+                  <h4 class="subcard-title">FMCG, Healthcare &amp; Industrials</h4>
+                  <span class="subcard-arrow">→</span>
+                </div>
+                <p class="subcard-desc">
+                  Partnering with J&amp;J, GSK, Bayer, HUL, Asian Paints, Rossari, and MTAR.
+                </p>
+              </a>
+            </div>
+          </div>
+
+          <!-- Column 3: IQ Social & Advisory -->
+          <div class="adaption-col-card">
+            <div class="adaption-visual-stage">
+              <canvas class="grain-stage-canvas" data-seed="4.1"></canvas>
+              <span class="stage-index-pill">03 · Impact &amp; Advisory</span>
+            </div>
+
+            <h3 class="adaption-col-title">IQ Social &amp; Advisory</h3>
+            <p class="adaption-col-desc">
+              Dedicated development-sector wing and end-to-end organizational HR transformation.
+            </p>
+
+            <div class="adaption-subcards">
+              <a href="#connect" class="adaption-subcard">
+                <div class="subcard-top-row">
+                  <h4 class="subcard-title">IQ Social — CSR &amp; Foundations</h4>
+                  <span class="subcard-arrow">→</span>
+                </div>
+                <p class="subcard-desc">
+                  Country Directors and CSR Heads for Oxfam, NASSCOM Foundation, and banks.
+                </p>
+              </a>
+
+              <a href="#connect" class="adaption-subcard">
+                <div class="subcard-top-row">
+                  <h4 class="subcard-title">Project RPO &amp; HR Systems</h4>
+                  <span class="subcard-arrow">→</span>
+                </div>
+                <p class="subcard-desc">
+                  Time-bound team scaling, compensation structuring, and executive outplacement.
+                </p>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW B: 5-Step End-to-End Search Methodology (Revealed on Toggle) -->
+        <div class="methodology-grid" id="viewMethodology">
+          <div class="method-step-card">
+            <span class="method-num">Step 01</span>
+            <div>
+              <h3 class="method-title">Understand your business</h3>
+              <p class="method-desc">Deep alignment on strategic priorities, mandate goals, and organizational culture.</p>
+            </div>
+          </div>
+          <div class="method-step-card">
+            <span class="method-num">Step 02</span>
+            <div>
+              <h3 class="method-title">Shortlist candidates</h3>
+              <p class="method-desc">Proprietary databases, live market mapping, and direct C-suite outreach.</p>
+            </div>
+          </div>
+          <div class="method-step-card">
+            <span class="method-num">Step 03</span>
+            <div>
+              <h3 class="method-title">Identify the match</h3>
+              <p class="method-desc">Rigorous competency evaluation and 360-degree informal and formal reference checks.</p>
+            </div>
+          </div>
+          <div class="method-step-card">
+            <span class="method-num">Step 04</span>
+            <div>
+              <h3 class="method-title">Hire &amp; onboard</h3>
+              <p class="method-desc">Seamless offer structuring, closing facilitation, and transition support.</p>
+            </div>
+          </div>
+          <div class="method-step-card">
+            <span class="method-num">Step 05</span>
+            <div>
+              <h3 class="method-title">Monitor &amp; iterate</h3>
+              <p class="method-desc">Structured post-placement check-ins to ensure lasting institutional impact.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 4: "OUR PEOPLE" — DIRECT ONE-TAP SEGMENTED FILTER + EDITORIAL CARDS
+         ====================================================================== -->
+    <section class="team" id="our-people">
+      <div class="row body-push">
+        <div class="team-layout">
+          <div class="team-content">
+            <span class="label label-light">Our People</span>
+            <h2 class="h1 highlight highlight-light">Leadership team</h2>
+            <p>
+              Every mandate is led directly by our Mumbai Partners and Directors — never delegated to junior researchers.
+            </p>
+
+            <!-- Apple Simplicity: Instant One-Tap Segmented Filter (No redundant text input) -->
+            <div class="segmented-pill-light" id="teamFilterPills" role="tablist" aria-label="Filter Consultants by Practice">
+              <button type="button" class="is-active" data-filter="all">All</button>
+              <button type="button" data-filter="leadership">C-Suite</button>
+              <button type="button" data-filter="bfsi">BFSI</button>
+              <button type="button" data-filter="social">IQ Social</button>
+              <button type="button" data-filter="legal">Legal &amp; Media</button>
+            </div>
+          </div>
+
+          <div class="team-posts-container">
+            <div class="team-masonry-columns" id="teamMasonryGrid">
+              <!-- Column 1 -->
+              <div class="team-masonry-col">
+                <article class="team-post" data-category="leadership bfsi social">
+                  <a href="#connect">
+                    <div class="consultant-band">
+                      <canvas class="grain-stage-canvas" data-seed="5.2"></canvas>
+                    </div>
+                    <div class="consultant-body">
+                      <span class="consultant-practice-tag">All Practices · C-Suite</span>
+                      <h3 class="post-title">Ashmita Ray Sarkar</h3>
+                      <p class="job-title">Founder &amp; Managing Director · Mumbai</p>
+                      <p class="consultant-focus">
+                        30+ years leading CEO, Board, and senior functional searches across BFSI, Consulting, Industrials, and Consumer sectors.
+                      </p>
+                    </div>
+                  </a>
+                </article>
+
+                <article class="team-post" data-category="legal social">
+                  <a href="#connect">
+                    <div class="consultant-band">
+                      <canvas class="grain-stage-canvas" data-seed="6.8"></canvas>
+                    </div>
+                    <div class="consultant-body">
+                      <span class="consultant-practice-tag">Legal &amp; Social Impact</span>
+                      <h3 class="post-title">Shirin Gulrajani Talwar</h3>
+                      <p class="job-title">Director · Mumbai</p>
+                      <p class="consultant-focus">
+                        Leads General Counsel, corporate legal, and senior leadership mandates across international foundations and NGOs.
+                      </p>
+                    </div>
+                  </a>
+                </article>
+              </div>
+
+              <!-- Column 2 (Staggered) -->
+              <div class="team-masonry-col">
+                <article class="team-post" data-category="legal social leadership">
+                  <a href="#connect">
+                    <div class="consultant-band">
+                      <canvas class="grain-stage-canvas" data-seed="7.5"></canvas>
+                    </div>
+                    <div class="consultant-body">
+                      <span class="consultant-practice-tag">Media, Hospitality &amp; Social</span>
+                      <h3 class="post-title">Annu Paul</h3>
+                      <p class="job-title">Director · Mumbai</p>
+                      <p class="consultant-focus">
+                        Specializes in senior commercial, hospitality, media, and social-sector leadership mandates across India.
+                      </p>
+                    </div>
+                  </a>
+                </article>
+
+                <article class="team-post" data-category="social leadership">
+                  <a href="#connect">
+                    <div class="consultant-band">
+                      <canvas class="grain-stage-canvas" data-seed="8.9"></canvas>
+                    </div>
+                    <div class="consultant-body">
+                      <span class="consultant-practice-tag">IQ Social · CSR &amp; Foundations</span>
+                      <h3 class="post-title">Christine Gomes</h3>
+                      <p class="job-title">Managing Associate · Mumbai</p>
+                      <p class="consultant-focus">
+                        Dedicated to placing Country Directors, CSR Heads, and Program Leaders for global foundations and corporate trusts.
+                      </p>
+                    </div>
+                  </a>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 5: DARK TRACK RECORD & VERIFIED CLIENT VOICES
+         ====================================================================== -->
+    <section class="posts bg-black" id="track-record">
+      <div class="row body-push">
+        <div class="posts-header highlight">
+          <span class="label">Track Record</span>
+          <h2 class="h1">Recent C-suite placements</h2>
+        </div>
+
+        <ul class="posts-list">
+          <li class="post-list-post">
+            <div class="mandate-shader-bar">
+              <canvas class="grain-stage-canvas" data-seed="9.4"></canvas>
+            </div>
+            <div class="mandate-card-body">
+              <span class="mandate-sector">Industrials &amp; Engineering</span>
+              <h3 class="mandate-role">Chief Executive Officer &amp; Chief Financial Officer</h3>
+              <p class="mandate-context">
+                Placed the CEO of a leading Indian specialty chemicals manufacturer and the CFO of a premier precision engineering company.
+              </p>
+            </div>
+          </li>
+
+          <li class="post-list-post">
+            <div class="mandate-shader-bar">
+              <canvas class="grain-stage-canvas" data-seed="10.8"></canvas>
+            </div>
+            <div class="mandate-card-body">
+              <span class="mandate-sector">BFSI &amp; Private Equity</span>
+              <h3 class="mandate-role">VP Investments &amp; Private Bank CMO</h3>
+              <p class="mandate-context">
+                Placed the Vice President of Investments for a leading Indian private equity fund and the Chief Marketing Officer of a private sector bank.
+              </p>
+            </div>
+          </li>
+
+          <li class="post-list-post">
+            <div class="mandate-shader-bar">
+              <canvas class="grain-stage-canvas" data-seed="11.6"></canvas>
+            </div>
+            <div class="mandate-card-body">
+              <span class="mandate-sector">Corporate Social Responsibility</span>
+              <h3 class="mandate-role">Head of CSR, India</h3>
+              <p class="mandate-context">
+                Partnered with a major European multinational bank to appoint their Country Head of Corporate Social Responsibility in India.
+              </p>
+            </div>
+          </li>
+        </ul>
+
+        <!-- Two Concise Client Endorsements -->
+        <div class="editorial-quote-bar">
+          <div class="quote-item">
+            <blockquote>
+              “Over a decade, IQ helped me build teams of strong professionals at UBS, Yes Bank, and IDFC with remarkable speed and responsiveness.”
+            </blockquote>
+            <cite>Ajay Mahajan — Former Managing Director, UBS</cite>
+          </div>
+
+          <div class="quote-item">
+            <blockquote>
+              “IQ takes pride in accepting difficult and complex placements and has delivered where its behemoth competitors have not.”
+            </blockquote>
+            <cite>Tilak Mukherji — Chairman, Sigma Research &amp; Consulting</cite>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 6: CALIBRATED GRAIN-GRADIENT CONNECT BANNER
+         ====================================================================== -->
+    <section class="banner" id="connect">
+      <canvas class="grain-stage-canvas" id="bannerShaderCanvas" data-seed="13.5"></canvas>
+      <div class="banner-veil"></div>
+      <div class="row body-push">
+        <div class="banner-content highlight">
+          <h2 class="h1">Connect with us</h2>
+          <div class="banner-actions">
+            <a href="mailto:ashmita@iqgroup.co.in" class="btn-pill btn-pill-white">ashmita@iqgroup.co.in</a>
+            <a href="tel:+912265885932" class="btn-pill btn-pill-outline-dark">+91 22 6588 5932</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="footer-container">
+    <div class="row body-push">
+      <div class="footer-columns">
+        <div>
+          <a href="#top" class="site-logo" style="margin-bottom: 1rem;">
+            <span>IQ Group</span>
+            <small>Est. 1994</small>
+          </a>
+          <p class="footer-address" style="max-width: 18rem;">
+            Executive search and leadership advisory across India, the Middle East, and South Asia.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Capabilities</h4>
+          <ul class="footer-menu">
+            <li><a href="#capabilities">Executive Search</a></li>
+            <li><a href="#capabilities">HR Advisory</a></li>
+            <li><a href="#capabilities">Project RPO</a></li>
+            <li><a href="#capabilities">Outplacement</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Practices</h4>
+          <ul class="footer-menu">
+            <li><a href="#capabilities">BFSI &amp; Private Equity</a></li>
+            <li><a href="#capabilities">Management Consulting</a></li>
+            <li><a href="#capabilities">FMCG &amp; Healthcare</a></li>
+            <li><a href="#capabilities">IQ Social</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Mumbai Headquarters</h4>
+          <p class="footer-address">
+            806, Sunshine Towers, Senapati Bapat Marg<br/>
+            Dadar West, Mumbai 400 013<br/>
+            +91 22 6588 5932 · ashmita@iqgroup.co.in
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 IQ Group. Member of the Executive Recruiters Association (ERA).</span>
+        <span>Mumbai · Delhi · Bangalore · Kolkata · Dubai · Singapore</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       CALIBRATED 60–30–5–5 WEBGL STOCHASTIC GRAIN-GRADIENT SHADER ENGINE
+       Apple Deference: Deep Obsidian (60%) + Royal Plum (30%) + Warm Lilac (5%)
+       + Surgical Golden Angle Aqua-Mint Rim (5%)
+       ======================================================================== -->
+  <script>
+    // 1. Sticky Header, Segmented Nav Active State & Seamless Logo Ticker Clone
+    const logoTrack = document.getElementById('heroLogoTrack');
+    if (logoTrack) {
+      logoTrack.innerHTML += logoTrack.innerHTML;
+    }
+
+    const siteHeader = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => {
+      siteHeader.classList.toggle('is-scrolled', window.scrollY > 36);
+    }, { passive: true });
+
+    const navLinks = document.querySelectorAll('.segmented-pill-nav a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.forEach(l => l.classList.remove('is-active'));
+        link.classList.add('is-active');
+      });
+    });
+
+    // ========================================================================
+    // 2. HERO FLOWING ROYAL PLUM SILK WAVES CANVAS (With Subtle 5% Mint Hairline)
+    // ========================================================================
+    (function initHeroSilkWaves() {
+      const canvas = document.getElementById('heroGrainShaderCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width, height, t = 0;
+
+      function resize() {
+        width = canvas.width = canvas.parentElement.offsetWidth;
+        height = canvas.height = canvas.parentElement.offsetHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      function draw() {
+        t += 0.004;
+        ctx.fillStyle = '#12051A';
+        ctx.fillRect(0, 0, width, height);
+
+        // Soft ambient Royal Plum & Mulberry gradient blooms
+        const grad1 = ctx.createRadialGradient(
+          width * (0.72 + Math.sin(t) * 0.05),
+          height * (0.45 + Math.cos(t * 0.8) * 0.05),
+          10,
+          width * 0.72,
+          height * 0.45,
+          Math.max(width, height) * 0.65
+        );
+        grad1.addColorStop(0, 'rgba(143, 31, 120, 0.48)');
+        grad1.addColorStop(0.5, 'rgba(88, 16, 73, 0.22)');
+        grad1.addColorStop(1, 'rgba(18, 5, 26, 0)');
+        ctx.fillStyle = grad1;
+        ctx.fillRect(0, 0, width, height);
+
+        // Very subtle 5% Golden Angle Aqua-Mint ambient rim on the far right
+        const grad2 = ctx.createRadialGradient(
+          width * 0.84,
+          height * 0.34,
+          10,
+          width * 0.84,
+          height * 0.34,
+          Math.max(width, height) * 0.38
+        );
+        grad2.addColorStop(0, 'rgba(26, 209, 190, 0.065)');
+        grad2.addColorStop(1, 'rgba(18, 5, 26, 0)');
+        ctx.fillStyle = grad2;
+        ctx.fillRect(0, 0, width, height);
+
+        // Flowing Silk Ribbon Waves
+        const waves = [
+          { color: 'rgba(143, 31, 120, 0.30)', amp: 60, freq: 0.0018, speed: 1.0, yOffset: 0.52, lw: 130 },
+          { color: 'rgba(209, 161, 199, 0.14)', amp: 45, freq: 0.0022, speed: 1.3, yOffset: 0.46, lw: 1.5 },
+          { color: 'rgba(168, 40, 142, 0.22)', amp: 75, freq: 0.0015, speed: 0.7, yOffset: 0.62, lw: 85 },
+          { color: 'rgba(26, 209, 190, 0.08)', amp: 40, freq: 0.0025, speed: 1.4, yOffset: 0.56, lw: 1.2 }
+        ];
+
+        waves.forEach((w, idx) => {
+          ctx.beginPath();
+          for (let x = 0; x <= width; x += 12) {
+            const y = height * w.yOffset
+              + Math.sin(x * w.freq + t * w.speed + idx) * w.amp
+              + Math.cos(x * (w.freq * 0.6) - t * 0.8) * (w.amp * 0.45);
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.strokeStyle = w.color;
+          ctx.lineWidth = w.lw;
+          ctx.stroke();
+        });
+
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          requestAnimationFrame(draw);
+        }
+      }
+      draw();
+    })();
+
+    // ========================================================================
+    // 3. CALIBRATED STOCHASTIC GRAIN-GRADIENT BANDS FOR UI ELEMENTS
+    //    Predominantly Deep Obsidian + Royal Plum + Soft Lilac, with only a
+    //    subtle 5% whisper of Golden Angle Aqua-Mint
+    // ========================================================================
+    (function initElementGrainShaders() {
+      const canvases = document.querySelectorAll('.grain-stage-canvas');
+      const instances = [];
+
+      const vs = `
+        attribute vec2 a_pos;
+        varying vec2 v_uv;
+        void main() {
+          v_uv = a_pos * 0.5 + 0.5;
+          gl_Position = vec4(a_pos, 0.0, 1.0);
+        }
+      `;
+
+      const fs = `
+        precision highp float;
+        varying vec2 v_uv;
+        uniform float u_time;
+        uniform float u_seed;
+
+        float hash12(vec2 p) {
+          vec3 p3  = fract(vec3(p.xyx) * 0.1031);
+          p3 += dot(p3, p3.yzx + 33.33);
+          return fract((p3.x + p3.y) * p3.z);
+        }
+
+        void main() {
+          vec2 uv = v_uv;
+
+          float angle = 0.58 + mod(u_seed * 0.31, 0.5) + 0.06 * sin(u_time * 0.45 + u_seed);
+          vec2 dir = vec2(cos(angle), sin(angle));
+          vec2 center = vec2(
+            0.52 + 0.12 * sin(u_seed * 1.5 + u_time * 0.3),
+            0.50 + 0.10 * cos(u_seed * 1.2 + u_time * 0.25)
+          );
+
+          float wave = sin(uv.x * 3.8 + u_time * 0.6 + u_seed) * 0.08;
+          float dist = abs(dot(uv - center, dir) + wave);
+
+          float beam = exp(-dist * 5.2);
+          float wideGlow = exp(-dist * 1.9);
+
+          float grain = hash12(gl_FragCoord.xy + u_seed * 19.0);
+          float fineGrain = (grain - 0.5) * 0.24;
+
+          float t = clamp(wideGlow * 0.62 + beam * 0.46 + fineGrain, 0.0, 1.0);
+
+          vec3 cDeep   = vec3(0.14, 0.04, 0.19); // Deep Plum Obsidian
+          vec3 cPlum   = vec3(0.56, 0.12, 0.47); // IQ Royal Plum (#8F1F78)
+          vec3 cLilac  = vec3(0.82, 0.63, 0.78); // Desaturated Support Lilac (#D1A1C7)
+          vec3 cMint   = vec3(0.45, 0.82, 0.78); // Subtle 5% Golden Angle Mint Glint
+          vec3 cCore   = vec3(0.95, 0.89, 0.94); // Warm Soft Lilac-White Specular Edge
+
+          vec3 col = mix(cDeep, cPlum, smoothstep(0.05, 0.54, t));
+          col = mix(col, cLilac, smoothstep(0.50, 0.84, t));
+          // Only a subtle 14% whisper of the Aqua-Mint along the upper-right specular edge
+          col = mix(col, cMint, smoothstep(0.72, 0.92, t) * 0.18 * uv.x);
+          col = mix(col, cCore, smoothstep(0.84, 1.0, t) * 0.55);
+
+          col += (grain - 0.5) * 0.055;
+          gl_FragColor = vec4(col, 1.0);
+        }
+      `;
+
+      canvases.forEach((canvas) => {
+        const gl = canvas.getContext('webgl', { antialias: false, depth: false, stencil: false });
+        if (!gl) return;
+
+        function compile(type, src) {
+          const s = gl.createShader(type);
+          gl.shaderSource(s, src);
+          gl.compileShader(s);
+          return s;
+        }
+
+        const prog = gl.createProgram();
+        gl.attachShader(prog, compile(gl.VERTEX_SHADER, vs));
+        gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fs));
+        gl.linkProgram(prog);
+        gl.useProgram(prog);
+
+        const buf = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
+        const aPos = gl.getAttribLocation(prog, 'a_pos');
+        gl.enableVertexAttribArray(aPos);
+        gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+        const uTime = gl.getUniformLocation(prog, 'u_time');
+        const uSeed = gl.getUniformLocation(prog, 'u_seed');
+        const seed = parseFloat(canvas.getAttribute('data-seed') || '1.0');
+
+        function resize() {
+          const dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+          const rect = canvas.parentElement.getBoundingClientRect();
+          canvas.width = Math.max(1, rect.width * dpr);
+          canvas.height = Math.max(1, rect.height * dpr);
+          gl.viewport(0, 0, canvas.width, canvas.height);
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        instances.push({ gl, uTime, uSeed, seed });
+      });
+
+      const start = performance.now();
+      function tick(now) {
+        const elapsed = (now - start) * 0.001;
+        instances.forEach(inst => {
+          inst.gl.uniform1f(inst.uTime, elapsed);
+          inst.gl.uniform1f(inst.uSeed, inst.seed);
+          inst.gl.drawArrays(inst.gl.TRIANGLES, 0, 6);
+        });
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          requestAnimationFrame(tick);
+        }
+      }
+      requestAnimationFrame(tick);
+    })();
+
+    // ========================================================================
+    // 4. APPLE PROGRESSIVE DISCLOSURE: CAPABILITIES VS 5-STEP PROCESS SWITCH
+    // ========================================================================
+    const capSwitchBtns = document.querySelectorAll('#capModeSwitch button');
+    const capHeading = document.getElementById('capSectionHeading');
+    const viewPractices = document.getElementById('viewPractices');
+    const viewMethodology = document.getElementById('viewMethodology');
+
+    capSwitchBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        capSwitchBtns.forEach(b => {
+          b.classList.remove('is-active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-selected', 'true');
+
+        const isMethod = btn.getAttribute('data-view') === 'methodology';
+        capHeading.textContent = isMethod
+          ? 'Our 5-step end-to-end search methodology.'
+          : 'Built for mission-critical leadership.';
+        viewPractices.classList.toggle('is-hidden', isMethod);
+        viewMethodology.classList.toggle('is-active', isMethod);
+      });
+    });
+
+    // ========================================================================
+    // 5. ONE-TAP LEADERSHIP FILTER
+    // ========================================================================
+    const teamFilterPills = document.querySelectorAll('#teamFilterPills button');
+    const teamCards = document.querySelectorAll('#teamMasonryGrid .team-post');
+
+    teamFilterPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        teamFilterPills.forEach(p => p.classList.remove('is-active'));
+        pill.classList.add('is-active');
+        const filter = pill.getAttribute('data-filter');
+        teamCards.forEach(card => {
+          const cats = card.getAttribute('data-category') || '';
+          card.classList.toggle('is-hidden', !(filter === 'all' || cats.includes(filter)));
+        });
+      });
+    });
+  </script>
+</body>
+</html>

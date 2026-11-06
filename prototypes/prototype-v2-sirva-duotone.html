@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IQ Group | Version 2 — Sirva Split-Stage &amp; Connected Practice Matrix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --bg-alabaster: #FAF8FA;
+      --bg-lilac: #F3E7F0;
+      --bg-obsidian: #1A0826;
+      --brand-plum: #8F1F78;
+      --support-orchid: #D1A1C7;
+      --support-slate: #6E4165;
+      --accent-mint-dark: #1AD1BE;
+      --accent-teal-light: #0F766E;
+      --border-light: #E2D4DF;
+      --in-oklab: ;
+      color-scheme: light dark;
+    }
+
+    @supports (background: linear-gradient(in oklab, white, black)) {
+      :root {
+        --in-oklab: in oklab;
+      }
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-alabaster);
+      color: var(--bg-obsidian);
+      overflow-x: hidden;
+    }
+
+    .font-serif-editorial {
+      font-family: 'Instrument Serif', Georgia, serif;
+    }
+
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Sirva-inspired Duotone Stage with OKLab interpolation */
+    .sirva-stage-left {
+      position: relative;
+      isolation: isolate;
+      background: linear-gradient(135deg var(--in-oklab), #230936 0%, #6A155A 55%, #8F1F78 100%);
+    }
+
+    .sirva-stage-right {
+      position: relative;
+      isolation: isolate;
+      background: linear-gradient(135deg var(--in-oklab), #380D4E 0%, #8F1F78 50%, #A9288E 100%);
+    }
+
+    /* CSS Polka/Halftone Dot Matrix Pattern (modern-web-guidance visual-effects pattern) */
+    .halftone-dots {
+      --distance: 20px;
+      --radius: 1px;
+      --dot-color: rgba(209, 161, 199, 0.16);
+      --polka: radial-gradient(circle, var(--dot-color) var(--radius), transparent calc(var(--radius) + 0.5px));
+      background-image: var(--polka), var(--polka);
+      background-position: 0 0, var(--distance) var(--distance);
+      background-size: calc(var(--distance) * 2) calc(var(--distance) * 2);
+    }
+
+    .marquee-mask {
+      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    }
+
+    @keyframes marquee-scroll {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee-scroll 36s linear infinite;
+      @media (prefers-reduced-motion: reduce) {
+        animation-duration: 120s;
+      }
+    }
+
+    .marquee-track.paused,
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-[#8F1F78] selection:text-white">
+
+  <!-- SVG Grain Filter -->
+  <svg class="hidden" aria-hidden="true">
+    <filter id="yc-grain-v2">
+      <feTurbulence type="fractalNoise" baseFrequency="0.78" numOctaves="3" stitchTiles="stitch" />
+      <feColorMatrix type="saturate" values="0" />
+    </filter>
+  </svg>
+
+  <!-- Prototype Version Switcher Bar -->
+  <div class="bg-[#11041A] text-white border-b border-white/10 px-4 py-2 text-xs">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="font-mono-code uppercase tracking-wider text-[#1AD1BE] font-semibold">● Prototype Comparison</span>
+        <span class="text-[#D1A1C7] hidden sm:inline">V2: Inspired by Sirva Split-Hero &amp; Leathwaite Connected Practice Matrix</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <a href="prototype-v1-constellation.html" class="px-2.5 py-1 rounded bg-white/5 hover:bg-white/10 text-[#D1A1C7] border border-white/10 transition-colors">
+          V1: Constellation &amp; Rhythm
+        </a>
+        <a href="prototype-v2-sirva-duotone.html" class="px-2.5 py-1 rounded bg-[#8F1F78] text-white font-semibold border border-white/20">
+          V2: Sirva Split-Stage &amp; Matrix (Active)
+        </a>
+        <a href="prototype-v3-true-bento.html" class="px-2.5 py-1 rounded bg-white/5 hover:bg-white/10 text-[#D1A1C7] border border-white/10 transition-colors">
+          V3: True Kinetic Bento
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Utility Header + Deep #1A0826 Navigation Ribbon (Direct nod to Sirva's dual-tier header) -->
+  <header class="sticky top-0 z-50">
+    <!-- Tier 1: Crisp Alabaster Utility Bar -->
+    <div class="bg-[#FAF8FA] text-[#1A0826] border-b border-[#E2D4DF] px-6 py-2.5">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <a href="#" class="flex items-center gap-3">
+          <div class="bg-[#8F1F78] px-3.5 py-1 rounded-sm flex items-center">
+            <span class="font-serif-editorial text-2xl text-white tracking-wide leading-none">IQ Group</span>
+          </div>
+          <span class="text-xs font-mono-code uppercase tracking-wider text-[#6E4165] hidden sm:inline">
+            Boutique Executive Search &amp; HR Solutions • 30+ Years
+          </span>
+        </a>
+        <div class="flex items-center gap-5 text-xs font-semibold text-[#1A0826]">
+          <span class="hidden md:inline text-[#6E4165]">Mumbai • Delhi • Bangalore • Kolkata • Dubai • Singapore</span>
+          <a href="#contact" class="text-[#8F1F78] hover:underline">Contact Us</a>
+          <span class="font-mono-code px-2 py-0.5 rounded bg-[#E6F7F5] text-[#0F766E]">ERA Member</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tier 2: Deep #1A0826 Plum Obsidian Navigation Bar (Sirva #120052 style) -->
+    <nav class="bg-[#1A0826] text-white px-6 py-3 border-b border-[#D1A1C7]/15" aria-label="Primary Navigation">
+      <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm font-medium">
+        <div class="flex items-center gap-7 text-[#D1A1C7]">
+          <a href="#practice-explorer" class="text-white font-semibold hover:text-[#1AD1BE] transition-colors">Practice Matrix ▾</a>
+          <a href="#approach-roadmap" class="hover:text-white transition-colors">5-Step Approach</a>
+          <a href="#client-wall" class="hover:text-white transition-colors">Key Clients</a>
+          <a href="#successes" class="hover:text-white transition-colors">Recent Hires &amp; Testimonials</a>
+        </div>
+        <a href="#contact" class="px-3.5 py-1.5 rounded bg-white text-[#1A0826] font-bold text-xs hover:bg-[#F3E7F0] transition-colors">
+          Initiate Mandate ›
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- 1. SIRVA-INSPIRED SPLIT-STAGE HERO + BOTTOM CLIENT TICKER -->
+  <section class="bg-[#1A0826] text-white relative overflow-hidden">
+    <!-- Top Editorial Headline Banner on Deep Obsidian -->
+    <div class="max-w-7xl mx-auto px-6 pt-12 pb-10 relative z-10">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-[#D1A1C7]/25 mb-4">
+            <span class="w-2 h-2 rounded-full bg-[#1AD1BE]" aria-hidden="true"></span>
+            <span class="font-mono-code text-xs uppercase tracking-wider text-white">
+              30+ Years Experience • Entry-Level to C-Suite
+            </span>
+          </div>
+          <h1 class="font-serif-editorial text-5xl sm:text-6xl lg:text-7xl leading-[1.03] tracking-tight text-white">
+            Deeply personalized search from a <span class="italic text-[#D1A1C7]">high-caliber</span> team.
+          </h1>
+        </div>
+        <div class="lg:max-w-sm space-y-2 border-l-2 border-[#8F1F78] pl-4">
+          <p class="text-sm text-[#D1A1C7] leading-relaxed">
+            “Helping you make impactful hires across India, the Middle East, and South Asia — within exceptionally fast turnaround times.”
+          </p>
+          <div class="font-mono-code text-xs text-[#1AD1BE]">
+            ● PARTNERSHIP • PEOPLE • PERFORMANCE
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sirva-Style Dual Split Panels with Oversized Watermark & Crisp White Pill CTAs -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 border-t border-b border-white/15 relative">
+      <!-- Left Stage: For Organizations & Boards -->
+      <div class="sirva-stage-left halftone-dots p-8 sm:p-14 lg:p-16 flex flex-col justify-between min-h-[370px] border-b lg:border-b-0 lg:border-r border-white/15 relative overflow-hidden group">
+        <div class="pointer-events-none absolute inset-0 opacity-[0.04] mix-blend-overlay" style="filter: url(#yc-grain-v2);" aria-hidden="true"></div>
+        <!-- Oversized Sirva-style Watermark Geometry -->
+        <div class="pointer-events-none select-none absolute -right-6 -bottom-10 font-serif-editorial text-[210px] leading-none text-white/[0.07] font-bold" aria-hidden="true">
+          IQ
+        </div>
+
+        <div class="relative z-10">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#1A0826]/80 text-[#1AD1BE] font-mono-code text-xs uppercase tracking-wider mb-4 border border-white/10">
+            01 • For Boards, CEOs &amp; CHROs
+          </span>
+          <h2 class="font-serif-editorial text-3xl sm:text-4xl text-white mb-3 leading-tight">
+            Executive search programs to move your organization forward.
+          </h2>
+          <p class="text-sm sm:text-base text-[#F3E7F0]/90 max-w-md leading-relaxed mb-6">
+            We learn your organization at the cultural, strategic, and tactical level — delivering C-suite, VP, and specialist talent across BFSI, Consulting, Healthcare, FMCG, and Social Impact.
+          </p>
+        </div>
+
+        <div class="relative z-10 flex flex-wrap items-center gap-3">
+          <!-- Sirva signature crisp white button -->
+          <a href="#practice-explorer" class="px-5 py-3 rounded-md bg-white text-[#1A0826] font-bold text-sm shadow-md hover:bg-[#F3E7F0] transition-all inline-flex items-center gap-2">
+            <span>Explore Corporate Search Services</span>
+            <span aria-hidden="true">›</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Stage: For C-Suite & Senior Executives -->
+      <div class="sirva-stage-right halftone-dots p-8 sm:p-14 lg:p-16 flex flex-col justify-between min-h-[370px] relative overflow-hidden group">
+        <div class="pointer-events-none absolute inset-0 opacity-[0.04] mix-blend-overlay" style="filter: url(#yc-grain-v2);" aria-hidden="true"></div>
+        <!-- Oversized Watermark -->
+        <div class="pointer-events-none select-none absolute -right-4 -bottom-10 font-serif-editorial text-[210px] leading-none text-white/[0.08] italic" aria-hidden="true">
+          30+
+        </div>
+
+        <div class="relative z-10">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#1A0826]/80 text-white font-mono-code text-xs uppercase tracking-wider mb-4 border border-white/10">
+            02 • For C-Suite &amp; Functional Leaders
+          </span>
+          <h2 class="font-serif-editorial text-3xl sm:text-4xl text-white mb-3 leading-tight">
+            Move with confidence into your next leadership mandate.
+          </h2>
+          <p class="text-sm sm:text-base text-[#F3E7F0]/90 max-w-md leading-relaxed mb-6">
+            Connect discreetly with our Mumbai, Delhi, Bangalore, Kolkata, Dubai, and Singapore directors for board, CEO, CFO, MD, and Social Sector leadership opportunities.
+          </p>
+        </div>
+
+        <div class="relative z-10 flex flex-wrap items-center gap-3">
+          <a href="#contact" class="px-5 py-3 rounded-md bg-white text-[#1A0826] font-bold text-sm shadow-md hover:bg-[#F3E7F0] transition-all inline-flex items-center gap-2">
+            <span>Connect With a Practice Director</span>
+            <span aria-hidden="true">›</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom-of-Hero Sirva-Style Trust Ribbon + Sliding Client Marquee -->
+    <div class="bg-[#1A0826] py-4 px-6">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-4">
+        <div class="flex items-center gap-2.5 shrink-0">
+          <span class="w-2 h-2 rounded-full bg-[#1AD1BE]" aria-hidden="true"></span>
+          <span class="font-mono-code text-xs uppercase tracking-wider text-white font-semibold">
+            Trusted by Global Institutions:
+          </span>
+          <button id="v2-marquee-btn" onclick="toggleV2Marquee()" class="px-2 py-0.5 rounded bg-white/10 text-xs font-mono-code text-[#D1A1C7] hover:text-white">
+            Pause ❚❚
+          </button>
+        </div>
+
+        <div class="overflow-hidden w-full marquee-mask">
+          <div id="v2-marquee" class="marquee-track items-center gap-6 text-xs font-medium">
+            <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white"><strong class="text-[#D1A1C7] font-mono-code mr-1.5">[BFSI]</strong>UBS</span>
+            <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white"><strong class="text-[#D1A1C7] font-mono-code mr-1.5">[BFSI]</strong>Deutsche Bank</span>
+            <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white"><strong class="text-[#D1A1C7] font-mono-code mr-1.5">[BFSI]</strong>J.P. Morgan</span>
+            <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white"><strong class="text-[#D1A1C7] font-mono-code mr-1.5">[BFSI]</strong>YES BANK</span>
+            <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white"><strong class="text-[#D1A1C7] font-mono-code mr-1.5">[ADVISORY]</strong>BCG</span>
+            <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white"><strong class="text-[#D1A1C7] font-mono-code mr-1.5">[ADVISORY]</strong>PwC</span>
+            <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white"><strong class="text-[#D1A1C7] font-mono-code mr-1.5">[ADVISORY]</strong>Dalberg</span>
+            <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white"><strong class="text-[#D1A1C7] font-mono-code mr-1.5">[HEALTH]</strong>Johnson &amp; Johnson</span>
+            <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white"><strong class="text-[#D1A1C7] font-mono-code mr-1.5">[HEALTH]</strong>GSK</span>
+            <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white"><strong class="text-[#D1A1C7] font-mono-code mr-1.5">[HEALTH]</strong>Bayer</span>
+            <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white"><strong class="text-[#D1A1C7] font-mono-code mr-1.5">[FMCG]</strong>Hindustan Unilever</span>
+            <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white"><strong class="text-[#D1A1C7] font-mono-code mr-1.5">[FMCG]</strong>Asian Paints</span>
+            <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white"><strong class="text-[#D1A1C7] font-mono-code mr-1.5">[SOCIAL]</strong>Oxfam India</span>
+            <!-- Duplicate set for loop -->
+            <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white"><strong class="text-[#D1A1C7] font-mono-code mr-1.5">[BFSI]</strong>UBS</span>
+            <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white"><strong class="text-[#D1A1C7] font-mono-code mr-1.5">[BFSI]</strong>Deutsche Bank</span>
+            <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white"><strong class="text-[#D1A1C7] font-mono-code mr-1.5">[BFSI]</strong>J.P. Morgan</span>
+            <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white"><strong class="text-[#D1A1C7] font-mono-code mr-1.5">[ADVISORY]</strong>BCG</span>
+            <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white"><strong class="text-[#D1A1C7] font-mono-code mr-1.5">[ADVISORY]</strong>PwC</span>
+            <span class="px-3 py-1 rounded bg-white/5 border border-white/10 text-white"><strong class="text-[#D1A1C7] font-mono-code mr-1.5">[ADVISORY]</strong>Dalberg</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. LIGHT SECTION (#FAF8FA): Interactive Connected Practice Area & Team Explorer -->
+  <section id="practice-explorer" class="py-20 bg-[#FAF8FA] text-[#1A0826] border-b border-[#E2D4DF]">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <span class="font-mono-code text-xs uppercase tracking-widest text-[#8F1F78] font-semibold block mb-2">
+            01 / CONNECTED PRACTICE MATRIX
+          </span>
+          <h2 class="font-serif-editorial text-4xl sm:text-5xl text-[#1A0826]">
+            Select a practice area to inspect mandates &amp; leadership.
+          </h2>
+        </div>
+        <p class="text-sm text-[#6E4165] max-w-md">
+          Directly connects IQ Group’s specialist verticals with verified client partnerships and the senior directors leading each practice.
+        </p>
+      </div>
+
+      <!-- Interactive 2-Column Practice Matrix -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Left (5 Cols): Vertical Practice Selector -->
+        <div class="lg:col-span-5 space-y-2.5" role="tablist" aria-label="Practice Areas">
+          <button onclick="selectPractice(0)" id="prac-tab-0" role="tab" aria-selected="true" class="w-full text-left p-4 rounded-xl bg-[#8F1F78] text-white shadow-sm flex items-center justify-between transition-all">
+            <div>
+              <span class="font-mono-code text-xs opacity-80 block">01 / FLAGSHIP VERTICAL</span>
+              <span class="font-bold text-base">Banking &amp; Financial Services (BFSI)</span>
+            </div>
+            <span class="font-mono-code text-sm">→</span>
+          </button>
+
+          <button onclick="selectPractice(1)" id="prac-tab-1" role="tab" aria-selected="false" class="w-full text-left p-4 rounded-xl bg-white hover:bg-[#F3E7F0]/60 text-[#1A0826] border border-[#E2D4DF] flex items-center justify-between transition-all">
+            <div>
+              <span class="font-mono-code text-xs text-[#6E4165] block">02 / STRATEGY &amp; ADVISORY</span>
+              <span class="font-bold text-base">Management Consulting &amp; Advisory</span>
+            </div>
+            <span class="font-mono-code text-sm text-[#8F1F78]">→</span>
+          </button>
+
+          <button onclick="selectPractice(2)" id="prac-tab-2" role="tab" aria-selected="false" class="w-full text-left p-4 rounded-xl bg-white hover:bg-[#F3E7F0]/60 text-[#1A0826] border border-[#E2D4DF] flex items-center justify-between transition-all">
+            <div>
+              <span class="font-mono-code text-xs text-[#6E4165] block">03 / IQ SOCIAL</span>
+              <span class="font-bold text-base">Social Impact, NGOs &amp; Corporate CSR</span>
+            </div>
+            <span class="font-mono-code text-sm text-[#8F1F78]">→</span>
+          </button>
+
+          <button onclick="selectPractice(3)" id="prac-tab-3" role="tab" aria-selected="false" class="w-full text-left p-4 rounded-xl bg-white hover:bg-[#F3E7F0]/60 text-[#1A0826] border border-[#E2D4DF] flex items-center justify-between transition-all">
+            <div>
+              <span class="font-mono-code text-xs text-[#6E4165] block">04 / LIFE SCIENCES &amp; CONSUMER</span>
+              <span class="font-bold text-base">Healthcare, FMCG &amp; Industrial</span>
+            </div>
+            <span class="font-mono-code text-sm text-[#8F1F78]">→</span>
+          </button>
+
+          <button onclick="selectPractice(4)" id="prac-tab-4" role="tab" aria-selected="false" class="w-full text-left p-4 rounded-xl bg-white hover:bg-[#F3E7F0]/60 text-[#1A0826] border border-[#E2D4DF] flex items-center justify-between transition-all">
+            <div>
+              <span class="font-mono-code text-xs text-[#6E4165] block">05 / CORPORATE &amp; CREATIVE</span>
+              <span class="font-bold text-base">Legal, Hospitality, Media &amp; Advertising</span>
+            </div>
+            <span class="font-mono-code text-sm text-[#8F1F78]">→</span>
+          </button>
+        </div>
+
+        <!-- Right (7 Cols): Dynamic Practice Dossier Card -->
+        <div class="lg:col-span-7 bg-white rounded-2xl p-8 border border-[#E2D4DF] shadow-sm">
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-5 mb-6 border-b border-[#E2D4DF]">
+            <div>
+              <span id="pd-code" class="font-mono-code text-xs font-bold text-[#8F1F78] uppercase">01 / CORE PRACTICE DOSSIER</span>
+              <h3 id="pd-title" class="font-serif-editorial text-3xl sm:text-4xl text-[#1A0826] mt-1">
+                Banking &amp; Financial Services (BFSI)
+              </h3>
+            </div>
+            <span id="pd-badge" class="font-mono-code text-xs font-bold px-3 py-1 rounded bg-[#E6F7F5] text-[#0F766E]">
+              ✓ 30+ Yrs Sector Track Record
+            </span>
+          </div>
+
+          <p id="pd-overview" class="text-sm sm:text-base text-[#6E4165] leading-relaxed mb-6">
+            Our associates bring first-hand BFSI employment experience and deep relationships with C-suite leaders across India, Dubai, and Singapore. We identify board members, CEOs, MDs, and specialized teams across Investment Banking, Private Equity, Asset &amp; Wealth Management, Consumer Banking, Insurance, and Risk.
+          </p>
+
+          <!-- Sub-Sectors & Sample Roles -->
+          <div class="mb-6">
+            <div class="font-mono-code text-xs uppercase text-[#6E4165] font-semibold mb-2.5">Sub-Sectors &amp; Recent Mandates</div>
+            <div id="pd-tags" class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-md bg-[#F3E7F0] text-[#8F1F78] text-xs font-semibold">Investment Banking</span>
+              <span class="px-3 py-1 rounded-md bg-[#F3E7F0] text-[#8F1F78] text-xs font-semibold">Private Equity (VP Investments)</span>
+              <span class="px-3 py-1 rounded-md bg-[#F3E7F0] text-[#8F1F78] text-xs font-semibold">Asset &amp; Wealth Management</span>
+              <span class="px-3 py-1 rounded-md bg-[#F3E7F0] text-[#8F1F78] text-xs font-semibold">Private Sector Bank CMO</span>
+              <span class="px-3 py-1 rounded-md bg-[#F3E7F0] text-[#8F1F78] text-xs font-semibold">European Bank Head of CSR</span>
+            </div>
+          </div>
+
+          <!-- Key Clients in this Vertical -->
+          <div class="mb-6 p-4 rounded-xl bg-[#FAF8FA] border border-[#E2D4DF]">
+            <div class="font-mono-code text-xs uppercase text-[#6E4165] font-semibold mb-1.5">Representative Clients in This Vertical</div>
+            <div id="pd-clients" class="text-sm font-bold text-[#1A0826]">
+              UBS • Deutsche Bank • J.P. Morgan • YES BANK • SBI Ventures • Baring Private Equity Partners • India Ratings &amp; Research (Fitch Group)
+            </div>
+          </div>
+
+          <!-- Practice Leaders Linked from The Team Page -->
+          <div class="pt-4 border-t border-[#E2D4DF] flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <div class="font-mono-code text-xs uppercase text-[#6E4165]">Practice Leadership</div>
+              <div id="pd-leaders" class="text-sm font-bold text-[#1A0826] mt-0.5">
+                Ashmita Ray Sarkar (Founder &amp; MD) • Mallika Sen Varma • Bijal Joshi
+              </div>
+            </div>
+            <a href="mailto:ashmita@iqgroup.co.in" class="px-4 py-2 rounded-md bg-[#8F1F78] text-white text-xs font-bold hover:bg-[#6E4165] transition-colors">
+              Discuss Mandate →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. DARK SECTION (#1A0826): Alternating Zig-Zag 5-Step Approach (Pitch Deck Slide 4) -->
+  <section id="approach-roadmap" class="py-20 bg-[#1A0826] text-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="font-mono-code text-xs uppercase tracking-widest text-[#1AD1BE] font-semibold block mb-2">
+          ● 02 / OUR END-TO-END APPROACH (SLIDE 4)
+        </span>
+        <h2 class="font-serif-editorial text-4xl sm:text-5xl text-white mb-3">
+          How we support recruitment from briefing to retention.
+        </h2>
+        <p class="text-sm text-[#D1A1C7]">
+          A disciplined 5-stage methodology engineered for accuracy, cultural fit, and rapid turnaround.
+        </p>
+      </div>
+
+      <!-- 5-Step Architectural Roadmap Matching Slide 4 -->
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-5">
+        <div class="rounded-xl bg-white/5 border-l-4 border-l-[#8F1F78] border border-white/10 p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-8 h-8 rounded-full bg-[#8F1F78] text-white font-mono-code text-xs font-bold flex items-center justify-center">01</span>
+              <span class="w-2 h-2 rounded-full bg-[#1AD1BE]" aria-hidden="true"></span>
+            </div>
+            <h3 class="font-bold text-base text-white mb-2">Understand Your Business</h3>
+            <p class="text-xs text-[#D1A1C7] leading-relaxed">
+              Learn about your strategic priorities, recruitment goals, and organizational culture.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 font-mono-code text-xs text-[#1AD1BE]">Phase I • Discovery</div>
+        </div>
+
+        <div class="rounded-xl bg-white/5 border-l-4 border-l-[#8F1F78] border border-white/10 p-5 flex flex-col justify-between md:translate-y-4">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-8 h-8 rounded-full bg-[#8F1F78] text-white font-mono-code text-xs font-bold flex items-center justify-center">02</span>
+              <span class="w-2 h-2 rounded-full bg-[#1AD1BE]" aria-hidden="true"></span>
+            </div>
+            <h3 class="font-bold text-base text-white mb-2">Shortlist Candidates</h3>
+            <p class="text-xs text-[#D1A1C7] leading-relaxed">
+              Source the strongest candidates through our databases, market mapping, and social networks.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 font-mono-code text-xs text-[#1AD1BE]">Phase II • Mapping</div>
+        </div>
+
+        <div class="rounded-xl bg-white/5 border-l-4 border-l-[#8F1F78] border border-white/10 p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-8 h-8 rounded-full bg-[#8F1F78] text-white font-mono-code text-xs font-bold flex items-center justify-center">03</span>
+              <span class="w-2 h-2 rounded-full bg-[#1AD1BE]" aria-hidden="true"></span>
+            </div>
+            <h3 class="font-bold text-base text-white mb-2">Identify Perfect Match</h3>
+            <p class="text-xs text-[#D1A1C7] leading-relaxed">
+              Review shortlisted profiles (incl. CV and deep references) to find the right hire for you.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 font-mono-code text-xs text-[#1AD1BE]">Phase III • Vetting</div>
+        </div>
+
+        <div class="rounded-xl bg-white/5 border-l-4 border-l-[#8F1F78] border border-white/10 p-5 flex flex-col justify-between md:translate-y-4">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-8 h-8 rounded-full bg-[#8F1F78] text-white font-mono-code text-xs font-bold flex items-center justify-center">04</span>
+              <span class="w-2 h-2 rounded-full bg-[#1AD1BE]" aria-hidden="true"></span>
+            </div>
+            <h3 class="font-bold text-base text-white mb-2">Hire</h3>
+            <p class="text-xs text-[#D1A1C7] leading-relaxed">
+              Facilitate a seamless offer, hiring, and onboarding process for everyone involved.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 font-mono-code text-xs text-[#1AD1BE]">Phase IV • Closing</div>
+        </div>
+
+        <div class="rounded-xl bg-white/5 border-l-4 border-l-[#8F1F78] border border-white/10 p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-8 h-8 rounded-full bg-[#8F1F78] text-white font-mono-code text-xs font-bold flex items-center justify-center">05</span>
+              <span class="w-2 h-2 rounded-full bg-[#1AD1BE]" aria-hidden="true"></span>
+            </div>
+            <h3 class="font-bold text-base text-white mb-2">Monitor &amp; Iterate</h3>
+            <p class="text-xs text-[#D1A1C7] leading-relaxed">
+              Check in on the new hire's performance and refine our approach for next time.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 font-mono-code text-xs text-[#1AD1BE]">Phase V • Retention</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. LIGHT SECTION (#FAF8FA): Categorized Key Client Wall (Slide 5) & Testimonials (Slide 6) -->
+  <section id="client-wall" class="py-20 bg-[#FAF8FA] text-[#1A0826]">
+    <div class="max-w-7xl mx-auto px-6 space-y-16">
+      <!-- Slide 5 Categorized Client Matrix -->
+      <div>
+        <div class="flex flex-wrap items-end justify-between mb-8 gap-4">
+          <div>
+            <span class="font-mono-code text-xs uppercase tracking-widest text-[#8F1F78] font-semibold block mb-2">
+              03 / OUR KEY CLIENTS (SLIDE 5)
+            </span>
+            <h2 class="font-serif-editorial text-4xl sm:text-5xl text-[#1A0826]">
+              Long-term partnerships across industries.
+            </h2>
+          </div>
+          <span class="font-mono-code text-xs px-3 py-1 rounded bg-[#F3E7F0] text-[#6E4165]">Representative Roster</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="bg-white rounded-xl p-6 border border-[#E2D4DF] shadow-sm">
+            <div class="font-mono-code text-xs font-bold text-[#8F1F78] uppercase mb-3 pb-2 border-b border-[#E2D4DF]">BFSI</div>
+            <ul class="space-y-2 text-sm font-semibold text-[#1A0826]">
+              <li>UBS</li>
+              <li>Deutsche Bank</li>
+              <li>J.P. Morgan</li>
+              <li>YES BANK</li>
+              <li>SBI Ventures</li>
+              <li>Baring Private Equity</li>
+              <li>India Ratings &amp; Research</li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 border border-[#E2D4DF] shadow-sm">
+            <div class="font-mono-code text-xs font-bold text-[#8F1F78] uppercase mb-3 pb-2 border-b border-[#E2D4DF]">Consulting &amp; Advisory</div>
+            <ul class="space-y-2 text-sm font-semibold text-[#1A0826]">
+              <li>Boston Consulting Group (BCG)</li>
+              <li>PwC</li>
+              <li>Dalberg</li>
+              <li>Chain IQ</li>
+            </ul>
+            <div class="font-mono-code text-xs font-bold text-[#8F1F78] uppercase mt-5 mb-2 pb-1 border-b border-[#E2D4DF]">Healthcare</div>
+            <ul class="space-y-1.5 text-sm font-semibold text-[#1A0826]">
+              <li>Johnson &amp; Johnson (J&amp;J)</li>
+              <li>GSK &amp; Bayer</li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 border border-[#E2D4DF] shadow-sm">
+            <div class="font-mono-code text-xs font-bold text-[#8F1F78] uppercase mb-3 pb-2 border-b border-[#E2D4DF]">FMCG &amp; Industrial</div>
+            <ul class="space-y-2 text-sm font-semibold text-[#1A0826]">
+              <li>Hindustan Unilever Limited</li>
+              <li>Asian Paints</li>
+              <li>Welspun</li>
+              <li>Rossari Biotech</li>
+              <li>MTAR Technologies</li>
+              <li>Tata Housing</li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 border border-[#E2D4DF] shadow-sm">
+            <div class="font-mono-code text-xs font-bold text-[#8F1F78] uppercase mb-3 pb-2 border-b border-[#E2D4DF]">IQ Social &amp; Foundations</div>
+            <ul class="space-y-2 text-sm font-semibold text-[#1A0826]">
+              <li>Oxfam India</li>
+              <li>NASSCOM Foundation</li>
+              <li>Kotak Education Foundation</li>
+              <li>TechnoServe</li>
+              <li>HelpAge India</li>
+              <li>Concern India Foundation</li>
+              <li>Ambuja Cement Foundation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 6 Testimonials -->
+      <div id="successes" class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+        <div class="bg-[#F3E7F0]/70 rounded-2xl p-8 border-l-4 border-[#8F1F78]">
+          <p class="font-serif-editorial text-2xl text-[#1A0826] leading-snug mb-4">
+            “IQ may be a small firm but more than makes up with its talent, connections, and never-say-die attitude. IQ takes pride in accepting difficult and complex placements and has delivered where its behemoth competitors have not.”
+          </p>
+          <div class="text-xs font-bold text-[#8F1F78] uppercase tracking-wider">
+            — Tilak Mukherji, Chairman, Sigma Research &amp; Consulting
+          </div>
+        </div>
+
+        <div class="bg-[#F3E7F0]/70 rounded-2xl p-8 border-l-4 border-[#8F1F78]">
+          <p class="font-serif-editorial text-2xl text-[#1A0826] leading-snug mb-4">
+            “Over a decade, IQ helped me build teams of strong professionals at UBS, Yes Bank, and IDFC. I have been impressed by their speed, professionalism, responsiveness, and cost-effective service.”
+          </p>
+          <div class="text-xs font-bold text-[#8F1F78] uppercase tracking-wider">
+            — Ajay Mahajan, Former MD, UBS
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (#1A0826) -->
+  <footer id="contact" class="bg-[#1A0826] text-white py-14 border-t border-[#D1A1C7]/20">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+      <div>
+        <div class="font-serif-editorial text-3xl text-white">IQ Group — Mumbai Headquarters</div>
+        <p class="text-xs text-[#D1A1C7] mt-1">
+          806, Sunshine Towers, Senapati Bapat Marg, Dadar (West), Mumbai 400 013 • +91 22 6588 5932 • +91 98200 61329
+        </p>
+      </div>
+      <a href="mailto:ashmita@iqgroup.co.in" class="px-5 py-3 rounded bg-white text-[#1A0826] font-bold text-xs">
+        Email ashmita@iqgroup.co.in ›
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    const practices = [
+      {
+        code: "01 / CORE PRACTICE DOSSIER",
+        title: "Banking & Financial Services (BFSI)",
+        badge: "✓ 30+ Yrs Sector Track Record",
+        overview: "Our associates bring first-hand BFSI employment experience and deep relationships with C-suite leaders across India, Dubai, and Singapore. We identify board members, CEOs, MDs, and specialized teams across Investment Banking, Private Equity, Asset & Wealth Management, Consumer Banking, Insurance, and Risk.",
+        tags: ["Investment Banking", "Private Equity (VP Investments)", "Asset & Wealth Management", "Private Sector Bank CMO", "European Bank Head of CSR"],
+        clients: "UBS • Deutsche Bank • J.P. Morgan • YES BANK • SBI Ventures • Baring Private Equity Partners • India Ratings & Research (Fitch Group)",
+        leaders: "Ashmita Ray Sarkar (Founder & MD) • Mallika Sen Varma • Bijal Joshi"
+      },
+      {
+        code: "02 / STRATEGY & ADVISORY DOSSIER",
+        title: "Management Consulting & Advisory",
+        badge: "✓ Partner & Principal Mandates",
+        overview: "We partner with premier global strategy consultancies, Big Four advisory practices, and global development consultancies to recruit Partners, Principals, Practice Heads, and specialized functional experts.",
+        tags: ["Strategy Consulting", "Transformation Advisory", "Impact & Policy Consulting", "Procurement Advisory"],
+        clients: "Boston Consulting Group (BCG) • PwC • Dalberg • Chain IQ",
+        leaders: "Ashmita Ray Sarkar (Founder & MD) • Senior Advisory Practice Team"
+      },
+      {
+        code: "03 / IQ SOCIAL DOSSIER",
+        title: "Social Impact, NGOs & Corporate CSR",
+        badge: "✓ 20+ Yrs Nonprofit Experience",
+        overview: "IQ Social recruits leaders who combine corporate management rigor with grassroots empathy. Our team members have direct employment backgrounds in nonprofit organizations, enabling us to match mission-driven leaders with foundations and CSR programs.",
+        tags: ["Foundation CEOs", "Country Directors", "Corporate CSR Heads", "Program & Policy Leaders", "Grant & Impact Directors"],
+        clients: "Oxfam India • NASSCOM Foundation • Kotak Education Foundation • TechnoServe • HelpAge India • Concern India • Ambuja Cement Foundation",
+        leaders: "Annu Paul (Director) • Shirin Gulrajani Talwar (Director) • Christine Gomes (Managing Associate, IQ Social)"
+      },
+      {
+        code: "04 / LIFE SCIENCES & INDUSTRIAL DOSSIER",
+        title: "Healthcare, FMCG & Precision Engineering",
+        badge: "✓ CEO & CFO Placements",
+        overview: "From specialty chemicals CEOs and precision engineering CFOs to commercial leaders in multinational pharmaceuticals and consumer goods, we execute high-impact leadership searches across India's industrial and consumer growth engines.",
+        tags: ["Specialty Chemicals CEO", "Precision Engineering CFO", "Pharmaceutical Leadership", "FMCG Marketing & Sales", "Real Estate & Infrastructure"],
+        clients: "Johnson & Johnson (J&J) • GSK • Bayer • Hindustan Unilever (HUL) • Asian Paints • Welspun • Rossari • MTAR • Tata Housing",
+        leaders: "Ashmita Ray Sarkar • Tanushree Kundu • Dipannita Das"
+      },
+      {
+        code: "05 / CORPORATE & CREATIVE DOSSIER",
+        title: "Legal, Hospitality, Media & Advertising",
+        badge: "✓ Partner & In-House Counsel",
+        overview: "We place Law Firm Partners, Practice Groups, and In-House General Counsel alongside senior leadership in Broadcast/Digital Media, Advertising Agencies (Account Planning & Digital Strategy), and Luxury Hospitality.",
+        tags: ["Law Firm Partners", "In-House General Counsel", "Ad Agency Account Planning", "Broadcast & Digital Media", "Luxury Hospitality Operations"],
+        clients: "Leading Domestic & Cross-Border Law Firms • Global Media Networks • FMCG Advertising Agencies • Luxury Hotel Groups",
+        leaders: "Shirin Gulrajani Talwar (Director, Legal) • Annu Paul (Director, Hospitality & Media)"
+      }
+    ];
+
+    function selectPractice(idx) {
+      const p = practices[idx];
+      [0, 1, 2, 3, 4].forEach(i => {
+        const btn = document.getElementById('prac-tab-' + i);
+        if (i === idx) {
+          btn.className = "w-full text-left p-4 rounded-xl bg-[#8F1F78] text-white shadow-sm flex items-center justify-between transition-all";
+          btn.setAttribute('aria-selected', 'true');
+        } else {
+          btn.className = "w-full text-left p-4 rounded-xl bg-white hover:bg-[#F3E7F0]/60 text-[#1A0826] border border-[#E2D4DF] flex items-center justify-between transition-all";
+          btn.setAttribute('aria-selected', 'false');
+        }
+      });
+      document.getElementById('pd-code').textContent = p.code;
+      document.getElementById('pd-title').textContent = p.title;
+      document.getElementById('pd-badge').textContent = p.badge;
+      document.getElementById('pd-overview').textContent = p.overview;
+      document.getElementById('pd-tags').innerHTML = p.tags.map(t =>
+        `<span class="px-3 py-1 rounded-md bg-[#F3E7F0] text-[#8F1F78] text-xs font-semibold">${t}</span>`
+      ).join('');
+      document.getElementById('pd-clients').textContent = p.clients;
+      document.getElementById('pd-leaders').textContent = p.leaders;
+    }
+
+    function toggleV2Marquee() {
+      const m = document.getElementById('v2-marquee');
+      const b = document.getElementById('v2-marquee-btn');
+      m.classList.toggle('paused');
+      b.textContent = m.classList.contains('paused') ? 'Play ▶' : 'Pause ❚❚';
+    }
+  </script>
+</body>
+</html>

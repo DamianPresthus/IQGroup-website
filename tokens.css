@@ -1,0 +1,174 @@
+/* IQ Group — design foundations extracted from IQ Group Website v2.dc.html
+   STATUS: working extraction, NOT an approved design system.
+   The website does NOT consume this file; all styles in the source are inline literals.
+   Values are copied as implemented. Duplicates / near-duplicates are flagged "DUP" or "NOTE". */
+
+:root {
+  /* ============ 1. BASE VALUES ============ */
+
+  /* Plum / obsidian family */
+  --base-obsidian-900: #12051A;   /* hero bottom, mandates, contact, photo-header base */
+  --base-obsidian-800: #1A0826;   /* hero mid stop, statement section */
+  --base-aubergine-950: #260B24;  /* partner cards. NOTE: not in original palette brief; near-DUP of 2B0F2A */
+  --base-aubergine-900: #2B0F2A;  /* hero inner stop, headers, card gradient bases, ink on light */
+  --base-plum-500: #8F1F78;       /* IQ Royal Plum */
+  --base-lilac-300: #D1A1C7;      /* Dusty Lilac (on dark) */
+  --base-lilac-100: #E9D9E5;      /* body text on dark. NOTE: not in brief palette */
+  --base-lilac-050: #F3E7F0;      /* Soft Lilac surface */
+  --base-lilac-040: #F3EFF5;      /* method panel surface. NOTE: near-DUP of 3E7F0, not in brief */
+  --base-alabaster: #FAF8FA;      /* Warm Alabaster */
+  --base-white: #FFFFFF;
+  --base-mulberry-600: #6E4165;   /* Muted Mulberry (on light) */
+  --base-mulberry-800: #4A2B44;   /* body text on light. NOTE: not in brief palette */
+
+  /* Aqua-Mint accent */
+  --base-mint-400: #1AD1BE;       /* on dark */
+  --base-mint-700: #0F766E;       /* on light */
+  /* #85DDD2 (Ice Mint) was requested but is NOT used in the current implementation */
+
+  /* Alpha variants as implemented (rgb of base + alpha) */
+  --alpha-lilac-on-dark-line-sm: rgba(209,161,199,.14); /* logo bar top border */
+  --alpha-lilac-on-dark-line:    rgba(209,161,199,.16); /* card / contact dividers; also .18 footer rule */
+  --alpha-lilac-on-dark-nav:     rgba(209,161,199,.22); /* nav track border */
+  --alpha-lilac-on-dark-hover:   rgba(209,161,199,.45); /* mandate card hover border */
+  --alpha-lilac-on-dark-strong:  rgba(209,161,199,.5);  /* outline CTA border, nav active border, rule */
+  --alpha-mulberry-line:         rgba(110,65,101,.2);   /* practice row divider */
+  --alpha-mulberry-line-2:       rgba(110,65,101,.22);  /* pillar divider */
+  --alpha-mulberry-track:        rgba(110,65,101,.25);  /* light pill track border */
+  --alpha-mulberry-line-3:       rgba(110,65,101,.3);   /* method step rule, quote rule, chip border */
+  --alpha-plum-active-border:    rgba(143,31,120,.45);  /* light pill active border */
+  --alpha-obsidian-glass:        rgba(18,5,26,.35);     /* nav track fill */
+  --alpha-obsidian-bar:          rgba(18,5,26,.55);     /* logo bar fill */
+  --alpha-obsidian-panel:        rgba(18,5,26,.5);      /* contact panel */
+  --alpha-aubergine-card:        rgba(43,15,42,.45);    /* mandate small cards */
+  --alpha-logo-mono:             rgba(233,217,229,.72); /* client wordmarks */
+
+  /* ============ 2. SEMANTIC ROLES (as used) ============ */
+  --surface-dark-hero: radial-gradient(90% 70% at 80% 40%, var(--base-aubergine-900) 0%, var(--base-obsidian-800) 45%, var(--base-obsidian-900) 100%);
+  --surface-dark-statement: var(--base-obsidian-800);
+  --surface-dark-section: var(--base-obsidian-900);
+  --surface-dark-card: var(--base-aubergine-950);
+  --surface-light-page: var(--base-alabaster);
+  --surface-light-tint: var(--base-lilac-050);     /* testimonials section, active light pill, row hover */
+  --surface-light-panel: var(--base-lilac-040);    /* method panel */
+  --surface-light-raised: var(--base-white);       /* light pill track */
+
+  --text-on-dark-primary: var(--base-alabaster);
+  --text-on-dark-body: var(--base-lilac-100);
+  --text-on-dark-muted: var(--base-lilac-300);     /* eyebrows, links, captions */
+  --text-on-light-heading: var(--base-obsidian-900);
+  --text-on-light-ink: var(--base-aubergine-900);  /* names, chips, active pill text */
+  --text-on-light-body: var(--base-mulberry-800);
+  --text-on-light-muted: var(--base-mulberry-600); /* eyebrows, tags, captions */
+  --text-accent-on-dark: var(--base-lilac-300);    /* "leadership.", "conversation.", em */
+  --text-accent-on-light: var(--base-plum-500);    /* step numerals, quote marks */
+
+  --brand-primary: var(--base-plum-500);
+  --accent-mint-on-dark: var(--base-mint-400);
+  --accent-mint-on-light: var(--base-mint-700);
+
+  --btn-primary-bg: var(--base-alabaster);
+  --btn-primary-bg-hover: var(--base-lilac-050);
+  --btn-primary-text: var(--base-obsidian-900);
+  --btn-outline-border: var(--alpha-lilac-on-dark-strong);
+  --btn-outline-border-hover: var(--base-alabaster);
+
+  --pill-dark-active-bg: rgba(250,248,250,.08);
+  --pill-dark-active-border: var(--alpha-lilac-on-dark-strong);
+  --pill-light-active-bg: var(--base-lilac-050);
+  --pill-light-active-border: var(--alpha-plum-active-border);
+
+  --link: var(--base-lilac-300);        /* global a */
+  --link-hover: var(--base-alabaster);  /* global a:hover */
+  --selection-bg: var(--base-plum-500);
+  --selection-text: var(--base-alabaster);
+
+  /* ============ 3. GRADIENTS ============ */
+  --gradient-accent-bar: linear-gradient(180deg, #1AD1BE 0%, #D1A1C7 22%, #8F1F78 100%); /* 2px vertical bars (hero, mandates, contact). mint sits only at the top end */
+  --gradient-hover-row: linear-gradient(90deg, rgba(243,231,240,0), #F3E7F0 12%, #F3E7F0 88%, rgba(243,231,240,0));
+  /* Grain headers (each is a distinct hand-set composition; listed in COMPONENTS.md) */
+  --grad-a: radial-gradient(110% 90% at 15% 110%, #8F1F78 0%, rgba(143,31,120,0) 62%), radial-gradient(70% 70% at 88% 8%, #D1A1C7 0%, rgba(209,161,199,0) 58%), #12051A; /* BFSI row */
+  --grad-b: radial-gradient(90% 120% at 100% 50%, #8F1F78 0%, rgba(143,31,120,0) 60%), linear-gradient(120deg, #12051A 0%, #2B0F2A 45%, #D1A1C7 130%); /* Consulting row */
+  --grad-c: radial-gradient(80% 100% at 50% 120%, #D1A1C7 0%, rgba(209,161,199,0) 55%), radial-gradient(100% 90% at 50% 60%, #8F1F78 0%, rgba(143,31,120,0) 70%), #12051A; /* Industry row */
+  --grad-d: radial-gradient(90% 90% at 0% 0%, #D1A1C7 0%, rgba(209,161,199,0) 55%), radial-gradient(90% 110% at 100% 100%, #8F1F78 0%, rgba(143,31,120,0) 65%), #2B0F2A; /* IQ Social row */
+  --grad-feature: radial-gradient(90% 70% at 85% 100%, #8F1F78 0%, rgba(143,31,120,0) 65%), radial-gradient(60% 50% at 10% 0%, rgba(209,161,199,.55) 0%, rgba(209,161,199,0) 60%), #2B0F2A; /* first mandate card */
+  --grad-partner: radial-gradient(90% 100% at 100% 0%, #8F1F78 0%, rgba(143,31,120,0) 62%), radial-gradient(60% 70% at 0% 100%, #D1A1C7 0%, rgba(209,161,199,0) 55%), #12051A; /* partner card header */
+  --grad-contact: radial-gradient(60% 80% at 0% 100%, #8F1F78 0%, rgba(143,31,120,0) 60%), radial-gradient(50% 60% at 70% 0%, #2B0F2A 0%, rgba(43,15,42,0) 70%), #12051A;
+
+  /* ============ 4. TYPOGRAPHY ============ */
+  --font-serif: 'EB Garamond', serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;  /* NOTE: some inline rules use the shorter stack without system-ui */
+  --fw-light: 300; --fw-regular: 400; --fw-medium: 500; --fw-semibold: 600;
+
+  --fs-hero: clamp(40px, min(7.4vw, 11vh), 108px);   /* lh .98, ls -0.02em */
+  --fs-statement: clamp(32px, 4.6vw, 68px);          /* lh 1.12, ls -0.025em, fw 300 */
+  --fs-h2: clamp(40px, 4.6vw, 64px);                 /* lh 1,   ls -0.015em */
+  --fs-h2-pillars: clamp(36px, 4vw, 56px);           /* lh 1.05 — DUP-ish of --fs-h2, only "Boutique by design." */
+  --fs-h2-contact: clamp(48px, 6vw, 88px);           /* lh .98, ls -0.02em */
+  --fs-h3-pillar: clamp(28px, 2.8vw, 38px);          /* ls -0.02em */
+  --fs-h3-row: clamp(24px, 2.6vw, 34px);             /* lh 1.12, ls -0.01em */
+  --fs-mandate-feature: clamp(36px, 4vw, 56px);      /* lh 1 */
+  --fs-mandate-card: clamp(24px, 2.2vw, 30px);       /* lh 1.1 */
+  --fs-quote: clamp(24px, 2.4vw, 32px);              /* lh 1.3 */
+  --fs-step-num: 56px;  --fs-step-title: 24px;
+  --fs-partner-initials: 64px;  --fs-partner-name: 24px;
+  --fs-quote-mark: 88px;
+  --fs-body-lg: 16px;  --fs-body: 15px;  --fs-body-sm: 14px;
+  --fs-hero-sub: clamp(15px, 1.3vw, 18px);
+  --fs-btn-lg: 14px;  --fs-btn: 13px;
+  --fs-eyebrow: 12px;   --ls-eyebrow: 0.22em;   /* uppercase */
+  --fs-label: 11px;     --ls-label: 0.2em;      /* uppercase; mandate tags use 0.18em */
+  --lh-body: 1.6;       /* also 1.55, 1.65, 1.7 in places */
+
+  /* ============ 5. SPACING / LAYOUT ============ */
+  --container-max: 1180px;
+  --gutter: clamp(20px, 4vw, 56px);                    /* page side padding */
+  --section-pad-y: clamp(90px, 11vw, 160px);
+  --section-pad-y-statement: clamp(100px, 16vw, 220px);
+  --section-head-gap: clamp(40px, 5vw, 64px);
+  --grid-gap-cards: 16px;
+  --grid-gap-method: 44px 28px;
+  --gap-testimonials: clamp(40px, 5vw, 80px);
+  --gap-pillars: clamp(40px, 6vw, 96px);
+  --gap-contact: clamp(48px, 6vw, 96px);
+  --space-2: 2px; --space-4: 4px; --space-6: 6px; --space-8: 8px; --space-10: 10px; --space-12: 12px;
+  --space-16: 16px; --space-20: 20px; --space-24: 24px; --space-28: 28px; --space-32: 32px; --space-40: 40px; --space-56: 56px;
+  /* spacing is hand-set px, not on a strict scale (22, 26, 30, 44 also occur) */
+
+  /* Breakpoints: no CSS media queries exist. Responsiveness = clamp(), auto-fit grids, flex-wrap, plus two JS thresholds */
+  --bp-nav-collapse: 900px;   /* JS: window.innerWidth > 900 shows the pill nav; below it nav is hidden (no replacement menu) */
+  --bp-hero-canvas-narrow: 800px; /* JS: canvas width < 800 gets full-width scrim instead of left fade */
+  --grid-min-pillars: 340px; --grid-min-practice-text: 300px; --grid-min-method: 180px;
+  --grid-min-mandates: 300px; --grid-min-quotes: 380px; --grid-min-partners: 200px; --grid-min-contact: 380px;
+
+  /* ============ 6. RADII ============ */
+  --radius-pill: 999px;
+  --radius-xl: 32px;   /* method panel */
+  --radius-lg: 28px;   /* feature mandate card, contact panel */
+  --radius-card-partner: 26px;
+  --radius-card: 24px; /* small mandate cards */
+  --radius-md: 20px;   /* partner card header */
+  --radius-sm: 16px;   /* practice thumb */
+  --radius-bar: 2px;
+
+  /* ============ 7. SHADOWS / BLUR ============ */
+  --shadow-none: none;  /* the implementation uses NO box-shadows */
+  --blur-nav: blur(10px);
+  --blur-logo-bar: blur(12px);
+  --blur-contact-panel: blur(12px);
+
+  /* ============ 8. MOTION ============ */
+  --ease-default: ease;
+  --dur-pill: .25s;       /* nav + toggle pills, all-property transition */
+  --dur-surface: .3s;     /* practice row bg, mandate card border */
+  --dur-fade: .35s;       /* partner card opacity on filter */
+  --scroll-behavior: smooth;           /* JS scrollTo for in-page nav */
+  /* Hero canvas (JS, requestAnimationFrame): 3 ribbon groups, 34/26/18 hairlines at 0.6 dpr px;
+     ribbon speeds sp = 0.00004 / 0.00003 / 0.000025; mint glint alpha .30, drift speed 0.00004;
+     toggled by the 'motion' prop. No prefers-reduced-motion handling. */
+
+  /* ============ 9. GRAIN (SVG feTurbulence, repeated inline) ============ */
+  --grain-hero: "baseFrequency 1.05, 2 octaves, 220px tile, opacity .22, mix-blend overlay";
+  --grain-header: "baseFrequency 2.2, 3 octaves, desaturated, 140px tile, opacity .6 (.4 on contact), mix-blend soft-light";
+  --grain-stochastic: "two layers, 180px tile, baseFrequency .9, 2 octaves: white specks (alpha 3.2/-1.75, seed 3) opacity .55 overlay + black specks (alpha 3.2/-1.6, seed 9) opacity .45 normal. v2: feature mandate card + partner headers";
+}

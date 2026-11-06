@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Golden Angle Accent Comparison | IQ Group (#8F1F78)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --iq-obsidian: #12051A;
+      --iq-plum: #8F1F78;
+      --iq-support-dark: #D1A1C7;
+      --iq-support-light: #6E4165;
+      --iq-alabaster: #FAF8FA;
+      --font-serif: 'Literata', Georgia, serif;
+      --font-sans: 'Poppins', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      background-color: #0D0313;
+      color: #FFFFFF;
+      padding: 2.5rem clamp(1.25rem, 4vw, 3.5rem) 5rem;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page-header {
+      max-width: 88rem;
+      margin: 0 auto 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid rgba(209, 161, 199, 0.16);
+    }
+
+    .page-header h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.85rem, 3vw, 2.5rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+
+    .page-header p {
+      color: var(--iq-support-dark);
+      font-size: 0.95rem;
+      max-width: 44rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 0.65rem 1.25rem;
+      border-radius: 999px;
+      text-decoration: none;
+    }
+
+    /* 3-Column Comparison Grid */
+    .comparison-grid {
+      max-width: 88rem;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .option-col {
+      background: #160720;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 22px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .option-col.is-recommended {
+      border-color: rgba(26, 209, 190, 0.55);
+      box-shadow: 0 24px 60px rgba(26, 209, 190, 0.08);
+    }
+
+    /* Top Math & Color Wheel Header */
+    .option-meta {
+      padding: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.85rem;
+    }
+
+    .angle-pill {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.28rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .rec-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+    }
+
+    .option-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 0.35rem;
+    }
+
+    .option-formula {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--iq-support-dark);
+      margin-bottom: 1rem;
+    }
+
+    /* Swatch Strip */
+    .swatch-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+    }
+
+    .swatch-box {
+      border-radius: 10px;
+      padding: 0.65rem 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 62px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .swatch-box span.role {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      opacity: 0.82;
+    }
+
+    /* Mini Live Website Preview inside each column */
+    .mini-preview-dark {
+      position: relative;
+      padding: 1.75rem 1.5rem;
+      background: var(--iq-obsidian);
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mini-shader-band {
+      height: 92px;
+      border-radius: 12px;
+      margin-bottom: 1.35rem;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .mini-shader-band canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .mini-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--iq-support-dark);
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .mini-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+
+    .mini-hero-h {
+      font-family: var(--font-serif);
+      font-size: 1.65rem;
+      line-height: 1.12;
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 0.85rem;
+    }
+
+    .mini-hero-h::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.1em;
+      bottom: 0.1em;
+      width: 2.5px;
+    }
+
+    .mini-lead {
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.76);
+      margin-bottom: 1.15rem;
+    }
+
+    /* Mini Light Section Preview */
+    .mini-preview-light {
+      background: var(--iq-alabaster);
+      color: #160F1C;
+      padding: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mini-light-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(22, 15, 28, 0.09);
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+    }
+
+    .mini-light-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.35rem;
+    }
+
+    .mini-light-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .mini-light-tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 500;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+    }
+
+    /* Verdict Footer */
+    .option-verdict {
+      padding: 1.35rem 1.5rem;
+      font-size: 0.83rem;
+      color: rgba(255, 255, 255, 0.82);
+      flex: 1;
+    }
+
+    .option-verdict strong {
+      color: #FFFFFF;
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 0.88rem;
+    }
+
+    @media (max-width: 1024px) {
+      .comparison-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="page-header">
+    <div>
+      <h1>Golden Angle (`137.5°`) Comparison from Royal Plum (`#8F1F78`)</h1>
+      <p>
+        Comparing rotating backwards (`-137.5°` → Aqua-Mint), rotating forwards in HSL (`+137.5°` → Chartreuse Lime), and rotating into Warm Champagne Gold (`45°`).
+      </p>
+    </div>
+    <a href="index.html" class="back-link">← Back to Main Prototype</a>
+  </header>
+
+  <div class="comparison-grid">
+
+    <!-- ======================================================================
+         OPTION 1: BACKWARD -137.5° (174.8° AQUA-MINT — CURRENT LOCKED CHOICE)
+         ====================================================================== -->
+    <article class="option-col is-recommended">
+      <div class="option-meta">
+        <div class="badge-row">
+          <span class="angle-pill">312.3° − 137.5° = 174.8°</span>
+          <span class="rec-tag" style="background: rgba(26, 209, 190, 0.16); color: #1AD1BE;">Current Choice</span>
+        </div>
+        <h2 class="option-title">1. Backward `-137.5°` (Aqua-Mint)</h2>
+        <div class="option-formula">Equivalent to +222.5° (Major Golden Angle)</div>
+
+        <div class="swatch-strip">
+          <div class="swatch-box" style="background:#12051A; color:#FFF;">
+            <span class="role">Obsidian</span><span>#12051A</span>
+          </div>
+          <div class="swatch-box" style="background:#8F1F78; color:#FFF;">
+            <span class="role">Royal Plum</span><span>#8F1F78</span>
+          </div>
+          <div class="swatch-box" style="background:#D1A1C7; color:#12051A;">
+            <span class="role">Support</span><span>#D1A1C7</span>
+          </div>
+          <div class="swatch-box" style="background:#1AD1BE; color:#12051A;">
+            <span class="role">Accent 5%</span><span>#1AD1BE</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dark Hero Preview -->
+      <div class="mini-preview-dark">
+        <div class="mini-shader-band">
+          <canvas class="comp-shader" data-accent="mint"></canvas>
+        </div>
+        <div class="mini-eyebrow">
+          <span class="mini-dot" style="background:#1AD1BE;"></span>
+          <span>Executive Search · 30+ Years</span>
+        </div>
+        <style>.h-mint::before { background: linear-gradient(180deg, #1AD1BE 0%, #8F1F78 60%, #D1A1C7 100%); }</style>
+        <h3 class="mini-hero-h h-mint">
+          Where boards find their next <span style="color:#1AD1BE; font-style:italic;">leadership.</span>
+        </h3>
+        <p class="mini-lead">
+          Cool, oceanic, institutional contrast. balances warm magenta-plum without looking playful or toxic.
+        </p>
+      </div>
+
+      <!-- Light Card Preview -->
+      <div class="mini-preview-light">
+        <div class="mini-light-card">
+          <div class="mini-light-top">
+            <span class="mini-light-title">Banking, PE &amp; Financial Services</span>
+            <span class="mini-light-tag" style="background:#E6F7F5; color:#0F766E;">#0F766E (5.2:1)</span>
+          </div>
+          <p style="font-size:0.78rem; color:#62566B;">UBS · J.P. Morgan · Deutsche Bank · Baring PE</p>
+        </div>
+      </div>
+
+      <div class="option-verdict">
+        <strong>Why it works best for IQ Group:</strong>
+        Rotating `-137.5°` lands in cool teal/aqua-mint (`174.8°`). Because Royal Plum (`312.3°`) is warm-magenta, a cool oceanic cyan-mint provides crisp temperature separation and high institutional trust (10.6:1 contrast on Obsidian).
+      </div>
+    </article>
+
+    <!-- ======================================================================
+         OPTION 2: FORWARD +137.5° IN HSL (89.8° CHARTREUSE / LIME GREEN)
+         ====================================================================== -->
+    <article class="option-col">
+      <div class="option-meta">
+        <div class="badge-row">
+          <span class="angle-pill">(312.3° + 137.5°) % 360 = 89.8°</span>
+          <span class="rec-tag" style="background: rgba(117, 208, 25, 0.16); color: #84E024;">Forward HSL</span>
+        </div>
+        <h2 class="option-title">2. Forward `+137.5°` (Chartreuse Lime)</h2>
+        <div class="option-formula">Strict clockwise +137.5° on the RGB/HSL wheel</div>
+
+        <div class="swatch-strip">
+          <div class="swatch-box" style="background:#12051A; color:#FFF;">
+            <span class="role">Obsidian</span><span>#12051A</span>
+          </div>
+          <div class="swatch-box" style="background:#8F1F78; color:#FFF;">
+            <span class="role">Royal Plum</span><span>#8F1F78</span>
+          </div>
+          <div class="swatch-box" style="background:#D1A1C7; color:#12051A;">
+            <span class="role">Support</span><span>#D1A1C7</span>
+          </div>
+          <div class="swatch-box" style="background:#75D019; color:#12051A;">
+            <span class="role">Accent 5%</span><span>#75D019</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dark Hero Preview -->
+      <div class="mini-preview-dark">
+        <div class="mini-shader-band">
+          <canvas class="comp-shader" data-accent="lime"></canvas>
+        </div>
+        <div class="mini-eyebrow">
+          <span class="mini-dot" style="background:#75D019;"></span>
+          <span>Executive Search · 30+ Years</span>
+        </div>
+        <style>.h-lime::before { background: linear-gradient(180deg, #75D019 0%, #8F1F78 60%, #D1A1C7 100%); }</style>
+        <h3 class="mini-hero-h h-lime">
+          Where boards find their next <span style="color:#75D019; font-style:italic;">leadership.</span>
+        </h3>
+        <p class="mini-lead">
+          High-visibility electric lime/chartreuse. Energetic and bold for fintech/crypto, but risks a "purple &amp; acid-green" clash.
+        </p>
+      </div>
+
+      <!-- Light Card Preview -->
+      <div class="mini-preview-light">
+        <div class="mini-light-card">
+          <div class="mini-light-top">
+            <span class="mini-light-title">Banking, PE &amp; Financial Services</span>
+            <span class="mini-light-tag" style="background:#EEF8E3; color:#42750F;">#42750F (5.4:1)</span>
+          </div>
+          <p style="font-size:0.78rem; color:#62566B;">UBS · J.P. Morgan · Deutsche Bank · Baring PE</p>
+        </div>
+      </div>
+
+      <div class="option-verdict">
+        <strong>Why we avoided rotating forward (`+137.5°`):</strong>
+        In HSL, `312.3° + 137.5° = 89.8°`, which is yellow-green / chartreuse (`#75D019`). Purple + acid lime-green triggers strong comic-book / cyber-gaming associations rather than C-suite board advisory.
+      </div>
+    </article>
+
+    <!-- ======================================================================
+         OPTION 3: WARM CHAMPAGNE GOLD (45° — TRADITIONAL LUXURY COMPLEMENT)
+         ====================================================================== -->
+    <article class="option-col">
+      <div class="option-meta">
+        <div class="badge-row">
+          <span class="angle-pill">Hue 44° (Warm Amber-Gold)</span>
+          <span class="rec-tag" style="background: rgba(240, 180, 41, 0.16); color: #F0B429;">Warm Alternative</span>
+        </div>
+        <h2 class="option-title">3. Warm Champagne Gold (`44°`)</h2>
+        <div class="option-formula">Classic heritage banking &amp; private equity pairing</div>
+
+        <div class="swatch-strip">
+          <div class="swatch-box" style="background:#12051A; color:#FFF;">
+            <span class="role">Obsidian</span><span>#12051A</span>
+          </div>
+          <div class="swatch-box" style="background:#8F1F78; color:#FFF;">
+            <span class="role">Royal Plum</span><span>#8F1F78</span>
+          </div>
+          <div class="swatch-box" style="background:#D1A1C7; color:#12051A;">
+            <span class="role">Support</span><span>#D1A1C7</span>
+          </div>
+          <div class="swatch-box" style="background:#E5A93B; color:#12051A;">
+            <span class="role">Accent 5%</span><span>#E5A93B</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dark Hero Preview -->
+      <div class="mini-preview-dark">
+        <div class="mini-shader-band">
+          <canvas class="comp-shader" data-accent="gold"></canvas>
+        </div>
+        <div class="mini-eyebrow">
+          <span class="mini-dot" style="background:#E5A93B;"></span>
+          <span>Executive Search · 30+ Years</span>
+        </div>
+        <style>.h-gold::before { background: linear-gradient(180deg, #E5A93B 0%, #8F1F78 60%, #D1A1C7 100%); }</style>
+        <h3 class="mini-hero-h h-gold">
+          Where boards find their next <span style="color:#E5A93B; font-style:italic;">leadership.</span>
+        </h3>
+        <p class="mini-lead">
+          Warm sovereign gold &amp; royal plum. Classic private-wealth and heritage boardroom feel, though less modern/fresh than Aqua-Mint.
+        </p>
+      </div>
+
+      <!-- Light Card Preview -->
+      <div class="mini-preview-light">
+        <div class="mini-light-card">
+          <div class="mini-light-top">
+            <span class="mini-light-title">Banking, PE &amp; Financial Services</span>
+            <span class="mini-light-tag" style="background:#FDF4E3; color:#8A5A00;">#8A5A00 (5.3:1)</span>
+          </div>
+          <p style="font-size:0.78rem; color:#62566B;">UBS · J.P. Morgan · Deutsche Bank · Baring PE</p>
+        </div>
+      </div>
+
+      <div class="option-verdict">
+        <strong>How it compares:</strong>
+        Royal Plum + Champagne Gold (`#E5A93B`) feels very traditional (like a classic law firm or sovereign wealth fund), whereas Option 1 (`#1AD1BE` Aqua-Mint) gives that crisp, contemporary Sirva/Leathwaite freshness.
+      </div>
+    </article>
+
+  </div>
+
+  <script>
+    // Render live stochastic grain-gradient shader bands for each of the 3 accent options
+    const canvases = document.querySelectorAll('.comp-shader');
+    const vs = `
+      attribute vec2 a_pos;
+      varying vec2 v_uv;
+      void main() { v_uv = a_pos * 0.5 + 0.5; gl_Position = vec4(a_pos, 0.0, 1.0); }
+    `;
+    const fs = `
+      precision highp float;
+      varying vec2 v_uv;
+      uniform float u_time;
+      uniform vec3 u_accent;
+
+      float hash12(vec2 p) {
+        vec3 p3 = fract(vec3(p.xyx) * 0.1031);
+        p3 += dot(p3, p3.yzx + 33.33);
+        return fract((p3.x + p3.y) * p3.z);
+      }
+
+      void main() {
+        vec2 uv = v_uv;
+        float angle = 0.65 + 0.06 * sin(u_time * 0.6);
+        vec2 dir = vec2(cos(angle), sin(angle));
+        float wave = sin(uv.x * 3.8 + u_time * 0.8) * 0.08;
+        float dist = abs(dot(uv - vec2(0.55, 0.5), dir) + wave);
+        float beam = exp(-dist * 5.0);
+        float glow = exp(-dist * 1.8);
+        float grain = hash12(gl_FragCoord.xy);
+        float t = clamp(glow * 0.64 + beam * 0.48 + (grain - 0.5) * 0.25, 0.0, 1.0);
+
+        vec3 cDeep = vec3(0.12, 0.03, 0.17);
+        vec3 cPlum = vec3(0.56, 0.12, 0.47);
+        vec3 cCore = vec3(0.96, 0.96, 0.98);
+
+        vec3 col = mix(cDeep, cPlum, smoothstep(0.05, 0.52, t));
+        col = mix(col, u_accent, smoothstep(0.48, 0.82, t));
+        col = mix(col, cCore, smoothstep(0.80, 1.0, t));
+        col += (grain - 0.5) * 0.06;
+        gl_FragColor = vec4(col, 1.0);
+      }
+    `;
+
+    const accentMap = {
+      mint: [0.102, 0.820, 0.745], // #1AD1BE
+      lime: [0.459, 0.816, 0.098], // #75D019
+      gold: [0.898, 0.663, 0.231]  // #E5A93B
+    };
+
+    const instances = [];
+    canvases.forEach(canvas => {
+      const gl = canvas.getContext('webgl');
+      if (!gl) return;
+      function compile(type, src) {
+        const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s;
+      }
+      const prog = gl.createProgram();
+      gl.attachShader(prog, compile(gl.VERTEX_SHADER, vs));
+      gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fs));
+      gl.linkProgram(prog); gl.useProgram(prog);
+
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
+      const aPos = gl.getAttribLocation(prog, 'a_pos');
+      gl.enableVertexAttribArray(aPos);
+      gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+      const uTime = gl.getUniformLocation(prog, 'u_time');
+      const uAccent = gl.getUniformLocation(prog, 'u_accent');
+      const rgb = accentMap[canvas.getAttribute('data-accent')] || accentMap.mint;
+
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = canvas.parentElement.clientWidth * dpr;
+      canvas.height = canvas.parentElement.clientHeight * dpr;
+      gl.viewport(0, 0, canvas.width, canvas.height);
+
+      instances.push({ gl, uTime, uAccent, rgb });
+    });
+
+    const start = performance.now();
+    function tick(now) {
+      const elapsed = (now - start) * 0.001;
+      instances.forEach(i => {
+        i.gl.uniform1f(i.uTime, elapsed);
+        i.gl.uniform3fv(i.uAccent, i.rgb);
+        i.gl.drawArrays(i.gl.TRIANGLES, 0, 6);
+      });
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  </script>
+</body>
+</html>
