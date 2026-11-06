@@ -84,7 +84,7 @@ Content stays as approved in v2 unless marked **[slot]** (awaiting LinkedIn draf
 | Phase | Work | Output | Depends on |
 | :-- | :--- | :--- | :--- |
 | **0. Decide** | D1–D7 | Answers recorded in this file | You, plus Ahaan for D7 |
-| **1. Design system** | Rewrite DESIGN.md §1–5 plus the new sections (§1 of this plan); create `tokens-v3.css` (paper/ink/plum roles, type scale, grid, rule weights, radii 0–4, motion tokens) | DESIGN.md v3, tokens | Phase 0 |
+| **1. Design system** ✅ 2026-11-06 | Rewrote DESIGN.md (v3) and created `tokens-v3.css` (paper/ink/plum roles, type scale, grid, rule weights, radii 0–4, motion tokens). Finding: the Google Fonts builds lack small caps and old-style figures, so self-hosting is to be decided in Phase 2. | DESIGN.md v3, tokens | Phase 0 |
 | **2. Type and grid specimen** | One page showing the grid, type scale, labels, ledger row, rule draw-in and a portrait. This is where the type pairing (D2) and the overall feel get judged *before* full pages. | `prototypes/v3-specimen.html` | Phase 1 |
 | **3. Page build** | Sections 1–7, 9 and 10 from §4 (section 2 uses the approved statement for now). Section 8 (Clients) stays out until permission is cleared. | `source/v3/` | Phase 2 sign-off |
 | **4. Effects** | Effects E1 (draw-in), E3 (type precision), E7 (ledger CTAs); E2 rail if D4 says yes | Same files | Phase 3 |

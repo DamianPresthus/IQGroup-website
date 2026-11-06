@@ -1,4 +1,6 @@
-# Usage rules
+# Usage rules: v2 record
+
+> Superseded for new work by [`DESIGN.md`](DESIGN.md) (v3). Kept as the record of v2.
 
 Two parts. **A** is evident in the code. **B** are recommendations needing approval — not rules yet.
 

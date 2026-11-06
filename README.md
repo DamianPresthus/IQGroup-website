@@ -9,10 +9,11 @@ source/
   IQ Group Website.dc.html      ← v1 (kept for comparison; same hero, earlier lower sections; now also on the new fonts)
   support.js                    ← runtime required by both .dc.html files (exported as-is, do not edit)
   index.html                    ← redirects to v2
-tokens.css                      ← extracted tokens (reference only; the site does not import it)
+tokens.css                      ← v2 record: tokens extracted from v2 (frozen; the site does not import it)
+tokens-v3.css                   ← v3 design tokens (palette roles, serif type scale, 12-col grid, rules, motion); imported by the v3 build
 docs/COMPONENTS.md              ← component inventory + missing states
 docs/USAGE.md                   ← observed rules vs. proposed rules
-docs/DESIGN.md                  ← creative direction & design brief
+docs/DESIGN.md                  ← v3 design direction: source of truth for intent (colour roles, type, layout, components, imagery, motion, copy bank)
 docs/PROJECT_BRIEF.md           ← project brief
 docs/V3_PLAN.md                 ← v3 plan: design-system changes, decisions, page structure, phases
 docs/SECTION_REFERENCES_V3.md   ← v3 per-section layout references (hero, note, rows, ledger, people…)

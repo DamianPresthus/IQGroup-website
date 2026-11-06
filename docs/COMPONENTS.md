@@ -1,4 +1,6 @@
-# Component inventory (as implemented in v2)
+# Component inventory: v2 record (as implemented in v2)
+
+> Superseded for new work by the v3 component vocabulary in [`DESIGN.md`](DESIGN.md) §6. Kept as the record of v2.
 
 Source of truth: `source/IQ Group Website v2.dc.html`. All styling is inline; none of these are reusable components in code yet.
 Legend: **Implemented** = present in code. **MISSING** = not implemented; not invented here.
