@@ -207,12 +207,12 @@ Accessibility baseline: WCAG 2.2 AA. Support `prefers-reduced-motion` for all si
 ## 12. Open Questions for IQ Group
 
 1. Founding year: **1992** (live bio) or **1994** (brief)?
-2. Is ERA membership current? May the ERA name or mark be shown?
+2. ~~Is ERA membership current? May the ERA name or mark be shown?~~ **Answered 2026-11-06:** shown as text ("Member of the Executive Recruiters Association"), as on the live site; user confirmed live-site content is publishable.
 3. Written permission for each client name and logo (§6.2), particularly the global banks and consulting firms.
 4. Testimonials: confirm Ajay Mahajan's preferred title and consent. How should Tilak Mukherji's advisor relationship be handled?
-5. Are RPO and Outplacement active services? Is the Abozzo partnership still current?
+5. Are RPO and Outplacement active services? ~~Is the Abozzo partnership still current?~~ (Abozzo shown as on the live site, 2026-11-06.)
 6. ~~Team: feature 4 leaders only, or include associates and advisors?~~ **Answered 2026-11-06:** current team = 4 leaders (Ashmita, Annu, Shirin, Christine), 5 associates (Mallika Sen Varma, Bijal Joshi, Shharran Das, Tanushree Kundu, Neha Beswal) and 1 advisor (Tilak Mukherji). Wasim Shaikh, Dipannita Das, Meenu Dhru, Priya Agrawal and Naina Subberwal Batra, listed on the live site, are not in the current roster. Neha's lead areas (BFSI · ITES) come from the live site; confirm.
-7. Do Delhi, Bangalore, Kolkata, Dubai and Singapore have physical offices, partner associates, or mandate coverage only? This affects the `LocalBusiness` schema and the wording.
+7. ~~Do Delhi, Bangalore, Kolkata, Dubai and Singapore have physical offices…?~~ **Answered 2026-11-06:** v4 states "offices" as the live site does; JSON-LD lists only the Mumbai address.
 8. Any quantifiable proof that can be published (number of searches, average time-to-shortlist, repeat-client rate)? This would replace the "____ searches" placeholder honestly.
 9. Brand assets: vector logo, any brand guidelines, availability for a portrait shoot.
 10. Hosting, domain/DNS ownership and the preferred stack. The current site is static HTML.

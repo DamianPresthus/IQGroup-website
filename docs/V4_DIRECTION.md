@@ -1,10 +1,28 @@
 # v4 direction — "Quiet institutional confidence"
 
-**Status:** round 6, 2026-11-06, for review. Live preview: `…/IQGroup-website/v4/` (marked `noindex`). v2 stays the live site. v3 (all-serif, paper) is parked: the user did not like it.
+**Status:** round 7, 2026-11-06, for review. Live preview: `…/IQGroup-website/v4/` (marked `noindex`). v2 stays the live site. v3 (all-serif, paper) is parked: the user did not like it.
 
 **Source:** the user's brief, which draws on modern wealth management, elite venture capital and high-trust fintech. Reference screenshots are in `reference/v4-research/`. Thrive Capital and Carta could not be captured (blank page / bot check).
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
+
+## Round 7: content carried over from the live site (2026-11-06)
+
+User decision: everything on the current iqgroup.co.in is publishable. Stale figures ("20 years", the 2013–2017 market statistics) and the volume-agency material (job boards, the 11-task list, "no job too small") stay out.
+
+- **Practice lines now use IQ's own copy.**
+  - **BFSI:** "Investment banking, wealth management, private equity, retail banking and risk."
+  - **Legal:** "In-house counsel, law-firm partners and whole practice groups."
+  - **Media:** "Agency leadership, account planning and digital strategy; hotels and hospitality."
+  - **IQ Social:** "…for clients including Oxfam India, NASSCOM Foundation, HelpAge India and TechnoServe."
+- **Methodology:**
+  - **Intro:** "Who you need, where they sit and how to win them. We keep you informed at every step." This draws on the old opening questions and "communication and transparency".
+  - **Step 2:** "Market mapping: we know where everyone sits."
+  - **Step 5:** "…and a client review after every assignment."
+- **Services:** "Training with Abozzo" added to Onboarding & retention.
+- **Offices and ERA:** a line under the offices reads "Offices in Mumbai, Delhi, Bangalore, Kolkata, Dubai and Singapore, with Oslo opening. Member of the Executive Recruiters Association (ERA)." The footer legal line also names ERA.
+- **Footer tagline:** "In quest of talent: partner-led executive search and HR advisory for 30+ years."
+- **Boilerplate:** the meta description is rewritten, and `ProfessionalService` JSON-LD is added (address, areaServed, founder, memberOf ERA).
 
 ## Round 6: enquiry sheets (2026-11-06)
 
