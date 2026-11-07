@@ -13,7 +13,7 @@ Both research-backed tweaks are applied: Banking is the same size as the others,
 - **Tiles:** every tile has the same name (`--fs-h4`), area tags as one comma-separated line, and the lead partner.
 - **Colour:** surfaces alternate alabaster / stone in a checkerboard, re-paired at 2 columns so no two neighbours match. Colour is for rhythm only and encodes nothing.
 - **Dropped from the overview:** "Our historic core practice." and the IQ Social client names. Both belong on the Practices page (step 2).
-- **Height:** the section is about 40% shorter on desktop.
+- **Height:** the section is 1010 → 763px at 1440 and 1263 → 1142px at 390 (about 25% and 10% shorter).
 
 ## Round 17 research: how peers present sectors (2026-11-07)
 
