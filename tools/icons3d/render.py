@@ -196,8 +196,8 @@ def icon_bank(G, A):
 
 def icon_chart(G, A):
     slab(rrect(-1.05, -1.05, 1.05, 1.05, 0.32), T, G, 0.0, E)                             # tile
-    for x, h in ((-0.48, 0.62), (0.0, 0.98), (0.48, 1.36)):
-        slab(rrect(x - 0.12, -0.6, x + 0.12, -0.6 + h, 0.11), 0.1, A, T / 2 + 0.06, 0.045)  # bars, laid on the tile
+    for x, h in ((-0.52, 0.62), (0.0, 0.98), (0.52, 1.36)):
+        slab(rrect(x - 0.17, -0.6, x + 0.17, -0.6 + h, 0.15), 0.12, A, T / 2 + 0.07, 0.05)  # bars, laid on the tile
 
 
 def icon_factory(G, A):

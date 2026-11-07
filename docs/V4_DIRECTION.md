@@ -19,9 +19,11 @@
 - **Factory:** the chimney's bottom is cut along the first sawtooth slope, so it ends on the roofline. It is slightly wider to compensate for the inset.
 - **Scales:** these keep the outward bevel (`inset=False`). Insetting a 0.1–0.14-tall beam leaves nothing, and Blender's offset spiked there.
 
-**Cache.** Icon references are now `?v=39`.
+**Cache.** Icon references are now `?v=40`.
 
 **Follow-up: chunkier bank columns.** The columns were 0.17 wide and 1.0 tall (about 6:1) and read as thin and tall. They are now 0.26 wide, with the roof and base brought closer together so about 0.82 shows (about 3:1).
+
+**Follow-up: chunkier chart bars.** The bars are 0.34 wide (was 0.24), spaced 0.52 apart (was 0.48), with end radius 0.15, so they match the bank columns.
 
 **Verified** on a contact sheet on dark and light backgrounds, then on the 1440 strip at rest and on hover (bank, factory).
 
