@@ -23,7 +23,7 @@
 - **Prior decision:** it contradicts HERO_RESEARCH_V3 §5 ("replace the scrolling logo bar with a static, typeset line").
 - **Endorsement risk:** more names means more apparent endorsements to clear (R2).
 
-The 8 marquee names stay. The full client lists stay on `sectors.html`, one list per sector, where they serve as proof of sector depth.
+The 8 static names stay. The full client lists stay on `sectors.html`, one list per sector, where they serve as proof of sector depth.
 
 ## Round 26: Sectors as a dark strip on a light section (2026-11-07)
 
