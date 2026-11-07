@@ -10,6 +10,8 @@
 
 ## Round 36: icons as a secondary layer (2026-11-07)
 
+**Follow-up.** Removed the drop shadow from the 36px icons in Recent hires (`filter: none`), because at that size it only blurred the row. The CSS `?v=` query is bumped to `202611072000`.
+
 **Problem.** At full strength the round-34 icons were the brightest thing in the sector strip, pulling the eye away from the sector names and the partners' faces. That works against an audience of boards, CEOs and HR heads, who read restraint as quality.
 
 **Change** (CSS only; the renders are unchanged). The icons go back to the round-26 watermark treatment: standing on the column floor, cropped by it, and dim until hover.

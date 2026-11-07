@@ -393,8 +393,8 @@ a:hover { text-decoration-color: var(--accent); }
    homogeneous and not links (NN/g: lists scan better than cards). ---------- */
 .hire-rows { border-top: 1px solid var(--line-strong); }
 .hire-rows li { display: grid; grid-template-columns: 2.25rem minmax(0, 4fr) minmax(0, 5fr) 8rem; column-gap: 1.25rem; align-items: center; padding-block: clamp(0.9rem, 0.75rem + 0.5vw, 1.2rem); border-bottom: 1px solid var(--line); }
-/* Rendered glass icon (see .sector-icon); only the size is local. */
-.hire-rows .sector-icon { width: 2.25rem; height: 2.25rem; }
+/* Rendered glass icon (see .sector-icon); local size, and no shadow: at 36px it only muddies the row */
+.hire-rows .sector-icon { width: 2.25rem; height: 2.25rem; filter: none; }
 .hire-rows b { font-family: var(--serif); font-weight: 400; font-size: var(--fs-h3); line-height: 1.15; letter-spacing: -0.015em; color: var(--ink); }
 .hire-rows .org { color: var(--ink-muted); }
 .hire-rows .sec { justify-self: end; text-align: right; font-size: var(--fs-tag); font-weight: 600; color: var(--ink-muted); }
