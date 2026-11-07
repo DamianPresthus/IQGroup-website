@@ -6,6 +6,33 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 19: sector icons, checkerboard removed (2026-11-07)
+
+**Library: [Phosphor Icons](https://phosphoricons.com), duotone weight, v2.1.1, MIT.**
+- **Licence and files:** the SVGs are copied into `source/assets/icons/` with `phosphor-LICENSE.txt`, and inlined in the page so they inherit `currentColor`.
+- **Why Phosphor:**
+  - A consistent 1.5px-equivalent line that sits well beside Newsreader.
+  - A duotone weight whose 20% fill picks up the plum tint.
+  - 1,500+ icons, so every sector has a literal match.
+- **Alternatives considered:** Lucide (no duotone), Tabler (heavier geometry), Material Symbols (a Google look).
+- **Ruled out:** illustration packs such as unDraw and Open Peeps, which read as generic SaaS.
+
+**Icon per sector:**
+
+| Sector | Icon |
+|---|---|
+| Banking | bank |
+| Consulting | presentation-chart |
+| FMCG / Healthcare / Industrials | package |
+| Legal | scales |
+| Media / Advertising / Hospitality | megaphone |
+| IQ Social | hand-heart |
+
+**Treatment.**
+- **Badge:** a 44px rounded-square badge in `--surface-dark` (aubergine), with the icon in `--on-dark-muted` (plum pink). This is the scan cue, and it brings dark plum into the section six times with equal weight.
+- **Surfaces:** all tiles are alabaster; the checkerboard is gone.
+- **Phones:** the icon sits beside the content (two-column grid), which keeps each tile short.
+
 ## Round 18: six equal tiles (2026-11-07)
 
 Both research-backed tweaks are applied: Banking is the same size as the others, and IQ Social is an ordinary tile (Spencer Stuart precedent).
