@@ -1,3 +1,6 @@
+// Cloudflare Turnstile widget API (present only when PUBLIC_TURNSTILE_SITE_KEY is set; see EnquiryDialog.astro).
+interface Window { turnstile?: { reset(): void } }
+
 // Small progressive enhancements. Everything works without JS except the roster caption.
 const $ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) => r.querySelector<T>(s);
 const $$ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) => [...r.querySelectorAll<T>(s)];
@@ -132,31 +135,60 @@ if (dlg && typeof dlg.showModal === 'function') {
       i.addEventListener('blur', () => { if (i.value) check(i); });
       i.addEventListener('input', () => { if (i.closest('.field')!.classList.contains('invalid')) check(i); });
     });
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const bad = $$<HTMLInputElement>('input[required]', form).filter((i) => !check(i));
       if (bad.length) { bad[0].focus(); return; }
+      const mode = form.dataset.mode!;
       const v = Object.fromEntries([...new FormData(form)].map(([k, x]) => [k, String(x).trim()]));
-      let subject: string;
-      let lines: (string | false | undefined)[];
-      if (form.dataset.mode === 'search') {
-        subject = `Search enquiry: ${v.role}${v.org ? `, ${v.org}` : ''}`;
-        lines = [`Name: ${v.name}`, `Email: ${v.email}`, v.org && `Organisation: ${v.org}`, `Role to fill: ${v.role}`, v.tel && `Phone: ${v.tel}`, v.note && `\n${v.note}`];
-      } else {
-        subject = `Confidential profile: ${v.name}, ${v.role}`;
-        lines = [`Name: ${v.name}`, `Email: ${v.email}`, `Current role: ${v.role}`, v.url && `LinkedIn: ${v.url}`, v.note && `\n${v.note}`];
+      const submit = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
+
+      // 1. Send through the site (functions/api/enquiry.ts). Anything but success falls back to the email app, so an
+      //    enquiry is never lost: endpoint not configured (503), spam check failed (403), offline, or local dev (404).
+      submit.disabled = true;
+      submit.setAttribute('aria-busy', 'true');
+      let sent = false;
+      try {
+        const res = await fetch('/api/enquiry', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ mode, ...v, turnstile: v['cf-turnstile-response'] }),
+        });
+        sent = res.ok;
+      } catch {
+        sent = false;
       }
-      const body = lines.filter(Boolean).join('\n');
-      lastMessage = `To: ${TO}\nSubject: ${subject}\n\n${body}`;
-      const href = `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      $<HTMLAnchorElement>('[data-direct]', done)!.href = href;
-      $('[data-copied]', done)!.hidden = true;
-      location.href = href;
+      submit.disabled = false;
+      submit.removeAttribute('aria-busy');
+
+      // 2. Fallback: compose the same message in the visitor's email app.
+      if (!sent) {
+        let subject: string;
+        let lines: (string | false | undefined)[];
+        if (mode === 'search') {
+          subject = `Search enquiry: ${v.role}${v.org ? `, ${v.org}` : ''}`;
+          lines = [`Name: ${v.name}`, `Email: ${v.email}`, v.org && `Organisation: ${v.org}`, `Role to fill: ${v.role}`, v.tel && `Phone: ${v.tel}`, v.note && `\n${v.note}`];
+        } else {
+          subject = `Confidential profile: ${v.name}, ${v.role}`;
+          lines = [`Name: ${v.name}`, `Email: ${v.email}`, `Current role: ${v.role}`, v.url && `LinkedIn: ${v.url}`, v.note && `\n${v.note}`];
+        }
+        const body = lines.filter(Boolean).join('\n');
+        lastMessage = `To: ${TO}\nSubject: ${subject}\n\n${body}`;
+        const href = `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        $<HTMLAnchorElement>('[data-direct]', done)!.href = href;
+        $('[data-copied]', done)!.hidden = true;
+        location.href = href;
+      }
+
+      const outcome = sent ? 'sent' : 'mailto';
+      $$('[data-outcome]', done).forEach((el) => { el.hidden = el.dataset.outcome !== outcome; });
+      $$('[data-for]', done).forEach((el) => { el.hidden = el.dataset.for !== mode; });
       forms.forEach((f) => { f.hidden = true; });
       switcher.hidden = true;
       done.hidden = false;
-      done.querySelector('h2')!.focus();
+      $(`[data-outcome="${outcome}"] h2`, done)!.focus();
       form.reset();
+      window.turnstile?.reset();
     });
   });
   $('[data-copy]', done)!.addEventListener('click', async () => {

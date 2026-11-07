@@ -1,9 +1,13 @@
 ---
 // Enquiry sheet: one dialog, two short forms (hiring / open to roles). Opens from any [data-enquiry] trigger;
-// without JS those links fall back to #contact / mailto. Behaviour: src/scripts/enquiry.ts.
+// without JS those links fall back to #contact / mailto. Behaviour: src/scripts/app.ts → POST /api/enquiry
+// (functions/api/enquiry.ts), falling back to the visitor's email app when the endpoint is unavailable.
 import { getSite } from '../lib/content';
 const site = await getSite();
 const phone = site.phones[0];
+// Cloudflare Turnstile spam check: set PUBLIC_TURNSTILE_SITE_KEY at build time together with TURNSTILE_SECRET_KEY
+// on the function. Unset (local dev, previews), the widget is omitted and the function skips the check.
+const turnstileKey: string | undefined = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 ---
 <dialog class="enquiry" id="enquiry" aria-labelledby="enquiry-title" data-to={site.enquiryEmail}>
   <div class="enquiry-inner">
@@ -27,6 +31,8 @@ const phone = site.phones[0];
         <div class="field"><label for="s-org">Organisation</label><input id="s-org" name="org" autocomplete="organization"></div>
         <div class="field"><label for="s-tel">Phone</label><input id="s-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel"></div>
       </details>
+      <div class="hp" aria-hidden="true"><label>Company <input name="company" tabindex="-1" autocomplete="off"></label></div>
+      {turnstileKey && <div class="cf-turnstile" data-sitekey={turnstileKey} data-appearance="interaction-only" data-size="flexible"></div>}
       <button class="btn btn-accent btn-block" type="submit">Send enquiry <span class="arrow" aria-hidden="true">→</span></button>
       <p class="enquiry-fine">Used only to reply to you. Prefer to talk? <a href={`tel:${phone.tel}`}>{phone.label}</a></p>
     </form>
@@ -42,20 +48,30 @@ const phone = site.phones[0];
         <summary>Add LinkedIn profile <span class="opt">optional</span></summary>
         <div class="field"><label for="e-url">LinkedIn profile</label><input id="e-url" name="url" type="url" inputmode="url" placeholder="linkedin.com/in/…"></div>
       </details>
+      <div class="hp" aria-hidden="true"><label>Company <input name="company" tabindex="-1" autocomplete="off"></label></div>
+      {turnstileKey && <div class="cf-turnstile" data-sitekey={turnstileKey} data-appearance="interaction-only" data-size="flexible"></div>}
       <button class="btn btn-accent btn-block" type="submit">Share your profile <span class="arrow" aria-hidden="true">→</span></button>
-      <p class="enquiry-fine">Kept confidential. You can attach your CV to the email that opens.</p>
+      <p class="enquiry-fine">Kept confidential. To include a CV, email it to <a href={`mailto:${site.enquiryEmail}?subject=CV`}>{site.enquiryEmail}</a>.</p>
     </form>
 
     <div class="enquiry-done" hidden aria-live="polite">
       <span class="done-mark" aria-hidden="true">✓</span>
-      <h2 tabindex="-1">Almost there</h2>
-      <p>Your email app has opened with everything filled in. <strong>Press Send</strong> to reach us.</p>
-      <div class="done-actions">
-        <button type="button" class="btn btn-line" data-copy>Copy message</button>
-        <a class="link-arrow" data-direct href={`mailto:${site.enquiryEmail}`}>Email didn’t open?</a>
+      <div data-outcome="sent">
+        <h2 tabindex="-1">Thank you</h2>
+        <p data-for="search">Your enquiry has reached us. A partner will reply to you personally.</p>
+        <p data-for="profile">Your profile has reached us, in confidence. We will be in touch when a mandate fits.</p>
       </div>
-      <p class="enquiry-fine" data-copied hidden>Copied. Paste it into an email to {site.enquiryEmail}.</p>
+      <div data-outcome="mailto" hidden>
+        <h2 tabindex="-1">Almost there</h2>
+        <p>Your email app has opened with everything filled in. <strong>Press Send</strong> to reach us.</p>
+        <div class="done-actions">
+          <button type="button" class="btn btn-line" data-copy>Copy message</button>
+          <a class="link-arrow" data-direct href={`mailto:${site.enquiryEmail}`}>Email didn’t open?</a>
+        </div>
+        <p class="enquiry-fine" data-copied hidden>Copied. Paste it into an email to {site.enquiryEmail}.</p>
+      </div>
       <button type="button" class="btn btn-dark btn-block" data-close>Done</button>
     </div>
   </div>
 </dialog>
+{turnstileKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
