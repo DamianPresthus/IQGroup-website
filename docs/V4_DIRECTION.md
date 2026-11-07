@@ -6,6 +6,24 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 26: Sectors as a dark strip on a light section (2026-11-07)
+
+**Change.** Only the sector grid is dark now; the section around it is light.
+- **The section is light.** The "Sectors" heading is ink on `--bg`, like every other section head.
+- **At 1025px and up**, the six slanted columns form a full-bleed `--surface-dark` strip, 30rem tall, with hard top and bottom edges.
+- **Below 1025px**, the six tiles form a dark rounded card on light.
+- **Class renamed:** `band-dark` → `sectors-strip`, since it is no longer a band.
+
+**Why.**
+- **It reads as an object.** The columns become one deliberate dark object instead of a dark room with columns inside it.
+- **Less dark:** about 480px instead of about 770px at 1440.
+- **Sharper slant:** the plum hover rule now runs along the strip's top edge against light, and the slanted hairlines start and end at a visible edge.
+- **One heading style:** the heading matches every other section, so there is no special dark-heading treatment.
+
+**Colour rule:** the strip is the page's one dark element, besides the footer and the dark contact card.
+
+**Trade-off kept.** The strip is full-bleed, so the first column's text sits left of the heading (at x≈88 vs x≈176 at 1440). The alternative was insetting the strip to the page width, which squeezes the columns to about 180px and makes long names wrap onto 5–6 lines.
+
 ## Round 25: homepage information architecture (2026-11-07)
 
 **Why: referred buyers are checking whether to bother.** Most buyers of professional services come by referral (Hinge: 71%). About 81% then check the firm's website, and about 52% have ruled out a referred firm before ever speaking to it. So the homepage answers the referred buyer's questions in order:
