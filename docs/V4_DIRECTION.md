@@ -6,6 +6,28 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 20: icons baked in, dark plum band (2026-11-07)
+
+**Feedback.** The icons sat in the tiles as separate badges, as if stuck on, rather than part of the design.
+
+**Explored.** Five treatments, rendered at 1440px:
+
+| Variant | Result |
+|---|---|
+| Large accent icon top-right | Collided with titles |
+| Light watermark | Overlapped the tag text, and the plum tint was weak on alabaster |
+| Inline glyph before the name | Tidy, but small and generic |
+| Icon "plate" above each tile | Clear, but app-store-like and +280px tall |
+| **Dark band + watermark** | **Chosen** |
+
+**Chosen: dark band + watermark.**
+- **Band:** Practices becomes a `--surface-dark` band right after the client names, so the page alternates light hero / dark practices / light services.
+- **Tiles:** dark, with `--on-dark-line` hairlines.
+- **Icon:** each sector icon is a 8.5rem duotone watermark (6.5rem on phones) in `--on-dark-muted` at 24%, cropped by the tile's bottom-right corner and sitting behind the text (`z-index: -1`, isolation). It works as texture and as a scan cue at once.
+- **Text:** the right padding is widened so tags never run over the icon.
+- **Colours:** names `--on-dark`, tags `--on-dark-muted`, lead line `--on-dark`.
+- **Phones:** the beside-icon grid from round 19 is removed.
+
 ## Round 19: sector icons, checkerboard removed (2026-11-07)
 
 **Library: [Phosphor Icons](https://phosphoricons.com), duotone weight, v2.1.1, MIT.**
