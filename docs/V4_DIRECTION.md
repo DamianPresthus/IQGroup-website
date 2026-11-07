@@ -6,6 +6,13 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 28: both quotes back on Home (2026-11-07)
+
+**Change.** Home shows both client quotes again, side by side, using the same markup as About: Ajay Mahajan (UBS) and Tilak Mukherji.
+- **Why:** the user preferred the pair. Two voices read as a pattern; one reads as a single anecdote.
+- **Housekeeping:** removed the now-unused `.quotes.single` rule.
+- **Phones:** the cards stack, as before.
+
 ## Round 27: clients on the fold; no marquee (2026-11-07)
 
 **Problem.** The hero was a fixed ~920px tall, so "Clients include" sat below the fold on every common laptop (1280×720, 1366×768, 1440×900, 1536×864). It was visible only at 1920×1080. That is the strongest credibility line on the page, and most visitors never saw it without scrolling.
