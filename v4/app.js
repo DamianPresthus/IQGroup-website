@@ -15,16 +15,6 @@
   $$('#sheet a').forEach(a => a.addEventListener('click', () => setSheet(false)));
   addEventListener('keydown', e => { if (e.key === 'Escape' && sheet.classList.contains('is-open')) setSheet(false); });
 
-  // Scrollspy: services index + primary nav.
-  const spy = (links, attr = 'aria-current') => {
-    const map = new Map(links.map(a => [document.getElementById(a.hash.slice(1)), a]).filter(([el]) => el));
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(en => { if (en.isIntersecting) { links.forEach(l => l.removeAttribute(attr)); map.get(en.target).setAttribute(attr, 'true'); } });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    map.forEach((_, el) => io.observe(el));
-  };
-  spy($$('.nav-links a'));
-
   // Roster: show role and sectors for the hovered or focused name.
   const detail = $('.roster-detail'), idle = detail?.textContent;
   $$('.names li').forEach(li => {
