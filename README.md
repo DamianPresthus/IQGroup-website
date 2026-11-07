@@ -17,6 +17,7 @@ source/
   assets/icons/                 ← Phosphor duotone sector icons used by v4 (MIT, licence included)
   assets/icons-3d/              ← v5 frosted-glass sector icons (transparent WebP); regenerate with tools/icons3d/render.py
   assets/clients/               ← v5 trust-bar client logos (permission unconfirmed, R2)
+  assets/brand/                 ← "IQ" mark outlined from Newsreader 500, opsz 24, −0.03em (as in the nav): SVG + 1024px PNG, ink #12051A and white
   assets/team-face/             ← 160px face crops from the uncut live-site avatars (v4/v5 inline portraits)
   v3/                           ← v3 (plain HTML + CSS; parked after round-2 review)
     tokens-v3.css               ← v3 design tokens (palette roles, serif type scale, 12-col grid, rules, motion)

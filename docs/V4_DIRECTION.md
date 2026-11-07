@@ -8,6 +8,30 @@
 
 **v5 (2026-11-07).** Rounds 29–36 below are published separately as `source/v5/` (live at `…/IQGroup-website/v5/`), so stakeholders can compare it with v4. `source/v4/` and `/v4/` stay frozen at round 28. Continue work in `source/v5/`. Where rounds 29–36 say `source/v4/`, read `source/v5/`.
 
+## Round 37: sleek, upright glass icons (2026-11-07)
+
+**Feedback** (Ahaan Ray Sarkar): make the glass icons "less chonky and more sleek and professional looking … and classy, while still having a 3D aspect". The heart in particular should be more rounded on the edges. The user added: not tilted.
+
+**Reference.** Apple's Liquid Glass app icons (iOS 26, Icon Composer). Icons are built from a few flat, front-facing layers. Depth comes from small gaps between layers, specular highlights on rounded edges and soft shadows, not from bulk. Apple's guidance: avoid sharp corners, because "light navigates better on rounded corners". ([createwithswift.com guide](https://www.createwithswift.com/crafting-liquid-glass-app-icons-with-icon-composer/))
+
+**Feedback mapped to render settings** (`tools/icons3d/render.py`):
+- **Less chunky:** plate thickness 0.2 instead of 0.4–0.55. Slimmer parts: four bank columns at about half the width, thinner chart bars, a fine post, beam and strings on the scales, a slimmer megaphone. More air between parts.
+- **Sleek and professional:** upright and front-facing. A 16° turn about the vertical axis only, with no tilt or roll; an 85mm lens at eye level, so verticals stay vertical. Accent layers sit on the body plates the way Liquid Glass layers do.
+- **Classy:**
+  - Polished glass instead of milky frost: transmission 0.92, roughness 0.16, a 0.7 clear coat with a faint grain.
+  - Body: clear lilac-white, #F8F0F6 → #C48DB8.
+  - Accents: deep brand plum, #9E3A8C → #4A0E42.
+  - A smaller key light and a new top-back rim light draw a thin bright line along the upper edges.
+- **Still 3D:** nearly fully rounded edges (radius 0.085 on a 0.2 plate) catch the highlight. The turn shows the thickness.
+- **Heart:** drawn geometrically: two circular lobes, a concave notch fillet (r 0.24), tangent sides and a filleted tip. It is a pillow 0.36 deep with an edge radius of 0.15. The parametric heart formula has a needle-sharp notch, which made the rounded extrusion spike (round 34) or facet (as a mesh).
+
+**Cache.** The icon files keep their names, so every reference in `source/v5/` now carries `?v=37`. Without it, browsers that had already loaded the page kept showing the old icons.
+
+**Verified:**
+- Contact sheet of old vs new on light and dark.
+- 1440: strip at rest and on hover, Recent hires, Sectors page.
+- 390: cards.
+
 ## Round 36: icons as a secondary layer (2026-11-07)
 
 **Follow-up.** Removed the drop shadow from the 36px icons in Recent hires (`filter: none`), because at that size it only blurred the row. The CSS `?v=` query is bumped to `202611072000`.
