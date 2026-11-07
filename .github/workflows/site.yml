@@ -1,0 +1,40 @@
+# Checks the production site (site/) on every push and pull request that touches it. Cloudflare Pages builds and
+# deploys on its own (Git integration); this workflow is the quality gate in front of it.
+name: site
+
+on:
+  push:
+    branches: [main]
+    paths: ['site/**', '.github/workflows/site.yml']
+  pull_request:
+    paths: ['site/**', '.github/workflows/site.yml']
+
+jobs:
+  check:
+    # macOS: the visual baselines in site/tests/__screenshots__ were captured on macOS Chromium; Linux renders text
+    # slightly differently and would fail every screenshot.
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: site/.nvmrc
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - run: npm ci
+      - name: Content and types
+        run: npx astro check
+      - name: Enquiry function types
+        run: npx tsc -p functions
+      - run: npx playwright install chromium
+      - name: Build, accessibility (axe, WCAG 2.2 AA) and visual lock
+        run: npm test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-results
+          path: site/test-results/
+          retention-days: 7

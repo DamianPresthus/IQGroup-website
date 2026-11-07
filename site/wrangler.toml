@@ -1,0 +1,6 @@
+# Cloudflare Pages project. Build: `npm run build` (root directory: site/), output: dist/.
+# Functions in functions/ are deployed with it (functions/api/enquiry.ts). Secrets are set in the Cloudflare
+# dashboard, never here; see site/README.md → "Deploying".
+name = "iq-group"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-11-01"
