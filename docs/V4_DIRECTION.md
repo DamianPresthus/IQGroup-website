@@ -6,6 +6,21 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 21: "Practices" renamed "Sectors" (2026-11-07)
+
+**Why.** Clients scan for their industry, and "Practices" is insider law and consulting language. Peers say "Industries" or "Industry Expertise"; Odgers uses "sectors". "Sectors" also matches IQ's British/Indian usage ("BFSI sector", "social sector").
+
+**Renamed:**
+- **Labels:** the section heading, the nav link, the mobile menu link and the footer link.
+- **Anchor and title:** `#practices` → `#sectors`, `practices-title` → `sectors-title`.
+- **Copy:**
+  - Ashmita's bio: "She leads every sector…".
+  - Her roster role: "All sectors, C‑suite".
+  - The roster hint: "Select a name for their role and sectors."
+- **Code comments.**
+
+**Not renamed:** the Legal tag "Practice groups", which is the legal-industry term.
+
 ## Round 20: icons baked in, dark plum band (2026-11-07)
 
 **Feedback.** The icons sat in the tiles as separate badges, as if stuck on, rather than part of the design.

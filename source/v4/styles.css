@@ -102,7 +102,7 @@ a { color: inherit; }
    Colours are the brands' own, darkened where needed to pass 3:1 for large text on --bg (GSK, PwC). */
 .trust-logos li { color: var(--c); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.015em; }
 
-/* ---------- Practices: a dark plum band. Six equal tiles, 3 x 2 (2 x 3 on tablet, stacked on phones), each with the
+/* ---------- Sectors: a dark plum band. Six equal tiles, 3 x 2 (2 x 3 on tablet, stacked on phones), each with the
    same parts (name, area tags, lead partner). The sector icon (Phosphor duotone, MIT) is baked into the tile as a large
    watermark cropped by the bottom-right corner: the scan cue without adding another element. No links, no hover. ---------- */
 .section.band-dark { background: var(--surface-dark); padding-block: var(--section); }
