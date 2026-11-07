@@ -6,6 +6,50 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 22: split into Home, Sectors and About (2026-11-07)
+
+**Pages** (plain HTML; nav, footer, contact section and enquiry dialog are repeated in each page):
+
+| Page | Contents |
+|---|---|
+| `index.html` (Home) | Hero + map, client names, Sectors (dark band; tiles now link to `sectors.html#…`, with hover and arrow), Recent hires, What sets us apart (stone), one client quote (Ajay Mahajan), contact, footer |
+| `sectors.html` | Page hero; the same dark tile grid as a jump list; one detail row per sector (icon, name, lead, copy, areas, recent hires, clients); contact |
+| `about.html` | Page hero "Every mandate is led by a partner."; Ashmita spotlight + roster; How a search runs (the page's stone band); Services; both quotes; contact |
+
+**Navigation.**
+- **Nav:** Sectors · About · Contact + "Begin a search", with `aria-current="page"` on the current page. The mobile menu adds Home.
+- **Footer:** Sectors · About · How a search runs.
+- **Scrollspy removed:** the nav now points at pages, so there is nothing left for it to track.
+
+**Colour rule** (round 21 research): at most one dark and one stone band per page, plus the dark footer, and never two coloured sections next to each other.
+
+**Length:**
+
+| Page | 1440px | 390px |
+|---|---|---|
+| Home | 5.6 screens (was 7.8) | – |
+| Sectors | 6.1 screens | 8.6 screens |
+| About | 4.9 screens | 6.0 screens |
+
+**Where the sector-page copy comes from.** No new claims; everything is drawn from IQ's live site and the 2026 deck.
+- **Banking:** the old site's BFSI "benefits" (associates worked in the sector, senior-management network, placements who reached the C‑suite, board/CEO assessment) and its sample-position areas.
+- **Legal:** the old site's in-house-shift paragraph and the "in-house counsel to whole practice groups" range.
+- **Media, Advertising & Hospitality:** the old site's agency focus (senior management, account planning and management, digital strategy, FMCG/consumer clients) and its hospitality line.
+- **IQ Social:** the old site's points (team worked in nonprofits, research each organisation, roles evolve, long-term partnerships) and its full 14-client list.
+- **Consulting:** only the approved line, plus Ashmita's TNS / Price Waterhouse Coopers background from her bio.
+- **FMCG, Healthcare & Industrials:** only the approved line.
+- **Restored here** after being dropped from the overview in round 18: "Our historic core practice" and the IQ Social clients.
+
+**Recent hires by sector** (deck slide 6):
+
+| Sector | Hires |
+|---|---|
+| Banking | CMO (private bank); VP, Investments (PE firm) |
+| FMCG, Healthcare & Industrials | CEO (specialty chemicals); CFO (precision engineering) |
+| IQ Social | Head of CSR, India (European bank) |
+
+**[INFERENCE] to confirm with Ashmita:** the Head of CSR placement is filed under IQ Social because it is a CSR role. It may have been handled by the banking team instead.
+
 ## Round 21: "Practices" renamed "Sectors" (2026-11-07)
 
 **Why.** Clients scan for their industry, and "Practices" is insider law and consulting language. Peers say "Industries" or "Industry Expertise"; Odgers uses "sectors". "Sectors" also matches IQ's British/Indian usage ("BFSI sector", "social sector").
