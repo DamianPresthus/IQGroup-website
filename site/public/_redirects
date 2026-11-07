@@ -1,0 +1,30 @@
+# Cloudflare Pages redirects. Old iqgroup.co.in URLs (static HTML site, crawled 2026-11-07) → new pages.
+# 301 = permanent, so search engines move the old pages' ranking to the new ones.
+
+/index.html           /                     301
+/aboutus.html         /about/               301
+/theteam.html         /about/#people        301
+/services.html        /about/#services      301
+/contactus.html       /#contact             301
+/practiceareas.html   /sectors/             301
+/iqbfsi.html          /sectors/#banking     301
+/iqlegal.html         /sectors/#legal       301
+/iqhospitality.html   /sectors/#media       301
+/iqsocial.html        /sectors/#social      301
+
+# Individual profile pages (current and former team) → the team on About
+/ashmita.html         /about/#people        301
+/annu.html            /about/#people        301
+/shirin.html          /about/#people        301
+/christine.html       /about/#people        301
+/mallika.html         /about/#people        301
+/bijal.html           /about/#people        301
+/shharran.html        /about/#people        301
+/tanushree.html       /about/#people        301
+/neha.html            /about/#people        301
+/tilak.html           /about/#people        301
+/dipannita.html       /about/#people        301
+/meenu.html           /about/#people        301
+/naina.html           /about/#people        301
+/priya.html           /about/#people        301
+/wasim.html           /about/#people        301

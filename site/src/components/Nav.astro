@@ -1,6 +1,6 @@
 ---
 // Floating glass nav (desktop) + full-screen menu sheet (phones). `current` marks the active page.
-interface Props { current: 'home' | 'sectors' | 'about' }
+interface Props { current: 'home' | 'sectors' | 'about' | 'none' }
 const { current } = Astro.props;
 const links = [
   { href: '/sectors/', label: 'Sectors', page: 'sectors' },

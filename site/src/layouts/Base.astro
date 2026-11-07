@@ -5,13 +5,15 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import EnquiryDialog from '../components/EnquiryDialog.astro';
+import Seo from '../components/Seo.astro';
 
 interface Props {
   title: string;
   description: string;
-  current: 'home' | 'sectors' | 'about';
+  current: 'home' | 'sectors' | 'about' | 'none';
+  noindex?: boolean;
 }
-const { title, description, current } = Astro.props;
+const { title, description, current, noindex } = Astro.props;
 ---
 <!doctype html>
 <html lang="en-GB">
@@ -20,9 +22,9 @@ const { title, description, current } = Astro.props;
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content={description}>
+<Seo title={title} description={description} noindex={noindex} />
 <link rel="preload" href="/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/plusjakarta.woff2" as="font" type="font/woff2" crossorigin>
-<slot name="head" />
 </head>
 <body>
 <a class="sr-only" href="#main">Skip to content</a>
