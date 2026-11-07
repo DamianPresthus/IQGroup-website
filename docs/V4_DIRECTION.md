@@ -8,6 +8,21 @@
 
 **v5 (2026-11-07).** Rounds 29–36 below are published separately as `source/v5/` (live at `…/IQGroup-website/v5/`), so stakeholders can compare it with v4. `source/v4/` and `/v4/` stay frozen at round 28. Continue work in `source/v5/`. Where rounds 29–36 say `source/v4/`, read `source/v5/`.
 
+## Round 38: frost back; bank and factory joins (2026-11-07)
+
+**Feedback.** Round 37 lost the frost. The bank's rounded column tops overlapped the roof, and the factory chimney ran down inside the hall, visible through the glass.
+
+**Frost.** Body roughness is 0.4 (was 0.16), accents 0.32, the grain bump 0.06 (was 0.025), and the clear coat is lighter (0.35, roughness 0.08). The body is milky again, and the thin bright edge line from the coat remains.
+
+**Joins.** The root cause was Blender's curve bevel, which grows every shape outward by its edge radius, so parts overlapped by about 0.085 wherever they met. `slab()` now insets the bevel (`curve.offset = -bevel`), so each silhouette is exactly the drawn outline. That requires convex fillets ≥ the bevel, so a few fillets were raised.
+- **Bank:** the columns are now a layer just behind the roof and base, with their ends tucked under both. The base is slightly taller to compensate for the inset.
+- **Factory:** the chimney's bottom is cut along the first sawtooth slope, so it ends on the roofline. It is slightly wider to compensate for the inset.
+- **Scales:** these keep the outward bevel (`inset=False`). Insetting a 0.1–0.14-tall beam leaves nothing, and Blender's offset spiked there.
+
+**Cache.** Icon references are now `?v=38`.
+
+**Verified** on a contact sheet on dark and light backgrounds, then on the 1440 strip at rest and on hover (bank, factory).
+
 ## Round 37: sleek, upright glass icons (2026-11-07)
 
 **Feedback** (Ahaan Ray Sarkar): make the glass icons "less chonky and more sleek and professional looking … and classy, while still having a 3D aspect". The heart in particular should be more rounded on the edges. The user added: not tilted.

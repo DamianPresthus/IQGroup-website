@@ -49,8 +49,8 @@ def glass(name, light, deep, transmission, roughness):
     set_input(b, ["Transmission Weight", "Transmission"], transmission)
     set_input(b, "Roughness", roughness)
     set_input(b, "IOR", 1.45)
-    set_input(b, ["Coat Weight", "Clearcoat"], 0.7)
-    set_input(b, ["Coat Roughness", "Clearcoat Roughness"], 0.04)
+    set_input(b, ["Coat Weight", "Clearcoat"], 0.35)              # light coat: frosted body, crisp edge line
+    set_input(b, ["Coat Roughness", "Clearcoat Roughness"], 0.08)
     # gradient across each part: generated coords, fac = 0.55*(1 - z) + 0.45*x (light top-left -> deep bottom-right)
     tc = N.new("ShaderNodeTexCoord")
     sep = N.new("ShaderNodeSeparateXYZ")
@@ -70,7 +70,7 @@ def glass(name, light, deep, transmission, roughness):
     L.new(ramp.outputs["Color"], b.inputs["Base Color"])
     # grain: fine noise on the normal
     noise = N.new("ShaderNodeTexNoise"); noise.inputs["Scale"].default_value = 900.0
-    bump = N.new("ShaderNodeBump"); bump.inputs["Strength"].default_value = 0.025
+    bump = N.new("ShaderNodeBump"); bump.inputs["Strength"].default_value = 0.06
     L.new(noise.outputs["Fac"], bump.inputs["Height"])
     L.new(bump.outputs["Normal"], b.inputs["Normal"])
     return m
@@ -99,13 +99,16 @@ def rrect(x0, y0, x1, y1, r):
     return rounded([(x0, y0), (x1, y0), (x1, y1), (x0, y1)], r)
 
 
-def slab(points, depth, mat, z=0.0, bevel=0.1):
-    """Extrusion of a 2D outline (x right, y up) with rounded edges, standing upright facing -y, centred at y = -z."""
+def slab(points, depth, mat, z=0.0, bevel=0.1, inset=True):
+    """Extrusion of a 2D outline (x right, y up) with rounded edges, standing upright facing -y, centred at y = -z.
+    inset: the silhouette is exactly the drawn outline (bevel offset inwards), so parts meet where they are drawn;
+    convex fillets must then be at least `bevel`. Thin parts (scales) use inset=False: the bevel grows outwards."""
     cu = bpy.data.curves.new("slab", "CURVE")
     cu.dimensions = "2D"
     cu.fill_mode = "BOTH"
     cu.extrude = max(depth / 2 - bevel, 0.001)
     cu.bevel_depth = bevel
+    cu.offset = -bevel if inset else 0.0                          # default grows the shape outward by the bevel
     cu.bevel_resolution = 8
     sp = cu.splines.new("POLY")
     sp.points.add(len(points) - 1)
@@ -186,9 +189,9 @@ T, E = 0.2, 0.085              # plate thickness and edge radius: edges are near
 
 def icon_bank(G, A):
     slab(rounded([(-1.15, 0.48), (1.15, 0.48), (0, 1.15)], 0.1), T, G, 0.0, E)            # roof
-    for x in (-0.66, -0.22, 0.22, 0.66):
-        slab(rrect(x - 0.085, -0.44, x + 0.085, 0.4, 0.08), 0.12, A, 0.0, 0.05)           # columns, slimmer plates
-    slab(rrect(-1.15, -0.78, 1.15, -0.52, 0.1), T, G, 0.0, E)                             # base
+    for x in (-0.66, -0.22, 0.22, 0.66):                                                  # columns: a layer behind,
+        slab(rrect(x - 0.085, -0.62, x + 0.085, 0.58, 0.08), 0.12, A, -(T / 2 + 0.07), 0.05)  # ends tucked under roof and base
+    slab(rrect(-1.15, -0.86, 1.15, -0.52, 0.12), T, G, 0.0, E)                            # base
 
 
 def icon_chart(G, A):
@@ -199,25 +202,29 @@ def icon_chart(G, A):
 
 def icon_factory(G, A):
     """Manufacturing, the common ground of FMCG, healthcare and industrials: sawtooth roof, chimney, lit windows."""
-    slab(rrect(-0.95, -0.1, -0.7, 1.1, 0.1), 0.16, G, -0.05, 0.07)                       # chimney, set back
+    def roofline(x):                                                                       # first sawtooth slope
+        return -0.04 + (x + 1.1) * 0.45
+    slab(rounded([(-1.0, roofline(-1.0) - 0.03), (-0.66, roofline(-0.66) - 0.03), (-0.66, 1.1), (-1.0, 1.1)], 0.12),
+         0.16, G, -0.02, 0.07)                                                             # chimney: ends on the roofline
     body = [(-1.1, -0.9), (1.1, -0.9), (1.1, 0.32), (0.4, -0.04), (0.4, 0.32), (-0.3, -0.04), (-0.3, 0.32), (-1.1, -0.04)]
-    slab(rounded(body, 0.07), T, G, 0.0, E)                                               # sawtooth hall
+    slab(rounded(body, 0.1), T, G, 0.0, E)                                                # sawtooth hall
     for x in (-0.6, 0.05, 0.7):
         slab(rrect(x - 0.14, -0.6, x + 0.14, -0.34, 0.06), 0.08, A, T / 2 + 0.05, 0.035)  # windows, laid on the hall
 
 
 def icon_scales(G, A):
-    slab(rounded([(-0.55, -1.12), (0.55, -1.12), (0.2, -0.88), (-0.2, -0.88)], 0.08), T, G, 0.0, 0.08)  # foot
-    slab(rrect(-0.07, -0.95, 0.07, 0.95, 0.07), 0.14, G, 0.0, 0.06)                       # post
-    slab(rrect(-1.15, 0.66, 1.15, 0.8, 0.07), 0.14, G, 0.0, 0.06)                         # beam
-    slab(arc(0, 0.95, 0.13, 0, 2 * math.pi, 32)[:-1], 0.18, A, 0.02, 0.07)                # pivot cap
+    # thin parts: outward bevel (inset=False); an inward offset on a 0.14-tall beam leaves nothing and spikes
+    slab(rounded([(-0.55, -1.15), (0.55, -1.15), (0.2, -0.85), (-0.2, -0.85)], 0.1), 0.24, G, 0, 0.08, False)  # foot
+    slab(rrect(-0.05, -0.95, 0.05, 0.95, 0.05), 0.1, G, 0.0, 0.04, False)                # post
+    slab(rrect(-1.15, 0.68, 1.15, 0.78, 0.05), 0.1, G, 0.0, 0.04, False)                 # beam
+    slab(arc(0, 0.95, 0.1, 0, 2 * math.pi, 32)[:-1], 0.14, A, 0.02, 0.04, False)         # pivot cap
     for sx in (-1, 1):
         x = sx * 0.85
         for dx in (-0.4, 0.4):                                                            # two fine strings per pan
-            slab([(x + dx - 0.022, 0.0), (x + dx + 0.022, 0.0), (x + 0.022, 0.72), (x - 0.022, 0.72)], 0.04, G, 0.0, 0.015)
+            slab([(x + dx - 0.01, 0.0), (x + dx + 0.01, 0.0), (x + 0.01, 0.72), (x - 0.01, 0.72)], 0.02, G, 0.0, 0.012, False)
         bowl = [(x - 0.5, 0.0)] + [(x + 0.5 * math.cos(math.pi + a * math.pi / 16), -0.03 + 0.3 * math.sin(math.pi + a * math.pi / 16))
                                    for a in range(1, 16)] + [(x + 0.5, 0.0)]
-        slab(rounded(bowl, 0.04), T, A, 0.0, 0.08)                                        # pan
+        slab(rounded(bowl, 0.04), 0.16, A, 0.0, 0.06, False)                             # pan
 
 
 def icon_megaphone(G, A):
@@ -341,8 +348,8 @@ def studio(samples):
 
 def render(name, out_dir, samples):
     reset()
-    G = glass("glass", "#F8F0F6", "#C48DB8", 0.92, 0.16)         # clear lilac-white
-    A = glass("accent", "#9E3A8C", "#4A0E42", 0.4, 0.22)         # deep brand plum
+    G = glass("glass", "#F8F0F6", "#C48DB8", 0.92, 0.4)          # frosted lilac-white
+    A = glass("accent", "#9E3A8C", "#4A0E42", 0.4, 0.32)         # deep brand plum, satin
     BUILDERS[name](G, A)
     upright_pose()
     studio(samples)
