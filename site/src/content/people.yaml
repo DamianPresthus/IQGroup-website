@@ -1,0 +1,76 @@
+# People: the roster on About, partner faces on Home, and sector leads (referenced from sectors.yaml by id).
+# List order = display order within each group. `face` is a 160x160 JPEG in src/assets/team-face/.
+# group: partner | associate | advisor. `focus` is shown after the title in the About roster.
+# `bio` (optional) is only shown for the founder spotlight on About.
+
+- id: ashmita
+  name: Ashmita Ray Sarkar
+  title: Founder & Managing Director
+  group: partner
+  focus: All sectors, C‑suite
+  face: ashmita
+  founder: true
+  bio: Ashmita founded IQ after working in market research at TNS Mode and in management consulting at Price Waterhouse Coopers. She leads every sector and the firm’s C‑suite mandates.
+
+- id: annu
+  name: Annu Paul
+  title: Director
+  group: partner
+  focus: Hospitality, media, social impact, business development
+  face: annu
+
+- id: shirin
+  name: Shirin Gulrajani Talwar
+  title: Director
+  group: partner
+  focus: Legal, social impact
+  face: shirin
+
+- id: christine
+  name: Christine Gomes
+  title: "Managing Associate, IQ\u00a0Social"
+  group: partner
+  focus: CSR, NGOs, foundations
+  face: christine
+
+- id: mallika
+  name: Mallika Sen Varma
+  title: Senior Associate
+  group: associate
+  focus: BFSI, hospitality & media
+  face: mallika
+
+- id: bijal
+  name: Bijal Joshi
+  title: Senior Associate
+  group: associate
+  focus: BFSI, social impact & NGO
+  face: bijal
+
+- id: shharran
+  name: Shharran Das
+  title: Associate
+  group: associate
+  focus: Media, BFSI
+  face: shharran
+
+- id: tanushree
+  name: Tanushree Kundu
+  title: Associate
+  group: associate
+  focus: BFSI, hospitality, FMCG, ITES
+  face: tanushree
+
+- id: neha
+  name: Neha Beswal
+  title: Associate
+  group: associate
+  focus: BFSI, ITES
+  face: neha
+
+- id: tilak
+  name: Tilak Mukherji
+  title: Advisor
+  group: advisor
+  focus: Chairman, Sigma Research & Consulting
+  face: tilak

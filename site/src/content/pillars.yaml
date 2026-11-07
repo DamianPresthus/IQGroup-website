@@ -1,0 +1,11 @@
+# "What sets us apart": the three pillars on About. List order = display order.
+
+- id: partnership
+  title: Partnership
+  text: As a boutique, your search gets our full attention. We learn your organisation at the cultural, strategic and tactical level.
+- id: people
+  title: People
+  text: Deep industry experience and a network of CEOs, MDs and senior executives, built over decades.
+- id: performance
+  title: Performance
+  text: A 30+ year record of hires who make a lasting impact, with exceptionally fast turnaround.

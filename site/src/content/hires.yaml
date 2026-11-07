@@ -1,0 +1,34 @@
+# Recent hires: anonymised placements. Shown on Home (all, in this order) and under their sector on Sectors.
+# Newest first: add a new hire at the top and drop the last one. Never name the client organisation.
+# `sector` is an id from sectors.yaml (it picks the icon and the Sectors page section).
+# `label` is the short sector name shown at the end of the Home row.
+
+- id: ceo-specialty-chemicals
+  role: CEO
+  org: A leading specialty chemicals manufacturer
+  sector: consumer
+  label: Industrials
+
+- id: cfo-precision-engineering
+  role: CFO
+  org: An Indian precision engineering company
+  sector: consumer
+  label: Industrials
+
+- id: vp-investments-pe
+  role: VP, Investments
+  org: A leading Indian private equity firm
+  sector: banking
+  label: Private equity
+
+- id: head-csr-european-bank
+  role: Head of CSR, India
+  org: A large European bank
+  sector: social
+  label: IQ Social
+
+- id: cmo-private-bank
+  role: CMO
+  org: A leading private sector Indian bank
+  sector: banking
+  label: Banking

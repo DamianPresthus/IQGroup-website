@@ -1,0 +1,61 @@
+---
+// Enquiry sheet: one dialog, two short forms (hiring / open to roles). Opens from any [data-enquiry] trigger;
+// without JS those links fall back to #contact / mailto. Behaviour: src/scripts/enquiry.ts.
+import { getSite } from '../lib/content';
+const site = await getSite();
+const phone = site.phones[0];
+---
+<dialog class="enquiry" id="enquiry" aria-labelledby="enquiry-title" data-to={site.enquiryEmail}>
+  <div class="enquiry-inner">
+    <header class="enquiry-head">
+      <div class="enquiry-switch" role="tablist" aria-label="I am">
+        <button type="button" role="tab" data-mode="search" aria-selected="true">Hiring</button>
+        <button type="button" role="tab" data-mode="profile" aria-selected="false">Open to roles</button>
+      </div>
+      <button type="button" class="enquiry-close" aria-label="Close" data-close>×</button>
+    </header>
+
+    <form class="enquiry-form" data-mode="search" novalidate>
+      <h2 id="enquiry-title">Begin a search</h2>
+      <p class="enquiry-intro">Three details are enough to start. A partner replies personally.</p>
+      <div class="field"><label for="s-name">Your name</label><input id="s-name" name="name" autocomplete="name" required enterkeyhint="next"><span class="err">Please add your name.</span></div>
+      <div class="field"><label for="s-email">Work email</label><input id="s-email" name="email" type="email" autocomplete="email" inputmode="email" required enterkeyhint="next"><span class="err">Please add a valid email.</span></div>
+      <div class="field"><label for="s-role">Role you’re hiring for</label><input id="s-role" name="role" placeholder="e.g. Chief Financial Officer" required enterkeyhint="next"><span class="err">Which role should we search for?</span></div>
+      <div class="field"><label for="s-note">Message <span class="opt">optional</span></label><textarea id="s-note" name="note" rows="3" placeholder="Location, timing, anything we should know"></textarea></div>
+      <details class="more">
+        <summary>Add organisation or phone <span class="opt">optional</span></summary>
+        <div class="field"><label for="s-org">Organisation</label><input id="s-org" name="org" autocomplete="organization"></div>
+        <div class="field"><label for="s-tel">Phone</label><input id="s-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel"></div>
+      </details>
+      <button class="btn btn-accent btn-block" type="submit">Send enquiry <span class="arrow" aria-hidden="true">→</span></button>
+      <p class="enquiry-fine">Used only to reply to you. Prefer to talk? <a href={`tel:${phone.tel}`}>{phone.label}</a></p>
+    </form>
+
+    <form class="enquiry-form" data-mode="profile" novalidate hidden>
+      <h2>Join our network</h2>
+      <p class="enquiry-intro">Share a profile in confidence. We contact you when a mandate fits.</p>
+      <div class="field"><label for="e-name">Your name</label><input id="e-name" name="name" autocomplete="name" required enterkeyhint="next"><span class="err">Please add your name.</span></div>
+      <div class="field"><label for="e-email">Email</label><input id="e-email" name="email" type="email" autocomplete="email" inputmode="email" required enterkeyhint="next"><span class="err">Please add a valid email.</span></div>
+      <div class="field"><label for="e-role">Current role</label><input id="e-role" name="role" placeholder="e.g. CFO, listed NBFC" autocomplete="organization-title" required enterkeyhint="next"><span class="err">What is your current role?</span></div>
+      <div class="field"><label for="e-note">Message <span class="opt">optional</span></label><textarea id="e-note" name="note" rows="3" placeholder="Roles or sectors you’d consider"></textarea></div>
+      <details class="more">
+        <summary>Add LinkedIn profile <span class="opt">optional</span></summary>
+        <div class="field"><label for="e-url">LinkedIn profile</label><input id="e-url" name="url" type="url" inputmode="url" placeholder="linkedin.com/in/…"></div>
+      </details>
+      <button class="btn btn-accent btn-block" type="submit">Share your profile <span class="arrow" aria-hidden="true">→</span></button>
+      <p class="enquiry-fine">Kept confidential. You can attach your CV to the email that opens.</p>
+    </form>
+
+    <div class="enquiry-done" hidden aria-live="polite">
+      <span class="done-mark" aria-hidden="true">✓</span>
+      <h2 tabindex="-1">Almost there</h2>
+      <p>Your email app has opened with everything filled in. <strong>Press Send</strong> to reach us.</p>
+      <div class="done-actions">
+        <button type="button" class="btn btn-line" data-copy>Copy message</button>
+        <a class="link-arrow" data-direct href={`mailto:${site.enquiryEmail}`}>Email didn’t open?</a>
+      </div>
+      <p class="enquiry-fine" data-copied hidden>Copied. Paste it into an email to {site.enquiryEmail}.</p>
+      <button type="button" class="btn btn-dark btn-block" data-close>Done</button>
+    </div>
+  </div>
+</dialog>

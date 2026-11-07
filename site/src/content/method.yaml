@@ -1,0 +1,21 @@
+# "How a search runs": the numbered timeline on Home and About. List order = step order (numbered automatically).
+
+- id: understand
+  title: Understand your business
+  text: Priorities, mandate goals and culture.
+
+- id: shortlist
+  title: Shortlist candidates
+  text: "Market mapping: we know where everyone sits."
+
+- id: match
+  title: Identify the match
+  text: Competency evaluation and 360° references.
+
+- id: hire
+  title: Hire & onboard
+  text: Offer, closing and transition.
+
+- id: monitor
+  title: Monitor & iterate
+  text: Check-ins after placement, and a client review after every assignment.

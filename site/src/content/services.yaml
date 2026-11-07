@@ -1,0 +1,13 @@
+# Services: the numbered row on About. List order = display order.
+
+- id: search
+  title: Executive & board search
+  text: C‑suite · Board · Specialist roles
+
+- id: advisory
+  title: HR advisory
+  text: Compensation structuring · Appraisal frameworks
+
+- id: onboarding
+  title: Onboarding & retention
+  text: Transition support · Post-placement check-ins · Training with Abozzo

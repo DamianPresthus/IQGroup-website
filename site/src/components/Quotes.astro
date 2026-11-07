@@ -1,0 +1,21 @@
+---
+// "Trusted with difficult mandates": both client quotes, side by side (Home and About).
+import { getOrdered } from '../lib/content';
+const quotes = await getOrdered('quotes');
+---
+<section class="section" aria-labelledby="proof-title">
+  <div class="page">
+    <div class="section-head">
+      <h2 id="proof-title">Trusted with difficult mandates.</h2>
+      <p>In our clients’ words.</p>
+    </div>
+    <div class="quotes">
+      {quotes.map(({ data }) => (
+        <figure class="quote rise">
+          <blockquote><p>{data.text}</p></blockquote>
+          <figcaption><b>{data.name}</b><span>{data.role}</span></figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

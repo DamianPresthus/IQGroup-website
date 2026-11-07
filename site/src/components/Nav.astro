@@ -1,0 +1,27 @@
+---
+// Floating glass nav (desktop) + full-screen menu sheet (phones). `current` marks the active page.
+interface Props { current: 'home' | 'sectors' | 'about' }
+const { current } = Astro.props;
+const links = [
+  { href: '/sectors/', label: 'Sectors', page: 'sectors' },
+  { href: '/about/', label: 'About', page: 'about' },
+] as const;
+---
+<div class="nav-wrap">
+  <nav class="nav" aria-label="Primary">
+    <a class="wordmark" href="/" aria-label="IQ Group, home"><b>IQ</b><span>Group</span></a>
+    <div class="nav-links">
+      {links.map((l) => <a href={l.href} aria-current={l.page === current ? 'page' : undefined}>{l.label}</a>)}
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="btn btn-accent" href="#contact" data-enquiry="search">Begin a search <span class="arrow" aria-hidden="true">→</span></a>
+    <button class="nav-menu" type="button" aria-expanded="false" aria-controls="sheet">Menu</button>
+  </nav>
+</div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Menu">
+  <button class="nav-menu sheet-close" type="button">Close</button>
+  <a href="/">Home</a>
+  {links.map((l) => <a href={l.href}>{l.label}</a>)}
+  <a href="#contact">Contact</a>
+  <a class="btn btn-accent" href="#contact" data-enquiry="search">Begin a search <span class="arrow" aria-hidden="true">→</span></a>
+</div>

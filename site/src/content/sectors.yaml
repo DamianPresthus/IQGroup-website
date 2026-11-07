@@ -1,0 +1,123 @@
+# Sectors: shown as the six tiles on Home and Sectors, and as the detail sections on Sectors.
+# List order = display order. `id` is the URL anchor (/sectors/#banking) and is referenced by hires.yaml.
+# Use "\u00a0" (non-breaking space) to keep two words together on one line, e.g. "&\u00a0Financial".
+# `icon` is a file in src/assets/icons-3d/ (rendered by tools/icons3d/render.py). `lead` is a person id from people.yaml.
+
+- id: banking
+  title: "Banking, Private Equity &\u00a0Financial Services"
+  icon: bank
+  lead: ashmita
+  tags:
+    - Investment banking
+    - Wealth management
+    - Private equity
+    - Retail banking
+    - Risk
+  intro:
+    - Our historic core practice. Banking and financial services has always been IQ’s core business, and our associates have worked in the sector themselves.
+    - We identify and assess board members, CEOs and senior functional leaders, and the teams behind them. Our network of senior management runs across banks, private equity and financial institutions, and several managers we placed have gone on to the C‑suite.
+  areas:
+    - Investment banking
+    - Asset and wealth management
+    - Private equity
+    - Retail and consumer banking
+    - Risk management
+
+- id: consulting
+  title: "Consulting &\u00a0Advisory"
+  icon: chart
+  lead: ashmita
+  tags:
+    - Strategy
+    - Research
+    - Advisory firms
+  intro:
+    - Strategy, research and advisory firms. Ashmita worked in market research at TNS Mode and in management consulting at Price Waterhouse Coopers before founding IQ.
+  areas:
+    - Strategy
+    - Research
+    - Advisory firms
+
+- id: consumer
+  title: "FMCG, Healthcare &\u00a0Industrials"
+  icon: factory
+  lead: ashmita
+  tags:
+    - Consumer
+    - Healthcare
+    - Life sciences
+    - Industrial
+  intro:
+    - Consumer, healthcare, life-sciences and industrial businesses, from specialist roles to the C‑suite.
+  areas:
+    - Consumer
+    - Healthcare
+    - Life sciences
+    - Industrial
+
+- id: legal
+  title: Legal
+  icon: scales
+  lead: shirin
+  tags:
+    - In-house counsel
+    - Law-firm partners
+    - Practice groups
+  intro:
+    - The legal function keeps changing. Companies are bringing more legal capability in-house and relying on their legal teams to stay ahead of compliance and governance.
+    - We recruit from in-house counsel to law-firm associates, senior partners and whole practice groups, with a working understanding of what makes a legal hire succeed.
+  areas:
+    - In-house counsel
+    - Law-firm associates
+    - Senior partners
+    - Practice groups
+
+- id: media
+  title: "Media, Advertising &\u00a0Hospitality"
+  icon: megaphone
+  lead: annu
+  tags:
+    - Agency leadership
+    - Account planning
+    - Digital strategy
+    - Hotels
+  intro:
+    - We hire mid- to senior-level leaders for media owners, publishers and advertising agencies, with a focus on senior management, account planning, account management and digital strategy for agencies serving FMCG and consumer brands.
+    - In hospitality, our consultants have long experience hiring for hotels and work across regions to find the right fit.
+  areas:
+    - Agency leadership
+    - Account planning and management
+    - Digital strategy
+    - Publishing
+    - Hotels and hospitality
+
+- id: social
+  title: IQ Social
+  icon: heart
+  lead: christine
+  tags:
+    - CSR teams
+    - NGOs
+    - Foundations
+  intro:
+    - IQ Social is our dedicated wing for the social and development sector. Members of our team have worked in nonprofit organisations themselves.
+    - We research each organisation and its projects before we approach candidates, accept that a role sometimes evolves during the search, and build long-term partnerships rather than quick fixes.
+  areas:
+    - CSR teams
+    - NGOs
+    - Foundations
+  clients:
+    - Oxfam India
+    - NASSCOM Foundation
+    - HelpAge India
+    - Concern India Foundation
+    - Kotak Education Foundation
+    - TechnoServe
+    - CanKids KidsCan
+    - ZAYA
+    - Ambuja Cement Foundation
+    - Educo
+    - Aangan Trust
+    - Morris Foundation
+    - Samhita
+    - UnLtd India

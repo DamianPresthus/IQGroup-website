@@ -1,0 +1,17 @@
+---
+// "How a search runs": numbered timeline that draws itself on scroll (CSS scroll-driven, see global.css).
+// `band` puts it on the tinted band (About); Home keeps it light because Partners is that page's band.
+import { getOrdered } from '../lib/content';
+interface Props { band?: boolean }
+const steps = await getOrdered('method');
+---
+<section class:list={['section', { band: Astro.props.band }]} id="method" aria-labelledby="method-title">
+  <div class="page">
+    <div class="section-head"><h2 id="method-title">How a search runs</h2></div>
+    <ol class="timeline">
+      {steps.map(({ data }, i) => (
+        <li style={`--i:${i}`}><span class="node">{i + 1}</span><h3>{data.title}</h3><p>{data.text}</p></li>
+      ))}
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+---
+import { getSite } from '../lib/content';
+const site = await getSite();
+const a = site.address;
+---
+<footer class="footer">
+  <div class="page">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="wordmark" href="/"><b>IQ</b><span>Group</span></a>
+        <p>{site.tagline}</p>
+      </div>
+      <div><h4>Firm</h4><ul><li><a href="/sectors/">Sectors</a></li><li><a href="/about/">About</a></li><li><a href="/about/#method">How a search runs</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="#contact" data-enquiry="search">Begin a search</a></li><li><a href="#candidates" data-enquiry="profile">Share your profile</a></li></ul></div>
+      <div><h4>{a.city}</h4><p>{a.street}, {a.city} {a.postcodeDisplay}</p></div>
+    </div>
+    <div class="legal"><span>© {site.name} · Member of the Executive Recruiters Association</span><span>Last reviewed {site.lastReviewed}</span></div>
+  </div>
+</footer>

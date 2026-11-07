@@ -1,0 +1,36 @@
+---
+// Dual-pathway contact (organisations / candidates) + office address. Ends every page.
+import { getSite } from '../lib/content';
+const site = await getSite();
+const a = site.address;
+---
+<section class="section" id="contact" aria-labelledby="contact-title">
+  <div class="page">
+    <h2 class="sr-only" id="contact-title">Contact</h2>
+    <div class="paths">
+      <article class="path org rise">
+        <span class="who">For organisations</span>
+        <h3>In quest of leadership?</h3>
+        <p>Board members, founders and HR heads: tell us about the role. A partner leads the conversation from the first call.</p>
+        <span class="spacer"></span>
+        <div class="actions">
+          <a class="btn btn-light" href={`mailto:${site.email}?subject=Search%20enquiry`} data-enquiry="search">Begin a search <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+        <p class="meta">{site.phones.map((p) => <a href={`tel:${p.tel}`}>{p.label}</a>)}</p>
+      </article>
+      <article class="path candidate rise" id="candidates">
+        <span class="who">For candidates</span>
+        <h3>Join our network.</h3>
+        <p>Share your profile in confidence, from specialist roles to the C‑suite. We will be in touch when a mandate fits.</p>
+        <span class="spacer"></span>
+        <div class="actions">
+          <a class="btn btn-dark" href={`mailto:${site.email}?subject=Confidential%20profile`} data-enquiry="profile">Share your profile <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    </div>
+    <div class="offices">
+      <address class="office"><b>{a.city}</b><span>{a.street}, {a.city} {a.postcodeDisplay}, {a.country}</span><a href={`mailto:${site.email}`}>{site.email}</a></address>
+    </div>
+    <p class="network">{site.era}</p>
+  </div>
+</section>

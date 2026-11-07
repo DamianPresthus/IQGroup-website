@@ -1,0 +1,84 @@
+---
+import { getOrdered } from '../lib/content';
+import Base from '../layouts/Base.astro';
+import Quotes from '../components/Quotes.astro';
+import Method from '../components/Method.astro';
+import Contact from '../components/Contact.astro';
+import Face from '../components/Face.astro';
+
+const [people, pillars, services] = await Promise.all([
+  getOrdered('people'), getOrdered('pillars'), getOrdered('services'),
+]);
+const founder = people.find((p) => p.data.founder)!.data;
+const groups = [
+  { heading: 'Partners', group: 'partner' },
+  { heading: 'Associates', group: 'associate' },
+  { heading: 'Advisor', group: 'advisor' },
+] as const;
+---
+<Base
+  title="About · IQ Group"
+  description="IQ Group is led by founder Ashmita Ray Sarkar and a partner team in Mumbai. How a search runs, our services, and what clients say."
+  current="about"
+>
+  <header class="page-hero">
+    <div class="page">
+      <h1>Every mandate is led by a partner.</h1>
+    </div>
+  </header>
+
+  <section class="section" id="people" aria-label="Our people">
+    <div class="page">
+      <article class="spotlight rise">
+        <Face face={founder.face} />
+        <div>
+          <h3>{founder.name}</h3>
+          <p class="title">{founder.title}</p>
+          <p class="bio">{founder.bio}</p>
+        </div>
+      </article>
+
+      <div class="roster" data-roster>
+        {groups.map(({ heading, group }) => (
+          <>
+            <h3>{heading}</h3>
+            <ul class="names">
+              {people.filter((p) => p.data.group === group).map(({ data }) => {
+                const role = data.group === 'advisor' ? `${data.title}; ${data.focus}` : data.title;
+                return (
+                  <li tabindex="0" data-name={data.name} data-role={`${data.title} · ${data.focus}`}>
+                    <Face face={data.face} />{data.name}<span class="sr-only">, {role}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </>
+        ))}
+        <p class="roster-detail" aria-hidden="true">Select a name for their role and sectors.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="apart" aria-labelledby="apart-title">
+    <div class="page">
+      <div class="section-head"><h2 id="apart-title">What sets us apart</h2></div>
+      <div class="pillars">
+        {pillars.map(({ data }) => <div><h3>{data.title}</h3><p>{data.text}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <Method band />
+
+  <section class="section" id="services" aria-labelledby="services-title">
+    <div class="page">
+      <div class="section-head"><h2 id="services-title">Services</h2></div>
+      <ol class="svc-row">
+        {services.map(({ data }) => <li><h3>{data.title}</h3><p>{data.text}</p></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <Quotes />
+  <Contact />
+</Base>

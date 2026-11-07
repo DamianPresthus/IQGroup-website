@@ -1,0 +1,28 @@
+# Firm details used across every page (nav, contact section, footer, enquiry form, SEO data). One entry.
+# Enquiries are emailed to `enquiryEmail` by functions/api/enquiry.ts.
+
+- id: iq
+  name: IQ Group
+  url: https://www.iqgroup.co.in
+  tagline: "In quest of talent: partner-led executive search and HR advisory for 30+ years."
+  email: ashmita@iqgroup.co.in
+  enquiryEmail: ashmita@iqgroup.co.in
+  phones:
+    - label: "+91 22 6588 5932"
+      tel: "+912265885932"
+    - label: "+91 98200 61329"
+      tel: "+919820061329"
+  address:
+    street: 806, Sunshine Towers, Senapati Bapat Marg, Dadar (West)
+    city: Mumbai
+    postcode: "400013"
+    postcodeDisplay: "400 013"
+    country: India
+    countryCode: IN
+  era: Member of the Executive Recruiters Association (ERA).
+  lastReviewed: November 2026
+  areaServed:
+    - India
+    - Middle East
+    - South Asia
+    - Europe

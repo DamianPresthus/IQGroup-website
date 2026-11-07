@@ -1,0 +1,26 @@
+---
+// The dark sector band: six tiles with a dim 3D icon watermark that brightens on hover.
+// `inPage` links to the detail sections on the same page (Sectors) instead of /sectors/#id (Home).
+import Face from './Face.astro';
+import { getOrdered, getPerson, iconImage } from '../lib/content';
+interface Props { inPage?: boolean }
+const sectors = await getOrdered('sectors');
+const tiles = await Promise.all(sectors.map(async (s) => ({ ...s, lead: await getPerson(s.data.lead) })));
+---
+<div class="bento rise">
+  {tiles.map(({ id, data, lead }) => {
+    const icon = iconImage(data.icon);
+    return (
+      <a class="tile" href={Astro.props.inPage ? `#${id}` : `/sectors/#${id}`}>
+        <img class="tile-icon" src={icon.src} alt="" width="384" height="384" decoding="async" />
+        <h3>{data.title}</h3>
+        <div class="tile-reveal"><div>
+          <ul class="tags">{data.tags.map((t) => <li>{t}</li>)}</ul>
+          <span class="tile-more">Read more <span aria-hidden="true">→</span></span>
+        </div></div>
+        <p class="lead-by"><Face face={lead.face} /><span>Led by {lead.name}</span></p>
+        <span class="tile-go" aria-hidden="true">→</span>
+      </a>
+    );
+  })}
+</div>

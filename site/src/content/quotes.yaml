@@ -1,0 +1,12 @@
+# Client quotes: shown side by side on Home and About. Only publish quotes with written consent.
+# If the person has a relationship with IQ (e.g. advisor), say so in `role` (see docs/PROJECT_BRIEF.md §6.5).
+
+- id: mahajan
+  text: Over a decade, IQ helped me build teams of strong professionals at UBS, Yes Bank and IDFC. I have been impressed by their speed, professionalism, responsiveness and cost-effective service.
+  name: Ajay Mahajan
+  role: Former Managing Director, UBS
+
+- id: mukherji
+  text: IQ may be a small firm but more than makes up with its talent, connections and never-say-die attitude. IQ takes pride in accepting difficult and complex placements and has delivered where its behemoth competitors have not.
+  name: Tilak Mukherji
+  role: Advisor to IQ Group · Chairman, Sigma Research & Consulting

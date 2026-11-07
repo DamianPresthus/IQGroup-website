@@ -1,0 +1,7 @@
+---
+// Circular portrait (160px source, shown at 80px or smaller so it stays sharp at 2x).
+import { faceImage } from '../lib/content';
+interface Props { face: string }
+const img = faceImage(Astro.props.face);
+---
+<span class="face"><img src={img.src} alt="" width="160" height="160"></span>

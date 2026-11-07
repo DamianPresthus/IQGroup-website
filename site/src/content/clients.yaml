@@ -1,0 +1,46 @@
+# Trust bar logos ("Clients include" under the hero). List order = display order.
+# `file` is in src/assets/clients/. `height` is the logo's visual height in px at desktop size (balances
+# optical weight between marks; scaled down on smaller screens). `showName: true` prints the name beside a
+# mark that is not recognisable on its own (it then becomes the accessible name instead of the alt text).
+# Logo permission is still unconfirmed (risk R2 in docs/PROJECT_BRIEF.md).
+
+- id: ubs
+  name: UBS
+  file: ubs.svg
+  height: 31
+
+- id: bcg
+  name: BCG
+  file: bcg.svg
+  height: 31
+
+- id: jpm
+  name: J.P. Morgan
+  file: jpm.svg
+  height: 24
+
+- id: db
+  name: Deutsche Bank
+  file: db.svg
+  height: 28
+
+- id: pwc
+  name: PwC
+  file: pwc.svg
+  height: 34
+
+- id: jnj
+  name: Johnson & Johnson
+  file: jnj.svg
+  height: 17
+
+- id: gsk
+  name: GSK
+  file: gsk.webp
+  height: 27
+
+- id: hul
+  name: Hindustan Unilever
+  file: hul.svg
+  height: 28
+  showName: true

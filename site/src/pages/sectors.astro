@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import SectorTiles from '../components/SectorTiles.astro';
+import Contact from '../components/Contact.astro';
+import Face from '../components/Face.astro';
+import { getOrdered, getPerson, iconImage } from '../lib/content';
+
+const [sectors, hires] = await Promise.all([getOrdered('sectors'), getOrdered('hires')]);
+const details = await Promise.all(sectors.map(async (s) => ({
+  ...s,
+  lead: await getPerson(s.data.lead),
+  icon: iconImage(s.data.icon),
+  hires: hires.filter((h) => h.data.sector.id === s.id).map((h) => h.data),
+})));
+---
+<Base
+  title="Sectors · IQ Group"
+  description="Executive search across banking and private equity, consulting, FMCG, healthcare and industrials, legal, media, advertising and hospitality, and the social sector, each led by an IQ Group partner."
+  current="sectors"
+>
+  <header class="page-hero">
+    <div class="page">
+      <h1>Sectors</h1>
+      <p class="lead">Six sectors, each led by a partner, from specialist roles to the C‑suite.</p>
+    </div>
+  </header>
+
+  <section class="section sectors-strip" aria-label="Sector overview">
+    <div class="page">
+      <SectorTiles inPage />
+    </div>
+  </section>
+
+  <section class="section" aria-label="Sector detail">
+    <div class="page sector-list">
+      {details.map(({ id, data, lead, icon, hires }) => (
+        <article class="sector" id={id} aria-labelledby={`${id}-title`}>
+          <div class="sector-side">
+            <img class="sector-icon" src={icon.src} alt="" width="384" height="384" decoding="async" />
+            <h2 id={`${id}-title`}>{data.title}</h2>
+            <p class="lead-by"><Face face={lead.face} /><span>Led by {lead.name}</span></p>
+          </div>
+          <div class="sector-body">
+            {data.intro.map((p) => <p>{p}</p>)}
+            <div class="sector-meta">
+              <div><h3>Areas</h3><ul class="sector-areas">{data.areas.map((a) => <li>{a}</li>)}</ul></div>
+              {hires.length > 0 && (
+                <div><h3>Recent hires</h3><ul class="sector-hires">{hires.map((h) => <li><b>{h.role}</b><span>{h.org}</span></li>)}</ul></div>
+              )}
+              {data.clients && (
+                <div><h3>Clients include</h3><ul class="sector-areas">{data.clients.map((c) => <li>{c}</li>)}</ul></div>
+              )}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <Contact />
+</Base>
