@@ -102,22 +102,19 @@ a { color: inherit; }
    Colours are the brands' own, darkened where needed to pass 3:1 for large text on --bg (GSK, PwC). */
 .trust-logos li { color: var(--c); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.015em; }
 
-/* ---------- Practice bento: equal weight. Every tile has the same parts (name, area tags, lead partner),
-   the same heading size and the same surface. Banking leads by size only (tall tile, historic core practice);
-   IQ Social is a separate wing, so it runs as a full-width stone band beneath. Tiles do not link: no hover. ---------- */
-.bento { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r-card); overflow: hidden; }
-.tile { min-height: 11.5rem; background: var(--bg); padding: clamp(1.25rem, 1rem + 0.8vw, 1.75rem); display: flex; flex-direction: column; gap: 0.6rem; grid-column: span 3; }
-.tile.lead { grid-column: span 6; grid-row: span 2; }
-.tile h3 { font-size: var(--fs-h3); line-height: 1.15; letter-spacing: -0.015em; max-width: 22ch; }
-.tile p { font-size: var(--fs-small); color: var(--ink-muted); max-width: 40ch; }
-/* Area tags: one per line, so every tile scans top to bottom with no dangling separators */
-.tags { display: grid; gap: 0.2rem; font-size: var(--fs-small); line-height: 1.45; color: var(--ink-muted); }
-.tile .note { color: var(--ink-body); }
-.tile .lead-by { margin-top: auto; padding-top: 1rem; display: flex; align-items: center; gap: 0.55rem; font-size: var(--fs-tag); font-weight: 600; color: var(--ink-body); }
+/* ---------- Practices: six equal tiles, 3 x 2 (2 x 3 on tablet, stacked on phones). Every tile has the same
+   parts (name, area tags, lead partner) and size, as peer firms do (docs/V4_DIRECTION.md, round 17 research).
+   Surfaces alternate alabaster / stone in a checkerboard for rhythm; colour encodes nothing. No links, no hover. ---------- */
+.bento { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r-card); overflow: hidden; }
+.tile { background: var(--bg); padding: clamp(1.25rem, 1rem + 0.8vw, 1.75rem); display: flex; flex-direction: column; gap: 0.5rem; }
+.tile:nth-child(even) { background: var(--bg-2); }
+.tile h3 { font-size: var(--fs-h4); line-height: 1.15; letter-spacing: -0.015em; max-width: 22ch; }
+/* Area tags: one comma-separated line */
+.tags { font-size: var(--fs-small); line-height: 1.5; color: var(--ink-muted); max-width: 40ch; }
+.tags li { display: inline; }
+.tags li:not(:last-child)::after { content: ", "; }
+.tile .lead-by { margin-top: auto; padding-top: 0.75rem; display: flex; align-items: center; gap: 0.55rem; font-size: var(--fs-tag); font-weight: 600; color: var(--ink-body); }
 .lead-by .face { width: 1.6rem; height: 1.6rem; }
-.tile.wing { min-height: 0; grid-column: span 12; background: var(--bg-2); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(0, 3fr); gap: var(--gutter); align-items: center; }
-.tile.wing div { display: grid; gap: 0.35rem; }
-.tile.wing .lead-by { margin: 0; padding: 0; justify-self: end; }
 
 /* ---------- Services: three scannable columns ---------- */
 .svc-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line-strong); }
@@ -219,10 +216,10 @@ a { color: inherit; }
   .hero-map { left: calc(50% - 16rem); width: 72vw; }
 }
 @media (max-width: 1024px) {
-  .tile { grid-column: span 6; }
-  .tile.lead { grid-column: span 12; grid-row: auto; }
-  .tile.wing { grid-template-columns: 1fr; gap: 0.75rem; align-items: start; }
-  .tile.wing .lead-by { justify-self: start; padding-top: 0.5rem; }
+  /* 2 columns: keep the checkerboard (rows alternate which column is stone) */
+  .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tile:nth-child(n) { background: var(--bg); }
+  .tile:nth-child(4n+2), .tile:nth-child(4n+3) { background: var(--bg-2); }
   .trust-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
   .trust-logos { width: 100%; display: grid; grid-template-columns: repeat(4, auto); justify-content: space-between; row-gap: 1.25rem; }
 }
@@ -249,13 +246,9 @@ a { color: inherit; }
   .hero-grid { min-height: 0; }
 }
 @media (max-width: 560px) {
-  .tile, .tile.lead { grid-column: span 12; }
-  .tile .lead-by { padding-top: 0.5rem; }
-  .tile { min-height: 0; }
-  /* Phones: tags run as one comma-separated line to keep the stack short */
-  .tags { display: block; }
-  .tags li { display: inline; }
-  .tags li:not(:last-child)::after { content: ", "; }
+  .bento { grid-template-columns: 1fr; }
+  .tile:nth-child(n) { background: var(--bg); }
+  .tile:nth-child(even) { background: var(--bg-2); }
   .trust-logos { grid-template-columns: repeat(2, auto); }
   .spotlight { grid-template-columns: 1fr; }
   .path { min-height: 0; }

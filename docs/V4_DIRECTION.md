@@ -6,6 +6,15 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 18: six equal tiles (2026-11-07)
+
+Both research-backed tweaks are applied: Banking is the same size as the others, and IQ Social is an ordinary tile (Spencer Stuart precedent).
+- **Grid:** 3 × 2 on desktop, 2 × 3 at ≤1024px, stacked at ≤560px.
+- **Tiles:** every tile has the same name (`--fs-h4`), area tags as one comma-separated line, and the lead partner.
+- **Colour:** surfaces alternate alabaster / stone in a checkerboard, re-paired at 2 columns so no two neighbours match. Colour is for rhythm only and encodes nothing.
+- **Dropped from the overview:** "Our historic core practice." and the IQ Social client names. Both belong on the Practices page (step 2).
+- **Height:** the section is about 40% shorter on desktop.
+
 ## Round 17 research: how peers present sectors (2026-11-07)
 
 Screenshots are in `reference/v4-research/sectors/`, taken at 1440px on 2026-11-07. Bain and Odgers blocked headless capture, and ABC Consultants has no sector overview page.
