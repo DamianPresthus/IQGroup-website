@@ -102,14 +102,13 @@ a { color: inherit; }
    Colours are the brands' own, darkened where needed to pass 3:1 for large text on --bg (GSK, PwC). */
 .trust-logos li { color: var(--c); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.015em; }
 
-/* ---------- Sectors: a dark plum band. Six equal tiles, 3 x 2 (2 x 3 on tablet, stacked on phones), each with the
-   same parts (name, area tags, lead partner). The sector icon (Phosphor duotone, MIT) is baked into the tile as a large
-   watermark cropped by the bottom-right corner: the scan cue without adding another element. Tiles link to their
-   sector on sectors.html; hover lifts the surface, brightens the watermark and nudges the arrow. ---------- */
-.section.band-dark { background: var(--surface-dark); padding-block: var(--section); overflow-x: clip; }
-.band-dark + .section { padding-top: var(--section); }
-.band-dark .section-head h2 { color: var(--on-dark); }
-.bento { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--on-dark-line); border: 1px solid var(--on-dark-line); border-radius: var(--r-card); overflow: hidden; }
+/* ---------- Sectors: the section stays light (ink heading, like every other section); only the sector grid is dark.
+   Below 1025px a dark card of six tiles, 3 x 2 (2 x 3 on tablet, stacked on phones); at 1025px+ a full-bleed dark
+   strip of slanted columns (see the desktop block). Each tile has the same parts (name, area tags, lead partner). The
+   sector icon (Phosphor duotone, MIT) is a large 3D watermark cropped by the tile. Tiles link to their sector on
+   sectors.html; hover lifts the surface, brightens the watermark and nudges the arrow. ---------- */
+.section.sectors-strip { overflow-x: clip; }
+.bento { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--on-dark-line); border: 1px solid var(--surface-dark); border-radius: var(--r-card); overflow: hidden; }
 .tile { position: relative; isolation: isolate; overflow: hidden; min-height: 13rem; background: var(--surface-dark); padding: clamp(1.25rem, 1rem + 0.8vw, 1.75rem); padding-right: clamp(4rem, 3rem + 2vw, 5.5rem); display: flex; flex-direction: column; gap: 0.5rem; }
 .tile { text-decoration: none; transition: background-color var(--fast) var(--ease); }
 .tile:hover { background: color-mix(in oklch, var(--surface-dark) 90%, var(--accent)); }
@@ -423,7 +422,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .page-hero { padding-top: clamp(8rem, 6rem + 6vw, 11rem); padding-bottom: clamp(2.5rem, 2rem + 2vw, 4rem); }
 .page-hero h1 { font-size: var(--fs-hero); line-height: 1.02; letter-spacing: -0.03em; max-width: 18ch; }
 .page-hero .lead { margin-top: 1.25rem; font-size: var(--fs-lead); line-height: 1.55; color: var(--ink-muted); max-width: 40ch; }
-.page-hero + .section:not(.band-dark) { padding-top: 0; }
+.page-hero + .section { padding-top: 0; }
 
 /* Sector detail: name, icon and lead on the left; copy, areas, hires and clients on the right */
 .sector { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--gutter); padding-block: clamp(2rem, 1.5rem + 2vw, 3.5rem); border-top: 1px solid var(--line-strong); }
@@ -453,50 +452,50 @@ html { -webkit-tap-highlight-color: transparent; }
    Hover / keyboard focus: the column widens, a 2px plum rule lights along its top edge, the reveal opens
    (grid-rows 0fr → 1fr, so nothing jumps), the lead portrait warms to colour and the icon lifts. ---------- */
 @media (min-width: 1025px) {
-  .band-dark .bento { --slant: 8deg; --h: 30rem; --d: calc(var(--h) / 2 * 0.1405); /* tan(8deg) */
-    display: flex; height: var(--h); margin-inline: calc(50% - 50vw); padding-inline: var(--d); gap: 0; background: none; border: 0; border-radius: 0; overflow: hidden; }
-  .band-dark .tile { flex: 1 1 0; min-width: 0; min-height: 0; overflow: visible; background: none; justify-content: flex-start; gap: 0;
+  .sectors-strip .bento { --slant: 8deg; --h: 30rem; --d: calc(var(--h) / 2 * 0.1405); /* tan(8deg) */
+    display: flex; height: var(--h); margin-inline: calc(50% - 50vw); padding-inline: var(--d); gap: 0; background: var(--surface-dark); border: 0; border-radius: 0; overflow: hidden; }
+  .sectors-strip .tile { flex: 1 1 0; min-width: 0; min-height: 0; overflow: visible; background: none; justify-content: flex-start; gap: 0;
     padding: 2.25rem calc(var(--d) + 1.25rem) 0 calc(var(--d) + 1.25rem);
     clip-path: polygon(var(--d) 0, calc(100% + var(--d)) 0, calc(100% - var(--d)) 100%, calc(0% - var(--d)) 100%);
     transition: flex-grow 0.6s cubic-bezier(0.22, 0.8, 0.24, 1); }
-  .band-dark .tile::before { content: ""; position: absolute; z-index: -2; inset: 0 calc(-1 * var(--d));
+  .sectors-strip .tile::before { content: ""; position: absolute; z-index: -2; inset: 0 calc(-1 * var(--d));
     background: linear-gradient(var(--accent), var(--accent)) top / 100% 0 no-repeat, var(--surface-dark);
     transition: background-color var(--slow) var(--ease), background-size var(--slow) var(--ease); }
-  .band-dark .tile::after { content: ""; position: absolute; top: 0; bottom: 0; right: 0; width: 1px; transform: skewX(calc(-1 * var(--slant)));
+  .sectors-strip .tile::after { content: ""; position: absolute; top: 0; bottom: 0; right: 0; width: 1px; transform: skewX(calc(-1 * var(--slant)));
     background: linear-gradient(transparent, var(--on-dark-line) 14%, var(--on-dark-line) 86%, transparent); }
-  .band-dark .tile:last-child::after { display: none; }
-  .band-dark .tile:hover, .band-dark .tile:focus-visible { flex-grow: 2.6; background: none; outline: none; }
-  .band-dark .tile:hover::before, .band-dark .tile:focus-visible::before { background-color: color-mix(in oklch, var(--surface-dark) 90%, var(--accent)); background-size: 100% 2px, auto; }
-  .band-dark .tile:focus-visible h3 { text-decoration: underline 1px var(--focus); text-underline-offset: 0.22em; }
+  .sectors-strip .tile:last-child::after { display: none; }
+  .sectors-strip .tile:hover, .sectors-strip .tile:focus-visible { flex-grow: 2.6; background: none; outline: none; }
+  .sectors-strip .tile:hover::before, .sectors-strip .tile:focus-visible::before { background-color: color-mix(in oklch, var(--surface-dark) 90%, var(--accent)); background-size: 100% 2px, auto; }
+  .sectors-strip .tile:focus-visible h3 { text-decoration: underline 1px var(--focus); text-underline-offset: 0.22em; }
 
-  .band-dark .tile h3 { font-size: clamp(1.125rem, 0.9rem + 0.45vw, 1.375rem); line-height: 1.18; max-width: 15ch; transition: color var(--fast) var(--ease); }
-  .band-dark .tile:hover h3, .band-dark .tile:focus-visible h3 { color: #FFF; }
+  .sectors-strip .tile h3 { font-size: clamp(1.125rem, 0.9rem + 0.45vw, 1.375rem); line-height: 1.18; max-width: 15ch; transition: color var(--fast) var(--ease); }
+  .sectors-strip .tile:hover h3, .sectors-strip .tile:focus-visible h3 { color: #FFF; }
 
   /* Reveal: areas + "Read more" open in place; the lead below moves down smoothly instead of jumping */
-  .band-dark .tile-reveal { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.5s cubic-bezier(0.22, 0.8, 0.24, 1); }
-  .band-dark .tile-reveal > div { overflow: hidden; min-height: 0; }
-  .band-dark .tile:hover .tile-reveal, .band-dark .tile:focus-visible .tile-reveal { grid-template-rows: 1fr; }
-  .band-dark .tile .tags { padding-top: 0.85rem; max-width: 30ch; }
-  .band-dark .tile .tags, .band-dark .tile-more { opacity: 0; transform: translateY(4px); transition: opacity 0.25s var(--ease), transform 0.35s var(--ease); }
-  .band-dark .tile:hover .tags, .band-dark .tile:focus-visible .tags { opacity: 1; transform: none; transition-delay: 0.14s; }
-  .band-dark .tile:hover .tile-more, .band-dark .tile:focus-visible .tile-more { opacity: 1; transform: none; transition-delay: 0.22s; }
-  .band-dark .tile-more { display: inline-flex; align-items: center; gap: 0.45rem; margin-top: 0.9rem; padding-bottom: 2px; font-size: var(--fs-small); font-weight: 600; color: var(--on-dark);
+  .sectors-strip .tile-reveal { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.5s cubic-bezier(0.22, 0.8, 0.24, 1); }
+  .sectors-strip .tile-reveal > div { overflow: hidden; min-height: 0; }
+  .sectors-strip .tile:hover .tile-reveal, .sectors-strip .tile:focus-visible .tile-reveal { grid-template-rows: 1fr; }
+  .sectors-strip .tile .tags { padding-top: 0.85rem; max-width: 30ch; }
+  .sectors-strip .tile .tags, .sectors-strip .tile-more { opacity: 0; transform: translateY(4px); transition: opacity 0.25s var(--ease), transform 0.35s var(--ease); }
+  .sectors-strip .tile:hover .tags, .sectors-strip .tile:focus-visible .tags { opacity: 1; transform: none; transition-delay: 0.14s; }
+  .sectors-strip .tile:hover .tile-more, .sectors-strip .tile:focus-visible .tile-more { opacity: 1; transform: none; transition-delay: 0.22s; }
+  .sectors-strip .tile-more { display: inline-flex; align-items: center; gap: 0.45rem; margin-top: 0.9rem; padding-bottom: 2px; font-size: var(--fs-small); font-weight: 600; color: var(--on-dark);
     background: linear-gradient(var(--on-dark-muted), var(--on-dark-muted)) left bottom / 0 1px no-repeat; transition: background-size var(--slow) var(--ease); }
-  .band-dark .tile:hover .tile-more { background-size: 100% 1px; transition-delay: 0.22s, 0.22s, 0.3s; }
-  .band-dark .tile-more [aria-hidden] { transition: transform var(--fast) var(--ease); }
-  .band-dark .tile:hover .tile-more [aria-hidden] { transform: translateX(3px); }
+  .sectors-strip .tile:hover .tile-more { background-size: 100% 1px; transition-delay: 0.22s, 0.22s, 0.3s; }
+  .sectors-strip .tile-more [aria-hidden] { transition: transform var(--fast) var(--ease); }
+  .sectors-strip .tile:hover .tile-more [aria-hidden] { transform: translateX(3px); }
 
   /* Lead: a ringed portrait under the name; the name of the partner slides in on hover */
-  .band-dark .tile .lead-by { margin-top: 1.25rem; padding-top: 0; gap: 0; }
-  .band-dark .tile .lead-by .face { box-shadow: 0 0 0 1px var(--on-dark-line), 0 0 0 3px var(--surface-dark); }
-  .band-dark .tile:hover .lead-by .face img, .band-dark .tile:focus-visible .lead-by .face img { filter: grayscale(0) contrast(1.02); }
-  .band-dark .tile .lead-by > span:last-child { max-width: 0; overflow: hidden; white-space: nowrap; opacity: 0; transition: max-width 0.6s var(--ease), opacity 0.25s var(--ease); }
-  .band-dark .tile:hover .lead-by, .band-dark .tile:focus-visible .lead-by { gap: 0.6rem; }
-  .band-dark .tile:hover .lead-by > span:last-child, .band-dark .tile:focus-visible .lead-by > span:last-child { max-width: 20rem; opacity: 1; white-space: normal; transition-delay: 0.18s; }
+  .sectors-strip .tile .lead-by { margin-top: 1.25rem; padding-top: 0; gap: 0; }
+  .sectors-strip .tile .lead-by .face { box-shadow: 0 0 0 1px var(--on-dark-line), 0 0 0 3px var(--surface-dark); }
+  .sectors-strip .tile:hover .lead-by .face img, .sectors-strip .tile:focus-visible .lead-by .face img { filter: grayscale(0) contrast(1.02); }
+  .sectors-strip .tile .lead-by > span:last-child { max-width: 0; overflow: hidden; white-space: nowrap; opacity: 0; transition: max-width 0.6s var(--ease), opacity 0.25s var(--ease); }
+  .sectors-strip .tile:hover .lead-by, .sectors-strip .tile:focus-visible .lead-by { gap: 0.6rem; }
+  .sectors-strip .tile:hover .lead-by > span:last-child, .sectors-strip .tile:focus-visible .lead-by > span:last-child { max-width: 20rem; opacity: 1; white-space: normal; transition-delay: 0.18s; }
 
   /* Icon zone: the 3D watermark stands on the floor of the column, cropped by it, clear of the text zone */
-  .band-dark .tile-go { display: none; }
-  .band-dark .tile-icon { width: 10.5rem; height: 10.5rem; right: calc(var(--d) - 1.25rem); bottom: -1.75rem; opacity: 0.5;
+  .sectors-strip .tile-go { display: none; }
+  .sectors-strip .tile-icon { width: 10.5rem; height: 10.5rem; right: calc(var(--d) - 1.25rem); bottom: -1.75rem; opacity: 0.5;
     transition: opacity var(--slow) var(--ease), transform 0.7s cubic-bezier(0.22, 0.8, 0.24, 1), filter var(--slow) var(--ease); }
-  .band-dark .tile:hover .tile-icon, .band-dark .tile:focus-visible .tile-icon { opacity: 0.95; transform: translate(-0.75rem, -0.9rem) rotate(-3deg); }
+  .sectors-strip .tile:hover .tile-icon, .sectors-strip .tile:focus-visible .tile-icon { opacity: 0.95; transform: translate(-0.75rem, -0.9rem) rotate(-3deg); }
 }
