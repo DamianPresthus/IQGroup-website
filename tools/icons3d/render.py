@@ -306,8 +306,50 @@ def icon_hands(G, A):
     slab([(x, y + lift) for x, y in heart_points(s * 0.45)], 0.07, A, 0.24 + 0.15, 0.03)  # small plum heart on it
 
 
+# Dove: drawn as a flat 24px master (dove.svg, per the icon-designer workflow), each path extruded into a layer.
+# id prefix -> (material, depth, z of the layer's centre, edge radius); thin parts keep an outward bevel (no spikes).
+DOVE_LAYERS = {
+    "wing-far": ("G", 0.12, -0.2, 0.05),       # far wing peeks out behind the body
+    "body": ("G", 0.3, 0.0, 0.12),             # plump pillow, like the heart
+    "beak": ("A", 0.08, 0.15, 0.03),          # laid on the face, reaching past it like the eye's layer
+    "wing-near": ("G", 0.14, 0.23, 0.06),      # near wing laid on the body's front
+    "eye": ("A", 0.06, 0.16, 0.025),
+    "sprig-stem": ("A", 0.05, 0.13, 0.02),     # olive sprig in front of the chest
+    "sprig-leaf": ("A", 0.07, 0.13, 0.03),
+}
+
+
+def icon_dove(G, A, width=2.4):
+    """IQ Social alternative: a dove carrying an olive sprig, extruded from tools/icons3d/dove.svg."""
+    bpy.ops.import_curve.svg(filepath=os.path.join(os.path.dirname(os.path.abspath(__file__)), "dove.svg"))
+    objs = [o for o in bpy.context.scene.objects if o.type == "CURVE"]
+    pts = [p.co for o in objs for s in o.data.splines for p in s.bezier_points]
+    lo = Vector((min(p.x for p in pts), min(p.y for p in pts)))
+    hi = Vector((max(p.x for p in pts), max(p.y for p in pts)))
+    mid, k = (lo + hi) / 2, width / (hi.x - lo.x)
+    mats = {"G": G, "A": A}
+    for o in objs:
+        mat, depth, z, bevel = next(v for key, v in DOVE_LAYERS.items() if o.name.startswith(key))
+        for s in o.data.splines:
+            for p in s.bezier_points:
+                for attr in ("co", "handle_left", "handle_right"):
+                    v = getattr(p, attr)
+                    setattr(p, attr, ((v.x - mid.x) * k, (v.y - mid.y) * k, 0))
+        cu = o.data
+        cu.dimensions = "2D"
+        cu.fill_mode = "BOTH"
+        cu.extrude = max(depth / 2 - bevel, 0.001)
+        cu.bevel_depth = bevel
+        cu.bevel_resolution = 8
+        cu.materials.clear()
+        cu.materials.append(mats[mat])
+        o.rotation_euler = (math.pi / 2, 0, 0)
+        o.location = (0, -z, 0)
+
+
 BUILDERS = {"bank": icon_bank, "chart": icon_chart, "factory": icon_factory,
-            "scales": icon_scales, "megaphone": icon_megaphone, "heart": icon_heart, "hands": icon_hands}
+            "scales": icon_scales, "megaphone": icon_megaphone, "heart": icon_heart, "hands": icon_hands,
+            "dove": icon_dove}
 
 
 # ---------- studio ----------
