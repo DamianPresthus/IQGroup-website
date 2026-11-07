@@ -6,6 +6,33 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 24: taller columns, two zones, finishing details (2026-11-07)
+
+**Fix: names never collide with icons.**
+- **Taller columns:** 24rem → 30rem.
+- **Two zones:** a text zone from the top (name → reveal → lead) and an icon zone in the bottom third, where the 3D watermark stands on the column floor, cropped by it.
+- **The lead moved up:** it follows the content instead of sitting at the bottom.
+- **Measured clearance** between the lead line and the icon:
+
+| Width | Collapsed | Hovered |
+|---|---|---|
+| 1440px | ≥160px | ≥50px, worst case Banking (the longest name and tags) |
+| 1280px | – | ≥82px |
+
+**Finishing details.**
+- **Hover rule:** a 2px plum rule lights along the top edge of the hovered parallelogram (an animated `background-size` on `::before`).
+- **Dividers:** the "/" hairlines fade out at both ends instead of stopping hard.
+- **Smooth reveal:** areas and "Read more" open with a `grid-template-rows: 0fr → 1fr` transition, so the lead glides down instead of jumping.
+- **Staggered fade-ins:** tags 140ms, "Read more" 220ms, lead name 180ms.
+- **Underline:** "Read more" draws its underline left to right; the arrow nudges.
+- **Portraits:** lead portraits get a hairline ring and warm from greyscale to colour on hover, as in the roster.
+- **Slashes:** area tags are separated by muted slashes ("Investment banking / Wealth management"), echoing the slant. This applies at every width.
+- **Ampersands:** a no-break space keeps "&" with the next word in sector names, so "&" is never stranded on its own line in narrow columns.
+- **Long lead names** wrap (rather than clip) in narrow expanded columns at 1280px.
+- **Motion:** column growth uses a softer ease-out (0.6s); the icon lifts and tilts 3°.
+
+**Housekeeping:** removed a stale duplicate of the round-23 desktop block that was overriding the height.
+
 ## Round 23: slanted expanding columns, 3D icons (2026-11-07)
 
 **Idea (the user's), refined.** Six full-width columns separated by "/" hairlines. They apply at ≥1025px, on both the home Sectors band and the Sectors page overview.
