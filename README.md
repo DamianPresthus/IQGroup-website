@@ -9,11 +9,15 @@ source/
   IQ Group Website.dc.html      ← v1 (kept for comparison; same hero, earlier lower sections; now also on the new fonts)
   support.js                    ← runtime required by both .dc.html files (exported as-is, do not edit)
   index.html                    ← redirects to v2
-  v4/                           ← v4 "quiet institutional confidence" direction (plain HTML + CSS + JS; see docs/V4_DIRECTION.md)
+  v4/                           ← v4 "quiet institutional confidence", as reviewed by stakeholders up to round 28 (frozen; live at /v4/)
     index.html (home) · sectors.html · about.html · tokens.css · styles.css · app.js
     (nav, footer, contact section and enquiry dialog are repeated in each page; edit all three)
-  assets/icons/                 ← Phosphor duotone sector icons (MIT, licence included), inlined in the v4 pages
-  assets/team-face/             ← 160px face crops from the uncut live-site avatars (v4 inline portraits)
+  v5/                           ← v4 plus rounds 29–36: more colour by role, logos, recent-hires ledger, glass nav, 3D icons
+                                  (live at /v5/ for a v4-vs-v5 stakeholder preference check; continue work here)
+  assets/icons/                 ← Phosphor duotone sector icons used by v4 (MIT, licence included)
+  assets/icons-3d/              ← v5 frosted-glass sector icons (transparent WebP); regenerate with tools/icons3d/render.py
+  assets/clients/               ← v5 trust-bar client logos (permission unconfirmed, R2)
+  assets/team-face/             ← 160px face crops from the uncut live-site avatars (v4/v5 inline portraits)
   v3/                           ← v3 (plain HTML + CSS; parked after round-2 review)
     tokens-v3.css               ← v3 design tokens (palette roles, serif type scale, 12-col grid, rules, motion)
     fonts.css                   ← @font-face for the self-hosted fonts
@@ -24,6 +28,7 @@ source/
 tools/v3-map/map.mjs            ← generates the engraved footprint map SVG for the v3 hero (npm i, node map.mjs → map.svg)
 tools/paper.py                  ← regenerates source/assets/paper.jpg
 tools/v4-map/dots.mjs           ← generates the v4 hero dotted footprint map SVG (npm i, node dots.mjs > map.svg; inlined in source/v4/index.html)
+tools/icons3d/render.py         ← Blender/Cycles script for the v5 sector icons (blender -b -P tools/icons3d/render.py -- all source/assets/icons-3d 256)
 tokens.css                      ← v2 record: tokens extracted from v2 (frozen; the site does not import it)
 docs/COMPONENTS.md              ← component inventory + missing states
 docs/USAGE.md                   ← observed rules vs. proposed rules

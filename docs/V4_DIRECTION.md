@@ -6,6 +6,164 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+**v5 (2026-11-07).** Rounds 29–36 below are published separately as `source/v5/` (live at `…/IQGroup-website/v5/`), so stakeholders can compare it with v4. `source/v4/` and `/v4/` stay frozen at round 28. Continue work in `source/v5/`. Where rounds 29–36 say `source/v4/`, read `source/v5/`.
+
+## Round 36: icons as a secondary layer (2026-11-07)
+
+**Problem.** At full strength the round-34 icons were the brightest thing in the sector strip, pulling the eye away from the sector names and the partners' faces. That works against an audience of boards, CEOs and HR heads, who read restraint as quality.
+
+**Change** (CSS only; the renders are unchanged). The icons go back to the round-26 watermark treatment: standing on the column floor, cropped by it, and dim until hover.
+- **Desktop strip:** 45% opacity at rest. On hover, 90% with a lift (no tilt).
+- **Tablet and phone cards:** cropped in the bottom-right, 42% at rest, 80% on hover.
+- **Light backgrounds:** the small icons in Recent hires and the Sectors-page detail are unchanged.
+
+**Verified** at 1440 (strip at rest and on hover) and 390 (cards).
+
+## Round 35: a factory for FMCG, Healthcare & Industrials (2026-11-07)
+
+**Problem.** The box (package) icon said "product" generically, and its tape cross was the weakest form in the set.
+
+**Candidates** (all rendered in the round-34 style and compared on light and dark at full size and 36px):
+- **Factory:** manufacturing is what consumer goods, pharma and industrials share, and it fits the recent placements (a specialty chemicals manufacturer, a precision engineering company). Readable at 36px.
+- **Gear:** industrials only, and reads as "settings".
+- **Lab flask:** life sciences and chemicals only.
+- **Shopping bag:** consumer goods only, and reads as a briefcase, which clashes with Consulting.
+
+**Chosen: the factory**: a sawtooth hall, a chimney set back, and three deeper-plum windows. Shipped as `factory.webp`, replacing `package.webp` in all five places (home strip and two Recent hires rows; Sectors-page strip and detail). The unused builders (package, gear, flask, bag) are removed from `tools/icons3d/render.py`.
+
+## Round 34: frosted, simplified icons at a dynamic angle (2026-11-07)
+
+**Brief.** The round-33 icons were a good first draft. The user wanted them more frosted and more simplistic, at a different angle, after the *Stylized 3D Icons – Frosted Glass* community set (Bell, Camera, Checkmark, Home, Mic, Rocket).
+
+**What the references do:**
+- **Material:** milky, satin frosted glass with a fine grain. Each part shades from near-white on the lit top-left to saturated colour on the shaded side.
+- **Form:** chunky, puffy shapes of 2–3 parts, in one hue. Accents are the same material in a deeper shade. No plinths.
+- **Angle:** "Dynamic": turned about 25°, tipped back, slightly rolled, seen from near eye level and filling the frame.
+
+**Changes to `tools/icons3d/render.py`.**
+- **Forms:** icons are now puffy extrusions of simple 2D silhouettes with rounded corners, close to the Phosphor glyphs they started from:
+  - bank: roof, three columns, base;
+  - chart: a rounded tile with three raised bars;
+  - package: a rounded box with a tape cross;
+  - scales: foot, post, beam, two pans;
+  - megaphone: horn, rim, handle;
+  - heart: a puffy heart with a smaller raised heart.
+  - The architectural models, plinths and the hollow-glass trick are gone.
+- **Material:** one frosted material (transmission 0.8, roughness 0.32, grain via a noise bump), with a gradient across each part from #F6E2F0 (lit) to #A3348E. Accents use the same material from #B45AA0 to #4E0F45.
+- **Colour transform:** Standard instead of AgX, which turned the plum grey.
+- **Studio:** an even lilac-white environment; a large soft key from the top-left (matches `--glass-angle`); a back-right fill that makes the frost glow; a low front bounce.
+- **Pose:** turn −28°, tilt 10°, roll −6°, camera 6° above eye level.
+- **Heart:** built as a solid mesh softened by subdivision. As a bevelled curve, its sharp tip and notch threw spikes.
+
+**Unchanged:** file names, 384px WebP output (8–13 KB each, down from 9–23 KB), and all markup and CSS from round 33.
+
+**Verified** side by side with the reference Checkmark on light and dark backgrounds, then in place at 1440 (home strip, Recent hires, Sectors page) and 390 (home cards).
+
+## Round 33: rendered 3D glass sector icons (2026-11-07)
+
+**Brief.** The CSS glass icons from round 32 still looked dated. The user supplied two clay-3D references (a columned bank in orange; a white-and-gold temple) and asked for proper glass versions.
+
+**Tooling.**
+- **Not used:** the suggested *icon-designer* skill only writes flat SVG icon code.
+- **Used:** Blender 5.2 (installed via Homebrew), scripted in `tools/icons3d/render.py`. One studio scene builds and renders all six icons, so camera, lighting, material and scale match exactly.
+- **Regenerate:** `blender -b -P tools/icons3d/render.py -- all source/assets/icons-3d 256` (about 15s on the M5 GPU).
+
+**Material and light.**
+- **Glass:** near-clear (roughness 0.06), with plum volume absorption so thicker parts deepen. Large volumes are hollow shells: solid glass blocks rendered as grey metal.
+- **Accents and plinths:** polished deep plum (#4A1043, clear-coated). The user chose this over gold to keep a single accent colour (round 29).
+- **Studio:** a lilac-to-plum environment the glass refracts. Key light from the top-left (matches `--glass-angle`), a pink rim light from the back-right, and camera-invisible softboxes for reflections.
+- **Output:** transparent outside the object, WebP 384px, 9 to 23 KB each. The contact shadow is a CSS `drop-shadow`: plum-tinted on light backgrounds, black on `--surface-dark`.
+
+**Icons** (same subjects as the Phosphor set they replace): bank (columned temple with a pediment medallion), chart (glass board on an easel), package (glass box with a tape band), scales, megaphone, heart on a dish.
+
+**Integration.**
+- **Markup:** all 23 uses (home strip and Recent hires, Sectors page strip and detail icons) are now `<img>`. The round-32 masked-glyph layers and `--glass-spec` are removed.
+- **Strip:** objects stand whole on the strip floor at 82% opacity, rising to 100% with a small lift on hover. Rendered objects look broken when cropped or dimmed, so the old crop and the tilt are gone.
+- **Tablet and phone cards:** each icon sits whole in the card's bottom-right at 85% opacity.
+- **Removed:** the Phosphor SVGs and their licence (`source/assets/icons/`) are no longer used and are deleted.
+
+**Verified** at 1440 (home strip, Recent hires, Sectors page), 820 and 390. All 23 images load at 384px.
+
+**Known limit:** at 36px (Recent hires) the package's lid detail is lost; it reads as a box outline.
+
+## Round 32: one glass material (2026-11-07)
+
+**Rules** (Apple HIG *Materials*; NN/g *Glassmorphism*; the compozy glassmorphism skill):
+- Glass is for the floating chrome layer only. Never on content (cards, quotes, ledgers, hero copy), never on buttons (the plum CTA stays solid: contrast and round-29 colour roles), never full-screen, never as a modal scrim.
+- One light source: top-left, `--glass-angle: 150deg`, shared by the nav rim and every icon.
+- Solid first: glass is added only inside `@supports (backdrop-filter)`. Fallbacks: `prefers-reduced-transparency` → solid nav, no rim; `forced-colors` → Canvas/CanvasText.
+
+**Tokens** (`tokens.css`): `--glass-angle`, `--glass-blur`, `--glass-fill`, `--glass-fill-scrolled`, `--glass-rim` (1px ring gradient, bright on the lit edge, shaded opposite), `--glass-edge` (inset top highlight + shadowed bottom twin), `--glass-spec` (icon sheen).
+
+**Where it is.**
+- **Floating nav:** the one live-blur surface. Its 1px rim (a masked `::before`) replaces the flat border when glass is on.
+- **Icons, one material in two variants:**
+  - Layers: a near-white base shows as a lit bevel; the plum body is nudged 2% down-right under the sheen; one translucent depth edge and a soft cast sit on the wrapper.
+  - **Light** (Recent hires, Sectors-page detail icons): plum body, plum depth edge.
+  - **Dark** (sector tiles on `--surface-dark`): lilac-to-plum body, a lilac rim glow in place of a dark edge, deeper cast.
+  - The five-layer opaque extrusion is gone everywhere.
+
+**Changed from the round-32 proposal after reading the skill.**
+- **Phone menu stays solid.** It is full-screen, and full-viewport blur drops frames on low-end Android.
+- **Enquiry scrim:** the 3px backdrop blur is removed. It is now a flat 45% plum dim, as recommended for modal overlays (shadcn/ui #327).
+
+**Cache:** the stylesheet query strings went `202611070301` → `202611071900` on all three pages. The stale `tokens.css` was otherwise served without the new tokens, which emptied the nav fill and the icon bodies.
+
+**Verified** at 1440 (Home: nav over the hero and over the dark strip, strip at rest and on hover, Recent hires, drawer scrim; Sectors page) and at 390 (Home). Close-ups of both icon variants were checked at 3× and at full size. `prefers-reduced-transparency` cannot be emulated in the test browser: the rule is confirmed to parse but was not observed rendering.
+
+## Round 31: real client logos, one tone at rest, colour on hover (2026-11-07)
+
+**Brief.** Stakeholders want real logos in colour. Compromise chosen: real logos in a single plum-grey tone that fade to full colour on hover, so the bar never competes with the plum CTA (round 29 colour roles).
+
+**Build.**
+- **Files:** the round-3 logos are restored to `source/assets/clients/` (UBS, BCG, J.P. Morgan, Deutsche Bank, PwC, J&J SVGs; GSK WebP). **HUL:** `hul.svg` is HUL's official lockup (English Wikipedia, non-free/fair use) cropped to the "U" mark; the name is set beside it in Plus Jakarta Sans, since the lockup's script name would be about 5px tall at bar height. The global Unilever wordmark is not used.
+- **Rest state:** each logo is drawn as a silhouette (the artwork as a CSS mask over `--ink-muted`). All eight are single-colour artwork without white knockouts, so no detail is lost. **Hover:** the colour `<img>` fades in over `--slow`. The `<img>` carries the alt text; HUL's name is real text. Touch devices stay in the single-tone state.
+- **Sizing:** each logo has an optical height `--h` (unitless); `--s` scales all eight with the viewport (0.64–0.77 on desktop, 0.85 on the 4×2 tablet grid, 0.8 on the 2×4 phone grid), so the bar stays one row at ≥1025px with every logo at its true aspect ratio. The earlier logo build let flexbox squeeze the logos horizontally; fixed (`flex: none`).
+- **Fold:** logos are taller than the text names, so the bar's vertical padding is 3px less. Its bottom edge still lands on the fold (±2px) at 1280×720, 1366×768, 1440×900, 1536×864 and 1280×1024.
+
+**Still open (R2):** permission for each logo is unconfirmed. Ashmita to email each client; logos without approval should go back to text names before launch. UBS and GSK files are marked non-free on Wikimedia; official files from the clients are preferable.
+
+## Round 30: Recent hires as a flat ledger with glass icons (2026-11-07)
+
+**Problem.** After round 29 the Recent hires ledger was the one section with no colour or structure: five grey rows.
+
+**Change.**
+- **One flat list, newest first:** to update it, add a row at the top and drop the last. Seniority groups ("C‑suite" / "Specialist leadership") were tried and dropped: they made every update a decision about which group a role goes in, and read as a fixed catalogue rather than a running record.
+- **Rows:** sector icon · role (serif) · organisation · sector label, right-aligned. Fixed columns (`2.25rem 4fr 5fr 8rem`, no `auto`), so the columns line up across every row.
+- **No section line:** heading only. ("Selected placements. Clients are not named." was removed at the user's request.)
+- **Glass icons:** the sector's Phosphor icon (same as the Sectors strip) in a glass finish: a translucent plum body with a white specular sheen from the top-left, a lit bevel along the top-left edges (a near-white base layer showing past the body, which is nudged 0.75px down-right), and one translucent depth edge plus a faint plum cast instead of the strip's five opaque drop-shadows. Scoped to `.hire-rows`; the strip and the Sectors page keep the solid 3D style.
+- **Sector mapping:** chemicals and precision engineering → Industrials (package); PE firm → Private equity (bank); Head of CSR → IQ Social (hand-heart, its "CSR teams" practice); Indian bank CMO → Banking (bank). **To confirm with IQ.**
+- **≤860px:** each row is icon + role / organisation / sector.
+
+**Considered and not used** (compared side by side at 1440):
+- **Featured cards** (a CEO hero card plus 2×2): cards signal "clickable" and these don't link; the featured card invented a hierarchy; NN/g finds lists scan better than cards for homogeneous items.
+- **Split heading with a numbered list:** 01–05 implies ranking and clashes with the numbered "How a search runs" steps.
+- **Tombstones:** recognisable to bankers but ornamental; five narrow columns wrap the long titles.
+
+**Fixed in passing:** the `.pillars` phone rules (About) had slipped from the 860px block into the 560px block in the previous edit; they are back at 860px.
+
+## Round 29: more colour, by role (2026-11-07)
+
+**Brief.** Stakeholders asked for more colour/purple. The existing palette stays (the deep plum `--surface-dark` is kept); colour is added by giving each plum tone one job.
+
+**Roles.**
+- **Deep plum `--surface-dark`:** surfaces only (sectors strip, organisations card, footer). Unchanged.
+- **Saturated plum `--accent`:** attention only: the primary action, progress (method timeline), links, the Mumbai HQ. Scarcity is what makes it work (isolation / Von Restorff effect).
+- **Tints:** decoration that never competes with the accent: `--tint` band, the hero glow, the quote marks.
+
+**Changes.**
+- **Primary CTA is plum at rest:** new `.btn-accent` (`--accent`, hover `--accent-hover` #6E1A5D) on every "Begin a search" in the nav and menu sheet, the home hero, and the two enquiry submit buttons. "Share your profile" stays ink (secondary); the organisations card keeps the light button, since plum on deep plum is 2.5:1.
+- **Tinted band:** `.section.band` is plum mist `--tint` #F6EEF3 instead of stone (Partners on Home, Method on About). The partner portrait ring gap follows it.
+- **Hero glow:** a faint radial plum glow behind the Mumbai hub (`.hero-map::before`) reinforces the existing focal point.
+- **Quote marks:** a large plum opening mark above each testimonial; the inline typographic quotes are removed (the `<blockquote>` carries the semantics).
+- **Links:** underlines are plum (`text-decoration-color`, `.link-arrow` border); on dark surfaces they use `--accent-on-dark`.
+- **New `--accent-on-dark` #E9B3DD** (11.3:1 on `--surface-dark`), first used for the "For organisations" label.
+- **Trust bar:** client names in `--ink-muted` instead of eight brand colours, so the only saturated hue on the page is IQ's own.
+
+**Not coloured, on purpose:** headings, body text, the Recent hires ledger, and no second accent hue. The teal focus ring and red error colour are functional and stay.
+
+**Verified.** Local preview at 1440×900 (Home, About) and 390×844 (Home). Contrast: white on `--accent` 7.6:1, on `--accent-hover` 10.1:1; `--ink-muted` on `--tint` 7.1:1, `--accent` on `--tint` 7.0:1.
+
 ## Round 28: both quotes back on Home (2026-11-07)
 
 **Change.** Home shows both client quotes again, side by side, using the same markup as About: Ajay Mahajan (UBS) and Tilak Mukherji.
