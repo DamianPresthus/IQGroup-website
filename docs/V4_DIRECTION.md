@@ -6,6 +6,64 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 25: homepage information architecture (2026-11-07)
+
+**Why: referred buyers are checking whether to bother.** Most buyers of professional services come by referral (Hinge: 71%). About 81% then check the firm's website, and about 52% have ruled out a referred firm before ever speaking to it. So the homepage answers the referred buyer's questions in order:
+1. What and where?
+2. Credible?
+3. Do they know my sector?
+4. Have they filled roles like mine?
+5. Who would I work with?
+6. What do others say?
+7. What happens next?
+8. How do I start?
+
+**New Home order.**
+
+| # | Section | Background |
+|---|---|---|
+| 1 | Hero | Light |
+| 2 | Client names | Light |
+| 3 | Sectors | Dark |
+| 4 | Recent hires | Light |
+| 5 | **Partners** (new) | Stone |
+| 6 | Testimonial | Light |
+| 7 | **How a search runs** | Light |
+| 8 | Contact | Light |
+
+**Partners (new on Home).**
+- **Heading:** "A partner on every search." It does not repeat About's h1.
+- **Content:** one sentence (four partners, five associates, an advisor), then four round portraits with name and title, then "Meet the team" → `about.html#people`.
+- **No sectors:** the Sectors band already names each lead, so the portraits carry titles only.
+- **Portraits:** capped at 80px (64px on phones) because the sources are 160px, which keeps them sharp on 2x screens.
+- **Ring:** a stone gap plus a hairline, like the sector-column faces.
+- **Hover:** greyscale to colour.
+
+**How a search runs** is now on Home too, using the same component as About. It is light on Home because the stone band is Partners.
+
+**What sets us apart** moved from Home to About, after the people section. It is light there because Method is About's stone band.
+
+**Rejected.**
+- **Services on Home:** the hero subline already says "executive search and HR advisory", and the three-item list is too thin for a section. It stays on About.
+
+**Dark band stays on Sectors.** Alternatives considered:
+
+| Candidate | Why not |
+|---|---|
+| Testimonial | One quote can't fill a full-width dark band |
+| Partners | Low-res portraits look gloomy on dark |
+| Contact | The dark organisations card would disappear |
+
+**Housekeeping:** removed a duplicated "Sub-pages" CSS block (an identical copy at the end of `styles.css`).
+
+**Measured length at 1440px:**
+
+| Page | Screens |
+|---|---|
+| Home | 6.3 |
+| About | 5.3 |
+| Sectors | 6.1 |
+
 ## Round 24: taller columns, two zones, finishing details (2026-11-07)
 
 **Fix: names never collide with icons.**

@@ -342,10 +342,27 @@ a { color: inherit; }
 .hires b { font-family: var(--serif); font-weight: 400; font-size: var(--fs-h3); line-height: 1.15; letter-spacing: -0.015em; color: var(--ink); }
 .hires span { color: var(--ink-muted); }
 
-/* ---------- What sets us apart: stone band, three pillars ---------- */
+/* ---------- Stone band: at most one per page ---------- */
 .section.band { background: var(--bg-2); padding-block: var(--section); }
 .band + .section { padding-top: var(--section); }
-/* Same column component as .svc-row so the two read as one system */
+
+/* ---------- Partners (home): four round portraits with name and title. 80px max: the sources are 160px.
+   Ring = stone gap + hairline, so the bubbles sit on the band like the roster faces; colour on hover ---------- */
+.partners { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gutter); border-top: 1px solid var(--line-strong); padding-top: clamp(1.5rem, 1.2rem + 1vw, 2.25rem); }
+.partners li { display: grid; justify-items: start; align-content: start; gap: 0.2rem; }
+.partners .face { width: 5rem; height: 5rem; margin-bottom: 0.9rem; box-shadow: 0 0 0 3px var(--bg-2), 0 0 0 4px var(--line-strong); }
+.partners li:hover .face img { filter: grayscale(0) contrast(1.02); }
+.partners b { font-family: var(--serif); font-weight: 400; font-size: var(--fs-h4); line-height: 1.15; letter-spacing: -0.01em; color: var(--ink); }
+.partners li > span:last-child { font-size: var(--fs-small); color: var(--ink-muted); }
+.partners-more { margin-top: clamp(1.75rem, 1.4rem + 1vw, 2.5rem); }
+@media (max-width: 860px) {
+  .partners { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.75rem; }
+}
+@media (max-width: 560px) {
+  .partners .face { width: 4rem; height: 4rem; margin-bottom: 0.7rem; }
+}
+
+/* What sets us apart (about.html). Same column component as .svc-row so the two read as one system */
 .pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line-strong); }
 .pillars div { display: grid; gap: 0.5rem; align-content: start; padding: 1.5rem var(--gutter) 0.5rem 0; }
 .pillars div + div { padding-left: var(--gutter); border-left: 1px solid var(--line); }
@@ -482,31 +499,4 @@ html { -webkit-tap-highlight-color: transparent; }
   .band-dark .tile-icon { width: 10.5rem; height: 10.5rem; right: calc(var(--d) - 1.25rem); bottom: -1.75rem; opacity: 0.5;
     transition: opacity var(--slow) var(--ease), transform 0.7s cubic-bezier(0.22, 0.8, 0.24, 1), filter var(--slow) var(--ease); }
   .band-dark .tile:hover .tile-icon, .band-dark .tile:focus-visible .tile-icon { opacity: 0.95; transform: translate(-0.75rem, -0.9rem) rotate(-3deg); }
-}
-
-/* ---------- Sub-pages (about.html, sectors.html) ---------- */
-.page-hero { padding-top: clamp(8rem, 6rem + 6vw, 11rem); padding-bottom: clamp(2.5rem, 2rem + 2vw, 4rem); }
-.page-hero h1 { font-size: var(--fs-hero); line-height: 1.02; letter-spacing: -0.03em; max-width: 18ch; }
-.page-hero .lead { margin-top: 1.25rem; font-size: var(--fs-lead); line-height: 1.55; color: var(--ink-muted); max-width: 40ch; }
-.page-hero + .section:not(.band-dark) { padding-top: 0; }
-
-/* Sector detail: name, icon and lead on the left; copy, areas, hires and clients on the right */
-.sector { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--gutter); padding-block: clamp(2rem, 1.5rem + 2vw, 3.5rem); border-top: 1px solid var(--line-strong); }
-.sector:last-child { border-bottom: 1px solid var(--line-strong); }
-.sector-side { display: grid; gap: 0.9rem; align-content: start; }
-.sector-icon { width: 3.25rem; height: 3.25rem; --edge: color-mix(in oklch, var(--accent) 55%, #12051A); }
-
-.sector h2 { font-size: var(--fs-h3-lg); line-height: 1.08; letter-spacing: -0.02em; max-width: 16ch; }
-.sector .lead-by { display: flex; align-items: center; gap: 0.55rem; font-size: var(--fs-tag); font-weight: 600; color: var(--ink-body); }
-.sector-body { display: grid; gap: 1rem; align-content: start; max-width: 62ch; }
-.sector-body > p { font-size: var(--fs-lead); line-height: 1.55; color: var(--ink-body); }
-.sector-meta { margin-top: 0.75rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1.5rem var(--gutter); }
-.sector-meta h3 { margin-bottom: 0.6rem; }
-.sector-areas { display: grid; gap: 0.3rem; font-size: var(--fs-small); color: var(--ink-muted); }
-.sector-hires { display: grid; gap: 0.6rem; }
-.sector-hires li { display: grid; gap: 0.1rem; }
-.sector-hires b { font-family: var(--serif); font-weight: 400; font-size: var(--fs-h4); line-height: 1.15; color: var(--ink); }
-.sector-hires span { font-size: var(--fs-small); color: var(--ink-muted); }
-@media (max-width: 860px) {
-  .sector { grid-template-columns: 1fr; }
 }

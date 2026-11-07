@@ -23,8 +23,8 @@
 <meta name="robots" content="noindex">
 <link rel="preload" href="../assets/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/plusjakarta.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="tokens.css?v=202611070155">
-<link rel="stylesheet" href="styles.css?v=202611070155">
+<link rel="stylesheet" href="tokens.css?v=202611070226">
+<link rel="stylesheet" href="styles.css?v=202611070226">
 </head>
 <body>
 
@@ -175,15 +175,21 @@
     </div>
   </section>
 
-  <!-- What sets us apart: the deck's three pillars on a stone band -->
-  <section class="section band" aria-labelledby="apart-title">
+  <!-- Partners: a short introduction with faces. Sector leads are already on the Sectors band, so no sectors here;
+       portraits stay at 80px (the sources are 160px, sharp at 2x). Full team and the three pillars live on about.html -->
+  <section class="section band" id="partners" aria-labelledby="partners-title">
     <div class="page">
-      <div class="section-head"><h2 id="apart-title">What sets us apart</h2></div>
-      <div class="pillars">
-        <div><h3>Partnership</h3><p>As a boutique, your search gets our full attention. We learn your organisation at the cultural, strategic and tactical level.</p></div>
-        <div><h3>People</h3><p>Deep industry experience and a network of CEOs, MDs and senior executives, built over decades.</p></div>
-        <div><h3>Performance</h3><p>A 30+ year record of hires who make a lasting impact, with exceptionally fast turnaround.</p></div>
+      <div class="section-head">
+        <h2 id="partners-title">A partner on every search.</h2>
+        <p>Each mandate is led personally by one of our four partners, with five associates and an advisor behind them.</p>
       </div>
+      <ul class="partners rise">
+        <li><span class="face"><img src="../assets/team-face/ashmita.jpg" alt="" width="160" height="160"></span><b>Ashmita Ray Sarkar</b><span>Founder &amp; Managing Director</span></li>
+        <li><span class="face"><img src="../assets/team-face/annu.jpg" alt="" width="160" height="160"></span><b>Annu Paul</b><span>Director</span></li>
+        <li><span class="face"><img src="../assets/team-face/shirin.jpg" alt="" width="160" height="160"></span><b>Shirin Gulrajani Talwar</b><span>Director</span></li>
+        <li><span class="face"><img src="../assets/team-face/christine.jpg" alt="" width="160" height="160"></span><b>Christine Gomes</b><span>Managing Associate, IQ&nbsp;Social</span></li>
+      </ul>
+      <p class="partners-more"><a class="link-arrow" href="about.html#people">Meet the team</a></p>
     </div>
   </section>
 
@@ -200,6 +206,20 @@
           <figcaption><b>Ajay Mahajan</b><span>Former Managing Director, UBS</span></figcaption>
         </figure>
       </div>
+    </div>
+  </section>
+
+  <!-- How a search runs: same component as about.html; light here because the stone band is Partners -->
+  <section class="section" id="method" aria-labelledby="method-title">
+    <div class="page">
+      <div class="section-head"><h2 id="method-title">How a search runs</h2></div>
+      <ol class="timeline">
+        <li style="--i:0"><span class="node">1</span><h3>Understand your business</h3><p>Priorities, mandate goals and culture.</p></li>
+        <li style="--i:1"><span class="node">2</span><h3>Shortlist candidates</h3><p>Market mapping: we know where everyone sits.</p></li>
+        <li style="--i:2"><span class="node">3</span><h3>Identify the match</h3><p>Competency evaluation and 360° references.</p></li>
+        <li style="--i:3"><span class="node">4</span><h3>Hire &amp; onboard</h3><p>Offer, closing and transition.</p></li>
+        <li style="--i:4"><span class="node">5</span><h3>Monitor &amp; iterate</h3><p>Check-ins after placement, and a client review after every assignment.</p></li>
+      </ol>
     </div>
   </section>
 
@@ -308,6 +328,6 @@
   </div>
 </dialog>
 
-<script src="app.js?v=202611070155" defer></script>
+<script src="app.js?v=202611070226" defer></script>
 </body>
 </html>
