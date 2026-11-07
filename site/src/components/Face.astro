@@ -1,7 +1,8 @@
 ---
-// Circular portrait (160px source, shown at 80px or smaller so it stays sharp at 2x).
+// Circular portrait (160px source, shown at 80px or smaller so it stays sharp at 2x). Lazy by default: most faces
+// are below the fold, and early image requests delay the first paint on slow connections (LCP, brief §10).
 import { faceImage } from '../lib/content';
-interface Props { face: string }
+interface Props { face: string; eager?: boolean }
 const img = faceImage(Astro.props.face);
 ---
-<span class="face"><img src={img.src} alt="" width="160" height="160"></span>
+<span class="face"><img src={img.src} alt="" width="160" height="160" loading={Astro.props.eager ? undefined : 'lazy'} decoding="async"></span>

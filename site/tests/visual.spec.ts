@@ -18,6 +18,12 @@ for (const page of pages) {
       await tab.goto(process.env.LOCK === 'v5' ? page.v5 : page.path);
       await tab.addStyleTag({ content: still });
       await tab.evaluate(() => document.fonts.ready);
+      // Lazy images below the fold would be blank in a full-page capture: load them all first
+      await tab.evaluate(async () => {
+        const imgs = [...document.images];
+        imgs.forEach((img) => { img.loading = 'eager'; });
+        await Promise.all(imgs.map((img) => img.decode().catch(() => undefined)));
+      });
       await expect(tab).toHaveScreenshot(`${page.name}-${width}.png`, { fullPage: true });
     });
   }

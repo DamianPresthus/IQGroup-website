@@ -104,12 +104,19 @@ a:hover { text-decoration-color: var(--accent); }
 .map .pulse { fill: none; stroke: var(--accent); stroke-width: 1; transform-box: fill-box; transform-origin: center; opacity: 0; }
 .map text { font-family: var(--sans); font-size: 15px; font-weight: 600; letter-spacing: 0.005em; fill: var(--ink); paint-order: stroke; stroke: var(--bg); stroke-width: 5px; stroke-linejoin: round; }
 .map .hq-label { fill: var(--accent); font-size: 16px; }
+/* Map sequence (one pass, done in ~1.4s): Mumbai lights first, the arcs draw outward in quick succession, and each
+   city lands, with its label, as its arc arrives (--i = arc index, set by tools/v4-map/dots.mjs). Then Mumbai pulses. */
 @media (prefers-reduced-motion: no-preference) {
-  .map .arc { stroke-dashoffset: 1; animation: arc-draw 1.6s var(--ease) forwards; animation-delay: calc(0.5s + var(--i) * 0.14s); }
-  .map .pulse { animation: pulse 3.6s var(--ease) 2s infinite; }
-  .map .marks circle:not(.pulse), .map .labels text { animation: fade-in 0.6s var(--ease) both; animation-delay: 1.4s; }
-  .map .marks .hq, .map .marks .hq-halo, .map .labels .hq-label { animation-delay: 0.2s; }
+  .map { --arc-start: 0.25s; --arc-step: 0.08s; --arc-draw: 0.7s; }
+  .map .marks .hq, .map .marks .hq-halo, .map .labels .hq-label { animation: fade-in 0.4s var(--ease) both; }
+  .map .arc { stroke-dashoffset: 1; animation: arc-draw var(--arc-draw) var(--ease) forwards;
+    animation-delay: calc(var(--arc-start) + var(--i) * var(--arc-step)); }
+  .map .marks .halo:not(.hq-halo), .map .marks .city, .map .labels text:not(.hq-label) {
+    animation: land 0.35s var(--ease) both; transform-box: fill-box; transform-origin: center;
+    animation-delay: calc(var(--arc-start) + var(--i) * var(--arc-step) + var(--arc-draw) * 0.85); }
+  .map .pulse { animation: pulse 3.6s var(--ease) 1.6s infinite; }
 }
+@keyframes land { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: none; } }
 @keyframes arc-draw { to { stroke-dashoffset: 0; } }
 @keyframes pulse { 0% { transform: scale(1); opacity: 0.6; } 70%, 100% { transform: scale(3); opacity: 0; } }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
@@ -196,11 +203,14 @@ a:hover { text-decoration-color: var(--accent); }
 .timeline .node { width: 2.1rem; height: 2.1rem; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--on-dark); font-size: var(--fs-tag); font-weight: 600; font-variant-numeric: tabular-nums; position: relative; z-index: 1; margin-bottom: 0.5rem; }
 .timeline h3 { font-size: var(--fs-h4); line-height: 1.15; letter-spacing: -0.015em; }
 .timeline p { font-size: var(--fs-small); color: var(--ink-muted); }
+/* Scroll-driven rules use longhands on purpose: the build's CSS minifier folds `animation` + `animation-timeline`
+   into one shorthand, where animation-timeline is reset-only (CSS Animations 2), so browsers drop the whole rule. */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .timeline { view-timeline: --tl block; }
-    .timeline::after { animation: tl-line linear both; animation-timeline: --tl; animation-range: entry 60% cover 50%; }
-    .timeline .node { animation: tl-node linear both; animation-timeline: --tl; animation-range: entry calc(60% + var(--i) * 12%) entry calc(70% + var(--i) * 12%); }
+    .timeline::after, .timeline .node { animation-timing-function: linear; animation-fill-mode: both; animation-timeline: --tl; }
+    .timeline::after { animation-name: tl-line; animation-range: entry 60% cover 50%; }
+    .timeline .node { animation-name: tl-node; animation-range: entry calc(60% + var(--i) * 12%) entry calc(70% + var(--i) * 12%); }
   }
 }
 @keyframes tl-line { from { transform: scaleX(0); } to { transform: scaleX(1); } }
@@ -272,7 +282,7 @@ a:hover { text-decoration-color: var(--accent); }
 /* ---------- Motion: rise on entry (CSS scroll-driven; content visible without support) ---------- */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .rise { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+    .rise { animation-name: rise; animation-timing-function: linear; animation-fill-mode: both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
   }
 }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
@@ -564,7 +574,27 @@ html { -webkit-tap-highlight-color: transparent; }
 
   /* Icon zone: the icon stands on the floor of the column, cropped by it, dim until hover; clear of the text zone */
   .sectors-strip .tile-go { display: none; }
-  .sectors-strip .tile-icon { width: 10.5rem; height: 10.5rem; right: calc(var(--d) - 1.25rem); bottom: -1.75rem; opacity: 0.45;
-    transition: opacity var(--slow) var(--ease), transform 0.7s cubic-bezier(0.22, 0.8, 0.24, 1), filter var(--slow) var(--ease); }
+  .sectors-strip .tile { perspective: 900px; }
+  /* Tilt: app.ts sets --tilt (an axis and angle, a few degrees) from the pointer while hovering; separate from the lift */
+  .sectors-strip .tile-icon { width: 10.5rem; height: 10.5rem; right: calc(var(--d) - 1.25rem); bottom: -1.75rem; opacity: 0.45; rotate: var(--tilt, 0 1 0 0deg);
+    transition: opacity var(--slow) var(--ease), transform 0.7s cubic-bezier(0.22, 0.8, 0.24, 1), filter var(--slow) var(--ease), rotate 0.35s var(--ease); }
   .sectors-strip .tile:hover .tile-icon, .sectors-strip .tile:focus-visible .tile-icon { opacity: 0.9; transform: translate(-0.75rem, -0.9rem); }
 }
+
+/* ---------- Page transitions (native cross-document view transitions; ignored where unsupported) ----------
+   Pages cross-fade; the nav stays put; a Home sector tile's icon and title fly into its section on /sectors/
+   (shared view-transition names, set in SectorTiles.astro and sectors.astro). */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  .nav-wrap { view-transition-name: nav; }
+  ::view-transition-group(*) { animation-duration: 0.45s; animation-timing-function: var(--ease); }
+  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.3s; }
+}
+
+/* ---------- Enquiry sent: the check pops, then the message rises in ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .enquiry-done:not([hidden]) .done-mark { animation: done-pop 0.5s cubic-bezier(0.2, 1.4, 0.4, 1) both; }
+  .enquiry-done:not([hidden]) :is(h2, p, .done-actions, .btn-block) { animation: done-in 0.4s var(--ease) 0.12s both; }
+}
+@keyframes done-pop { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: none; } }
+@keyframes done-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }

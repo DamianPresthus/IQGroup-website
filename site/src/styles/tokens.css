@@ -2,7 +2,8 @@
    Palette: IQ brand plum family on warm alabaster/stone neutrals.
    Contrast (WCAG 2.x) computed 2026-11-06 and noted per text role. */
 
-@font-face { font-family: 'Newsreader'; src: url('/fonts/newsreader.woff2') format('woff2'); font-weight: 300 600; font-style: normal; font-display: swap; }
+/* Newsreader: variable weight trimmed to 400–500 (the only weights used; 125 → 90 KB), optical size 6–72 kept */
+@font-face { font-family: 'Newsreader'; src: url('/fonts/newsreader.woff2') format('woff2'); font-weight: 400 500; font-style: normal; font-display: swap; }
 @font-face { font-family: 'Plus Jakarta Sans'; src: url('/fonts/plusjakarta.woff2') format('woff2'); font-weight: 300 700; font-style: normal; font-display: swap; }
 
 :root {

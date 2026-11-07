@@ -39,12 +39,12 @@ cities.forEach(([name, lon, lat, side, hq], i) => {
     const dist = Math.hypot(x - mx, y - my), lift = Math.min(dist * 0.32, 140);
     const cx = (mx + x) / 2, cy = (my + y) / 2 - lift;
     arcs += `<path class="arc" style="--i:${i}" d="M${f(mx)} ${f(my)}Q${f(cx)} ${f(cy)} ${f(x)} ${f(y)}" pathLength="1"/>`;
-    marks += `<circle class="halo" cx="${f(x)}" cy="${f(y)}" r="7"/><circle class="city" cx="${f(x)}" cy="${f(y)}" r="3.2"/>`;
+    marks += `<circle class="halo" style="--i:${i}" cx="${f(x)}" cy="${f(y)}" r="7"/><circle class="city" style="--i:${i}" cx="${f(x)}" cy="${f(y)}" r="3.2"/>`;
   } else {
     marks += `<circle class="pulse" cx="${f(x)}" cy="${f(y)}" r="7"/><circle class="halo hq-halo" cx="${f(x)}" cy="${f(y)}" r="11"/><circle class="hq" cx="${f(x)}" cy="${f(y)}" r="5"/>`;
   }
   const off = { l: [-14, 5, 'end'], r: [14, 5, 'start'], t: [0, -14, 'middle'], b: [0, 22, 'middle'] }[side];
-  labels += `<text x="${f(x + off[0])}" y="${f(y + off[1])}" text-anchor="${off[2]}"${hq ? ' class="hq-label"' : ''}>${name}</text>`;
+  labels += `<text x="${f(x + off[0])}" y="${f(y + off[1])}" text-anchor="${off[2]}"${hq ? ' class="hq-label"' : ` style="--i:${i}"`}>${name}</text>`;
 });
 
 // Dots fade out westwards and towards the top/bottom edges; arcs, markers and labels stay crisp.

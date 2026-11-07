@@ -37,8 +37,34 @@ if (detail) {
   });
 }
 
-// Enquiry sheet: one dialog, two short forms. Submitting composes an email to the firm's address
-// (subject depends on the form) and opens the visitor's mail app.
+// Sector strip (desktop): the hovered icon tilts a few degrees about the axis facing the pointer (CSS var --tilt,
+// read by the icon's `rotate`). Precise pointers on wide screens only, never with reduced motion.
+const tiltable = matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1025px) and (prefers-reduced-motion: no-preference)');
+$$('.sectors-strip .tile').forEach((tile) => {
+  const icon = $('.tile-icon', tile);
+  if (!icon) return;
+  tile.addEventListener('pointermove', (e) => {
+    if (!tiltable.matches) return;
+    const box = tile.getBoundingClientRect();
+    const dx = (e.clientX - box.left) / box.width - 0.5; // -0.5 … 0.5 across the tile
+    const dy = (e.clientY - box.top) / box.height - 0.5;
+    const degrees = Math.min(Math.hypot(dx, dy) * 10, 6);
+    icon.style.setProperty('--tilt', `${(-dy).toFixed(3)} ${dx.toFixed(3)} 0 ${degrees.toFixed(2)}deg`);
+  });
+  tile.addEventListener('pointerleave', () => icon.style.removeProperty('--tilt'));
+});
+
+// Page transition Home → Sectors: only the clicked tile's icon and title get the names its section on /sectors/
+// carries (sectors.astro), so exactly one tile flies across; everything else cross-fades.
+$$<HTMLAnchorElement>('.sectors-strip a.tile[href^="/sectors/"]').forEach((tile) => {
+  tile.addEventListener('click', () => {
+    $('.tile-icon', tile)!.style.viewTransitionName = `icon-${tile.dataset.sector}`;
+    $('h3', tile)!.style.viewTransitionName = `title-${tile.dataset.sector}`;
+  });
+});
+
+// Enquiry sheet: one dialog, two short forms. Submitting sends the enquiry through the site (functions/api/enquiry.ts);
+// if that is unavailable it composes the same email in the visitor's mail app.
 const dlg = $<HTMLDialogElement>('#enquiry');
 if (dlg && typeof dlg.showModal === 'function') {
   const TO = dlg.dataset.to!;

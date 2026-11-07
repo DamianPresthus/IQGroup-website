@@ -25,8 +25,9 @@ const details = await Promise.all(sectors.map(async (s) => ({
     </div>
   </header>
 
-  <section class="section sectors-strip" aria-label="Sector overview">
+  <section class="section sectors-strip" aria-labelledby="overview-title">
     <div class="page">
+      <h2 class="sr-only" id="overview-title">Sector overview</h2>
       <SectorTiles inPage />
     </div>
   </section>
@@ -36,8 +37,8 @@ const details = await Promise.all(sectors.map(async (s) => ({
       {details.map(({ id, data, lead, icon, hires }) => (
         <article class="sector" id={id} aria-labelledby={`${id}-title`}>
           <div class="sector-side">
-            <img class="sector-icon" src={icon.src} alt="" width="384" height="384" decoding="async" />
-            <h2 id={`${id}-title`}>{data.title}</h2>
+            <img class="sector-icon" src={icon.src} alt="" width="384" height="384" decoding="async" fetchpriority="low" style={`view-transition-name: icon-${id}`} />
+            <h2 id={`${id}-title`} style={`view-transition-name: title-${id}`}>{data.title}</h2>
             <p class="lead-by"><Face face={lead.face} /><span>Led by {lead.name}</span></p>
           </div>
           <div class="sector-body">

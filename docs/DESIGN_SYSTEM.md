@@ -82,15 +82,32 @@
 
 | Where | Motion | Mechanism |
 |---|---|---|
-| Hero map | Arcs draw from Mumbai; dots and labels fade in; Mumbai pulses | CSS keyframes |
-| Headings and blocks (`.rise`) | Fade and rise 14px on entry | CSS scroll-driven (`animation-timeline: view()`) |
+| Hero map | Mumbai lights; arcs draw outward in quick succession (80ms apart, 0.7s each); each city and its label land as their arc arrives; done in about 1.4s; then Mumbai pulses | CSS keyframes; `--i` per city from `tools/v4-map/dots.mjs` |
+| Blocks (`.rise`) | Fade and rise 14px on entry | CSS scroll-driven (`animation-timeline: view()`) |
 | Method timeline | The line draws and the step dots fill as the section scrolls in | CSS scroll-driven |
-| Sector strip | Hover: the column widens, details reveal, the portrait warms, the icon brightens and lifts | CSS transitions |
+| Sector strip | Hover: the column widens, details reveal, the portrait warms, the icon brightens and lifts, then tilts up to 6° toward the pointer | CSS transitions; tilt via `--tilt` from `app.ts` (precise pointers, ≥1025px only) |
+| Home tile → Sectors | The clicked tile's icon and title fly into its section; the nav stays; everything else cross-fades (0.45s) | Native cross-document view transitions; names set on click |
 | Buttons | The arrow moves 3px right on hover | CSS transitions |
 | Nav | A shadow appears once the page is scrolled | Class toggle |
 | Enquiry dialog | Right-hand drawer on desktop; bottom sheet on phones that can be dragged down to close | CSS `@starting-style` + script |
+| Enquiry sent | The check pops (slight overshoot), then the message rises in | CSS keyframes |
+
+**Reduced motion:** zero animations on every page (verified with `document.getAnimations()`). Everything renders in its final state, and the page transition and tilt are off.
+
+**Scroll-driven rules must use longhands** (`animation-name`, `animation-timeline`…). The build's CSS minifier otherwise folds them into the `animation` shorthand, where `animation-timeline` is reset-only, and browsers drop the rule.
 
 **Excluded:** smooth-scroll hijacking, animated counters, particle effects, logo marquees, live WebGL.
+
+**Performance** (Lighthouse mobile, simulated mid-range phone on 4G, 2026-11-08):
+- LCP: Home 2.3–2.4s, About 2.2s, Sectors 2.3–2.4s (budget < 2.5s).
+- CLS 0, TBT 0.
+- Performance 98–99; accessibility, best practices: 100.
+- SEO is 69 until launch, from the deliberate `noindex`.
+
+How it was reached:
+- Newsreader's weight axis trimmed to the 400–500 actually used (125 → 90 KB).
+- The stylesheet is inlined.
+- Below-the-fold images lazy-load.
 
 ## 8. Components
 

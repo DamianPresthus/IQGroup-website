@@ -27,10 +27,11 @@ const groups = [
     </div>
   </header>
 
-  <section class="section" id="people" aria-label="Our people">
+  <section class="section" id="people" aria-labelledby="people-title">
     <div class="page">
+      <h2 class="sr-only" id="people-title">Our people</h2>
       <article class="spotlight rise">
-        <Face face={founder.face} />
+        <Face face={founder.face} eager />
         <div>
           <h3>{founder.name}</h3>
           <p class="title">{founder.title}</p>

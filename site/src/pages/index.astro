@@ -64,7 +64,7 @@ const words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'e
       <div class="section-head"><h2 id="hires-title">Recent hires</h2></div>
       <ul class="hire-rows rise">
         {hires.map(({ data }) => (
-          <li><img class="sector-icon" src={iconFor.get(data.sector.id)!.src} alt="" width="384" height="384" decoding="async" /><b>{data.role}</b><span class="org">{data.org}</span><span class="sec">{data.label}</span></li>
+          <li><img class="sector-icon" src={iconFor.get(data.sector.id)!.src} alt="" width="384" height="384" decoding="async" loading="lazy" /><b>{data.role}</b><span class="org">{data.org}</span><span class="sec">{data.label}</span></li>
         ))}
       </ul>
     </div>
