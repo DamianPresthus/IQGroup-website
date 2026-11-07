@@ -6,6 +6,31 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 23: slanted expanding columns, 3D icons (2026-11-07)
+
+**Idea (the user's), refined.** Six full-width columns separated by "/" hairlines. They apply at ≥1025px, on both the home Sectors band and the Sectors page overview.
+- **Shape:** each column is a parallelogram (`clip-path`, slant 8°, `--d = h/2 · tan 8°`). The background is a `::before` extended by `--d` so neighbours tile exactly. The hairlines are `skewX(-8deg)` 1px pseudo-elements on the right edge.
+- **At rest:** the sector name, the cropped 3D watermark icon and the lead's face are always visible, so the band scans without hover.
+- **On hover or keyboard focus** (`:focus-visible`):
+  - the column grows (`flex-grow: 2.4`, `--slow` ease) and its surface lifts towards plum;
+  - the areas, "Read more →" and the lead's name fade in after 120ms;
+  - the icon brightens and tilts slightly.
+- **Click:** opens `sectors.html#id`.
+- **Kept from the original idea:** columns expand, use the full width, and link through.
+- **Changed:** the slant is in the dividers, not the text, so the text stays upright and unclipped. Names stay visible at rest.
+- **≤1024px:** the stacked tile grid remains (no hover on touch).
+
+**3D icons, built from the existing Phosphor glyphs (no new artwork).**
+- **Face:** each glyph is a CSS mask over a lit gradient (`#F4DDF0` → `--on-dark-muted` → `--accent`, light from top-left).
+- **Depth:** the wrapper carries five 1px `drop-shadow`s in deep plum (`#4A1640`) to extrude a solid edge, plus one soft cast shadow.
+- **Where:** home and Sectors-page tiles (watermark at 55% opacity, 90% on hover) and the Sectors-page detail icons (full strength).
+- **Considered and not used:** Microsoft's Fluent 3D emoji (MIT). They are full-colour and glossy, and would clash with the plum palette and the institutional tone.
+
+**Verified.**
+- **Rendering:** 1440 rest and hover, 1280 hover, plus the 1024 and 390 fallbacks.
+- **Keyboard:** Tab focus expands a column and reveals its content.
+- **Layout:** no horizontal overflow, and every lead line stays inside its column on hover (≥20px clearance).
+
 ## Round 22: split into Home, Sectors and About (2026-11-07)
 
 **Pages** (plain HTML; nav, footer, contact section and enquiry dialog are repeated in each page):
