@@ -99,9 +99,12 @@ a { color: inherit; }
     padding-top: clamp(6.5rem, 15svh, 12rem); padding-bottom: clamp(2rem, 6svh, 6rem); }
   .hero-grid { min-height: 0; }
 }
-/* Short laptop screens (768/720 tall): the shorter hero would tuck Oslo under the floating nav; drop the map a little */
-@media (min-width: 1025px) and (max-height: 820px) {
+/* Shorter laptop screens (up to 880px tall, e.g. 1536x864, 1366x768): the shorter hero would tuck Oslo under the floating nav; drop the map a little */
+@media (min-width: 1025px) and (max-height: 880px) {
   .hero-map { transform: translateY(-40%); }
+}
+@media (min-width: 1025px) and (max-height: 780px) {
+  .hero-map { transform: translateY(-37%); }
 }
 
 /* ---------- Trust bar ---------- */

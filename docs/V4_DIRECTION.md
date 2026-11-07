@@ -13,7 +13,7 @@
 **Fix (≥1025px only).**
 - **Hero height:** the hero fills the first screen minus the trust bar: `min-height: clamp(34rem, 100svh − 4.9rem, 60rem)`, with height-relative padding and content centred.
 - **Measured:** the trust bar's bottom edge lands exactly on the fold at 1280×720, 1366×768, 1440×900, 1536×864 and 1280×1024. At 1920×1080 the 60rem cap applies and the bar sits a little above the fold.
-- **Short screens** (≤820px tall): the map drops a little (`translateY(-40%)`) so Oslo stays clear of the floating nav. The Oslo label is now ≥94px from the top, against a nav bottom of 78px.
+- **Short screens:** the map drops a little so Oslo stays clear of the floating nav: `translateY(-40%)` at ≤880px tall, `-37%` at ≤780px. The gap between the Oslo label and the nav is now ≥34px at every tested size: 1280×720, 1366×768, 1440×900, 1536×864, 1568×860, 1600×900, 1680×1050, 1920×1080, 1280×1024 and 2560×1440. The first cut only covered ≤820px, which left 1536×864 at 16px.
 - **Phones and tablets:** unchanged. The map stacks under the copy, so the clients follow it.
 
 **Marquee: rejected.**
