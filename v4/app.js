@@ -25,7 +25,7 @@
   };
   spy($$('.nav-links a'));
 
-  // Roster: show role and practice for the hovered or focused name.
+  // Roster: show role and sectors for the hovered or focused name.
   const detail = $('.roster-detail'), idle = detail?.textContent;
   $$('.names li').forEach(li => {
     const show = () => { detail.innerHTML = `<b>${li.childNodes[1].textContent.trim()}</b>, ${li.dataset.role}`; };
