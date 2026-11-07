@@ -188,10 +188,10 @@ T, E = 0.2, 0.085              # plate thickness and edge radius: edges are near
 
 
 def icon_bank(G, A):
-    slab(rounded([(-1.15, 0.48), (1.15, 0.48), (0, 1.15)], 0.1), T, G, 0.0, E)            # roof
+    slab(rounded([(-1.15, 0.4), (1.15, 0.4), (0, 1.1)], 0.1), T, G, 0.0, E)              # roof
     for x in (-0.66, -0.22, 0.22, 0.66):                                                  # columns: a layer behind,
-        slab(rrect(x - 0.085, -0.62, x + 0.085, 0.58, 0.08), 0.12, A, -(T / 2 + 0.07), 0.05)  # ends tucked under roof and base
-    slab(rrect(-1.15, -0.86, 1.15, -0.52, 0.12), T, G, 0.0, E)                            # base
+        slab(rrect(x - 0.13, -0.52, x + 0.13, 0.5, 0.11), 0.14, A, -(T / 2 + 0.08), 0.06)  # ends tucked under roof and base
+    slab(rrect(-1.15, -0.78, 1.15, -0.42, 0.12), T, G, 0.0, E)                            # base
 
 
 def icon_chart(G, A):
