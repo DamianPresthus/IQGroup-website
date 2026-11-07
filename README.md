@@ -4,6 +4,9 @@ Working extraction for continued refinement in VS Code. **This is not a finished
 
 ## Contents
 ```
+site/                           ← PRODUCTION site: Astro + TypeScript port of v5 (design locked at tag design-v5-final), deployed on Cloudflare Pages
+                                  content in site/src/content/*.yaml (AI-edited, rules in site/AGENTS.md); setup/deploy in site/README.md
+docs/DESIGN_SYSTEM.md           ← production design system: tokens, colour roles, glass, icons, motion, performance budget
 source/
   IQ Group Website v2.dc.html   ← LATEST (redesigned sections below the hero, EB Garamond + Plus Jakarta Sans)
   IQ Group Website.dc.html      ← v1 (kept for comparison; same hero, earlier lower sections; now also on the new fonts)
