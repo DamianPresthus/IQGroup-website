@@ -6,6 +6,25 @@
 
 **Build:** plain HTML + CSS + a small JS file in `source/v4/` (`index.html`, `tokens.css`, `styles.css`, `app.js`). It is seeded with the v2 copy, so v2 itself is untouched.
 
+## Round 27: clients on the fold; no marquee (2026-11-07)
+
+**Problem.** The hero was a fixed ~920px tall, so "Clients include" sat below the fold on every common laptop (1280×720, 1366×768, 1440×900, 1536×864). It was visible only at 1920×1080. That is the strongest credibility line on the page, and most visitors never saw it without scrolling.
+
+**Fix (≥1025px only).**
+- **Hero height:** the hero fills the first screen minus the trust bar: `min-height: clamp(34rem, 100svh − 4.9rem, 60rem)`, with height-relative padding and content centred.
+- **Measured:** the trust bar's bottom edge lands exactly on the fold at 1280×720, 1366×768, 1440×900, 1536×864 and 1280×1024. At 1920×1080 the 60rem cap applies and the bar sits a little above the fold.
+- **Short screens** (≤820px tall): the map drops a little (`translateY(-40%)`) so Oslo stays clear of the floating nav. The Oslo label is now ≥94px from the top, against a nav bottom of 78px.
+- **Phones and tablets:** unchanged. The map stacks under the copy, so the clients follow it.
+
+**Marquee: rejected.**
+- **It hides names.** A scrolling bar shows only some names at any moment, so it shows fewer names, not more. People scan a static line in about a second.
+- **It's the SaaS-template pattern.** The auto-scrolling logo strip is what this site is deliberately avoiding.
+- **Accessibility:** WCAG 2.2.2 (Pause, Stop, Hide) requires a pause control for motion that lasts longer than 5 seconds.
+- **Prior decision:** it contradicts HERO_RESEARCH_V3 §5 ("replace the scrolling logo bar with a static, typeset line").
+- **Endorsement risk:** more names means more apparent endorsements to clear (R2).
+
+The 8 marquee names stay. The full client lists stay on `sectors.html`, one list per sector, where they serve as proof of sector depth.
+
 ## Round 26: Sectors as a dark strip on a light section (2026-11-07)
 
 **Change.** Only the sector grid is dark now; the section around it is light.
