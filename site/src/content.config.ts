@@ -22,7 +22,7 @@ const titled = { title: z.string(), text: z.string() };
 export const collections = {
   sectors: list('sectors', {
     title: z.string(),
-    icon: z.enum(['bank', 'chart', 'factory', 'scales', 'megaphone', 'heart']),
+    icon: z.enum(['bank', 'chart', 'factory', 'scales', 'megaphone', 'heart', 'hands']),
     lead: reference('people'),
     tags: z.array(z.string()).min(1).max(5),
     intro: z.array(z.string()).min(1),

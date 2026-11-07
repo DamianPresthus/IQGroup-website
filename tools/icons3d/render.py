@@ -78,16 +78,20 @@ def glass(name, light, deep, transmission, roughness):
 
 # ---------- geometry ----------
 def rounded(points, r, n=10):
-    """Fillet every corner of a closed 2D polygon with radius r (clamped to half the shorter adjacent edge)."""
+    """Fillet every corner of a closed 2D polygon with radius r. Nearly straight points (dense arcs) are kept as they
+    are, and each fillet stays within half of both adjacent edges, so the outline never folds back on itself."""
     out = []
     k = len(points)
     for i in range(k):
         p0, p1, p2 = Vector(points[i - 1]), Vector(points[i]), Vector(points[(i + 1) % k])
         d1, d2 = (p0 - p1), (p2 - p1)
-        rr = min(r, d1.length / 2, d2.length / 2)
+        half = min(d1.length, d2.length) / 2
         d1.normalize(); d2.normalize()
         ang = math.acos(max(-1, min(1, d1.dot(d2))))
-        t = rr / math.tan(ang / 2) if ang > 1e-3 else 0
+        if ang > math.radians(170):                 # already smooth: a fillet would only add near-duplicate points
+            out.append(p1)
+            continue
+        t = min(r / math.tan(ang / 2), half) if ang > 1e-3 else 0
         a, c = p1 + d1 * t, p1 + d2 * t
         for j in range(n + 1):                      # quadratic bezier through the corner approximates the arc
             u = j / n
@@ -253,8 +257,57 @@ def icon_heart(G, A):
     slab(heart_points(0.5), 0.1, A, 0.22, 0.045)                                         # small heart, laid on the front
 
 
+def capsule(x0, y0, x1, y1, r, n=12):
+    """Closed outline of a rounded bar from (x0, y0) to (x1, y1) with end radius r (fingers, thumbs)."""
+    a = math.atan2(y1 - y0, x1 - x0)
+    return (arc(x1, y1, r, a - math.pi / 2, a + math.pi / 2, n)
+            + arc(x0, y0, r, a + math.pi / 2, a + 3 * math.pi / 2, n))
+
+
+def hand_points(side):
+    """One cupped hand (side = 1 right, -1 left), drawn like the flat reference: the two palms together form a round
+    bowl (outer edges on one circle, meeting at the bottom centre) that runs on up into the little finger. The palm's
+    inner edge is the thumb, sweeping from the wrist up and outwards to a rounded tip; three upright fingers stand on
+    it, stepping down towards the centre. Parts are separate pieces with small gaps, so the glass never shows
+    overlapping volumes."""
+    R = 1.1
+    outer = arc(0, 0, R, math.radians(-85), math.radians(12), 30)       # bottom centre up the outside of the bowl
+    ox, oy = outer[-1]
+    pinky_in = 0.89
+    c, pr = ((ox + pinky_in) / 2, oy), (ox - pinky_in) / 2
+    tip = arc(c[0], c[1], pr, 0, math.pi, 12)[1:]                          # round little-finger tip
+    wrist, ctrl, thumb = Vector((0.11, -0.97)), Vector((0.3, -0.42)), Vector((0.76, -0.13))
+    inner = [tuple((1 - u) ** 2 * thumb + 2 * (1 - u) * u * ctrl + u ** 2 * wrist)
+             for u in (i / 16 for i in range(17))]                         # thumb tip curving down to the wrist
+    palm = rounded(outer + tip + [(pinky_in, -0.04)] + inner, 0.11, 8)
+    rim = sorted(inner)                                                    # thumb edge, left to right
+
+    def edge(x):                                                           # height of the thumb edge at x
+        for (x0, y0), (x1, y1) in zip(rim, rim[1:]):
+            if x0 <= x <= x1:
+                return y0 + (y1 - y0) * (x - x0) / (x1 - x0)
+        return rim[-1][1]
+    r, gap = 0.078, 0.03
+    # (base x, length, outward lean): upright, fanning out a touch with the bowl; innermost shortest
+    fingers = [capsule(x, edge(x) + r + gap, x + lean, edge(x) + r + gap + length, r) for x, length, lean in
+               ((0.43, 0.2, 0.0), (0.6, 0.3, 0.02), (0.77, 0.32, 0.04))]
+    return [palm, *fingers] if side == 1 else [[(-x, y) for x, y in part[::-1]] for part in [palm, *fingers]]
+
+
+def icon_hands(G, A):
+    """IQ Social alternative: the same heart, smaller, held above two cupped hands."""
+    for side in (1, -1):
+        palm, *fingers = hand_points(side)
+        slab(palm, 0.18, G, 0.0, 0.085)                                    # bevel ≈ half the depth: no seam
+        for f in fingers:
+            slab(f, 0.15, G, 0.0, 0.07)
+    s, lift = 0.55, 0.3                                                   # nestled between the fingers, as in the reference
+    slab([(x, y + lift) for x, y in heart_points(s)], 0.24, G, 0.24, 0.1)                 # heart pillow, in front
+    slab([(x, y + lift) for x, y in heart_points(s * 0.45)], 0.07, A, 0.24 + 0.15, 0.03)  # small plum heart on it
+
+
 BUILDERS = {"bank": icon_bank, "chart": icon_chart, "factory": icon_factory,
-            "scales": icon_scales, "megaphone": icon_megaphone, "heart": icon_heart}
+            "scales": icon_scales, "megaphone": icon_megaphone, "heart": icon_heart, "hands": icon_hands}
 
 
 # ---------- studio ----------
