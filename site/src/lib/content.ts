@@ -7,7 +7,9 @@ const byName = (glob: Glob) =>
   Object.fromEntries(Object.entries(glob).map(([path, img]) => [path.split('/').pop()!.replace(/\.\w+$/, ''), img]));
 const byFile = (glob: Glob) => Object.fromEntries(Object.entries(glob).map(([path, img]) => [path.split('/').pop()!, img]));
 
-const icons = byName(import.meta.glob<ImageMetadata>('../assets/icons-3d/*.webp', { eager: true, import: 'default' }));
+const icons = Object.fromEntries(
+  Object.entries(import.meta.glob<string>('../assets/icons/*-duotone.svg', { eager: true, query: '?url', import: 'default' })).map(([path, url]) => [path.split('/').pop()!.replace('-duotone.svg', ''), url]),
+);
 const faces = byName(import.meta.glob<ImageMetadata>('../assets/team-face/*.jpg', { eager: true, import: 'default' }));
 const logos = byFile(import.meta.glob<ImageMetadata>('../assets/clients/*.{svg,webp,png}', { eager: true, import: 'default' }));
 
@@ -16,7 +18,11 @@ function pick(map: Record<string, ImageMetadata>, key: string, kind: string): Im
   if (!img) throw new Error(`Missing ${kind} image "${key}". Available: ${Object.keys(map).join(', ')}`);
   return img;
 }
-export const iconImage = (name: string) => pick(icons, name, 'sector icon');
+export const iconUrl = (name: string): string => {
+  const url = icons[name];
+  if (!url) throw new Error(`Missing sector icon "${name}". Available: ${Object.keys(icons).join(', ')}`);
+  return url;
+};
 export const faceImage = (name: string) => pick(faces, name, 'face');
 export const logoImage = (file: string) => pick(logos, file, 'client logo');
 

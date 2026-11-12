@@ -3,17 +3,17 @@
 // `inPage` links to the detail sections on the same page (Sectors) instead of /sectors/#id (Home). On Home, the
 // clicked tile's icon and title fly into its section on /sectors/ (view-transition names set on click, app.ts).
 import Face from './Face.astro';
-import { getOrdered, getPerson, iconImage } from '../lib/content';
+import { getOrdered, getPerson, iconUrl } from '../lib/content';
 interface Props { inPage?: boolean }
 const sectors = await getOrdered('sectors');
 const tiles = await Promise.all(sectors.map(async (s) => ({ ...s, lead: await getPerson(s.data.lead) })));
 ---
 <div class="bento rise">
   {tiles.map(({ id, data, lead }) => {
-    const icon = iconImage(data.icon);
+    const icon = iconUrl(data.icon);
     return (
       <a class="tile" href={Astro.props.inPage ? `#${id}` : `/sectors/#${id}`} data-sector={id}>
-        <img class="tile-icon" src={icon.src} alt="" width="384" height="384" decoding="async" loading={Astro.props.inPage ? undefined : 'lazy'} />
+        <span class="tile-icon" aria-hidden="true"><i style={`--icon: url("${icon}")`}></i></span>
         <h3>{data.title}</h3>
         <div class="tile-reveal"><div>
           <ul class="tags">{data.tags.map((t) => <li>{t}</li>)}</ul>

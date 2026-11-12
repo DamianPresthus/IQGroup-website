@@ -8,7 +8,7 @@ You will usually be asked to change **content**: a new hire, a person joining or
 |---|---|---|
 | New placement / "recent hire" | `hires.yaml` | Add at the **top** (newest first) and drop the last entry, so 5 remain. Never name the client: "A leading Indian private equity firm". `sector` must be a sector id. |
 | Person joins, leaves, changes title | `people.yaml` | `group`: partner, associate or advisor. New people need a 160×160 greyscale-friendly JPEG in `src/assets/team-face/<face>.jpg`. If a partner leaves, re-point any `lead:` in `sectors.yaml`. The Home sentence "one of our four partners, with five associates" counts automatically. |
-| Sector copy, areas, sector lead | `sectors.yaml` | `title` uses `\u00a0` (non-breaking space) to keep "&\u00a0Financial" together. Keep at most 5 `tags` (tile line). `icon` must be one of the six rendered icons. |
+| Sector copy, areas, sector lead | `sectors.yaml` | `title` uses `\u00a0` (non-breaking space) to keep "&\u00a0Financial" together. Keep at most 5 `tags` (tile line). `icon` must be one of the six Phosphor icons in `src/assets/icons/`. |
 | Client quote | `quotes.yaml` | Only with the person's written consent. Disclose any relationship with IQ in `role` (e.g. "Advisor to IQ Group"). |
 | Trust-bar logo | `clients.yaml` + `src/assets/clients/` | Single-colour artwork (SVG preferred). `height` balances optical weight (17–34 px today). Logo permission is still unconfirmed for all logos. |
 | Phone, email, address, enquiry recipient, "Last reviewed" | `site.yaml` | `enquiryEmail` is shown in the form fallback. The address that actually *receives* form emails is the `ENQUIRY_TO` setting in Cloudflare (tell the user if both should change). |

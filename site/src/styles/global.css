@@ -176,10 +176,11 @@ a:hover { text-decoration-color: var(--accent); }
 /* Icons are a secondary layer (round 36): dim, cropped watermarks behind the copy; the sector name leads */
 .tile:hover .tile-icon, .tile:focus-visible .tile-icon { opacity: 0.8; transform: translateY(-0.25rem); }
 .tile-icon { position: absolute; z-index: -1; right: -1.5rem; bottom: -1.5rem; width: 8.5rem; height: 8.5rem; pointer-events: none; opacity: 0.42; transition: opacity var(--slow) var(--ease), transform var(--slow) var(--ease); }
-/* Frosted-glass icons (round 34): rendered 3D objects (tools/icons3d/render.py, Blender/Cycles), transparent WebP,
-   lit from the top-left like the nav rim. Contact shadow is CSS so it suits each background. */
-.tile-icon, .sector-icon { display: block; object-fit: contain; filter: drop-shadow(0 6px 8px color-mix(in oklch, var(--accent-hover) 22%, transparent)); }
-.tile-icon { filter: drop-shadow(0 14px 18px rgb(0 0 0 / 0.45)); }   /* on --surface-dark */
+/* Icons: the Phosphor duotone glyph is a CSS mask over a lit gradient face (light from top-left); a stack of 1px
+   drop-shadows on the wrapper extrudes it into a solid edge, plus one soft cast shadow. */
+.tile-icon, .sector-icon { display: block; --face: linear-gradient(150deg, #F4DDF0 0%, var(--on-dark-muted) 38%, var(--accent) 100%); --edge: #4A1640;
+  filter: drop-shadow(1px 1px 0 var(--edge)) drop-shadow(1px 1px 0 var(--edge)) drop-shadow(1px 1px 0 var(--edge)) drop-shadow(1px 1px 0 var(--edge)) drop-shadow(1px 1px 0 var(--edge)) drop-shadow(6px 10px 10px rgb(0 0 0 / 0.35)); }
+.tile-icon i, .sector-icon i { display: block; width: 100%; height: 100%; background: var(--face); -webkit-mask: var(--icon) center / contain no-repeat; mask: var(--icon) center / contain no-repeat; }
 .tile h3 { font-size: var(--fs-h4); line-height: 1.15; letter-spacing: -0.015em; color: var(--on-dark); max-width: 22ch; }
 /* Area tags: one line, slash-separated (echoes the column slant) */
 .tags { font-size: var(--fs-small); line-height: 1.5; color: var(--on-dark-muted); max-width: 40ch; }
@@ -411,8 +412,8 @@ a:hover { text-decoration-color: var(--accent); }
    homogeneous and not links (NN/g: lists scan better than cards). ---------- */
 .hire-rows { border-top: 1px solid var(--line-strong); }
 .hire-rows li { display: grid; grid-template-columns: 2.25rem minmax(0, 4fr) minmax(0, 5fr) 8rem; column-gap: 1.25rem; align-items: center; padding-block: clamp(0.9rem, 0.75rem + 0.5vw, 1.2rem); border-bottom: 1px solid var(--line); }
-/* Rendered glass icon (see .sector-icon); local size, and no shadow: at 36px it only muddies the row */
-.hire-rows .sector-icon { width: 2.25rem; height: 2.25rem; filter: none; }
+/* Flat plum glyph at this size (see .sector-icon); no extrusion: at 36px it only muddies the row */
+.hire-rows .sector-icon { width: 2.25rem; height: 2.25rem; filter: none; --face: var(--accent); }
 .hire-rows b { font-family: var(--serif); font-weight: 400; font-size: var(--fs-h3); line-height: 1.15; letter-spacing: -0.015em; color: var(--ink); }
 .hire-rows .org { color: var(--ink-muted); }
 .hire-rows .sec { justify-self: end; text-align: right; font-size: var(--fs-tag); font-weight: 600; color: var(--ink-muted); }
@@ -507,7 +508,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .sector { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--gutter); padding-block: clamp(2rem, 1.5rem + 2vw, 3.5rem); border-top: 1px solid var(--line-strong); }
 .sector:last-child { border-bottom: 1px solid var(--line-strong); }
 .sector-side { display: grid; gap: 0.9rem; align-content: start; }
-.sector-icon { width: 3.25rem; height: 3.25rem; }
+.sector-icon { width: 3.25rem; height: 3.25rem; --edge: color-mix(in oklch, var(--accent) 55%, #12051A); }
 
 .sector h2 { font-size: var(--fs-h3-lg); line-height: 1.08; letter-spacing: -0.02em; max-width: 16ch; }
 .sector .lead-by { display: flex; align-items: center; gap: 0.55rem; font-size: var(--fs-tag); font-weight: 600; color: var(--ink-body); }

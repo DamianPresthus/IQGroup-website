@@ -3,13 +3,13 @@ import Base from '../layouts/Base.astro';
 import SectorTiles from '../components/SectorTiles.astro';
 import Contact from '../components/Contact.astro';
 import Face from '../components/Face.astro';
-import { getOrdered, getPerson, iconImage } from '../lib/content';
+import { getOrdered, getPerson, iconUrl } from '../lib/content';
 
 const [sectors, hires] = await Promise.all([getOrdered('sectors'), getOrdered('hires')]);
 const details = await Promise.all(sectors.map(async (s) => ({
   ...s,
   lead: await getPerson(s.data.lead),
-  icon: iconImage(s.data.icon),
+  icon: iconUrl(s.data.icon),
   hires: hires.filter((h) => h.data.sector.id === s.id).map((h) => h.data),
 })));
 ---
@@ -37,7 +37,7 @@ const details = await Promise.all(sectors.map(async (s) => ({
       {details.map(({ id, data, lead, icon, hires }) => (
         <article class="sector" id={id} aria-labelledby={`${id}-title`}>
           <div class="sector-side">
-            <img class="sector-icon" src={icon.src} alt="" width="384" height="384" decoding="async" fetchpriority="low" style={`view-transition-name: icon-${id}`} />
+            <span class="sector-icon" aria-hidden="true" style={`view-transition-name: icon-${id}`}><i style={`--icon: url("${icon}")`}></i></span>
             <h2 id={`${id}-title`} style={`view-transition-name: title-${id}`}>{data.title}</h2>
             <p class="lead-by"><Face face={lead.face} /><span>Led by {lead.name}</span></p>
           </div>
