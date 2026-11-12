@@ -4,7 +4,7 @@
 # `icon` is a file in src/assets/icons/ (Phosphor duotone SVGs). `lead` is a person id from people.yaml.
 
 - id: banking
-  title: "Banking, Private Equity &\u00a0Financial Services"
+  title: "Banking &\u00a0Financial Services"
   icon: bank
   lead: ashmita
   tags:
@@ -39,7 +39,7 @@
     - Advisory firms
 
 - id: consumer
-  title: "FMCG, Healthcare &\u00a0Industrials"
+  title: "Consumer, Healthcare &\u00a0Industrials"
   icon: package
   lead: ashmita
   tags:
